@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Fix"
+  short_description: "Diagnose causes and make approved repairs"
+  default_prompt: "Use $ay-fix to diagnose this failure and make the smallest authorized repair."

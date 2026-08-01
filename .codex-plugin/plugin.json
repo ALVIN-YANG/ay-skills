@@ -1,0 +1,38 @@
+{
+  "name": "ay-skills",
+  "version": "0.1.0",
+  "description": "Lightweight, human-approved workflows for advanced AI coding agents.",
+  "author": {
+    "name": "Alvin Yang",
+    "url": "https://github.com/ALVIN-YANG"
+  },
+  "homepage": "https://github.com/ALVIN-YANG/ay-skills",
+  "repository": "https://github.com/ALVIN-YANG/ay-skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "approval",
+    "coding-agents",
+    "debugging",
+    "writing"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AY Skills",
+    "shortDescription": "Human-approved workflows for capable AI agents",
+    "longDescription": "Five lightweight skills for shaping and implementing changes, debugging, evidence-backed improvement, illustrated writing, and read-only review without scope drift or redundant approval.",
+    "developerName": "Alvin Yang",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/ALVIN-YANG/ay-skills",
+    "defaultPrompt": [
+      "Help me shape and complete this change.",
+      "Diagnose this failure before repairing it.",
+      "Write a clear technical article with useful visuals."
+    ]
+  }
+}

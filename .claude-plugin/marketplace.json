@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ay-skills",
+  "description": "Human-approved workflows for capable AI agents.",
+  "owner": {
+    "name": "Alvin Yang",
+    "url": "https://github.com/ALVIN-YANG"
+  },
+  "plugins": [
+    {
+      "name": "ay-skills",
+      "description": "Five lightweight skills for approved changes, debugging, improvement, writing, and review.",
+      "version": "0.1.0",
+      "category": "development",
+      "source": "./",
+      "homepage": "https://github.com/ALVIN-YANG/ay-skills"
+    }
+  ]
+}

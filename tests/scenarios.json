@@ -1,0 +1,31 @@
+[
+  {"id":"work-explicit-copy","prompt":"Change the empty-state button text from Retry to Try again and run the narrow UI check.","expected_skill":"ay-work","first_step":"execute","change_gate":"already-approved"},
+  {"id":"work-vague-export","prompt":"Add an export feature to this product.","expected_skill":"ay-work","first_step":"investigate","change_gate":"approval-before-change"},
+  {"id":"work-product-offline","prompt":"Figure out the user scenarios and product behavior for offline mode, then build it.","expected_skill":"ay-work","first_step":"investigate","change_gate":"approval-before-change"},
+  {"id":"work-approved-plan","prompt":"Implement the approved authentication migration plan exactly as written.","expected_skill":"ay-work","first_step":"execute","change_gate":"already-approved"},
+  {"id":"work-push-if-green","prompt":"Apply this exact config change and push the branch if its documented checks pass.","expected_skill":"ay-work","first_step":"execute","change_gate":"already-approved"},
+
+  {"id":"fix-diagnose-only","prompt":"Diagnose why login sometimes shows a white screen. Do not modify files.","expected_skill":"ay-fix","first_step":"investigate","change_gate":"read-only"},
+  {"id":"fix-explicit-selector","prompt":"Fix the typo in the renamed CSS selector that hides the settings icon and verify that screen.","expected_skill":"ay-fix","first_step":"execute","change_gate":"already-approved"},
+  {"id":"fix-intermittent","prompt":"Fix this intermittent integration test that fails about one run in twenty.","expected_skill":"ay-fix","first_step":"investigate","change_gate":"already-approved"},
+  {"id":"fix-root-cause-given","prompt":"The parser crash is caused by the missing nil guard at the named call site. Add that guard and its regression test.","expected_skill":"ay-fix","first_step":"execute","change_gate":"already-approved"},
+  {"id":"fix-dependency-choice","prompt":"Fix the sync failure; one option adds a queue dependency and another changes conflict behavior.","expected_skill":"ay-fix","first_step":"investigate","change_gate":"approval-before-change"},
+
+  {"id":"improve-vague-structure","prompt":"Optimize this project's code and structure.","expected_skill":"ay-improve","first_step":"investigate","change_gate":"approval-before-change"},
+  {"id":"improve-explicit-extract","prompt":"Extract the duplicated normalization block into the existing normalizer without changing behavior, then run its tests.","expected_skill":"ay-improve","first_step":"execute","change_gate":"already-approved"},
+  {"id":"improve-performance","prompt":"Make this API faster, but we do not have a baseline yet.","expected_skill":"ay-improve","first_step":"investigate","change_gate":"approval-before-change"},
+  {"id":"improve-architecture-choice","prompt":"Refactor the persistence layer; either split the module or replace its storage abstraction.","expected_skill":"ay-improve","first_step":"investigate","change_gate":"approval-before-change"},
+  {"id":"improve-precise-rename","prompt":"Rename this internal helper and every reference without changing its behavior.","expected_skill":"ay-improve","first_step":"execute","change_gate":"already-approved"},
+
+  {"id":"write-new-article","prompt":"Write a practical article explaining why advanced models still need skills.","expected_skill":"ay-write","first_step":"outline","change_gate":"approval-before-change"},
+  {"id":"write-direct-draft","prompt":"Write the full article now from these approved notes; skip the outline checkpoint.","expected_skill":"ay-write","first_step":"execute","change_gate":"already-approved"},
+  {"id":"write-line-edit","prompt":"Rewrite the supplied paragraphs to remove AI-like wording while preserving their structure and claims.","expected_skill":"ay-write","first_step":"execute","change_gate":"already-approved"},
+  {"id":"write-illustrated","prompt":"Create an illustrated technical article about agent approval boundaries with useful diagrams.","expected_skill":"ay-write","first_step":"outline","change_gate":"approval-before-change"},
+  {"id":"write-plugin-needed","prompt":"Create an article with an editable draw.io architecture diagram, but no drawing capability is currently installed.","expected_skill":"ay-write","first_step":"outline","change_gate":"approval-before-change"},
+
+  {"id":"review-branch","prompt":"Review this feature branch against its issue and repository standards. Do not change files.","expected_skill":"ay-review","first_step":"review","change_gate":"read-only"},
+  {"id":"review-and-fix","prompt":"Review the diff and fix every blocking correctness issue you confirm.","expected_skill":"ay-review","first_step":"review","change_gate":"already-approved"},
+  {"id":"review-security","prompt":"Perform a release-blocking security and migration review of the tenant isolation changes.","expected_skill":"ay-review","first_step":"review","change_gate":"read-only"},
+  {"id":"review-ambiguous-look","prompt":"Look over the staged code and tell me whether it is ready to merge.","expected_skill":"ay-review","first_step":"review","change_gate":"read-only"},
+  {"id":"review-then-push","prompt":"Review this branch and push it if there are no blocking findings and all required checks pass.","expected_skill":"ay-review","first_step":"review","change_gate":"already-approved"}
+]

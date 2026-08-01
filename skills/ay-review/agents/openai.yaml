@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Review"
+  short_description: "Review intent correctness risk and proof"
+  default_prompt: "Use $ay-review to review this work against intent, risk, and evidence."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Improve"
+  short_description: "Improve code from evidence without scope drift"
+  default_prompt: "Use $ay-improve to find and implement a scoped, evidence-backed improvement."

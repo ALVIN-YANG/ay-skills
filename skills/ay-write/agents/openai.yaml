@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Write"
+  short_description: "Create natural factual illustrated articles"
+  default_prompt: "Use $ay-write to create a clear, natural article with useful visuals."

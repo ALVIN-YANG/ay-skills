@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "skill": {
+      "type": "string",
+      "enum": ["ay-work", "ay-fix", "ay-improve", "ay-write", "ay-review"]
+    },
+    "first_step": {
+      "type": "string",
+      "enum": ["execute", "investigate", "review", "outline"]
+    },
+    "change_gate": {
+      "type": "string",
+      "enum": ["already-approved", "approval-before-change", "read-only"]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    }
+  },
+  "required": ["skill", "first_step", "change_gate", "reason"]
+}
