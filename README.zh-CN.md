@@ -1,6 +1,6 @@
 <div align="center">
   <h1>AY Skills</h1>
-  <p><strong>为高级 AI 编程 Agent 设计的轻量、人类批准工作流。</strong></p>
+  <p><strong>让 AI 先弄清楚再动手，少打断，也别自作主张。</strong></p>
   <p>
     <a href="https://github.com/ALVIN-YANG/ay-skills/actions/workflows/test.yml"><img src="https://img.shields.io/github/actions/workflow/status/ALVIN-YANG/ay-skills/test.yml?branch=main&style=flat-square&label=tests" alt="测试"></a>
     <a href="https://github.com/ALVIN-YANG/ay-skills/releases"><img src="https://img.shields.io/github/v/release/ALVIN-YANG/ay-skills?style=flat-square" alt="版本"></a>
@@ -9,98 +9,79 @@
   <p><a href="README.md">English</a></p>
 </div>
 
-高级模型通常已经会写代码，真正难的是协作：它可能没弄清背景就开始猜，把模糊需求擅自变成产品决策，或者方向已经明确还在重复请示。
+AY Skills 来自我每天和 AI 一起做事时反复遇到的五件烦心事：需求没听明白就开工，Bug 靠猜，重构没有基线，文章像说明书，评审时顺手把代码也改了。
 
-AY Skills 只给模型一份协作契约：
-
-> **先理解背景，只获取一次方向批准，在批准边界内完成工作，并证明真实结果。**
+所以我把它们做成了五个可以单独安装的 Skill。任务说清楚了就直接做；还有产品或技术上的关键选择，就先调查、问一次，然后在你确认的范围内完成。
 
 <p align="center">
   <img src="assets/ay-skills-map.zh-CN.svg" alt="按任务选择 AY Skill：新工作使用 ay-work，故障修复使用 ay-fix，基于证据的优化使用 ay-improve，图文写作使用 ay-write，评审使用 ay-review。" width="100%">
 </p>
 
-## 五个独立 Skill
+## 五个 Skill
 
-| Skill | 适用场景 | 核心作用 |
+| Skill | 什么时候用 | 它会做什么 |
 |---|---|---|
-| [`ay-work`](skills/ay-work/SKILL.md) | 产品需求、用户场景、新功能、架构和普通变更 | 对齐模糊方向，然后实现并验证批准的结果 |
-| [`ay-fix`](skills/ay-fix/SKILL.md) | Bug、回归、崩溃、偶发测试、异常变慢 | 先证明根因，再做最小授权修复 |
-| [`ay-improve`](skills/ay-improve/SKILL.md) | 重构、架构、性能、可维护性 | 有真实基线才允许改结构 |
-| [`ay-write`](skills/ay-write/SKILL.md) | 自然技术写作和图文文章 | 先对齐观点、大纲、来源和有效配图，再成稿 |
-| [`ay-review`](skills/ay-review/SKILL.md) | Diff、分支、方案和发布准备度 | 默认只读，只报告有影响且有证据的问题 |
+| [`ay-work`](skills/ay-work/SKILL.md) | 做新功能，或者需求还没说清楚 | 弄清关键选择，再实现并验证结果 |
+| [`ay-fix`](skills/ay-fix/SKILL.md) | 排查 Bug、回归、崩溃、偶发失败或异常变慢 | 先确认根因，再做最小有效修复 |
+| [`ay-improve`](skills/ay-improve/SKILL.md) | 重构，或者优化性能和可维护性 | 先建立基线，修改后再比较结果 |
+| [`ay-write`](skills/ay-write/SKILL.md) | 写文章、改稿，或者把一件事讲明白 | 写出自然、清楚、没有废话的内容 |
+| [`ay-review`](skills/ay-review/SKILL.md) | 评审代码、分支、方案或发布准备度 | 默认只读，只报告重要且有证据的问题 |
 
-可以安装一个，也可以全部安装。每个 Skill 都能独立工作，不依赖路由器或其他 AY Skill。
+可以只装一个，也可以全部安装。它们彼此不依赖，不需要路由器，也不会把一个小改动变成一场规划会议。
 
 ## 安装
 
-用可移植 Agent Skills 方式同时安装到 Codex 和 Claude Code：
+同时安装到 Codex 和 Claude Code：
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -a codex claude-code -g -y
 ```
 
-去掉 `-y` 可以选择单个 Skill 或安装到当前项目：
+想挑选单个 Skill，或者安装到当前项目：
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills
 ```
 
-Claude Code 也支持原生插件安装：
+Claude Code 也可以用原生插件：
 
 ```text
 /plugin marketplace add ALVIN-YANG/ay-skills
 /plugin install ay-skills@ay-skills
 ```
 
-这些 Skill 默认由模型按任务自动触发，也可以显式调用：
+平时直接描述任务即可，匹配时会自动使用。想明确指定也可以：
 
 ```text
 使用 $ay-work 给应用增加导出流程。
 使用 $ay-fix 诊断并修复这个偶发测试。
-使用 $ay-improve 基于真实基线简化这个模块。
-使用 $ay-write 写一篇实用的图文技术文章。
-使用 $ay-review 只读评审当前分支。
+使用 $ay-improve 从真实基线出发简化这个模块。
+使用 $ay-write 把这些笔记写成清楚好读的图文文章。
+使用 $ay-review 评审这个分支，不要修改文件。
 ```
 
-## 一次批准，不是无限检查点
+## 什么时候会停下来问你
 
-| 用户请求 | AY 的行为 |
-|---|---|
-| “把 Retry 改成 Try again，并运行 UI 检查。” | 指令本身已经批准，直接调查、修改、验证 |
-| “优化一下首页。” | 先调查，提出一个推荐方向，修改前等待批准 |
-| “修复这个 Bug。” | 先诊断；只有根因修复唯一、局部、可逆且不改变预期行为时才直接修 |
-| “评审这个分支。” | 只读检查和报告，不自动修复 |
-| “实施批准的方案，检查通过就推送。” | 按方案实施并推送，除非批准边界发生变化，否则不重复请示 |
+任务足够明确，指令本身就是批准：调查、修改、验证，直接做完。
 
-只有新证据会改变产品行为、架构、数据契约、依赖、范围、风险、费用、回滚或外部操作时，才重新申请批准。普通实现细节由 Agent 自主决定。
+只有需要替你决定产品行为、架构、数据契约、依赖、范围、风险、费用、回滚方式或外部操作时，才会停下来问。方向确认后，只要边界没变，就继续做到验证完成。
 
-## 图文写作，不盘问绘图工具
+评审是个例外：除非你明确要求修复，`ay-review` 始终只读。
 
-`ay-write` 会把核心观点、大纲和配图计划一起提交批准。批准后，根据表达目的和当前已有能力自动选择：
+## 写文章时怎么配图
 
-| 表达需要 | 默认形式 |
-|---|---|
-| 精确的小型图解 | SVG |
-| 复杂、可编辑的架构 | draw.io 源文件和导出图 |
-| 概念或手绘风解释 | Excalidraw 源文件和导出图 |
-| 数据结论 | 有可追溯数据的图表 |
-| 封面、场景或隐喻 | 生图 |
+`ay-write` 会先想清楚文章要讲什么、怎么组织、每张图解决什么问题，再选工具。小而精确的图解用 SVG，需要编辑的架构图用 draw.io 或 Excalidraw，数据结论用来源可追溯的图表，封面和场景才考虑生图。
 
-只有风格或可编辑性会改变交付结果时，才询问绘图工具。安装插件、依赖、付费能力或项目运行时仍然需要批准。
+只有风格或可编辑性会改变结果，或者需要安装新工具、依赖、付费服务和项目运行环境时，它才会问你。
 
-## 刻意保持轻量
+## 就这五个
 
-- 只有五个 Skill，没有路由器和模式标签。
-- 每个 `SKILL.md` 不超过 150 行和 500 个正文英文单词。
-- 没有 hooks、遥测、状态栏、bootstrap、全局规则、自动提交或强制规划文档。
-- 所有宿主共用同一份可移植 `SKILL.md` 源码。
-- 源码测试、插件校验、隔离安装、宿主行为、CI、Release 内容和远程安装分别报告，不混为一种证明。
+没有路由器、模式标签、hooks、遥测、状态栏、自动提交或强制规划文件。每个 Skill 只做一件事，也能单独安装。
 
-## 兼容性
+AY Skills 遵循 [Agent Skills 规范](https://agentskills.io/specification)。Codex 和 Claude Code 的便携安装已经测试，Claude Code 原生插件单独测试。其他宿主没有实测前，不写“完整支持”。
 
-Codex 行为和两种宿主的可移植安装已经验证。Claude Code 的原生 manifest、隔离 marketplace 安装和五个 Skill 发现已经验证；仓库包含其实时行为测试，但运行时需要 Claude API 可连接。其他实现 [Agent Skills 规范](https://agentskills.io/specification) 的工具可以读取相同目录，但没有真实测试前不会宣称完整支持。
-
-## 开发与验证
+<details>
+<summary>开发与验证</summary>
 
 ```bash
 python3 scripts/verify_skills.py
@@ -109,17 +90,13 @@ python3 scripts/run_behavior_evals.py --host codex
 python3 scripts/run_behavior_evals.py --host claude
 ```
 
-行为集覆盖明确小改、模糊功能、Bug 批准边界、基于证据的优化、图文写作、只读评审、外部操作和单 Skill 自动触发。
+行为测试覆盖明确小改、模糊功能、Bug 排查、基于证据的优化、图文写作、只读评审、外部操作和单 Skill 自动触发。Claude 实时行为测试需要可连接的 Claude API。
+
+</details>
 
 ## 灵感来源
 
-AY Skills 是原创项目，受到以下项目启发：
-
-- [mattpocock/skills](https://github.com/mattpocock/skills)：事实与决策分离的 grilling，以及克制、可组合的 Skill 设计。
-- [obra/superpowers](https://github.com/obra/superpowers)：根因优先、方向性变更先批准、完成前必须有证据。
-- [tw93/Waza](https://github.com/tw93/Waza)：结果与证据契约、范围克制、项目上下文调查和自然写作。
-
-三个项目均使用 MIT 许可证。AY Skills 没有复制其 Skill 文本或运行时代码。
+AY Skills 是原创项目，受到 [mattpocock/skills](https://github.com/mattpocock/skills)、[Superpowers](https://github.com/obra/superpowers) 和 [Waza](https://github.com/tw93/Waza) 启发：有用的追问、根因优先，以及边界清楚的小 Skill。没有复制它们的 Skill 文本或运行时代码。
 
 ## 许可证
 
