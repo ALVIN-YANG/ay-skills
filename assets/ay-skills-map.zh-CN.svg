@@ -1,9 +1,9 @@
 <svg width="100%" viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title description">
-  <title id="title">Choose an AY Skill</title>
-  <desc id="description">A concise map from five common tasks to the right AY Skill and its outcome.</desc>
+  <title id="title">选择合适的 AY Skill</title>
+  <desc id="description">用五种常见任务快速选择对应的 AY Skill，并说明它会带来的结果。</desc>
 
   <style>
-    text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
     .task { fill: #F0F6FC; font-size: 20px; font-weight: 650; }
     .skill { font-size: 19px; font-weight: 750; }
     .outcome { fill: #A7B0BA; font-size: 17px; font-weight: 500; }
@@ -11,55 +11,55 @@
   </style>
 
   <rect x="1" y="1" width="1198" height="498" rx="24" fill="#0D1117" stroke="#30363D" stroke-width="2"/>
-  <text x="54" y="62" fill="#F0F6FC" font-size="30" font-weight="760">Choose by intent</text>
+  <text x="54" y="62" fill="#F0F6FC" font-size="30" font-weight="760">按任务选择</text>
 
   <g transform="translate(40 92)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#7C8CF8"/>
-    <text x="28" y="40" class="task">New feature or unclear requirement</text>
+    <text x="28" y="40" class="task">新功能或需求不清</text>
     <text x="510" y="40" class="arrow">→</text>
     <rect x="550" y="14" width="166" height="36" rx="18" fill="#7C8CF8" fill-opacity=".14" stroke="#7C8CF8"/>
     <text x="570" y="39" class="skill" fill="#B9C1FF">$ay-work</text>
-    <text x="758" y="40" class="outcome">Align once, then ship</text>
+    <text x="758" y="40" class="outcome">一次对齐，然后完成</text>
   </g>
 
   <g transform="translate(40 168)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#F26D78"/>
-    <text x="28" y="40" class="task">Bug or regression</text>
+    <text x="28" y="40" class="task">Bug 或回归</text>
     <text x="510" y="40" class="arrow">→</text>
     <rect x="550" y="14" width="166" height="36" rx="18" fill="#F26D78" fill-opacity=".13" stroke="#F26D78"/>
     <text x="570" y="39" class="skill" fill="#FFABB2">$ay-fix</text>
-    <text x="758" y="40" class="outcome">Prove cause, then repair</text>
+    <text x="758" y="40" class="outcome">先证根因，再修复</text>
   </g>
 
   <g transform="translate(40 244)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#30BFA5"/>
-    <text x="28" y="40" class="task">Refactor or performance work</text>
+    <text x="28" y="40" class="task">重构或性能优化</text>
     <text x="510" y="40" class="arrow">→</text>
     <rect x="550" y="14" width="166" height="36" rx="18" fill="#30BFA5" fill-opacity=".13" stroke="#30BFA5"/>
     <text x="570" y="39" class="skill" fill="#83E4D1">$ay-improve</text>
-    <text x="758" y="40" class="outcome">Measure before and after</text>
+    <text x="758" y="40" class="outcome">优化前后都要测</text>
   </g>
 
   <g transform="translate(40 320)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#F6A94A"/>
-    <text x="28" y="40" class="task">Article or explanation</text>
+    <text x="28" y="40" class="task">文章或概念讲解</text>
     <text x="510" y="40" class="arrow">→</text>
     <rect x="550" y="14" width="166" height="36" rx="18" fill="#F6A94A" fill-opacity=".13" stroke="#F6A94A"/>
     <text x="570" y="39" class="skill" fill="#FFD08A">$ay-write</text>
-    <text x="758" y="40" class="outcome">Clear, natural, visual</text>
+    <text x="758" y="40" class="outcome">易读、自然、图文并茂</text>
   </g>
 
   <g transform="translate(40 396)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#A78BFA"/>
-    <text x="28" y="40" class="task">Review or release check</text>
+    <text x="28" y="40" class="task">代码评审或发布检查</text>
     <text x="510" y="40" class="arrow">→</text>
     <rect x="550" y="14" width="166" height="36" rx="18" fill="#A78BFA" fill-opacity=".13" stroke="#A78BFA"/>
     <text x="570" y="39" class="skill" fill="#D4C7FF">$ay-review</text>
-    <text x="758" y="40" class="outcome">Read-only, evidence first</text>
+    <text x="758" y="40" class="outcome">默认只读，证据优先</text>
   </g>
 </svg>
