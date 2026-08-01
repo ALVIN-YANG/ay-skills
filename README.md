@@ -15,6 +15,10 @@ AY Skills gives them one operating contract:
 
 > **Understand the context. Earn direction once. Finish inside the approved boundary. Prove the real outcome.**
 
+<p align="center">
+  <img src="assets/ay-skills-map.svg" alt="Choose an AY Skill by primary intent: ay-work for new work, ay-fix for broken behavior, ay-improve for measured improvements, ay-write for illustrated writing, and ay-review for evidence-backed assessment." width="100%">
+</p>
+
 ## Five independent skills
 
 | Skill | Use it for | What changes |

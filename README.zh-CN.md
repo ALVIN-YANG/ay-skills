@@ -15,6 +15,10 @@ AY Skills 只给模型一份协作契约：
 
 > **先理解背景，只获取一次方向批准，在批准边界内完成工作，并证明真实结果。**
 
+<p align="center">
+  <img src="assets/ay-skills-map.svg" alt="按主要意图选择 AY Skill：新工作使用 ay-work，故障修复使用 ay-fix，基于证据的优化使用 ay-improve，图文写作使用 ay-write，评审使用 ay-review。" width="100%">
+</p>
+
 ## 五个独立 Skill
 
 | Skill | 适用场景 | 核心作用 |

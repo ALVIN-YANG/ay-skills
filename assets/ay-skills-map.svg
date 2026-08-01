@@ -1,0 +1,155 @@
+<svg width="100%" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title description">
+  <title id="title">Choose an AY Skill by primary intent</title>
+  <desc id="description">A bilingual map from five common AI work scenarios to ay-work, ay-fix, ay-improve, ay-write, and ay-review.</desc>
+
+  <defs>
+    <linearGradient id="canvas" x1="0" y1="0" x2="1200" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1117"/>
+      <stop offset="1" stop-color="#101827"/>
+    </linearGradient>
+    <linearGradient id="rule" x1="60" y1="0" x2="1140" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C8CF8" stop-opacity=".9"/>
+      <stop offset=".5" stop-color="#30BFA5" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#F6A94A" stop-opacity=".9"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-20%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity=".2"/>
+    </filter>
+    <style>
+      text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .eyebrow { fill: #8B949E; font-size: 12px; font-weight: 700; letter-spacing: 1.4px; }
+      .scenario { fill: #F0F6FC; font-size: 17px; font-weight: 650; }
+      .scenario-sub { fill: #8B949E; font-size: 13px; font-weight: 450; }
+      .skill { font-size: 18px; font-weight: 750; }
+      .skill-sub { font-size: 11px; font-weight: 700; letter-spacing: 1.1px; }
+      .action { fill: #E6EDF3; font-size: 15px; font-weight: 650; }
+      .action-sub { fill: #8B949E; font-size: 13px; font-weight: 450; }
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="1198" height="718" rx="26" fill="url(#canvas)" stroke="#30363D" stroke-width="2"/>
+  <rect x="60" y="47" width="6" height="56" rx="3" fill="url(#rule)"/>
+  <text x="84" y="71" fill="#F0F6FC" font-size="29" font-weight="760">What should the agent do?</text>
+  <text x="84" y="98" fill="#8B949E" font-size="16">按主要意图选择 Skill · usually invoked automatically</text>
+  <g transform="translate(934 52)">
+    <rect width="206" height="38" rx="19" fill="#161B22" stroke="#30363D"/>
+    <circle cx="21" cy="19" r="5" fill="#30BFA5"/>
+    <text x="36" y="24" fill="#C9D1D9" font-size="13" font-weight="650">5 independent skills</text>
+  </g>
+
+  <text x="78" y="141" class="eyebrow">PRIMARY INTENT · 你要做什么</text>
+  <text x="560" y="141" class="eyebrow">SKILL</text>
+  <text x="794" y="141" class="eyebrow">DEFAULT MOVE · 默认动作</text>
+
+  <!-- ay-work -->
+  <g transform="translate(60 158)" filter="url(#shadow)">
+    <rect width="450" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <circle cx="34" cy="38" r="18" fill="#7C8CF8" fill-opacity=".16" stroke="#7C8CF8"/>
+    <path d="M34 29V47M25 38H43" stroke="#AEB8FF" stroke-width="2.2" stroke-linecap="round"/>
+    <text x="64" y="33" class="scenario">New feature · requirement · architecture</text>
+    <text x="64" y="55" class="scenario-sub">新功能 · 产品需求 · 用户场景 · 架构变更</text>
+  </g>
+  <path d="M514 196H531" stroke="#7C8CF8" stroke-width="2" stroke-linecap="round"/><path d="M527 191L534 196L527 201" fill="none" stroke="#7C8CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(540 158)">
+    <rect width="204" height="76" rx="14" fill="#7C8CF8" fill-opacity=".13" stroke="#7C8CF8"/>
+    <text x="20" y="35" class="skill" fill="#B9C1FF">$ay-work</text>
+    <text x="20" y="56" class="skill-sub" fill="#8998FF">SHAPE + BUILD</text>
+  </g>
+  <path d="M748 196H765" stroke="#7C8CF8" stroke-width="2" stroke-linecap="round"/><path d="M761 191L768 196L761 201" fill="none" stroke="#7C8CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(776 158)">
+    <rect width="364" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <text x="20" y="33" class="action">Shape → approve → implement</text>
+    <text x="20" y="55" class="action-sub">先对齐关键行为，批准后自主完成</text>
+  </g>
+
+  <!-- ay-fix -->
+  <g transform="translate(60 248)" filter="url(#shadow)">
+    <rect width="450" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <circle cx="34" cy="38" r="18" fill="#F26D78" fill-opacity=".14" stroke="#F26D78"/>
+    <path d="M34 27V39" stroke="#FF9CA5" stroke-width="2.4" stroke-linecap="round"/><circle cx="34" cy="47" r="1.8" fill="#FF9CA5"/>
+    <text x="64" y="33" class="scenario">Bug · crash · flaky test · regression</text>
+    <text x="64" y="55" class="scenario-sub">故障 · 崩溃 · 偶发测试 · 异常变慢</text>
+  </g>
+  <path d="M514 286H531" stroke="#F26D78" stroke-width="2" stroke-linecap="round"/><path d="M527 281L534 286L527 291" fill="none" stroke="#F26D78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(540 248)">
+    <rect width="204" height="76" rx="14" fill="#F26D78" fill-opacity=".12" stroke="#F26D78"/>
+    <text x="20" y="35" class="skill" fill="#FFABB2">$ay-fix</text>
+    <text x="20" y="56" class="skill-sub" fill="#F9858F">ROOT CAUSE</text>
+  </g>
+  <path d="M748 286H765" stroke="#F26D78" stroke-width="2" stroke-linecap="round"/><path d="M761 281L768 286L761 291" fill="none" stroke="#F26D78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(776 248)">
+    <rect width="364" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <text x="20" y="33" class="action">Prove cause → smallest repair</text>
+    <text x="20" y="55" class="action-sub">先证明根因，再做最小授权修复</text>
+  </g>
+
+  <!-- ay-improve -->
+  <g transform="translate(60 338)" filter="url(#shadow)">
+    <rect width="450" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <circle cx="34" cy="38" r="18" fill="#30BFA5" fill-opacity=".14" stroke="#30BFA5"/>
+    <path d="M25 44L31 37L36 41L44 30" fill="none" stroke="#77E0CC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 30H44V35" fill="none" stroke="#77E0CC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="64" y="33" class="scenario">Refactor · performance · maintainability</text>
+    <text x="64" y="55" class="scenario-sub">重构 · 性能优化 · 结构与可维护性</text>
+  </g>
+  <path d="M514 376H531" stroke="#30BFA5" stroke-width="2" stroke-linecap="round"/><path d="M527 371L534 376L527 381" fill="none" stroke="#30BFA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(540 338)">
+    <rect width="204" height="76" rx="14" fill="#30BFA5" fill-opacity=".12" stroke="#30BFA5"/>
+    <text x="20" y="35" class="skill" fill="#83E4D1">$ay-improve</text>
+    <text x="20" y="56" class="skill-sub" fill="#47CDB3">MEASURED GAIN</text>
+  </g>
+  <path d="M748 376H765" stroke="#30BFA5" stroke-width="2" stroke-linecap="round"/><path d="M761 371L768 376L761 381" fill="none" stroke="#30BFA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(776 338)">
+    <rect width="364" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <text x="20" y="33" class="action">Baseline → improve → compare</text>
+    <text x="20" y="55" class="action-sub">建立真实基线，再优化并对比结果</text>
+  </g>
+
+  <!-- ay-write -->
+  <g transform="translate(60 428)" filter="url(#shadow)">
+    <rect width="450" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <circle cx="34" cy="38" r="18" fill="#F6A94A" fill-opacity=".14" stroke="#F6A94A"/>
+    <path d="M26 46L28 39L39 28L44 33L33 44L26 46Z" fill="none" stroke="#FFD08A" stroke-width="2" stroke-linejoin="round"/><path d="M37 30L42 35" stroke="#FFD08A" stroke-width="2"/>
+    <text x="64" y="33" class="scenario">Article · rewrite · explain · visuals</text>
+    <text x="64" y="55" class="scenario-sub">文章 · 改写润色 · 解释概念 · 图文表达</text>
+  </g>
+  <path d="M514 466H531" stroke="#F6A94A" stroke-width="2" stroke-linecap="round"/><path d="M527 461L534 466L527 471" fill="none" stroke="#F6A94A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(540 428)">
+    <rect width="204" height="76" rx="14" fill="#F6A94A" fill-opacity=".12" stroke="#F6A94A"/>
+    <text x="20" y="35" class="skill" fill="#FFD08A">$ay-write</text>
+    <text x="20" y="56" class="skill-sub" fill="#F6B75F">CLEAR + VISUAL</text>
+  </g>
+  <path d="M748 466H765" stroke="#F6A94A" stroke-width="2" stroke-linecap="round"/><path d="M761 461L768 466L761 471" fill="none" stroke="#F6A94A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(776 428)">
+    <rect width="364" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <text x="20" y="33" class="action">Thesis + outline + visual plan</text>
+    <text x="20" y="55" class="action-sub">观点、大纲、配图方案一次对齐</text>
+  </g>
+
+  <!-- ay-review -->
+  <g transform="translate(60 518)" filter="url(#shadow)">
+    <rect width="450" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <circle cx="34" cy="38" r="18" fill="#A78BFA" fill-opacity=".14" stroke="#A78BFA"/>
+    <circle cx="31" cy="35" r="7" fill="none" stroke="#CEBFFF" stroke-width="2"/><path d="M36 40L43 47" stroke="#CEBFFF" stroke-width="2.2" stroke-linecap="round"/><path d="M28 35L30 37L34 32" fill="none" stroke="#CEBFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="64" y="33" class="scenario">Diff · branch · plan · release readiness</text>
+    <text x="64" y="55" class="scenario-sub">代码 Diff · 分支 · 方案 · 发布准备度</text>
+  </g>
+  <path d="M514 556H531" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"/><path d="M527 551L534 556L527 561" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(540 518)">
+    <rect width="204" height="76" rx="14" fill="#A78BFA" fill-opacity=".12" stroke="#A78BFA"/>
+    <text x="20" y="35" class="skill" fill="#D4C7FF">$ay-review</text>
+    <text x="20" y="56" class="skill-sub" fill="#B39BFA">EVIDENCE FIRST</text>
+  </g>
+  <path d="M748 556H765" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"/><path d="M761 551L768 556L761 561" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(776 518)">
+    <rect width="364" height="76" rx="14" fill="#161B22" stroke="#30363D"/>
+    <text x="20" y="33" class="action">Read-only, unless fixes are requested</text>
+    <text x="20" y="55" class="action-sub">默认只读，只报告重要且有证据的问题</text>
+  </g>
+
+  <g transform="translate(60 626)">
+    <rect width="1080" height="58" rx="15" fill="#161B22" stroke="url(#rule)" stroke-width="1.5"/>
+    <circle cx="28" cy="29" r="6" fill="#30BFA5"/>
+    <text x="46" y="25" fill="#F0F6FC" font-size="14" font-weight="700">One shared approval boundary · 同一授权边界</text>
+    <text x="46" y="45" fill="#8B949E" font-size="13">Precise request → act directly　·　Material choices left → propose once, wait, then finish autonomously</text>
+  </g>
+</svg>
