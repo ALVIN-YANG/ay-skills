@@ -1,6 +1,6 @@
 ---
 name: ay-improve
-description: Improve code structure, architecture, maintainability, performance, or developer experience from a measured baseline without scope drift. Use when a user asks to optimize, refactor, simplify, clean up, rename or extract code without behavior change, or improve a codebase and there is no primary bug symptom.
+description: Improve code structure, architecture, maintainability, performance, or developer experience from a measured baseline without scope drift. Use when optimization, refactoring, simplification, cleanup, renaming, or extraction is the primary task, there is no bug symptom, and no more specific architecture or performance skill applies.
 ---
 
 # AY Improve

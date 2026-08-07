@@ -24,7 +24,7 @@ So I turned them into five standalone skills. A clear request gets done. If a re
 | [`ay-work`](skills/ay-work/SKILL.md) | Building a feature or working through an unclear requirement | Clarifies the open choices, then builds and verifies the result |
 | [`ay-fix`](skills/ay-fix/SKILL.md) | Debugging a bug, regression, crash, flaky test, or slowdown | Confirms the cause before making the smallest useful repair |
 | [`ay-improve`](skills/ay-improve/SKILL.md) | Refactoring or improving performance and maintainability | Establishes a baseline, makes the change, and compares the result |
-| [`ay-write`](skills/ay-write/SKILL.md) | Writing, rewriting, or explaining something with useful visuals | Produces clear, natural prose without filler |
+| [`ay-write`](skills/ay-write/SKILL.md) | Writing or substantially rewriting an article, tutorial, or visual explainer | Produces clear, natural long-form prose without filler |
 | [`ay-review`](skills/ay-review/SKILL.md) | Reviewing a diff, branch, plan, or release | Stays read-only and reports consequential issues backed by evidence |
 
 Install one or all five. They do not depend on a router or on each other, and a small change does not have to become a planning exercise.
@@ -60,6 +60,27 @@ Use $ay-write to turn these notes into a clear illustrated article.
 Use $ay-review to review this branch without changing files.
 ```
 
+## A short example
+
+```text
+You: Add offline mode.
+
+AY: The app currently assumes a live connection. I recommend read-only cached data
+offline, a visible stale-data state, and queued writes as a non-goal for this change.
+I will verify cold launch, reconnect, and stale-data behavior. Approve this boundary?
+
+You: Approved.
+
+AY: Implemented the approved flow and ran the focused tests. Queued writes remain out
+of scope; real-device reconnect behavior is the only unverified surface.
+```
+
+## Use with other skills
+
+AY Skills can sit beside specific artifact and tool skills such as frontend design, PDF, spreadsheet, or accessibility workflows. The specific skill should lead; AY supplies the approval and evidence boundary when useful.
+
+Avoid installing two broad workflows for the same job and expecting reliable automatic routing. For example, choose one primary debugging or code-review workflow, install alternatives per project, or invoke the one you want explicitly.
+
 ## When it stops to ask
 
 A precise request is already approval: investigate, make the change, and verify it.
@@ -78,7 +99,7 @@ It only asks when style or editability would change the result, or when a new to
 
 Five skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
 
-AY Skills follows the [Agent Skills specification](https://agentskills.io/specification). Portable installation is tested in Codex and Claude Code, and the Claude Code plugin is tested separately. Other hosts are not claimed until they are verified.
+AY Skills follows the [Agent Skills specification](https://agentskills.io/specification). Portable installation is tested in Codex and Claude Code, and the Claude Code plugin is tested separately. The Codex manifest is validated for local marketplace testing and future directory submission; a public Codex plugin listing is not claimed. Other hosts are not claimed until they are verified.
 
 <details>
 <summary>Development and verification</summary>
@@ -86,11 +107,12 @@ AY Skills follows the [Agent Skills specification](https://agentskills.io/specif
 ```bash
 python3 scripts/verify_skills.py
 python3 -m unittest discover -s tests -v
-python3 scripts/run_behavior_evals.py --host codex
-python3 scripts/run_behavior_evals.py --host claude
+python3 scripts/run_routing_evals.py --host codex
+python3 scripts/run_routing_evals.py --host claude
+python3 scripts/run_behavior_evals.py
 ```
 
-The behavior suite covers clear changes, vague features, debugging, measured improvement, illustrated writing, read-only review, external actions, and standalone invocation. Live Claude behavior checks require a reachable Claude API.
+Static checks run in CI. Routing evals cover all five AY skills, no-skill requests, and coexistence with more specific skills. The black-box Codex suite runs real isolated tasks and verifies observable file changes, approval stops, diagnosis-only work, writing output, and read-only review. Live model checks require the matching local CLI and account access; black-box execution currently covers Codex.
 
 </details>
 

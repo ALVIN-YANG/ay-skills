@@ -1,0 +1,22 @@
+[
+  {
+    "name": "frontend-design",
+    "description": "Build or reshape distinctive frontend interfaces with intentional visual direction, typography, and layout. Use when creating or redesigning web UI."
+  },
+  {
+    "name": "web-design-guidelines",
+    "description": "Review UI code for accessibility, interaction, performance, and web interface guideline compliance. Use when auditing web UI, UX, or accessibility."
+  },
+  {
+    "name": "tdd",
+    "description": "Implement features or fixes through a red-green-refactor test-driven development loop. Use when the user explicitly requests test-first development or integration tests."
+  },
+  {
+    "name": "pdf",
+    "description": "Read, create, edit, render, and verify PDF files. Use when the requested input or deliverable is a PDF."
+  },
+  {
+    "name": "say-it-clearly",
+    "description": "Rewrite the immediately preceding assistant answer in concise natural Chinese. Use when the user says the answer was unclear, too long, or asks to hear the point again."
+  }
+]

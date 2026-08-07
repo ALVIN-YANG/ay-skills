@@ -1,6 +1,6 @@
 ---
 name: ay-review
-description: Review a diff, branch, pull request, plan, implementation, or delivery state against intent, repository standards, correctness, risk, and verification evidence. Use when a user requests code review, an audit, a pre-merge check, or review-then-fix work whose first job is assessment.
+description: Review a diff, branch, pull request, plan, implementation, or delivery state against intent, repository standards, correctness, risk, and verification evidence. Use when a general audit, pre-merge check, or review-then-fix workflow is requested. Yield primary review to a more specific security, accessibility, framework, or artifact skill when one applies.
 ---
 
 # AY Review

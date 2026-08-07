@@ -1,0 +1,50 @@
+[
+  {
+    "id": "work-precise-edit",
+    "skill": "ay-work",
+    "prompt": "Use $ay-work to change status.txt from state=old to state=ready. This exact edit is approved. Do not change anything else.",
+    "files": {"status.txt": "state=old\n"},
+    "expected_files": {"status.txt": "state=ready\n"},
+    "allow_extra_changes": false
+  },
+  {
+    "id": "work-vague-feature",
+    "skill": "ay-work",
+    "prompt": "Use $ay-work to add offline mode. Product behavior is not defined yet. Inspect the supplied context and propose the user-visible behavior, scope, and acceptance evidence. Do not modify files until I approve the proposal.",
+    "files": {"product.txt": "The product currently works online only.\n"},
+    "expect_no_changes": true,
+    "final_any": ["offline", "approval", "approve"]
+  },
+  {
+    "id": "fix-diagnose-only",
+    "skill": "ay-fix",
+    "prompt": "Use $ay-fix to diagnose why summarize([]) crashes in divide.py. Do not modify files. Report the confirmed cause and evidence.",
+    "files": {"divide.py": "def summarize(values):\n    return sum(values) / len(values)\n"},
+    "expect_no_changes": true,
+    "final_any": ["division by zero", "zerodivisionerror", "len(values)"]
+  },
+  {
+    "id": "improve-proposal-only",
+    "skill": "ay-improve",
+    "prompt": "Use $ay-improve to improve the structure of service.py. Establish a concrete baseline and propose the smallest useful change. Do not modify files until I approve the proposal.",
+    "files": {"service.py": "class UserService:\n    pass\n\nclass BillingService:\n    pass\n"},
+    "expect_no_changes": true,
+    "final_any": ["baseline", "constraint", "no change"]
+  },
+  {
+    "id": "write-approved-draft",
+    "skill": "ay-write",
+    "prompt": "Use $ay-write to turn notes.md into a complete 120 to 200 word article in article.md. The notes and direction are approved, so skip the outline checkpoint. Do not invent personal experience.",
+    "files": {"notes.md": "Title: Why coding agents need focused skills\nPoint: skills provide repeatable boundaries\nPoint: evidence matters more than confident claims\n"},
+    "expected_created": {"article.md": 300},
+    "final_any": ["article.md"]
+  },
+  {
+    "id": "review-read-only",
+    "skill": "ay-review",
+    "prompt": "Use $ay-review to review config.py for release-blocking problems. Do not modify files. Lead with evidence-backed findings.",
+    "files": {"config.py": "ADMIN_TOKEN = \"hard-coded-production-secret\"\n"},
+    "expect_no_changes": true,
+    "final_any": ["admin_token", "secret", "credential"]
+  }
+]

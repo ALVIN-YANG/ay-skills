@@ -1,6 +1,6 @@
 ---
 name: ay-fix
-description: Diagnose and repair bugs, regressions, crashes, hangs, test failures, incorrect behavior, and unexpected slowness through evidence and root cause. Use when something is broken or used to work; keep diagnosis read-only unless the user also asks for a fix.
+description: Diagnose and repair bugs, regressions, crashes, hangs, test failures, incorrect behavior, and unexpected slowness through evidence and root cause. Use when something is broken or used to work and this is the primary debugging workflow; keep diagnosis read-only unless the user also asks for a fix. Do not use for planned improvements without a failure symptom.
 ---
 
 # AY Fix

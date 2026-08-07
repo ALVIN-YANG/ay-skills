@@ -1,7 +1,7 @@
 {
   "name": "ay-skills",
   "version": "0.1.0",
-  "description": "Lightweight, human-approved workflows for advanced AI coding agents.",
+  "description": "Small, human-approved workflows for AI coding agents.",
   "author": {
     "name": "Alvin Yang",
     "url": "https://github.com/ALVIN-YANG"

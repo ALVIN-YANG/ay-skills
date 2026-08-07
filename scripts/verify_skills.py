@@ -4,13 +4,13 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import re
 import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILLS_ROOT = ROOT / "skills"
 EXPECTED_SKILLS = (
     "ay-work",
     "ay-fix",
@@ -20,6 +20,7 @@ EXPECTED_SKILLS = (
 )
 FRONTMATTER_RE = re.compile(r"\A---\n(?P<yaml>.*?)\n---\n(?P<body>.*)\Z", re.DOTALL)
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$")
 CONTRACT_RE = re.compile(
     r"<!-- ay-contract:start -->\n(?P<contract>.*?)\n<!-- ay-contract:end -->",
     re.DOTALL,
@@ -53,6 +54,10 @@ def word_count(text: str) -> int:
 
 def validate(root: Path = ROOT) -> list[str]:
     errors: list[str] = []
+    version_path = root / "VERSION"
+    version = version_path.read_text(encoding="utf-8").strip() if version_path.is_file() else ""
+    if not SEMVER_RE.fullmatch(version):
+        errors.append("VERSION: missing or invalid semantic version")
     skills_root = root / "skills"
     actual = sorted(path.name for path in skills_root.iterdir() if path.is_dir())
     if actual != sorted(EXPECTED_SKILLS):
@@ -139,8 +144,9 @@ def validate(root: Path = ROOT) -> list[str]:
                 if contract != canonical:
                     errors.append(f"{name}: approval contract drifted from {canonical_name}")
 
-    validate_manifests(root, errors)
+    validate_manifests(root, version, errors)
     validate_scenarios(root, errors)
+    validate_execution_scenarios(root, errors)
     validate_docs(root, errors)
     return errors
 
@@ -153,7 +159,7 @@ def load_json(path: Path, errors: list[str]) -> dict | list | None:
         return None
 
 
-def validate_manifests(root: Path, errors: list[str]) -> None:
+def validate_manifests(root: Path, version: str, errors: list[str]) -> None:
     codex = load_json(root / ".codex-plugin" / "plugin.json", errors)
     claude = load_json(root / ".claude-plugin" / "plugin.json", errors)
     marketplace = load_json(root / ".claude-plugin" / "marketplace.json", errors)
@@ -162,8 +168,8 @@ def validate_manifests(root: Path, errors: list[str]) -> None:
     for label, manifest in (("codex", codex), ("claude", claude)):
         if manifest.get("name") != "ay-skills":
             errors.append(f"{label} manifest: name must be ay-skills")
-        if manifest.get("version") != "0.1.0":
-            errors.append(f"{label} manifest: version must be 0.1.0")
+        if manifest.get("version") != version:
+            errors.append(f"{label} manifest: version must match VERSION ({version})")
         if manifest.get("license") != "MIT":
             errors.append(f"{label} manifest: license must be MIT")
     if codex.get("skills") != "./skills/":
@@ -174,12 +180,42 @@ def validate_manifests(root: Path, errors: list[str]) -> None:
         errors.append("claude manifest: skills list does not match canonical skill folders")
     if not isinstance(marketplace, dict) or marketplace.get("name") != "ay-skills":
         errors.append("claude marketplace: missing or invalid name")
+    elif not isinstance(marketplace.get("plugins"), list) or not marketplace["plugins"]:
+        errors.append("claude marketplace: missing plugin entry")
+    else:
+        entry = marketplace["plugins"][0]
+        if not isinstance(entry, dict):
+            errors.append("claude marketplace: plugin entry must be an object")
+        elif entry.get("version") != version:
+            errors.append(f"claude marketplace: version must match VERSION ({version})")
+
+    if os.environ.get("GITHUB_REF_TYPE") == "tag":
+        expected_tag = f"v{version}"
+        if os.environ.get("GITHUB_REF_NAME") != expected_tag:
+            errors.append(f"release tag must match VERSION ({expected_tag})")
 
 
 def validate_scenarios(root: Path, errors: list[str]) -> None:
     scenarios = load_json(root / "tests" / "scenarios.json", errors)
-    if not isinstance(scenarios, list):
+    competing = load_json(root / "tests" / "competing-skills.json", errors)
+    if not isinstance(scenarios, list) or not isinstance(competing, list):
         return
+    competing_names = {
+        str(skill.get("name"))
+        for skill in competing
+        if isinstance(skill, dict) and skill.get("name")
+    }
+    if len(competing_names) != len(competing):
+        errors.append("competing skills: names must be present and unique")
+    for skill in competing:
+        if not isinstance(skill, dict):
+            continue
+        name = str(skill.get("name", ""))
+        if not NAME_RE.fullmatch(name):
+            errors.append(f"competing skills: invalid name {name!r}")
+        if not str(skill.get("description", "")).strip():
+            errors.append(f"competing skills: {name} is missing a description")
+    allowed_skills = set(EXPECTED_SKILLS) | competing_names | {"none"}
     if len(scenarios) < 20:
         errors.append(f"scenarios: expected at least 20, found {len(scenarios)}")
     ids: set[str] = set()
@@ -193,21 +229,49 @@ def validate_scenarios(root: Path, errors: list[str]) -> None:
             errors.append(f"scenarios: missing or duplicate id {scenario_id!r}")
         ids.add(scenario_id)
         skill = scenario.get("expected_skill")
-        if skill not in counts:
+        if skill not in allowed_skills:
             errors.append(f"{scenario_id}: invalid expected_skill {skill!r}")
-        else:
+        elif skill in counts:
             counts[str(skill)] += 1
-        if scenario.get("first_step") not in {"execute", "investigate", "review", "outline"}:
-            errors.append(f"{scenario_id}: invalid first_step")
-        if scenario.get("change_gate") not in {
-            "already-approved",
-            "approval-before-change",
-            "read-only",
-        }:
-            errors.append(f"{scenario_id}: invalid change_gate")
+        if set(scenario) != {"id", "prompt", "expected_skill"}:
+            errors.append(f"{scenario_id}: routing cases need only id, prompt, and expected_skill")
     for name, count in counts.items():
         if count < 4:
             errors.append(f"scenarios: {name} has only {count} cases")
+    if not any(scenario.get("expected_skill") == "none" for scenario in scenarios):
+        errors.append("scenarios: missing a no-skill routing case")
+    if not competing_names.issubset({str(scenario.get("expected_skill")) for scenario in scenarios}):
+        errors.append("scenarios: every competing skill needs a routing case")
+
+
+def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
+    scenarios = load_json(root / "tests" / "execution-scenarios.json", errors)
+    if not isinstance(scenarios, list):
+        return
+    ids: set[str] = set()
+    covered: set[str] = set()
+    for scenario in scenarios:
+        if not isinstance(scenario, dict):
+            errors.append("execution scenarios: every entry must be an object")
+            continue
+        scenario_id = str(scenario.get("id", ""))
+        if not scenario_id or scenario_id in ids:
+            errors.append(f"execution scenarios: missing or duplicate id {scenario_id!r}")
+        ids.add(scenario_id)
+        skill = str(scenario.get("skill", ""))
+        if skill not in EXPECTED_SKILLS:
+            errors.append(f"{scenario_id}: invalid execution skill {skill!r}")
+        covered.add(skill)
+        if not isinstance(scenario.get("files"), dict):
+            errors.append(f"{scenario_id}: files must be an object")
+        if not any(
+            key in scenario
+            for key in ("expect_no_changes", "expected_files", "expected_created", "final_any")
+        ):
+            errors.append(f"{scenario_id}: missing observable assertion")
+    missing = set(EXPECTED_SKILLS) - covered
+    if missing:
+        errors.append(f"execution scenarios: missing skills {', '.join(sorted(missing))}")
 
 
 def validate_docs(root: Path, errors: list[str]) -> None:
@@ -222,6 +286,9 @@ def validate_docs(root: Path, errors: list[str]) -> None:
                 errors.append(f"{filename}: missing {name}")
         if "TODO" in text:
             errors.append(f"{filename}: contains TODO placeholder")
+        for command in ("scripts/run_routing_evals.py", "scripts/run_behavior_evals.py"):
+            if command not in text:
+                errors.append(f"{filename}: missing {command}")
 
 
 def main() -> int:

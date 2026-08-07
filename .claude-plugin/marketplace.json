@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "ay-skills",
-  "description": "Human-approved workflows for capable AI agents.",
+  "description": "Approval-aware workflows for AI coding agents.",
   "owner": {
     "name": "Alvin Yang",
     "url": "https://github.com/ALVIN-YANG"

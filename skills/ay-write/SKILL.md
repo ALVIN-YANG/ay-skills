@@ -1,6 +1,6 @@
 ---
 name: ay-write
-description: Research, draft, rewrite, and illustrate natural, factual, readable Chinese or English articles and long-form technical content. Use when a user asks to write, edit, polish, remove AI-like prose, explain a topic, or create an article with useful diagrams, charts, SVG, draw.io, Excalidraw, or generated images.
+description: Research, draft, rewrite, and illustrate substantial Chinese or English articles and long-form technical content. Use when creating articles, blog posts, tutorials, long-form rewrites, or visual explainers. Do not use for ordinary chat answers, short explanations, UI copy, narrow documentation edits, or artifact types handled by a dedicated skill.
 ---
 
 # AY Write
