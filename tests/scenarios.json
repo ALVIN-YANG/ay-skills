@@ -1,4 +1,10 @@
 [
+  {"id":"product-rough-idea","prompt":"I have a rough idea for an app that helps flatmates avoid buying duplicate groceries. Research the problem and turn it into a focused product definition.","expected_skill":"ay-product"},
+  {"id":"product-competitive-prd","prompt":"Research the current competitors for an offline field-service knowledge tool and produce an evidence-backed MVP PRD.","expected_skill":"ay-product"},
+  {"id":"product-goals-scope","prompt":"Define the target user, product goals, non-goals, core journey, and acceptance criteria for this product concept before we build anything.","expected_skill":"ay-product"},
+  {"id":"product-validate-or-stop","prompt":"Stress-test whether this product idea is worth building, identify the riskiest assumptions, and recommend the cheapest validation plan.","expected_skill":"ay-product"},
+  {"id":"product-existing-direction","prompt":"Use our research notes to choose a product direction and prioritize the first MVP without implementing it.","expected_skill":"ay-product"},
+
   {"id":"work-explicit-copy","prompt":"Change the empty-state button text from Retry to Try again and run the narrow UI check.","expected_skill":"ay-work"},
   {"id":"work-vague-export","prompt":"Add an export feature to this product.","expected_skill":"ay-work"},
   {"id":"work-product-offline","prompt":"Figure out the user scenarios and product behavior for offline mode, then build it.","expected_skill":"ay-work"},

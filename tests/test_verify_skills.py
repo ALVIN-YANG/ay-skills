@@ -74,7 +74,14 @@ class VerifySkillsTests(unittest.TestCase):
             shutil.copytree(ROOT, checkout, ignore=shutil.ignore_patterns(".git", "__pycache__"))
             scenarios = checkout / "tests" / "execution-scenarios.json"
             data = json.loads(scenarios.read_text(encoding="utf-8"))
-            for key in ("expect_no_changes", "expected_files", "expected_created", "final_any"):
+            for key in (
+                "expect_no_changes",
+                "expected_files",
+                "expected_created",
+                "final_any",
+                "final_all",
+                "final_none",
+            ):
                 data[0].pop(key, None)
             scenarios.write_text(json.dumps(data), encoding="utf-8")
             errors = verify_skills.validate(checkout)

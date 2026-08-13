@@ -1,6 +1,6 @@
 ---
 name: ay-work
-description: Shape, implement, and verify product or software changes inside a human-approved boundary. Use when a user requests a new feature, product requirement, user scenario, architecture decision, or general code and file change and no more specific installed skill applies. Do not use for bugs, optimization, long-form writing, review, or specialized artifact and tool work.
+description: Shape, implement, and verify product or software changes inside a human-approved boundary. Use when a user requests a new feature, architecture decision, or general code and file change and no more specific installed skill applies. Do not use for product discovery or PRD-only work handled by a product skill, or for bugs, optimization, long-form writing, review, and specialized artifact or tool work.
 ---
 
 # AY Work

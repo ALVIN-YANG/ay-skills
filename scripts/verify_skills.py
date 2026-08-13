@@ -12,6 +12,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = (
+    "ay-product",
     "ay-work",
     "ay-fix",
     "ay-improve",
@@ -147,6 +148,7 @@ def validate(root: Path = ROOT) -> list[str]:
     validate_manifests(root, version, errors)
     validate_scenarios(root, errors)
     validate_execution_scenarios(root, errors)
+    validate_product_evals(root, errors)
     validate_docs(root, errors)
     return errors
 
@@ -266,12 +268,77 @@ def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
             errors.append(f"{scenario_id}: files must be an object")
         if not any(
             key in scenario
-            for key in ("expect_no_changes", "expected_files", "expected_created", "final_any")
+            for key in (
+                "expect_no_changes",
+                "expected_files",
+                "expected_created",
+                "final_any",
+                "final_all",
+                "final_none",
+            )
         ):
             errors.append(f"{scenario_id}: missing observable assertion")
     missing = set(EXPECTED_SKILLS) - covered
     if missing:
         errors.append(f"execution scenarios: missing skills {', '.join(sorted(missing))}")
+
+
+def validate_product_evals(root: Path, errors: list[str]) -> None:
+    scenarios = load_json(root / "tests" / "product-scenarios.json", errors)
+    rubric = load_json(root / "tests" / "product-rubric.json", errors)
+    schema = load_json(root / "tests" / "product-eval.schema.json", errors)
+    if not isinstance(scenarios, list) or not isinstance(rubric, dict) or not isinstance(schema, dict):
+        return
+    if len(scenarios) < 12:
+        errors.append(f"product scenarios: expected at least 12, found {len(scenarios)}")
+    ids: set[str] = set()
+    holdouts = 0
+    categories: set[str] = set()
+    required = {"id", "category", "research_mode", "holdout", "prompt", "files", "criteria"}
+    for scenario in scenarios:
+        if not isinstance(scenario, dict):
+            errors.append("product scenarios: every entry must be an object")
+            continue
+        scenario_id = str(scenario.get("id", ""))
+        if not scenario_id or scenario_id in ids:
+            errors.append(f"product scenarios: missing or duplicate id {scenario_id!r}")
+        ids.add(scenario_id)
+        if set(scenario) != required:
+            errors.append(f"{scenario_id}: product scenario fields do not match schema")
+        if not isinstance(scenario.get("files"), dict) or not scenario.get("files"):
+            errors.append(f"{scenario_id}: product scenario needs supplied files")
+        if not isinstance(scenario.get("criteria"), list) or len(scenario.get("criteria", [])) < 2:
+            errors.append(f"{scenario_id}: product scenario needs at least two criteria")
+        if scenario.get("holdout") is True:
+            holdouts += 1
+        categories.add(str(scenario.get("category", "")))
+        if scenario.get("research_mode") not in {"fixed", "live"}:
+            errors.append(f"{scenario_id}: product scenario has invalid research_mode")
+    if holdouts < 3:
+        errors.append(f"product scenarios: expected at least 3 holdouts, found {holdouts}")
+    if len(categories) < 5:
+        errors.append("product scenarios: expected at least 5 categories")
+    if not {"fixed", "live"}.issubset(
+        {str(scenario.get("research_mode")) for scenario in scenarios if isinstance(scenario, dict)}
+    ):
+        errors.append("product scenarios: fixed and live research modes are both required")
+
+    dimensions = rubric.get("dimensions")
+    failures = rubric.get("critical_failures")
+    if not isinstance(dimensions, list) or len(dimensions) != 10:
+        errors.append("product rubric: expected exactly 10 dimensions")
+    elif len({str(item.get("id")) for item in dimensions if isinstance(item, dict)}) != 10:
+        errors.append("product rubric: dimension ids must be unique")
+    if not isinstance(failures, list) or not failures:
+        errors.append("product rubric: critical failures are missing")
+    for key in (
+        "minimum_median_total",
+        "minimum_win_rate",
+        "maximum_critical_failures",
+        "maximum_average_question_batches",
+    ):
+        if key not in rubric:
+            errors.append(f"product rubric: missing {key}")
 
 
 def validate_docs(root: Path, errors: list[str]) -> None:
@@ -286,7 +353,11 @@ def validate_docs(root: Path, errors: list[str]) -> None:
                 errors.append(f"{filename}: missing {name}")
         if "TODO" in text:
             errors.append(f"{filename}: contains TODO placeholder")
-        for command in ("scripts/run_routing_evals.py", "scripts/run_behavior_evals.py"):
+        for command in (
+            "scripts/run_routing_evals.py",
+            "scripts/run_behavior_evals.py",
+            "scripts/run_product_evals.py",
+        ):
             if command not in text:
                 errors.append(f"{filename}: missing {command}")
 

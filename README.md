@@ -9,29 +9,30 @@
   <p><a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
-AY Skills started with five things that kept bothering me when I worked with AI: it began before it understood the request, guessed at bugs, refactored without a baseline, wrote like a manual, and changed code during a review.
+AY Skills started with six things that kept bothering me when I worked with AI: product ideas became specs before anyone checked the user or market, work began before the request was understood, bugs were guessed at, refactors had no baseline, articles read like manuals, and reviews changed the code.
 
-So I turned them into five standalone skills. A clear request gets done. If a real product or technical choice is still open, the agent investigates, asks once, and continues inside the boundary you approved.
+So I turned them into six standalone skills. A clear request gets done. If a real product or technical choice is still open, the agent investigates, asks once, and continues inside the boundary you approved.
 
 <p align="center">
-  <img src="assets/ay-skills-map.svg" alt="Choose an AY Skill: ay-work for new work, ay-fix for bugs, ay-improve for measured improvements, ay-write for clear visual writing, and ay-review for read-only review." width="100%">
+  <img src="assets/ay-skills-map.svg" alt="Choose an AY Skill: ay-product for product definition, ay-work for implementation, ay-fix for bugs, ay-improve for measured improvements, ay-write for clear visual writing, and ay-review for read-only review." width="100%">
 </p>
 
 ## Skills
 
 | Skill | Use it when | What it does |
 |---|---|---|
+| [`ay-product`](skills/ay-product/SKILL.md) | Turning a rough idea into a product direction, MVP, requirement, or PRD | Researches the problem and market, recommends a focused product, and makes assumptions testable |
 | [`ay-work`](skills/ay-work/SKILL.md) | Building a feature or working through an unclear requirement | Clarifies the open choices, then builds and verifies the result |
 | [`ay-fix`](skills/ay-fix/SKILL.md) | Debugging a bug, regression, crash, flaky test, or slowdown | Confirms the cause before making the smallest useful repair |
 | [`ay-improve`](skills/ay-improve/SKILL.md) | Refactoring or improving performance and maintainability | Establishes a baseline, makes the change, and compares the result |
 | [`ay-write`](skills/ay-write/SKILL.md) | Writing or substantially rewriting an article, tutorial, or visual explainer | Produces clear, natural long-form prose without filler |
 | [`ay-review`](skills/ay-review/SKILL.md) | Reviewing a diff, branch, plan, or release | Stays read-only and reports consequential issues backed by evidence |
 
-Install one or all five. They do not depend on a router or on each other, and a small change does not have to become a planning exercise.
+Install one or all six. They do not depend on a router or on each other, and a small change does not have to become a planning exercise.
 
 ## Install
 
-Install all five for Codex and Claude Code:
+Install all six for Codex and Claude Code:
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -a codex claude-code -g -y
@@ -53,6 +54,7 @@ Claude Code also supports the native plugin:
 Skills are picked up automatically when the task matches. You can also name one directly:
 
 ```text
+Use $ay-product to research this idea and define a focused, testable MVP.
 Use $ay-work to add an export flow to this app.
 Use $ay-fix to diagnose and fix this intermittent test.
 Use $ay-improve to simplify this module from a measured baseline.
@@ -87,6 +89,8 @@ A precise request is already approval: investigate, make the change, and verify 
 
 The agent stops when it would otherwise have to decide product behavior, architecture, data contracts, dependencies, scope, risk, cost, rollback, or an external action for you. Once you approve the direction, it keeps going unless that boundary changes.
 
+`ay-product` investigates discoverable product and market facts itself, asks only about decisions that materially change the direction, and stops before implementation.
+
 Reviews are the exception: `ay-review` stays read-only unless you ask for fixes.
 
 ## Writing with visuals
@@ -97,7 +101,7 @@ It only asks when style or editability would change the result, or when a new to
 
 ## Small by design
 
-Five skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
+Six skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
 
 AY Skills follows the [Agent Skills specification](https://agentskills.io/specification). Portable installation is tested in Codex and Claude Code, and the Claude Code plugin is tested separately. The Codex manifest is validated for local marketplace testing and future directory submission; a public Codex plugin listing is not claimed. Other hosts are not claimed until they are verified.
 
@@ -110,15 +114,17 @@ python3 -m unittest discover -s tests -v
 python3 scripts/run_routing_evals.py --host codex
 python3 scripts/run_routing_evals.py --host claude
 python3 scripts/run_behavior_evals.py
+python3 scripts/run_product_evals.py
+python3 scripts/run_product_evals.py --research-mode live
 ```
 
-Static checks run in CI. Routing evals cover all five AY skills, no-skill requests, and coexistence with more specific skills. The black-box Codex suite runs real isolated tasks and verifies observable file changes, approval stops, diagnosis-only work, writing output, and read-only review. Live model checks require the matching local CLI and account access; black-box execution currently covers Codex.
+Static checks run in CI. Routing evals cover all six AY skills, no-skill requests, and coexistence with more specific skills. The black-box Codex suite runs real isolated tasks and verifies observable changes and approval boundaries. Product evals compare `ay-product` with an unskilled baseline against fixed cases and a shared rubric; current market research runs separately. Live model checks require the matching local CLI and account access; black-box execution currently covers Codex.
 
 </details>
 
 ## Influences
 
-AY Skills is original work informed by [mattpocock/skills](https://github.com/mattpocock/skills), [Superpowers](https://github.com/obra/superpowers), and [Waza](https://github.com/tw93/Waza): useful questioning, root-cause discipline, and small skills with clear boundaries. It does not copy their skill text or runtime code.
+AY Skills is original work informed by [mattpocock/skills](https://github.com/mattpocock/skills), [Superpowers](https://github.com/obra/superpowers), [Waza](https://github.com/tw93/Waza), [PM Skills](https://github.com/phuryn/pm-skills), [awesome-copilot](https://github.com/github/awesome-copilot), and [claude-skills](https://github.com/alirezarezvani/claude-skills): useful questioning, evidence-first product discovery, root-cause discipline, and small skills with clear boundaries. It does not copy their skill text or runtime code.
 
 ## License
 

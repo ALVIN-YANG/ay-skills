@@ -1,6 +1,6 @@
-<svg width="100%" viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title description">
+<svg width="100%" viewBox="0 0 1200 576" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title description">
   <title id="title">选择合适的 AY Skill</title>
-  <desc id="description">用五种常见任务快速选择对应的 AY Skill，并说明它会带来的结果。</desc>
+  <desc id="description">用六种常见任务快速选择对应的 AY Skill，并说明它会带来的结果。</desc>
 
   <style>
     text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
@@ -10,10 +10,20 @@
     .arrow { fill: #59636E; font-size: 19px; font-weight: 700; }
   </style>
 
-  <rect x="1" y="1" width="1198" height="498" rx="24" fill="#0D1117" stroke="#30363D" stroke-width="2"/>
+  <rect x="1" y="1" width="1198" height="574" rx="24" fill="#0D1117" stroke="#30363D" stroke-width="2"/>
   <text x="54" y="62" fill="#F0F6FC" font-size="30" font-weight="760">按任务选择</text>
 
   <g transform="translate(40 92)">
+    <rect width="1120" height="64" rx="14" fill="#161B22"/>
+    <rect width="5" height="64" rx="2.5" fill="#5DADE2"/>
+    <text x="28" y="40" class="task">产品设想、方向或 PRD</text>
+    <text x="510" y="40" class="arrow">→</text>
+    <rect x="550" y="14" width="166" height="36" rx="18" fill="#5DADE2" fill-opacity=".13" stroke="#5DADE2"/>
+    <text x="570" y="39" class="skill" fill="#A8D8F0">$ay-product</text>
+    <text x="758" y="40" class="outcome">调查、聚焦、验证</text>
+  </g>
+
+  <g transform="translate(40 168)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#7C8CF8"/>
     <text x="28" y="40" class="task">新功能或需求不清</text>
@@ -23,7 +33,7 @@
     <text x="758" y="40" class="outcome">一次对齐，然后完成</text>
   </g>
 
-  <g transform="translate(40 168)">
+  <g transform="translate(40 244)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#F26D78"/>
     <text x="28" y="40" class="task">Bug 或回归</text>
@@ -33,7 +43,7 @@
     <text x="758" y="40" class="outcome">先证根因，再修复</text>
   </g>
 
-  <g transform="translate(40 244)">
+  <g transform="translate(40 320)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#30BFA5"/>
     <text x="28" y="40" class="task">重构或性能优化</text>
@@ -43,7 +53,7 @@
     <text x="758" y="40" class="outcome">优化前后都要测</text>
   </g>
 
-  <g transform="translate(40 320)">
+  <g transform="translate(40 396)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#F6A94A"/>
     <text x="28" y="40" class="task">文章或概念讲解</text>
@@ -53,7 +63,7 @@
     <text x="758" y="40" class="outcome">易读、自然、图文并茂</text>
   </g>
 
-  <g transform="translate(40 396)">
+  <g transform="translate(40 472)">
     <rect width="1120" height="64" rx="14" fill="#161B22"/>
     <rect width="5" height="64" rx="2.5" fill="#A78BFA"/>
     <text x="28" y="40" class="task">代码评审或发布检查</text>

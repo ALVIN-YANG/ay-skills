@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Product"
+  short_description: "Turn product ideas into evidence-backed plans"
+  default_prompt: "Use $ay-product to research this idea and turn it into an evidence-backed, testable product proposal."

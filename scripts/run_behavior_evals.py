@@ -96,6 +96,20 @@ def verify_result(
         if not any(str(term).lower() in lowered for term in final_any):
             errors.append(f"final response missed all expected terms: {final_any}")
 
+    final_all = scenario.get("final_all", [])
+    if isinstance(final_all, list) and final_all:
+        lowered = final_message.lower()
+        missing = [str(term) for term in final_all if str(term).lower() not in lowered]
+        if missing:
+            errors.append(f"final response missed expected terms: {missing}")
+
+    final_none = scenario.get("final_none", [])
+    if isinstance(final_none, list) and final_none:
+        lowered = final_message.lower()
+        present = [str(term) for term in final_none if str(term).lower() in lowered]
+        if present:
+            errors.append(f"final response included forbidden terms: {present}")
+
     return errors
 
 

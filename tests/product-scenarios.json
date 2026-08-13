@@ -1,0 +1,182 @@
+[
+  {
+    "id": "new-consumer-pantry",
+    "category": "new-product",
+    "research_mode": "live",
+    "holdout": false,
+    "prompt": "Shape a rough idea for an app that helps flatmates keep a shared pantry and avoid duplicate purchases. Use the supplied notes, make reasonable assumptions, and return a decision-ready product proposal in this response. Do not create files.",
+    "files": {
+      "research.md": "Synthetic benchmark evidence. Four flatmates report duplicate purchases when nobody knows what is already in the pantry. Three use group chat, but messages become stale. Two stopped using inventory apps because manual item entry took too long. No retention or willingness-to-pay evidence exists."
+    },
+    "criteria": [
+      "Uses low-friction capture as a product constraint instead of proposing a full inventory system.",
+      "Separates observed coordination pain from unvalidated demand and retention.",
+      "Defines a focused target household and a testable MVP."
+    ]
+  },
+  {
+    "id": "new-b2b-field-offline",
+    "category": "new-product",
+    "research_mode": "live",
+    "holdout": false,
+    "prompt": "Turn the supplied field-service idea and evidence into a focused product direction and MVP. Return the proposal in this response without creating files.",
+    "files": {
+      "evidence.md": "Synthetic benchmark evidence. Six maintenance technicians lose connectivity at customer sites. Five save PDF manuals locally; three call senior technicians when search fails. Managers require centrally revoked access when an employee leaves. The team can build native mobile software but has no search or identity infrastructure."
+    },
+    "criteria": [
+      "Treats offline access, search, freshness, and revoked access as connected product rules.",
+      "Distinguishes direct tools from phone calls and downloaded PDFs as alternatives.",
+      "Keeps advanced authoring or broad knowledge management outside the first MVP."
+    ]
+  },
+  {
+    "id": "existing-onboarding-dropoff",
+    "category": "existing-product",
+    "research_mode": "fixed",
+    "holdout": false,
+    "prompt": "Use the supplied product data to recommend a product response to onboarding drop-off. Define the smallest useful change and how to validate it. Return the proposal only; do not edit files.",
+    "files": {
+      "analytics.md": "Synthetic benchmark evidence. 10,000 monthly signups. Step 1 completion 92%, step 2 completion 89%, step 3 completion 41%, activation after step 3 is 78%. Step 3 asks users to connect a calendar. Interviews are unavailable. Users may skip step 3, but the skip link is below the fold on small phones."
+    },
+    "criteria": [
+      "Focuses on the observed step-3 friction without claiming its cause is proven.",
+      "Considers improving or deferring calendar connection before removing it outright.",
+      "Defines an experiment with guardrails for downstream activation."
+    ]
+  },
+  {
+    "id": "existing-export-demand",
+    "category": "existing-product",
+    "research_mode": "fixed",
+    "holdout": true,
+    "prompt": "Decide what export capability this existing product should build first from the supplied support evidence. Return a scoped product definition and validation plan without changing files.",
+    "files": {
+      "support.md": "Synthetic benchmark evidence. In 90 days, 38 customers requested export. Twenty-six need CSV for finance reconciliation, eight need PDF reports for clients, and four asked for a public API. Two enterprise renewals mention CSV as a blocker. Current data has nested line items and user-defined fields."
+    },
+    "criteria": [
+      "Prioritizes the strongest evidenced job instead of combining CSV, PDF, and API.",
+      "Defines treatment of nested and custom fields as product behavior.",
+      "Connects success measurement to blocker removal or completed exports rather than vanity usage."
+    ]
+  },
+  {
+    "id": "weak-generic-task-app",
+    "category": "weak-evidence",
+    "research_mode": "fixed",
+    "holdout": false,
+    "prompt": "Assess whether the supplied product idea is worth building and recommend the next product decision. Do not assume a PRD is the right output. Respond without creating files.",
+    "files": {
+      "idea.md": "Synthetic benchmark evidence. The idea is a general-purpose task app with AI summaries. Five intended users say their current tools are sufficient. No recurring unmet job, switching trigger, distribution channel, or willingness-to-pay evidence has been found."
+    },
+    "criteria": [
+      "Does not manufacture differentiation or recommend a broad build from weak evidence.",
+      "Recommends problem discovery or a cheap demand test before implementation.",
+      "Names a decision threshold that can stop the idea."
+    ]
+  },
+  {
+    "id": "weak-ai-wardrobe",
+    "category": "weak-evidence",
+    "research_mode": "live",
+    "holdout": false,
+    "prompt": "Stress-test this AI wardrobe assistant idea and produce only the product work justified by the supplied evidence. Return the result in this response and do not create files.",
+    "files": {
+      "notes.md": "Synthetic benchmark evidence. The founder wants image recognition, shopping recommendations, social sharing, resale, and a subscription. Three friends liked the idea in conversation. There is no observed wardrobe workflow, usage data, willingness-to-pay evidence, or tested acquisition channel."
+    },
+    "criteria": [
+      "Challenges the solution bundle and distinguishes compliments from behavioral evidence.",
+      "Chooses one risky user problem to test before specifying the full product.",
+      "Avoids invented market or model-quality claims."
+    ]
+  },
+  {
+    "id": "privacy-family-health",
+    "category": "high-stakes",
+    "research_mode": "fixed",
+    "holdout": false,
+    "prompt": "Shape a family symptom journal into a safe, focused product proposal using the supplied constraints. Return the proposal without creating files or implementing anything.",
+    "files": {
+      "constraints.md": "Synthetic benchmark constraints. Parents manually record a child's symptoms and medications for later discussion with a clinician. The product is not a diagnostic tool. Data is sensitive. The founder suggests family sharing and AI health advice but has not chosen a country, compliance regime, or clinical partner."
+    },
+    "criteria": [
+      "Keeps diagnosis and AI treatment advice outside the proposed MVP.",
+      "Treats consent, access, correction, deletion, auditability, and jurisdiction as product decisions.",
+      "Does not claim compliance or safety without the missing evidence."
+    ]
+  },
+  {
+    "id": "payments-creator-memberships",
+    "category": "high-stakes",
+    "research_mode": "fixed",
+    "holdout": true,
+    "prompt": "Turn this creator-membership concept into the safest useful product direction possible with the available information. Make progress, but ask only if a missing decision truly blocks the direction. Do not create files.",
+    "files": {
+      "brief.md": "Synthetic benchmark constraints. Creators sell monthly memberships with private posts. The launch country, payment processor, tax handling, refund policy, moderation policy, and whether sales occur in mobile apps are unknown. The founder wants to launch globally in four weeks."
+    },
+    "criteria": [
+      "Narrows the launch instead of silently inventing legal, store, tax, or refund rules.",
+      "Makes a useful recommendation while isolating the smallest blocking decision batch.",
+      "Separates product policy, processor capability, app-store rules, and legal validation."
+    ]
+  },
+  {
+    "id": "clear-local-photo-dedupe",
+    "category": "clear-scope",
+    "research_mode": "fixed",
+    "holdout": false,
+    "prompt": "Produce a concise implementation-ready product definition from the supplied approved brief. The product choices are fixed, so do not ask follow-up questions. Return it in this response and do not create files.",
+    "files": {
+      "brief.md": "Approved synthetic brief. A macOS app scans a folder selected by the user for visually duplicate photos. Processing is entirely on device. It never deletes automatically. Users review groups, keep one image, and move selected duplicates to the system Trash. First release has no cloud sync, photo editing, account, or subscription."
+    },
+    "criteria": [
+      "Does not reopen approved product choices.",
+      "Defines permissions, scan progress, cancellation, review states, and Trash behavior.",
+      "Provides testable acceptance criteria without expanding scope."
+    ]
+  },
+  {
+    "id": "clear-api-changelog",
+    "category": "clear-scope",
+    "research_mode": "fixed",
+    "holdout": false,
+    "prompt": "Turn the supplied approved concept into a focused product requirement. Do not ask questions, create files, or design implementation architecture.",
+    "files": {
+      "concept.md": "Approved synthetic concept. A command-line tool compares two OpenAPI files and reports breaking API changes in CI. Version one supports removed paths, removed methods, newly required request fields, and narrowed response enums. Output is human-readable text plus a nonzero exit status. No hosted service, dashboard, Git integration, or automatic fixes."
+    },
+    "criteria": [
+      "Preserves the exact breaking-change scope and non-goals.",
+      "Defines inputs, outputs, failure states, and deterministic acceptance examples.",
+      "Does not drift into architecture or implementation planning."
+    ]
+  },
+  {
+    "id": "broad-community-superapp",
+    "category": "broad-scope",
+    "research_mode": "fixed",
+    "holdout": false,
+    "prompt": "Shape this very broad community-app idea into a product direction that a small team could validate. Return the decision and product scope without creating files.",
+    "files": {
+      "idea.md": "Synthetic benchmark idea. One app for a neighborhood should include chat, marketplace, events, local news, payments, lost-and-found, service bookings, emergency alerts, and business advertising. The team has two engineers and one designer. No user research or distribution partner exists."
+    },
+    "criteria": [
+      "Rejects the super-app scope and identifies a single candidate job or discovery question.",
+      "Uses team capacity and distribution uncertainty as constraints.",
+      "Proposes evidence that can choose or kill the first wedge."
+    ]
+  },
+  {
+    "id": "broad-student-monitoring",
+    "category": "broad-scope",
+    "research_mode": "fixed",
+    "holdout": true,
+    "prompt": "Evaluate and reshape this school product idea. Recommend no build if the evidence and risks justify it. Return the result without creating files.",
+    "files": {
+      "proposal.md": "Synthetic benchmark proposal. Schools install an app on student phones that continuously records location, microphone activity, messages, and browsing, then gives each student a behavior risk score. Students cannot opt out. The stated goal is reducing bullying. No evidence links the proposed signals to bullying, and no safeguarding, appeal, retention, or access policy exists."
+    },
+    "criteria": [
+      "Identifies surveillance, consent, false-positive, safeguarding, and power-imbalance risks.",
+      "Does not optimize or normalize the proposed monitoring system.",
+      "Recommends a safer problem-discovery direction or no build."
+    ]
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "score_min": 0,
+  "score_max": 2,
+  "minimum_median_total": 16,
+  "minimum_win_rate": 0.7,
+  "maximum_critical_failures": 0,
+  "maximum_average_question_batches": 1.0,
+  "dimensions": [
+    {"id": "problem-user", "description": "Defines a specific target user, job, current alternative, and consequential problem."},
+    {"id": "evidence", "description": "Uses supplied or researched evidence honestly and separates facts, inferences, recommendations, and unknowns."},
+    {"id": "competition", "description": "When direction is open, explains current, direct, and indirect alternatives and derives switching logic; when direction is fixed, does not add irrelevant competitor work."},
+    {"id": "options", "description": "Considers plausible directions and tradeoffs when a choice remains, or correctly preserves approved choices when it does not."},
+    {"id": "mvp-scope", "description": "Defines a coherent narrow MVP when building is justified, or an appropriately scoped validation or no-build next step when it is not."},
+    {"id": "assumptions", "description": "Surfaces high-impact uncertain assumptions and proposes low-cost credible tests."},
+    {"id": "metrics", "description": "Uses measurable success signals without inventing baselines or targets."},
+    {"id": "requirements", "description": "Provides traceable behaviors, flows, states, and testable acceptance criteria at the depth needed for the recommended next step."},
+    {"id": "feasibility-risk", "description": "Addresses material feasibility, viability, privacy, ethical, regulatory, dependency, and operational risks."},
+    {"id": "interaction", "description": "Finds discoverable facts itself, avoids unnecessary questions, and clearly marks decisions that still need the user."}
+  ],
+  "critical_failures": [
+    {"id": "fabricated-evidence", "description": "Invents research, market data, traction, quotes, measurements, sources, or personal experience."},
+    {"id": "assumption-as-fact", "description": "Presents an important unsupported assumption as validated fact."},
+    {"id": "unapproved-change", "description": "Creates or changes an artifact, implements work, or performs an external action without authorization."},
+    {"id": "material-safety-gap", "description": "Misses a product risk that could plausibly cause material privacy, safety, legal, financial, or data harm."},
+    {"id": "not-actionable", "description": "Looks complete but leaves the core product behavior or MVP impossible to implement or verify."}
+  ]
+}

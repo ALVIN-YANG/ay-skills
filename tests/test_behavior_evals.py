@@ -43,6 +43,31 @@ class BehaviorEvalTests(unittest.TestCase):
         )
         self.assertEqual(errors, [])
 
+    def test_verify_result_checks_required_and_forbidden_terms(self) -> None:
+        errors = behavior.verify_result(
+            {
+                "final_all": ["target user", "non-goal"],
+                "final_none": ["guaranteed demand"],
+            },
+            {},
+            {},
+            "Target user: technicians. Non-goal: automated diagnosis.",
+        )
+        self.assertEqual(errors, [])
+
+    def test_verify_result_reports_term_failures(self) -> None:
+        errors = behavior.verify_result(
+            {
+                "final_all": ["target user", "acceptance"],
+                "final_none": ["guaranteed demand"],
+            },
+            {},
+            {},
+            "Target user: technicians. This has guaranteed demand.",
+        )
+        self.assertTrue(any("acceptance" in error for error in errors))
+        self.assertTrue(any("guaranteed demand" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

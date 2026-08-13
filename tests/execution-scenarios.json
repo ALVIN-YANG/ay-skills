@@ -1,5 +1,29 @@
 [
   {
+    "id": "product-evidence-proposal",
+    "skill": "ay-product",
+    "prompt": "Use $ay-product to turn the supplied research into a focused product proposal. Return the recommendation, target user, MVP and non-goals, testable acceptance criteria, assumptions, and validation plan in this response. Do not create or modify files.",
+    "files": {"research.md": "Synthetic benchmark evidence. Four flatmates report buying duplicate pantry items because ownership is unclear. Three already use a shared chat but messages become stale. Two tried inventory apps and stopped because item entry took too long. No willingness-to-pay or retention evidence exists.\n"},
+    "expect_no_changes": true,
+    "final_all": ["target user", "non-goal", "acceptance", "assumption"],
+    "final_none": ["guaranteed demand"]
+  },
+  {
+    "id": "product-validation-first",
+    "skill": "ay-product",
+    "prompt": "Use $ay-product to assess the supplied concept and recommend what to do next. Do not create or modify files. Do not assume the product should be built.",
+    "files": {"concept.md": "Synthetic benchmark evidence. The idea is another general-purpose team task app. Five target users say their current tools are sufficient. No distinct unmet job, switching trigger, distribution channel, or willingness-to-pay evidence has been found.\n"},
+    "expect_no_changes": true
+  },
+  {
+    "id": "product-approved-prd-file",
+    "skill": "ay-product",
+    "prompt": "Use $ay-product to turn brief.md into PRD.md. Creating that file is approved. Define a local-only MVP with testable acceptance criteria; do not implement the product or modify other files.",
+    "files": {"brief.md": "A macOS app finds visually duplicate photos in a folder selected by the user. All analysis stays on device. It never deletes automatically. The first release supports review and moving selected duplicates to the system Trash.\n"},
+    "expected_created": {"PRD.md": 800},
+    "final_any": ["PRD.md"]
+  },
+  {
     "id": "work-precise-edit",
     "skill": "ay-work",
     "prompt": "Use $ay-work to change status.txt from state=old to state=ready. This exact edit is approved. Do not change anything else.",

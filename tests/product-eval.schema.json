@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["winner", "reason", "a", "b"],
+  "properties": {
+    "winner": {"type": "string", "enum": ["A", "B", "tie"]},
+    "reason": {"type": "string"},
+    "a": {"$ref": "#/$defs/evaluation"},
+    "b": {"$ref": "#/$defs/evaluation"}
+  },
+  "$defs": {
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "dimension_scores", "critical_failures", "question_batches", "summary"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0, "maximum": 20},
+        "dimension_scores": {
+          "type": "array",
+          "minItems": 10,
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "score", "reason"],
+            "properties": {
+              "id": {"type": "string"},
+              "score": {"type": "integer", "minimum": 0, "maximum": 2},
+              "reason": {"type": "string"}
+            }
+          }
+        },
+        "critical_failures": {"type": "array", "items": {"type": "string"}},
+        "question_batches": {"type": "integer", "minimum": 0},
+        "summary": {"type": "string"}
+      }
+    }
+  }
+}
