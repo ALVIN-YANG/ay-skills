@@ -9,15 +9,15 @@
   <p><a href="README.md">English</a></p>
 </div>
 
-AY Skills 来自我每天和 AI 一起做事时反复遇到的六件烦心事：产品点子还没查用户和市场就写成了需求，任务没听明白就开工，Bug 靠猜，重构没有基线，文章像说明书，评审时顺手把代码也改了。
+AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品点子还没查用户和市场就写成了需求，任务没听明白就开工，Bug 靠猜，重构没有基线，文章像说明书，评审时顺手把代码也改了，上架图标则被画成最字面的物体。
 
-所以我把它们做成了六个可以单独安装的 Skill。任务说清楚了就直接做；还有产品或技术上的关键选择，就先调查、问一次，然后在你确认的范围内完成。
+所以我把它们做成了可以单独安装的 Skill。任务说清楚了就直接做；还有产品或技术上的关键选择，就先调查、问一次，然后在你确认的范围内完成。
 
 <p align="center">
-  <img src="assets/ay-skills-map.zh-CN.svg" alt="按任务选择 AY Skill：产品定义使用 ay-product，新工作使用 ay-work，故障修复使用 ay-fix，基于证据的优化使用 ay-improve，图文写作使用 ay-write，评审使用 ay-review。" width="100%">
+  <img src="assets/ay-skills-map.zh-CN.svg" alt="按任务选择 AY Skill：产品定义使用 ay-product，新工作使用 ay-work，故障修复使用 ay-fix，基于证据的优化使用 ay-improve，图文写作使用 ay-write，评审使用 ay-review，上架图标使用 ay-icon。" width="100%">
 </p>
 
-## 六个 Skill
+## Skill
 
 | Skill | 什么时候用 | 它会做什么 |
 |---|---|---|
@@ -27,6 +27,7 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的六件烦心事：
 | [`ay-improve`](skills/ay-improve/SKILL.md) | 重构，或者优化性能和可维护性 | 先建立基线，修改后再比较结果 |
 | [`ay-write`](skills/ay-write/SKILL.md) | 写文章、教程、长篇改稿或图文解释 | 写出自然、清楚、没有废话的长内容 |
 | [`ay-review`](skills/ay-review/SKILL.md) | 评审代码、分支、方案或发布准备度 | 默认只读，只报告重要且有证据的问题 |
+| [`ay-icon`](skills/ay-icon/SKILL.md) | 设计或替换 App Store、Play 商店或启动器图标 | 先锁定隐喻和风格，再生成、检查并装进资源 |
 
 可以只装一个，也可以全部安装。它们彼此不依赖，不需要路由器，也不会把一个小改动变成一场规划会议。
 
@@ -51,15 +52,16 @@ Claude Code 也可以用原生插件：
 /plugin install ay-skills@ay-skills
 ```
 
-平时直接描述任务即可，匹配时会自动使用。想明确指定也可以：
+平时直接说要做什么，对应 Skill 会自己跟上。不必写 `$ay-work`；只有想强制指定时才点名。
 
 ```text
-使用 $ay-work 给应用增加导出流程。
-使用 $ay-product 调查这个设想，并定义一个聚焦、可验证的 MVP。
-使用 $ay-fix 诊断并修复这个偶发测试。
-使用 $ay-improve 从真实基线出发简化这个模块。
-使用 $ay-write 把这些笔记写成清楚好读的图文文章。
-使用 $ay-review 评审这个分支，不要修改文件。
+给应用增加导出流程。
+调查这个设想，并定义一个聚焦、可验证的 MVP。
+诊断并修复这个偶发测试。
+从真实基线出发简化这个模块。
+把这些笔记写成清楚好读的图文文章。
+评审这个分支，不要修改文件。
+重做这个应用的上架图标并装进资源。
 ```
 
 ## 一个实际例子
@@ -99,9 +101,9 @@ AY Skills 可以和前端设计、PDF、表格、无障碍检查等专用 Skill 
 
 只有风格或可编辑性会改变结果，或者需要安装新工具、依赖、付费服务和项目运行环境时，它才会问你。
 
-## 就这六个
+## 保持小而清楚
 
-没有路由器、模式标签、hooks、遥测、状态栏、自动提交或强制规划文件。六个 Skill 各做一件事，也能单独安装。
+没有路由器、模式标签、hooks、遥测、状态栏、自动提交或强制规划文件。每个 Skill 各做一件事，也能单独安装。
 
 AY Skills 遵循 [Agent Skills 规范](https://agentskills.io/specification)。Codex 和 Claude Code 的便携安装已经测试，Claude Code 原生插件单独测试。Codex 插件清单已经按本地市场测试和以后提交公共目录的要求校验，但目前不声称已公开上架。其他宿主没有实测前，不写“完整支持”。
 
@@ -118,7 +120,7 @@ python3 scripts/run_product_evals.py
 python3 scripts/run_product_evals.py --research-mode live
 ```
 
-CI 运行结构和单元测试。路由测试覆盖六个 AY Skill、不该触发 AY 的请求，以及专用 Skill 共存场景。Codex 黑盒测试会真的执行隔离任务，检查可观察结果和批准边界。产品评测用固定案例和同一套评分标准，对比 `ay-product` 与未安装 Skill 的基线；实时市场调研单独运行。实时测试需要本机 CLI 和可用账号；黑盒执行目前只覆盖 Codex。
+CI 运行结构和单元测试。路由测试覆盖全部 AY Skill、不该触发 AY 的请求，以及专用 Skill 共存场景。Codex 黑盒测试会真的执行隔离任务，检查可观察结果和批准边界。产品评测用固定案例和同一套评分标准，对比 `ay-product` 与未安装 Skill 的基线；实时市场调研单独运行。实时测试需要本机 CLI 和可用账号；黑盒执行目前只覆盖 Codex。
 
 </details>
 

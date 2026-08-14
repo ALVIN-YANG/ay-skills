@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Icon"
+  short_description: "Design and ship store-ready app icons"
+  default_prompt: "Use $ay-icon to design and install a store-ready app icon for this product."

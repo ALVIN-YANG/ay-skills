@@ -1,6 +1,6 @@
 ---
 name: ay-product
-description: Research and shape rough product ideas into evidence-backed product definitions, strategies, MVP scopes, requirements, or PRDs. Use when product discovery, competitive research, user and problem framing, product goals, prioritization, or experience design is the primary deliverable and implementation is not requested. Do not use when the same request asks to build or implement the product, or for visual UI, long-form articles, and reviews handled by a more specific skill.
+description: Research and shape rough product ideas into evidence-backed product definitions, strategies, MVP scopes, requirements, or PRDs. Use when product discovery, competitive research, user and problem framing, product goals, prioritization, or experience design is the primary deliverable and implementation is not requested, including 做产品定义, 写PRD, 调研竞品, or 这个想法值不值得做. Do not use when the same request asks to build or implement the product, or for visual UI, store icons, long-form articles, and reviews handled by a more specific skill.
 ---
 
 # AY Product

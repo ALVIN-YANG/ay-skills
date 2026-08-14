@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "ay-skills",
-      "description": "Six lightweight skills for product definition, approved changes, debugging, improvement, writing, and review.",
-      "version": "0.2.0",
+      "description": "Lightweight skills for product definition, approved changes, debugging, improvement, writing, review, and store icons.",
+      "version": "0.3.0",
       "category": "development",
       "source": "./",
       "homepage": "https://github.com/ALVIN-YANG/ay-skills"

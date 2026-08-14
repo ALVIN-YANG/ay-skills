@@ -1,6 +1,6 @@
 ---
 name: ay-write
-description: Research, draft, rewrite, and illustrate substantial Chinese or English articles and long-form technical content. Use when creating articles, blog posts, tutorials, long-form rewrites, or visual explainers. Do not use for ordinary chat answers, short explanations, UI copy, narrow documentation edits, or artifact types handled by a dedicated skill.
+description: Research, draft, rewrite, and illustrate substantial Chinese or English articles and long-form technical content. Use when creating articles, blog posts, tutorials, long-form rewrites, or visual explainers, including 写文章, 写教程, or 改稿. Do not use for ordinary chat answers, short explanations, UI copy, narrow documentation edits, or artifact types handled by a dedicated skill.
 ---
 
 # AY Write
