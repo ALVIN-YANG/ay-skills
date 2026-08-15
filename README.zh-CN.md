@@ -9,12 +9,12 @@
   <p><a href="README.md">English</a></p>
 </div>
 
-AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品点子还没查用户和市场就写成了需求，任务没听明白就开工，Bug 靠猜，重构没有基线，文章像说明书，评审时顺手把代码也改了，上架图标则被画成最字面的物体。
+AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品点子还没查用户和市场就写成了需求，任务没听明白就开工，Bug 靠猜，重构没有基线，文章像说明书，评审时顺手改代码，上架图标被画成最字面的物体，App Store 发布还经常把本地、上传、提交和线上状态混为一谈。
 
 所以我把它们做成了可以单独安装的 Skill。任务说清楚了就直接做；还有产品或技术上的关键选择，就先调查、问一次，然后在你确认的范围内完成。
 
 <p align="center">
-  <img src="assets/ay-skills-map.zh-CN.svg" alt="按任务选择 AY Skill：产品定义使用 ay-product，新工作使用 ay-work，故障修复使用 ay-fix，基于证据的优化使用 ay-improve，图文写作使用 ay-write，评审使用 ay-review，上架图标使用 ay-icon。" width="100%">
+  <img src="assets/ay-skills-map.zh-CN.svg" alt="按任务选择 AY Skill：产品定义使用 ay-product，新工作使用 ay-work，故障修复使用 ay-fix，基于证据的优化使用 ay-improve，图文写作使用 ay-write，评审使用 ay-review，上架图标使用 ay-icon，Apple App Store 发布使用 ay-app-store。" width="100%">
 </p>
 
 ## Skill
@@ -28,6 +28,7 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 | [`ay-write`](skills/ay-write/SKILL.md) | 写文章、教程、长篇改稿或图文解释 | 写出自然、清楚、没有废话的长内容 |
 | [`ay-review`](skills/ay-review/SKILL.md) | 评审代码、分支、方案或发布准备度 | 默认只读，只报告重要且有证据的问题 |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | 设计或替换 App Store、Play 商店或启动器图标 | 先锁定隐喻和风格，再生成、检查并装进资源 |
+| [`ay-app-store`](skills/ay-app-store/SKILL.md) | 准备、提交、跟踪或修复 Apple App Store 发布 | 对齐代码、元数据、付费项目、账号和实时审核状态后再操作 |
 
 可以只装一个，也可以全部安装。它们彼此不依赖，不需要路由器，也不会把一个小改动变成一场规划会议。
 
@@ -62,6 +63,7 @@ Claude Code 也可以用原生插件：
 把这些笔记写成清楚好读的图文文章。
 评审这个分支，不要修改文件。
 重做这个应用的上架图标并装进资源。
+检查这个 iOS App 的审核准备情况，并提交确认无误的版本。
 ```
 
 ## 一个实际例子

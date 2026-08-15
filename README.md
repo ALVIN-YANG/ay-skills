@@ -9,12 +9,12 @@
   <p><a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
-AY Skills started with the things that kept bothering me when I worked with AI: product ideas became specs before anyone checked the user or market, work began before the request was understood, bugs were guessed at, refactors had no baseline, articles read like manuals, reviews changed the code, and store icons were guessed from the most literal object.
+AY Skills started with the things that kept bothering me when I worked with AI: product ideas became specs before anyone checked the user or market, work began before the request was understood, bugs were guessed at, refactors had no baseline, articles read like manuals, reviews changed the code, store icons were guessed from the most literal object, and App Store releases mixed local, uploaded, submitted, and live states into one vague claim.
 
 So I turned them into standalone skills. A clear request gets done. If a real product or technical choice is still open, the agent investigates, asks once, and continues inside the boundary you approved.
 
 <p align="center">
-  <img src="assets/ay-skills-map.svg" alt="Choose an AY Skill: ay-product for product definition, ay-work for implementation, ay-fix for bugs, ay-improve for measured improvements, ay-write for clear visual writing, ay-review for read-only review, and ay-icon for store-ready app icons." width="100%">
+  <img src="assets/ay-skills-map.svg" alt="Choose an AY Skill: ay-product for product definition, ay-work for implementation, ay-fix for bugs, ay-improve for measured improvements, ay-write for clear visual writing, ay-review for read-only review, ay-icon for store-ready app icons, and ay-app-store for verified Apple App Store releases." width="100%">
 </p>
 
 ## Skills
@@ -28,6 +28,7 @@ So I turned them into standalone skills. A clear request gets done. If a real pr
 | [`ay-write`](skills/ay-write/SKILL.md) | Writing or substantially rewriting an article, tutorial, or visual explainer | Produces clear, natural long-form prose without filler |
 | [`ay-review`](skills/ay-review/SKILL.md) | Reviewing a diff, branch, plan, or release | Stays read-only and reports consequential issues backed by evidence |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | Creating or replacing an App Store, Play Store, or launcher icon | Locks metaphor and style, then generates, inspects, and installs the mark |
+| [`ay-app-store`](skills/ay-app-store/SKILL.md) | Preparing, submitting, monitoring, or recovering an Apple App Store release | Reconciles code, metadata, commerce, account, and live review state before acting |
 
 Install one or all of them. They do not depend on a router or on each other, and a small change does not have to become a planning exercise.
 
@@ -62,6 +63,7 @@ Simplify this module from a measured baseline.
 Turn these notes into a clear illustrated article.
 Review this branch without changing files.
 Redesign this app's store icon and install the asset set.
+Prepare this iOS app for App Review and submit the verified version.
 ```
 
 ## A short example
@@ -103,7 +105,7 @@ It only asks when style or editability would change the result, or when a new to
 
 ## Small by design
 
-Seven skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
+Eight skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
 
 AY Skills follows the [Agent Skills specification](https://agentskills.io/specification). Portable installation is tested in Codex and Claude Code, and the Claude Code plugin is tested separately. The Codex manifest is validated for local marketplace testing and future directory submission; a public Codex plugin listing is not claimed. Other hosts are not claimed until they are verified.
 

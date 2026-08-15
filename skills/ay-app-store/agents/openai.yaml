@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY App Store"
+  short_description: "Audit, submit, and recover Apple App Store releases"
+  default_prompt: "Use $ay-app-store to verify and complete this Apple App Store release without crossing unapproved external actions."

@@ -19,6 +19,7 @@ EXPECTED_SKILLS = (
     "ay-write",
     "ay-review",
     "ay-icon",
+    "ay-app-store",
 )
 FRONTMATTER_RE = re.compile(r"\A---\n(?P<yaml>.*?)\n---\n(?P<body>.*)\Z", re.DOTALL)
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")

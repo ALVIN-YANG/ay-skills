@@ -78,5 +78,14 @@
     "files": {"product.txt": "A local Finder right-click utility copies paths and creates files. It is not a hardware product.\n"},
     "expect_no_changes": true,
     "final_any": ["approval", "propose", "metaphor"]
+  },
+  {
+    "id": "app-store-audit-only",
+    "skill": "ay-app-store",
+    "prompt": "Use $ay-app-store to audit this supplied iOS release snapshot. Do not modify files or perform live actions. State the highest proven release layer and the unverified App Store Connect evidence.",
+    "files": {"release.txt": "Bundle ID: com.example.vault\nVersion: 1.0\nBuild: 12\nLocal archive: passed\nNo upload processing result, submission ID, review state, or storefront check is supplied.\n"},
+    "expect_no_changes": true,
+    "final_all": ["archive", "unverified"],
+    "final_any": ["layer 2", "level 2", "proof layer 2"]
   }
 ]

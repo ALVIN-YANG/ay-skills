@@ -41,6 +41,12 @@
   {"id":"icon-android-adaptive","prompt":"Create an Android adaptive launcher icon from this concept and write it into the mipmap set.","expected_skill":"ay-icon"},
   {"id":"icon-replace-precise","prompt":"Replace the existing app icon with a thick-line doodle mark on paper, then compile the catalog.","expected_skill":"ay-icon"},
 
+  {"id":"app-store-submit-ios","prompt":"Prepare version 1.4 of this iOS app for App Review, reconcile the subscriptions, and submit it once every required item is verified.","expected_skill":"ay-app-store"},
+  {"id":"app-store-rejection","prompt":"Apple rejected my app under Guideline 5.1.1. Read the full review message, fix the real issue, and resubmit.","expected_skill":"ay-app-store"},
+  {"id":"app-store-status","prompt":"Check whether the latest App Store build is still processing, waiting for review, approved, or actually available to download.","expected_skill":"ay-app-store"},
+  {"id":"app-store-subscription","prompt":"核对 App Store Connect 里的月订阅、永久内购、审核截图和 submission，确认能否一起提交。","expected_skill":"ay-app-store"},
+  {"id":"app-store-privacy","prompt":"上架前检查隐私标签、PrivacyInfo.xcprivacy、权限文案、隐私政策和用户协议是否一致。","expected_skill":"ay-app-store"},
+
   {"id":"specialist-frontend","prompt":"Design and build a distinctive responsive landing page for this product.","expected_skill":"frontend-design"},
   {"id":"specialist-web-audit","prompt":"Audit this web UI for accessibility and interaction guideline problems. Do not modify files.","expected_skill":"web-design-guidelines"},
   {"id":"specialist-tdd","prompt":"Use test-driven development to add CSV parsing to this library.","expected_skill":"tdd"},
