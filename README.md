@@ -9,12 +9,12 @@
   <p><a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
-AY Skills started with the things that kept bothering me when I worked with AI: product ideas became specs before anyone checked the user or market, work began before the request was understood, bugs were guessed at, refactors had no baseline, articles read like manuals, reviews changed the code, store icons were guessed from the most literal object, and App Store releases mixed local, uploaded, submitted, and live states into one vague claim.
+AY Skills started with the things that kept bothering me when I worked with AI: product ideas became specs before anyone checked the user or market, screen designs drifted between rounds, backend code began without settled boundaries or contracts, bugs were guessed at, streaming voice glitches were patched without tracing the audio path, refactors had no baseline, reviews changed the code, and releases mixed local, submitted, and live states into one vague claim.
 
 So I turned them into standalone skills. A clear request gets done. If a real product or technical choice is still open, the agent investigates, asks once, and continues inside the boundary you approved.
 
 <p align="center">
-  <img src="assets/ay-skills-map.svg" alt="Choose an AY Skill: ay-product for product definition, ay-work for implementation, ay-fix for bugs, ay-improve for measured improvements, ay-write for clear visual writing, ay-review for read-only review, ay-icon for store-ready app icons, and ay-app-store for verified Apple App Store releases." width="100%">
+  <img src="assets/ay-skills-map.svg" alt="Choose among thirteen AY Skills covering product, UI, architecture, API, database, implementation, debugging, audio, improvement, writing, review, icons, and App Store release." width="100%">
 </p>
 
 ## Skills
@@ -22,8 +22,13 @@ So I turned them into standalone skills. A clear request gets done. If a real pr
 | Skill | Use it when | What it does |
 |---|---|---|
 | [`ay-product`](skills/ay-product/SKILL.md) | Turning a rough idea into a product direction, MVP, requirement, or PRD | Researches the problem and market, recommends a focused product, and makes assumptions testable |
-| [`ay-work`](skills/ay-work/SKILL.md) | Building a feature or working through an unclear requirement | Clarifies the open choices, then builds and verifies the result |
+| [`ay-ui`](skills/ay-ui/SKILL.md) | Choosing visual direction, designing screens, or preparing a UI handoff | Locks one visual contract, iterates through visible screens, and records approved decisions |
+| [`ay-architecture`](skills/ay-architecture/SKILL.md) | Designing a new system or subsystem before code | Defines the simplest viable boundaries, ownership, deployment, failure, and evolution model |
+| [`ay-api`](skills/ay-api/SKILL.md) | Designing REST, GraphQL, gRPC, service, event, or webhook contracts | Derives stable consumer-facing behavior without mirroring storage tables |
+| [`ay-database`](skills/ay-database/SKILL.md) | Choosing a database or designing schemas, indexes, transactions, and migrations | Starts from invariants and access paths, then applies the exact engine's behavior |
+| [`ay-implement`](skills/ay-implement/SKILL.md) | Implementing an approved feature, design, or general code change | Preserves settled decisions, makes the smallest complete change, and verifies the result |
 | [`ay-fix`](skills/ay-fix/SKILL.md) | Debugging a bug, regression, crash, flaky test, or slowdown | Confirms the cause before making the smallest useful repair |
+| [`ay-audio`](skills/ay-audio/SKILL.md) | Building or debugging streaming TTS and voice audio on Apple platforms | Traces provider bytes through the mixer and device, then proves audible playback |
 | [`ay-improve`](skills/ay-improve/SKILL.md) | Refactoring or improving performance and maintainability | Establishes a baseline, makes the change, and compares the result |
 | [`ay-write`](skills/ay-write/SKILL.md) | Writing or substantially rewriting an article, tutorial, or visual explainer | Produces clear, natural long-form prose without filler |
 | [`ay-review`](skills/ay-review/SKILL.md) | Reviewing a diff, branch, plan, or release | Stays read-only and reports consequential issues backed by evidence |
@@ -31,6 +36,10 @@ So I turned them into standalone skills. A clear request gets done. If a real pr
 | [`ay-app-store`](skills/ay-app-store/SKILL.md) | Preparing, submitting, monitoring, or recovering an Apple App Store release | Reconciles code, metadata, commerce, account, and live review state before acting |
 
 Install one or all of them. They do not depend on a router or on each other, and a small change does not have to become a planning exercise.
+
+For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement`, with `ay-review` checking consistency or implementation when useful. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
+
+`ay-work` was renamed to `ay-implement` in 0.6.0 so the name matches its responsibility.
 
 ## Install
 
@@ -53,12 +62,15 @@ Claude Code also supports the native plugin:
 /plugin install ay-skills@ay-skills
 ```
 
-Describe the task in ordinary language. The matching skill should fire on its own. Naming `$ay-work` or another skill is optional, only when you want to force one.
+Describe the task in ordinary language. The matching skill should fire on its own. Naming `$ay-implement` or another skill is optional, only when you want to force one.
 
 ```text
 Research this idea and define a focused, testable MVP.
+Design the approved product screens one at a time, then prepare design.md.
+Design the system architecture, API contract, and database schema before code.
 Add an export flow to this app.
 Diagnose and fix this intermittent test.
+Diagnose why this macOS streaming TTS crackles and fix the proven audio boundary.
 Simplify this module from a measured baseline.
 Turn these notes into a clear illustrated article.
 Review this branch without changing files.
@@ -93,7 +105,7 @@ A precise request is already approval: investigate, make the change, and verify 
 
 The agent stops when it would otherwise have to decide product behavior, architecture, data contracts, dependencies, scope, risk, cost, rollback, or an external action for you. Once you approve the direction, it keeps going unless that boundary changes.
 
-`ay-product` investigates discoverable product and market facts itself, asks only about decisions that materially change the direction, and stops before implementation.
+`ay-product` investigates discoverable product and market facts itself, asks only about decisions that materially change the direction, and stops before UI, architecture, and implementation. The design skills preserve the same rule: they produce approved contracts, while `ay-implement` owns code.
 
 Reviews are the exception: `ay-review` stays read-only unless you ask for fixes.
 
@@ -105,9 +117,9 @@ It only asks when style or editability would change the result, or when a new to
 
 ## Small by design
 
-Eight skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
+Thirteen skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
 
-AY Skills follows the [Agent Skills specification](https://agentskills.io/specification). Portable installation is tested in Codex and Claude Code, and the Claude Code plugin is tested separately. The Codex manifest is validated for local marketplace testing and future directory submission; a public Codex plugin listing is not claimed. Other hosts are not claimed until they are verified.
+AY Skills follows the [Agent Skills specification](https://agentskills.io/specification). Portable installation, live Codex and Claude routing, the native Claude Code plugin, CI, release contents, and remote installation are separate verification layers; support is claimed only for layers actually checked before a release. The Codex manifest targets local marketplace testing and future directory submission, not a currently public Codex plugin listing.
 
 <details>
 <summary>Development and verification</summary>
@@ -128,7 +140,7 @@ Static checks run in CI. Routing evals cover all AY skills, no-skill requests, a
 
 ## Influences
 
-AY Skills is original work informed by [mattpocock/skills](https://github.com/mattpocock/skills), [Superpowers](https://github.com/obra/superpowers), [Waza](https://github.com/tw93/Waza), [PM Skills](https://github.com/phuryn/pm-skills), [awesome-copilot](https://github.com/github/awesome-copilot), and [claude-skills](https://github.com/alirezarezvani/claude-skills): useful questioning, evidence-first product discovery, root-cause discipline, and small skills with clear boundaries. It does not copy their skill text or runtime code.
+AY Skills is original work informed by [Superpowers](https://github.com/obra/superpowers), [Anthropic Skills](https://github.com/anthropics/skills), [wshobson/agents](https://github.com/wshobson/agents), [PM Skills](https://github.com/phuryn/pm-skills), [awesome-copilot](https://github.com/github/awesome-copilot), [claude-skills](https://github.com/alirezarezvani/claude-skills), [mattpocock/skills](https://github.com/mattpocock/skills), and [Waza](https://github.com/tw93/Waza). The useful ideas are approval before implementation, distinctive and consistent UI direction, separate architecture/API/database responsibilities, engine-specific storage design, evidence-first discovery, and small skill boundaries. AY does not copy their skill text or runtime code, and intentionally leaves out mandatory modes, documents, commits, and architecture patterns.
 
 ## License
 

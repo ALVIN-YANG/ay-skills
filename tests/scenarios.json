@@ -5,17 +5,47 @@
   {"id":"product-validate-or-stop","prompt":"Stress-test whether this product idea is worth building, identify the riskiest assumptions, and recommend the cheapest validation plan.","expected_skill":"ay-product"},
   {"id":"product-existing-direction","prompt":"Use our research notes to choose a product direction and prioritize the first MVP without implementing it.","expected_skill":"ay-product"},
 
-  {"id":"work-explicit-copy","prompt":"Change the empty-state button text from Retry to Try again and run the narrow UI check.","expected_skill":"ay-work"},
-  {"id":"work-vague-export","prompt":"Add an export feature to this product.","expected_skill":"ay-work"},
-  {"id":"work-product-offline","prompt":"Figure out the user scenarios and product behavior for offline mode, then build it.","expected_skill":"ay-work"},
-  {"id":"work-approved-plan","prompt":"Implement the approved authentication migration plan exactly as written.","expected_skill":"ay-work"},
-  {"id":"work-push-if-green","prompt":"Apply this exact config change and push the branch if its documented checks pass.","expected_skill":"ay-work"},
+  {"id":"ui-style-flow","prompt":"根据已经确认的 PRD 先定一套有辨识度的视觉方向，再按页面一张张出设计图让我确认，最后整理 design.md，不要写前端代码。","expected_skill":"ay-ui"},
+  {"id":"ui-approved-screen-set","prompt":"Turn the approved mobile product flows into a consistent set of application screen mockups and a design handoff. Stop before implementation.","expected_skill":"ay-ui"},
+  {"id":"ui-next-screen","prompt":"The home screen and visual style are approved. Design the next checkout screen with matching loading, error, and recovery states.","expected_skill":"ay-ui"},
+  {"id":"ui-design-system","prompt":"Define the typography, color, spacing, components, and interaction-state rules for this product UI, then record the approved choices in design.md.","expected_skill":"ay-ui"},
+  {"id":"ui-desktop-flow","prompt":"Design this macOS utility's menu bar, settings, permission, empty, and failure screens one at a time for review. No Swift code yet.","expected_skill":"ay-ui"},
+
+  {"id":"architecture-new-system","prompt":"Design the technical architecture for this approved product before any code, including boundaries, data ownership, deployment, failure containment, and tradeoffs.","expected_skill":"ay-architecture"},
+  {"id":"architecture-monolith-choice","prompt":"Decide whether this small SaaS should start as a modular monolith or microservices, using our traffic, team, reliability, and deployment constraints.","expected_skill":"ay-architecture"},
+  {"id":"architecture-ui-derived","prompt":"Use the approved UI flows to design the backend system shape for offline sync, permissions, cancellation, and recovery. Do not define endpoint payloads yet.","expected_skill":"ay-architecture"},
+  {"id":"architecture-subsystem","prompt":"Produce an architecture.md proposal for the new notification subsystem, its ownership boundaries, adapters, asynchronous flow, and evolution path.","expected_skill":"ay-architecture"},
+  {"id":"architecture-deployment","prompt":"Design the deployment units, trust boundaries, observability, and recovery model for this new multi-tenant service without implementing it.","expected_skill":"ay-architecture"},
+
+  {"id":"api-rest-contract","prompt":"Design the REST API contract for the approved mobile flows, including authorization, validation, errors, idempotency, pagination, and compatibility. No handlers yet.","expected_skill":"ay-api"},
+  {"id":"api-graphql-contract","prompt":"Design a GraphQL schema for these consumer queries and mutations, including partial failures and evolution rules, without mirroring the database tables.","expected_skill":"ay-api"},
+  {"id":"api-service-interface","prompt":"Define the internal service interface between billing and entitlement modules, including commands, outcomes, retries, and concurrency behavior.","expected_skill":"ay-api"},
+  {"id":"api-webhook","prompt":"Design a signed webhook contract with delivery semantics, replay protection, retry behavior, ordering expectations, and deprecation policy.","expected_skill":"ay-api"},
+  {"id":"api-openapi","prompt":"Create api.md and an OpenAPI contract from the approved product, UI, and architecture artifacts. Stop before implementation and table design.","expected_skill":"ay-api"},
+
+  {"id":"database-postgresql","prompt":"Design a PostgreSQL 18 schema from these invariants and access paths, including constraints, indexes, transactions, tenancy, and an online migration plan.","expected_skill":"ay-database"},
+  {"id":"database-mysql","prompt":"Design the physical schema for MySQL 8.4 InnoDB and account for clustered primary keys, secondary indexes, locking, and online DDL.","expected_skill":"ay-database"},
+  {"id":"database-sqlite","prompt":"Design the SQLite data model and migrations for this offline macOS app, including foreign-key setup, WAL concurrency, busy handling, and integrity checks.","expected_skill":"ay-database"},
+  {"id":"database-choice","prompt":"Choose between PostgreSQL, DynamoDB, and SQLite for this workload, then design the selected store from access patterns and operational constraints.","expected_skill":"ay-database"},
+  {"id":"database-schema-review","prompt":"Review this proposed database schema against its domain invariants, query paths, contention, retention, and exact engine behavior. Do not run migrations.","expected_skill":"ay-database"},
+
+  {"id":"implement-explicit-copy","prompt":"Change the empty-state button text from Retry to Try again and run the narrow UI check.","expected_skill":"ay-implement"},
+  {"id":"implement-vague-export","prompt":"Add an export feature to this product.","expected_skill":"ay-implement"},
+  {"id":"implement-product-offline","prompt":"Figure out the remaining user-visible decision for offline mode, get approval if material, then build it.","expected_skill":"ay-implement"},
+  {"id":"implement-approved-plan","prompt":"Implement the approved authentication migration plan exactly as written.","expected_skill":"ay-implement"},
+  {"id":"implement-push-if-green","prompt":"Apply this exact config change and push the branch if its documented checks pass.","expected_skill":"ay-implement"},
 
   {"id":"fix-diagnose-only","prompt":"Diagnose why login sometimes shows a white screen. Do not modify files.","expected_skill":"ay-fix"},
   {"id":"fix-explicit-selector","prompt":"Fix the typo in the renamed CSS selector that hides the settings icon and verify that screen.","expected_skill":"ay-fix"},
   {"id":"fix-intermittent","prompt":"Fix this intermittent integration test that fails about one run in twenty.","expected_skill":"ay-fix"},
   {"id":"fix-root-cause-given","prompt":"The parser crash is caused by the missing nil guard at the named call site. Add that guard and its regression test.","expected_skill":"ay-fix"},
   {"id":"fix-dependency-choice","prompt":"Fix the sync failure; one option adds a queue dependency and another changes conflict behavior.","expected_skill":"ay-fix"},
+
+  {"id":"audio-macos-crackle","prompt":"This Swift macOS app's MiniMax streaming TTS crackles and pops. Trace the audio path, fix the proven cause, and verify real playback.","expected_skill":"ay-audio"},
+  {"id":"audio-second-turn","prompt":"The first WebSocket TTS turn plays, but the second turn fails or stays silent. Diagnose the queue and cancellation lifecycle.","expected_skill":"ay-audio"},
+  {"id":"audio-text-no-sound","prompt":"The AI text reply appears but no voice is audible in the iOS app. Check the provider bytes, playback format, and device route.","expected_skill":"ay-audio"},
+  {"id":"audio-asr-tts-conflict","prompt":"ASR, VAD, and TTS share AVAudioEngine and the live conversation clicks whenever speaking starts. Design and verify the audio ownership states.","expected_skill":"ay-audio"},
+  {"id":"audio-pcm-stream","prompt":"Implement low-latency PCM WebSocket TTS playback with AudioQueue in Swift and prove two consecutive turns on the installed app.","expected_skill":"ay-audio"},
 
   {"id":"improve-vague-structure","prompt":"Optimize this project's code and structure.","expected_skill":"ay-improve"},
   {"id":"improve-explicit-extract","prompt":"Extract the duplicated normalization block into the existing normalizer without changing behavior, then run its tests.","expected_skill":"ay-improve"},
@@ -52,5 +82,8 @@
   {"id":"specialist-tdd","prompt":"Use test-driven development to add CSV parsing to this library.","expected_skill":"tdd"},
   {"id":"specialist-pdf","prompt":"Turn the attached report into a polished, verified PDF.","expected_skill":"pdf"},
   {"id":"specialist-clear-rewrite","prompt":"Your previous answer was too long and unclear. Say the point again in concise Chinese.","expected_skill":"say-it-clearly"},
+  {"id":"specialist-mobile-image","prompt":"Generate one premium iPhone screen concept image for this supplied checkout layout. I only need the bitmap, not a design workflow or code.","expected_skill":"imagegen-frontend-mobile"},
+  {"id":"specialist-module-seam","prompt":"Find the right deep-module seam for this existing parser and redesign its public interface so callers do not depend on implementation details.","expected_skill":"codebase-design"},
+  {"id":"specialist-domain-language","prompt":"Define the ubiquitous language, entities, value objects, and invariants for this booking domain before we discuss storage.","expected_skill":"domain-modeling"},
   {"id":"no-skill-short-answer","prompt":"Explain dependency injection in two sentences.","expected_skill":"none"}
 ]

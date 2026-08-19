@@ -18,5 +18,17 @@
   {
     "name": "say-it-clearly",
     "description": "Rewrite the immediately preceding assistant answer in concise natural Chinese. Use when the user says the answer was unclear, too long, or asks to hear the point again."
+  },
+  {
+    "name": "imagegen-frontend-mobile",
+    "description": "Generate premium mobile app screen concept images. Use when the requested deliverable is a mobile UI bitmap rather than a product design workflow or code."
+  },
+  {
+    "name": "codebase-design",
+    "description": "Design or improve a deep module interface and decide where a code seam belongs. Use for module-level boundaries and AI-navigable code design."
+  },
+  {
+    "name": "domain-modeling",
+    "description": "Build a project's domain model, ubiquitous language, and related architectural decisions. Use when terminology and domain concepts are the primary deliverable."
   }
 ]

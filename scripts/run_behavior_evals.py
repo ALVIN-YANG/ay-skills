@@ -90,6 +90,18 @@ def verify_result(
             elif len(content) < int(minimum):
                 errors.append(f"{path}: only {len(content)} characters")
 
+    created_all = scenario.get("created_all", {})
+    if isinstance(created_all, dict):
+        for path, terms in created_all.items():
+            content = after.get(str(path))
+            if content is None:
+                errors.append(f"{path}: was not created for content checks")
+                continue
+            lowered = content.decode("utf-8", errors="replace").lower()
+            missing = [str(term) for term in terms if str(term).lower() not in lowered]
+            if missing:
+                errors.append(f"{path}: missed expected content terms: {missing}")
+
     final_any = scenario.get("final_any", [])
     if isinstance(final_any, list) and final_any:
         lowered = final_message.lower()
@@ -222,12 +234,15 @@ def main() -> int:
             result = future.result()
             results.append(result)
             mark = "PASS" if result.passed else "FAIL"
-            print(f"{mark} {result.scenario_id}: {result.detail}")
+            print(f"{mark} {result.scenario_id}: {result.detail}", flush=True)
             if result.error:
-                print(f"  {result.error}")
+                print(f"  {result.error}", flush=True)
 
     failures = [result for result in results if not result.passed]
-    print(f"RESULT: {len(results) - len(failures)}/{len(results)} cases passed on codex")
+    print(
+        f"RESULT: {len(results) - len(failures)}/{len(results)} cases passed on codex",
+        flush=True,
+    )
     return 1 if failures else 0
 
 

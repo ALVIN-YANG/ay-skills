@@ -30,6 +30,25 @@ class Result:
     error: str = ""
 
 
+def is_infrastructure_error(result: Result) -> bool:
+    lowered = result.error.lower()
+    return any(
+        marker in lowered
+        for marker in ("connectionrefused", "unable to connect to api")
+    )
+
+
+def print_result(result: Result) -> None:
+    mark = "PASS" if result.passed else "FAIL"
+    print(
+        f"{mark} {result.scenario_id}: expected={result.expected} "
+        f"actual={result.actual} reason={result.reason}",
+        flush=True,
+    )
+    if result.error:
+        print(f"  {result.error}", flush=True)
+
+
 def make_prompt(scenario: dict[str, object]) -> str:
     return (
         "This is a read-only routing evaluation. Do not inspect files, use tools, or perform "
@@ -211,6 +230,26 @@ def main() -> int:
             install_skill_stub(installed, skill)
 
         results: list[Result] = []
+        pending = scenarios
+        if args.host == "claude" and scenarios:
+            preflight = run_scenario(
+                scenarios[0],
+                args.host,
+                workdir,
+                output_dir,
+                args.model,
+                args.timeout,
+            )
+            results.append(preflight)
+            print_result(preflight)
+            if is_infrastructure_error(preflight):
+                print(
+                    "ABORTED: Claude API is unreachable; remaining routing cases were not started",
+                    flush=True,
+                )
+                return 1
+            pending = scenarios[1:]
+
         with ThreadPoolExecutor(max_workers=args.parallel) as executor:
             futures = [
                 executor.submit(
@@ -222,21 +261,18 @@ def main() -> int:
                     args.model,
                     args.timeout,
                 )
-                for scenario in scenarios
+                for scenario in pending
             ]
             for future in as_completed(futures):
                 result = future.result()
                 results.append(result)
-                mark = "PASS" if result.passed else "FAIL"
-                print(
-                    f"{mark} {result.scenario_id}: expected={result.expected} "
-                    f"actual={result.actual} reason={result.reason}"
-                )
-                if result.error:
-                    print(f"  {result.error}")
+                print_result(result)
 
     failures = [result for result in results if not result.passed]
-    print(f"RESULT: {len(results) - len(failures)}/{len(results)} cases passed on {args.host}")
+    print(
+        f"RESULT: {len(results) - len(failures)}/{len(results)} cases passed on {args.host}",
+        flush=True,
+    )
     return 1 if failures else 0
 
 

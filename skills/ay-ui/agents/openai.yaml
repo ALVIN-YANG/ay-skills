@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY UI"
+  short_description: "Design screens and preserve approved UI decisions"
+  default_prompt: "Use $ay-ui to establish a visual direction, design these screens through visible approval, and prepare the UI handoff."

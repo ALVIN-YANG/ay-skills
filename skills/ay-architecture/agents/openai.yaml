@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Architecture"
+  short_description: "Design simple system boundaries from real constraints"
+  default_prompt: "Use $ay-architecture to design the simplest viable system architecture and make its tradeoffs testable."

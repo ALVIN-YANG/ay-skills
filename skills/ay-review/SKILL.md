@@ -1,6 +1,6 @@
 ---
 name: ay-review
-description: Review a diff, branch, pull request, plan, implementation, or delivery state against intent, repository standards, correctness, risk, and verification evidence. Use when a general audit, pre-merge check, or review-then-fix workflow is requested, including 评审, code review, 看看能不能合, or 发布前检查. Yield primary review to a more specific security, accessibility, framework, or artifact skill when one applies.
+description: Review a diff, branch, pull request, product or design artifact, implementation, or delivery state against intent, repository standards, correctness, risk, consistency, and verification evidence. Use when a general audit, cross-artifact check, pre-merge check, or review-then-fix workflow is requested, including 评审, code review, 看看能不能合, or 发布前检查. Yield primary review to a more specific security, accessibility, framework, or artifact skill when one applies.
 ---
 
 # AY Review
@@ -23,7 +23,7 @@ Find consequential defects without manufacturing noise. Stay read-only unless fi
 
 ## Fix the review frame
 
-Identify the comparison point and originating intent. Read repository instructions, current working-tree state, changed files, surrounding callers and consumers, tests, and claims made about the work.
+Identify the comparison point and originating intent. Read repository instructions, current working-tree state, changed files, surrounding callers and consumers, tests, and claims made about the work. When product, UI, architecture, API, or database artifacts exist, trace important behavior across them instead of reviewing each in isolation.
 
 If the target or intended behavior cannot be discovered, ask one focused decision question before claiming spec compliance.
 
@@ -32,6 +32,7 @@ If the target or intended behavior cannot be discovered, ask one focused decisio
 Check:
 
 - **Intent:** requested behavior, non-goals, missing consumers, scope drift.
+- **Consistency:** user journeys, system boundaries, API contracts, data invariants, and implementation agree where they overlap.
 - **Correctness:** concrete inputs, states, sequences, boundaries, and failure handling.
 - **Risk:** data loss, permissions, security, concurrency, compatibility, migration, rollback, and external effects when relevant.
 - **Evidence:** whether tests exercise the changed path and whether source, build, package, install, deployment, runtime, device, or published proof is being conflated.

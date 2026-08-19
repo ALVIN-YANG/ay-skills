@@ -24,20 +24,67 @@
     "final_any": ["PRD.md"]
   },
   {
-    "id": "work-precise-edit",
-    "skill": "ay-work",
-    "prompt": "Use $ay-work to change status.txt from state=old to state=ready. This exact edit is approved. Do not change anything else.",
+    "id": "implement-precise-edit",
+    "skill": "ay-implement",
+    "prompt": "Use $ay-implement to change status.txt from state=old to state=ready. This exact edit is approved. Do not change anything else.",
     "files": {"status.txt": "state=old\n"},
     "expected_files": {"status.txt": "state=ready\n"},
     "allow_extra_changes": false
   },
   {
-    "id": "work-vague-feature",
-    "skill": "ay-work",
-    "prompt": "Use $ay-work to add offline mode. Product behavior is not defined yet. Inspect the supplied context and propose the user-visible behavior, scope, and acceptance evidence. Do not modify files until I approve the proposal.",
+    "id": "implement-vague-feature",
+    "skill": "ay-implement",
+    "prompt": "Use $ay-implement to add offline mode. Product behavior is not defined yet. Inspect the supplied context and propose the user-visible behavior, scope, and acceptance evidence. Do not modify files until I approve the proposal.",
     "files": {"product.txt": "The product currently works online only.\n"},
     "expect_no_changes": true,
     "final_any": ["offline", "approval", "approve"]
+  },
+  {
+    "id": "ui-approved-handoff",
+    "skill": "ay-ui",
+    "prompt": "Use $ay-ui to turn the approved material into design.md. Creating that handoff is approved. Preserve the product behavior, describe the visual contract, screen flow, reusable components, states, accessibility, and asset references. Do not write frontend code or modify other files.",
+    "files": {
+      "PRD.md": "Target: iPhone. A commuter saves a route, sees the next departure, and gets a local disruption alert. No account, social feed, ticket purchase, or ads. Permission denial must leave manual refresh usable.\n",
+      "approved-ui.md": "Approved direction: quiet transit-board editorial style; off-white canvas, near-black text, signal orange only for disruption. Approved screens: route list, route detail, permission request, empty, offline, disruption. Use SF Pro and native iOS navigation. Final assets live under assets/ui/.\n"
+    },
+    "expected_created": {"design.md": 900},
+    "created_all": {"design.md": ["visual", "component", "state", "accessibility", "asset"]},
+    "final_any": ["design.md"]
+  },
+  {
+    "id": "architecture-approved-handoff",
+    "skill": "ay-architecture",
+    "prompt": "Use $ay-architecture to create architecture.md from the supplied approved product and UI constraints. Creating the architecture handoff is approved. Choose the simplest viable system shape, define boundaries, data ownership, flows, failure containment, deployment, quality scenarios, risks, and validation. Do not design endpoints, tables, or code.",
+    "files": {
+      "requirements.md": "A two-person team is building a regional transit alert app for at most 20,000 daily users in year one. It reads one public feed every minute, sends local-region notifications, stores saved routes, and must remain manually refreshable when notification permission is denied. Budget is constrained; there is no existing backend.\n",
+      "ui.md": "The route list and detail screens show stale-data age, offline status, permission denial, retry, and disruption recovery.\n"
+    },
+    "expected_created": {"architecture.md": 1000},
+    "created_all": {"architecture.md": ["boundary", "ownership", "failure", "deployment", "risk", "validation"]},
+    "final_any": ["architecture.md"]
+  },
+  {
+    "id": "api-approved-handoff",
+    "skill": "ay-api",
+    "prompt": "Use $ay-api to create a concise api.md for the supplied approved flows and architecture. Creating the contract is approved. Cover only these flows in at most 1400 words: consumer-oriented operations, authorization, validation, errors, idempotency, cursor pagination, conflict behavior, compatibility, and UI-state coverage. Do not research externally, mirror storage tables, or implement handlers.",
+    "files": {
+      "flows.md": "An authenticated field technician lists assigned jobs, opens a job, submits one completion report with optional photos, retries safely after a timeout, and sees conflicts if a supervisor already closed it. The list needs stable cursor pagination.\n",
+      "architecture.md": "A modular monolith owns jobs and reports. Object storage owns photo bytes. The API is HTTPS JSON. Tenant identity comes from the verified access token.\n"
+    },
+    "expected_created": {"api.md": 900},
+    "created_all": {"api.md": ["authorization", "idempotency", "cursor", "conflict", "compatibility"]},
+    "final_any": ["api.md"]
+  },
+  {
+    "id": "database-postgresql-handoff",
+    "skill": "ay-database",
+    "prompt": "Use $ay-database to create a concise database.md for PostgreSQL 18 from the supplied invariants and access paths. Creating the schema design is approved. Use the installed PostgreSQL reference; do not research externally in this fixed synthetic case, and flag version-sensitive items for live documentation verification. In at most 1600 words include keys, constraints, justified indexes, transaction and concurrency behavior, tenant isolation, retention, and a safe migration and verification plan. Do not run DDL or write application code.",
+    "files": {
+      "data-contract.md": "Each job belongs to one tenant and has a tenant-unique external reference. A completion report belongs to exactly one job and may be accepted only once. Retries carry an idempotency key unique per tenant for 30 days. Supervisors can close open jobs concurrently with technician submission, which must return a conflict rather than overwrite. Primary reads: paginated assigned open jobs ordered by due_at and lookup by tenant plus external reference. Reports are retained seven years.\n"
+    },
+    "expected_created": {"database.md": 1000},
+    "created_all": {"database.md": ["constraint", "index", "transaction", "tenant", "retention", "migration"]},
+    "final_any": ["database.md", "postgresql"]
   },
   {
     "id": "fix-diagnose-only",
@@ -46,6 +93,15 @@
     "files": {"divide.py": "def summarize(values):\n    return sum(values) / len(values)\n"},
     "expect_no_changes": true,
     "final_any": ["division by zero", "zerodivisionerror", "len(values)"]
+  },
+  {
+    "id": "audio-boundary-diagnosis",
+    "skill": "ay-audio",
+    "prompt": "Use $ay-audio to diagnose the supplied macOS streaming TTS evidence. Do not modify files. Identify the failing boundary, the next repair direction, and what evidence is still required before claiming the crackle is fixed.",
+    "files": {"audio-evidence.txt": "Fixed phrase reproduction. Provider MP3 decodes without errors. The same turn's captured main-mixer output correlates with the independently decoded provider audio at 0.99999999 and has no clipping. Playback through the app crackles while the microphone AVAudioEngine remains running. Playback of the saved provider artifact through the system player is clean.\n"},
+    "expect_no_changes": true,
+    "final_all": ["output", "engine"],
+    "final_any": ["device", "hardware", "audio graph", "capture"]
   },
   {
     "id": "improve-proposal-only",

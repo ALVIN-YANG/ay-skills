@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY API"
+  short_description: "Design stable APIs from user and domain actions"
+  default_prompt: "Use $ay-api to design this service contract from its consumers, failure states, and compatibility needs."

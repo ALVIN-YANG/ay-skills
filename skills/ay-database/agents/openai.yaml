@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Database"
+  short_description: "Design schemas for the actual database engine"
+  default_prompt: "Use $ay-database to design this data model from invariants, access paths, and the exact database engine."

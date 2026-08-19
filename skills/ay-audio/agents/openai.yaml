@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Audio"
+  short_description: "Debug and ship clean streaming voice audio"
+  default_prompt: "Use $ay-audio to diagnose this streaming voice failure and verify clean real-device playback."

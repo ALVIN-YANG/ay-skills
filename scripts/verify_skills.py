@@ -13,8 +13,13 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = (
     "ay-product",
-    "ay-work",
+    "ay-ui",
+    "ay-architecture",
+    "ay-api",
+    "ay-database",
+    "ay-implement",
     "ay-fix",
+    "ay-audio",
     "ay-improve",
     "ay-write",
     "ay-review",
@@ -274,12 +279,20 @@ def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
                 "expect_no_changes",
                 "expected_files",
                 "expected_created",
+                "created_all",
                 "final_any",
                 "final_all",
                 "final_none",
             )
         ):
             errors.append(f"{scenario_id}: missing observable assertion")
+        created_all = scenario.get("created_all", {})
+        if not isinstance(created_all, dict):
+            errors.append(f"{scenario_id}: created_all must be an object")
+        else:
+            for path, terms in created_all.items():
+                if not isinstance(terms, list) or not terms:
+                    errors.append(f"{scenario_id}: {path} needs created_all terms")
     missing = set(EXPECTED_SKILLS) - covered
     if missing:
         errors.append(f"execution scenarios: missing skills {', '.join(sorted(missing))}")

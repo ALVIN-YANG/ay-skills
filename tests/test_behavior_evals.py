@@ -36,12 +36,25 @@ class BehaviorEvalTests(unittest.TestCase):
 
     def test_verify_result_checks_created_artifact(self) -> None:
         errors = behavior.verify_result(
-            {"expected_created": {"article.md": 10}, "final_any": ["article.md"]},
+            {
+                "expected_created": {"article.md": 10},
+                "created_all": {"article.md": ["evidence", "boundary"]},
+                "final_any": ["article.md"],
+            },
             {},
-            {"article.md": b"long enough article"},
+            {"article.md": b"Evidence makes the boundary testable."},
             "Created article.md",
         )
         self.assertEqual(errors, [])
+
+    def test_verify_result_reports_missing_created_content(self) -> None:
+        errors = behavior.verify_result(
+            {"created_all": {"api.md": ["authorization", "idempotency"]}},
+            {},
+            {"api.md": b"Authorization is defined."},
+            "Created api.md",
+        )
+        self.assertTrue(any("idempotency" in error for error in errors))
 
     def test_verify_result_checks_required_and_forbidden_terms(self) -> None:
         errors = behavior.verify_result(

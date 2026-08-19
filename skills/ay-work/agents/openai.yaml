@@ -1,4 +1,0 @@
-interface:
-  display_name: "AY Work"
-  short_description: "Shape, approve, and complete requested changes"
-  default_prompt: "Use $ay-work to understand and complete this change within my approved boundary."

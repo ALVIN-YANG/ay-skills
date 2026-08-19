@@ -1,6 +1,6 @@
 ---
 name: ay-improve
-description: Improve code structure, architecture, maintainability, performance, or developer experience from a measured baseline without scope drift. Use when optimization, refactoring, simplification, cleanup, renaming, or extraction is the primary task, including 重构, 优化性能, 整理代码, or 简化, there is no bug symptom, and no more specific architecture or performance skill applies.
+description: Improve an existing codebase's structure, maintainability, performance, or developer experience from a measured baseline without scope drift. Use when refactoring, optimization, simplification, cleanup, renaming, or extraction is the primary task, including 重构, 优化性能, 整理代码, or 简化, and there is no bug symptom. Do not use for greenfield system architecture or design-only work.
 ---
 
 # AY Improve
@@ -41,6 +41,6 @@ Wait for approval before restructuring unless the user's instruction already spe
 
 ## Implement and compare
 
-Preserve behavior unless the approved proposal says otherwise. Prefer a deep, stable interface over layers of helpers. Avoid speculative extensibility, unrelated cleanup, and dependencies whose cost exceeds the improvement.
+Preserve behavior unless the approved proposal says otherwise. Prefer a deep, stable interface over layers of helpers. Avoid speculative extensibility, unrelated cleanup, and dependencies whose cost exceeds the improvement. Use the existing architecture as evidence; changing the system shape needs the same proposal boundary as any other material change.
 
 Verify the success measure and neighboring behavior. Distinguish measured gains from reasoned expectations. Review the final diff for scope traceability, then report the before/after evidence and remaining tradeoffs.

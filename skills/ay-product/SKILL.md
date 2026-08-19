@@ -1,6 +1,6 @@
 ---
 name: ay-product
-description: Research and shape rough product ideas into evidence-backed product definitions, strategies, MVP scopes, requirements, or PRDs. Use when product discovery, competitive research, user and problem framing, product goals, prioritization, or experience design is the primary deliverable and implementation is not requested, including 做产品定义, 写PRD, 调研竞品, or 这个想法值不值得做. Do not use when the same request asks to build or implement the product, or for visual UI, store icons, long-form articles, and reviews handled by a more specific skill.
+description: Research and shape rough product ideas into evidence-backed product definitions, strategies, MVP scopes, requirements, or PRDs. Use when product discovery, competitive research, user and problem framing, product goals, prioritization, or behavioral requirements are the primary deliverable and implementation is not requested, including 做产品定义, 写PRD, 调研竞品, or 这个想法值不值得做. Do not use for visual UI direction, system architecture, API or database design, implementation, store icons, long-form articles, or reviews handled by a more specific skill.
 ---
 
 # AY Product
@@ -50,6 +50,6 @@ For sensitive products, state data, access, consent, retention, recourse, and un
 
 Do not force irrelevant sections or hide missing evidence with detail. No-build needs a bounded test plus explicit build and stop gates, not invented requirements. A fixed brief needs behavioral clarity, not reopened strategy. Distinguish proposals, validated demand, technical proof, and release readiness.
 
-Create files only when requested or required for handoff. Stop before implementation unless separately authorized.
+Create files only for a requested handoff. Stop before downstream design and implementation unless authorized.
 
 Report the recommendation, evidence, tradeoffs, and what still requires user or technical validation.

@@ -78,6 +78,7 @@ class VerifySkillsTests(unittest.TestCase):
                 "expect_no_changes",
                 "expected_files",
                 "expected_created",
+                "created_all",
                 "final_any",
                 "final_all",
                 "final_none",

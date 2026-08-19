@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "ay-skills",
-      "description": "Lightweight skills for product definition, approved changes, debugging, improvement, writing, review, store icons, and Apple App Store releases.",
-      "version": "0.4.0",
+      "description": "Approval-aware skills from product and UI design through architecture, APIs, databases, implementation, verification, and release.",
+      "version": "0.6.0",
       "category": "development",
       "source": "./",
       "homepage": "https://github.com/ALVIN-YANG/ay-skills"

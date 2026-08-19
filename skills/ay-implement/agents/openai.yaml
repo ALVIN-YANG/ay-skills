@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Implement"
+  short_description: "Implement approved changes and verify the real result"
+  default_prompt: "Use $ay-implement to implement this approved change and verify its observable outcome."
