@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "ay-skills",
-      "description": "Approval-aware skills from product and UI design through architecture, APIs, databases, implementation, verification, and release.",
-      "version": "0.6.0",
+      "description": "Approval-aware skills from product and UI design through architecture, APIs, databases, implementation, store screenshots, verification, and release.",
+      "version": "0.6.1",
       "category": "development",
       "source": "./",
       "homepage": "https://github.com/ALVIN-YANG/ay-skills"

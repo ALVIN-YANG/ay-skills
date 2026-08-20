@@ -33,13 +33,15 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 | [`ay-write`](skills/ay-write/SKILL.md) | 写文章、教程、长篇改稿或图文解释 | 写出自然、清楚、没有废话的长内容 |
 | [`ay-review`](skills/ay-review/SKILL.md) | 评审代码、分支、方案或发布准备度 | 默认只读，只报告重要且有证据的问题 |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | 设计或替换 App Store、Play 商店或启动器图标 | 先锁定隐喻和风格，再生成、检查并装进资源 |
-| [`ay-app-store`](skills/ay-app-store/SKILL.md) | 准备、提交、跟踪或修复 Apple App Store 发布 | 对齐代码、元数据、付费项目、账号和实时审核状态后再操作 |
+| [`ay-app-store`](skills/ay-app-store/SKILL.md) | 生成宣传图，或准备、提交、跟踪和修复 Apple App Store 发布 | 用当前构建的真实 UI 制作宣传图，再对齐代码、元数据、付费项目、账号和实时审核状态 |
 
 可以只装一个，也可以全部安装。它们彼此不依赖，不需要路由器，也不会把一个小改动变成一场规划会议。
 
-完整产品通常按 `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement` 交接，需要时用 `ay-review` 检查文档一致性或实现结果。这只是建议顺序，不是强制流水线。技术可行性会阻塞 UI 时，架构可以提前；每个 Skill 也都能从已有输入单独工作。
+完整产品通常按 `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement` 交接，需要时用 `ay-review` 检查文档一致性或实现结果。有了可发布构建后，`ay-app-store` 可以先用真实 UI 生成可复现的宣传图，再进入提交。这只是建议顺序，不是强制流水线。技术可行性会阻塞 UI 时，架构可以提前；每个 Skill 也都能从已有输入单独工作。
 
 0.6.0 把 `ay-work` 改名为 `ay-implement`，让名字和“负责落地”的职责一致。
+
+0.6.1 给 `ay-app-store` 增加了真实 UI、可复现的宣传图流程，没有再拆一个宽泛的设计 Skill。
 
 ## 安装
 
@@ -75,6 +77,7 @@ Claude Code 也可以用原生插件：
 把这些笔记写成清楚好读的图文文章。
 评审这个分支，不要修改文件。
 重做这个应用的上架图标并装进资源。
+用当前发布构建生成一套可复现的 Mac App Store 宣传图。
 检查这个 iOS App 的审核准备情况，并提交确认无误的版本。
 ```
 
@@ -140,7 +143,9 @@ CI 运行结构和单元测试。路由测试覆盖全部 AY Skill、不该触�
 
 ## 灵感来源
 
-AY Skills 是原创项目，参考了 [Superpowers](https://github.com/obra/superpowers)、[Anthropic Skills](https://github.com/anthropics/skills)、[wshobson/agents](https://github.com/wshobson/agents)、[PM Skills](https://github.com/phuryn/pm-skills)、[awesome-copilot](https://github.com/github/awesome-copilot)、[claude-skills](https://github.com/alirezarezvani/claude-skills)、[mattpocock/skills](https://github.com/mattpocock/skills) 和 [Waza](https://github.com/tw93/Waza)。借鉴的是实现前确认、UI 风格一致、架构/API/数据库分工、按数据库引擎设计、证据优先和小职责边界。没有复制它们的 Skill 文本或运行时代码，也没有引入强制模式、强制文档、自动提交和默认架构套路。
+AY Skills 是原创项目，参考了 [Superpowers](https://github.com/obra/superpowers)、[Anthropic Skills](https://github.com/anthropics/skills)、[wshobson/agents](https://github.com/wshobson/agents)、[PM Skills](https://github.com/phuryn/pm-skills)、[awesome-copilot](https://github.com/github/awesome-copilot)、[claude-skills](https://github.com/alirezarezvani/claude-skills)、[mattpocock/skills](https://github.com/mattpocock/skills) 和 [Waza](https://github.com/tw93/Waza)。借鉴的是实现前确认、UI 风格一致、架构/API/数据库分工、按数据库引擎设计、证据优先和小职责边界。
+
+宣传图流程还参考了 [store-screenshot-mockups](https://github.com/iamngoni/store-screenshot-mockups)、[app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots) 和 [Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio)：保留真实上架 UI，让整套图可以复现，按准确尺寸渲染，并检查最终导出文件。项目没有复制它们的 Skill 文本或运行时代码，也没有引入强制模式、强制文档、自动提交和默认架构套路。
 
 ## 许可证
 

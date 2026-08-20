@@ -1,4 +1,4 @@
 interface:
   display_name: "AY App Store"
-  short_description: "Audit, submit, and recover Apple App Store releases"
-  default_prompt: "Use $ay-app-store to verify and complete this Apple App Store release without crossing unapproved external actions."
+  short_description: "Create screenshots and complete verified App Store releases"
+  default_prompt: "Use $ay-app-store to create truthful store screenshots or complete this verified Apple App Store release without crossing unapproved external actions."

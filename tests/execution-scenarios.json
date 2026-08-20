@@ -143,5 +143,14 @@
     "expect_no_changes": true,
     "final_all": ["archive", "unverified"],
     "final_any": ["layer 2", "level 2", "proof layer 2"]
+  },
+  {
+    "id": "app-store-screenshot-handoff",
+    "skill": "ay-app-store",
+    "prompt": "Use $ay-app-store to create store-screenshots.md for the approved Mac App Store screenshot deck described in release.txt. Creating this reproducible handoff is approved. Use the supplied real release-capture paths as exact UI layers, define the three-slide story, final 2880x1800 outputs, renderer inputs, privacy handling, OCR and export validation, and stop before upload. Do not ask questions because the direction and copy are approved.",
+    "files": {"release.txt": "App: NetScope\nRelease build: 42, tested and archived\nPlatform: macOS\nLocale: zh-Hans\nDirection: dark navy canvas with local system fonts\nApproved slides: 看清网络质量 | 本机网络一眼看全 | 常用工具随手即用\nReal captures: raw/macos/01-quality.png | raw/macos/02-local.png | raw/macos/03-tools.png\nRaw captures contain fictional demo data and are gitignored.\n"},
+    "expected_created": {"store-screenshots.md": 700},
+    "created_all": {"store-screenshots.md": ["42", "2880", "real", "alpha", "ocr", "privacy", "upload"]},
+    "final_any": ["store-screenshots.md"]
   }
 ]

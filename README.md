@@ -33,13 +33,15 @@ So I turned them into standalone skills. A clear request gets done. If a real pr
 | [`ay-write`](skills/ay-write/SKILL.md) | Writing or substantially rewriting an article, tutorial, or visual explainer | Produces clear, natural long-form prose without filler |
 | [`ay-review`](skills/ay-review/SKILL.md) | Reviewing a diff, branch, plan, or release | Stays read-only and reports consequential issues backed by evidence |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | Creating or replacing an App Store, Play Store, or launcher icon | Locks metaphor and style, then generates, inspects, and installs the mark |
-| [`ay-app-store`](skills/ay-app-store/SKILL.md) | Preparing, submitting, monitoring, or recovering an Apple App Store release | Reconciles code, metadata, commerce, account, and live review state before acting |
+| [`ay-app-store`](skills/ay-app-store/SKILL.md) | Creating store screenshots or preparing, submitting, monitoring, and recovering an Apple App Store release | Builds truthful screenshots from the release-build UI, then reconciles code, metadata, commerce, account, and live review state |
 
 Install one or all of them. They do not depend on a router or on each other, and a small change does not have to become a planning exercise.
 
-For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement`, with `ay-review` checking consistency or implementation when useful. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
+For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement`, with `ay-review` checking consistency or implementation when useful. Once a release build exists, `ay-app-store` can turn its real UI into reproducible store screenshots before submission. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
 
 `ay-work` was renamed to `ay-implement` in 0.6.0 so the name matches its responsibility.
+
+0.6.1 adds a real-UI, reproducible App Store screenshot workflow to `ay-app-store` without creating another broad design skill.
 
 ## Install
 
@@ -75,6 +77,7 @@ Simplify this module from a measured baseline.
 Turn these notes into a clear illustrated article.
 Review this branch without changing files.
 Redesign this app's store icon and install the asset set.
+Create reproducible Mac App Store screenshots from the current release build.
 Prepare this iOS app for App Review and submit the verified version.
 ```
 
@@ -140,7 +143,9 @@ Static checks run in CI. Routing evals cover all AY skills, no-skill requests, a
 
 ## Influences
 
-AY Skills is original work informed by [Superpowers](https://github.com/obra/superpowers), [Anthropic Skills](https://github.com/anthropics/skills), [wshobson/agents](https://github.com/wshobson/agents), [PM Skills](https://github.com/phuryn/pm-skills), [awesome-copilot](https://github.com/github/awesome-copilot), [claude-skills](https://github.com/alirezarezvani/claude-skills), [mattpocock/skills](https://github.com/mattpocock/skills), and [Waza](https://github.com/tw93/Waza). The useful ideas are approval before implementation, distinctive and consistent UI direction, separate architecture/API/database responsibilities, engine-specific storage design, evidence-first discovery, and small skill boundaries. AY does not copy their skill text or runtime code, and intentionally leaves out mandatory modes, documents, commits, and architecture patterns.
+AY Skills is original work informed by [Superpowers](https://github.com/obra/superpowers), [Anthropic Skills](https://github.com/anthropics/skills), [wshobson/agents](https://github.com/wshobson/agents), [PM Skills](https://github.com/phuryn/pm-skills), [awesome-copilot](https://github.com/github/awesome-copilot), [claude-skills](https://github.com/alirezarezvani/claude-skills), [mattpocock/skills](https://github.com/mattpocock/skills), and [Waza](https://github.com/tw93/Waza). The useful ideas are approval before implementation, distinctive and consistent UI direction, separate architecture/API/database responsibilities, engine-specific storage design, evidence-first discovery, and small skill boundaries.
+
+The store screenshot workflow is additionally informed by [store-screenshot-mockups](https://github.com/iamngoni/store-screenshot-mockups), [app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots), and [Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio): preserve the real shipped UI, make the deck reproducible, render at exact dimensions, and verify exported files. AY does not copy their skill text or runtime code, and intentionally leaves out mandatory modes, documents, commits, and architecture patterns.
 
 ## License
 

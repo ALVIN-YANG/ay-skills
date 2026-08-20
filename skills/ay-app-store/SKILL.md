@@ -1,11 +1,11 @@
 ---
 name: ay-app-store
-description: Audit, prepare, submit, monitor, and recover Apple App Store releases from verified project and live App Store Connect state. Use when the user asks to 上架, 发布, 提交审核, 重新提交, 检查审核状态, 处理 App Review 拒绝, prepare TestFlight or App Store builds, reconcile StoreKit subscriptions, privacy, EULA, screenshots, metadata, or review information for an Apple-platform app. Do not use for Google Play-only publishing, store-icon creation, ASO-only research, or ordinary feature implementation.
+description: Create store screenshots and audit, prepare, submit, monitor, or recover Apple App Store releases from verified project and live App Store Connect state. Use when the user asks to 生成 App Store 宣传图, 上架, 发布, 提交审核, 重新提交, 检查审核状态, 处理 App Review 拒绝, prepare TestFlight or App Store builds, or reconcile StoreKit, privacy, EULA, screenshots, metadata, or review information for an Apple-platform app. Do not use for Google Play-only publishing, store-icon creation, ASO-only research, UI mockups, or ordinary feature implementation.
 ---
 
 # AY App Store
 
-Move an Apple release through verified states. Never equate a green local build with a processed build, a submitted version, an approved version, or a downloadable storefront listing.
+Move an Apple release through verified states. Never equate a local build, processed upload, submission, approval, and downloadable storefront listing.
 
 ## Approval contract
 
@@ -23,19 +23,17 @@ Move an Apple release through verified states. Never equate a green local build 
 
 ## Establish facts
 
-Inspect the repository, git state, build settings, entitlements, packaged purpose strings, privacy manifests, StoreKit, legal links, screenshots, and release automation. `python3 scripts/scan_apple_release.py <repo>` produces a read-only inventory, never a compliance verdict.
+Inspect repository state, build/signing, entitlements, packaged purpose strings, privacy, StoreKit, legal links, screenshots, and release automation. `python3 scripts/scan_apple_release.py <repo>` is a read-only inventory, not a compliance verdict.
 
 Refresh Apple documentation before policy conclusions. Use [Apple workflow](references/apple-workflow.md) for official checks and [tooling](references/tooling.md) for credential boundaries.
 
-Reconcile:
+Reconcile identity, privacy, commerce, review metadata, and account readiness against live App Store Connect state. Prefer live state over code or email inference. “Changes needed” is only a pointer; inspect every rejected item and Resolution Center message.
 
-- Identity: app record, Bundle ID, platform, version, build, team, SKU.
-- Privacy: data flow, SDKs, labels, policy, in-app entry, permissions.
-- Commerce: product IDs, types, periods, prices, entitlements, restore, review items.
-- Review: localizations, screenshots, URLs, rating, contact, notes, attachments.
-- Account: agreements, tax, banking, trader status, roles.
+## Prepare store screenshots
 
-Prefer live App Store Connect state over code or email inference. “Changes needed” is only a pointer; inspect every rejected item and Resolution Center message.
+For screenshot creation or refresh, read [store screenshot workflow](references/store-screenshots.md). Start from the current release build, not a design mockup. Keep the captured app layer exact; generated art may support only the surrounding canvas.
+
+A precise generation request authorizes project artifacts, not upload or submission. If direction is open, propose one deck direction and representative slide. Report sources, targets, locales, exports, checks, and unverified state.
 
 ## Resolve and prove
 
@@ -56,10 +54,10 @@ Report the highest proven layer and all unverified layers.
 
 ## Operate live surfaces
 
-Prefer supported APIs or existing automation; use signed-in web UI for review messages and account fields. Installing tools, reusing cookies, or calling private APIs needs approval.
+Prefer supported APIs or existing automation; use signed-in UI where required. Installing tools, reusing cookies, or calling private APIs needs approval.
 
-A precise request to submit or resubmit the named app/version is approval; do not ask twice. Unrequested cancellation, deletion, pricing, territories, agreements, banking/tax, credentials, members, or reviewer replies need their own boundary.
+A precise request to submit or resubmit the named app/version is approval. Unrequested cancellation, deletion, pricing, territories, agreements, banking/tax, credentials, members, or reviewer replies need separate approval.
 
-Before mutation, recheck app, platform, version, build, products, and submission. Afterwards, reread state and capture stable IDs. Never store secrets or full banking/identity data in files, chat, or Git.
+Before mutation recheck app, platform, version, build, products, and submission; afterwards reread state and capture stable IDs. Never store secrets or full banking/identity data.
 
 `assets/release-dossier-template.md` is optional.
