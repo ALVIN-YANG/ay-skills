@@ -24,6 +24,17 @@
     "final_any": ["PRD.md"]
   },
   {
+    "id": "expert-lens-grounded-decision",
+    "skill": "ay-expert-lens",
+    "prompt": "Use only source-notes.md to choose one primary documented expert framework for deciding whether this small SaaS team should enter an adjacent market or fix retention first. Do not browse, quote, impersonate anyone, or modify files. Separate the documented position, your inference, and the recommendation for this situation.",
+    "files": {
+      "source-notes.md": "Synthetic benchmark summaries, not quotations. Richard Rumelt: a strategy kernel contains a diagnosis of the central challenge, a guiding policy, and coherent actions; strategy should concentrate effort on the crux rather than spread resources across unrelated ambitions. Annie Duke: decision quality should be separated from outcome quality; uncertain choices benefit from explicit probabilities, pre-mortems, and advance conditions for changing course. Current case: a five-person SaaS team has falling 90-day retention, no validated demand in the adjacent market, and capacity for one major initiative this quarter.\n"
+    },
+    "expect_no_changes": true,
+    "final_all": ["documented", "inference", "recommendation", "retention"],
+    "final_none": ["I am Richard Rumelt", "Rumelt would say", "Duke would say"]
+  },
+  {
     "id": "implement-precise-edit",
     "skill": "ay-implement",
     "prompt": "Change status.txt from state=old to state=ready. This exact edit is approved. Do not change anything else.",

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Expert Lens"
+  short_description: "Apply verified expert frameworks to open questions"
+  default_prompt: "Use $ay-expert-lens to choose the most relevant documented expert framework and apply it without inventing quotes or identity."

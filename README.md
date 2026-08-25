@@ -14,7 +14,7 @@ AY Skills started with the things that kept bothering me when I worked with AI: 
 So I turned them into standalone skills. A clear request gets done. If a real product or technical choice is still open, the agent investigates, asks once, and continues inside the boundary you approved.
 
 <p align="center">
-  <img src="assets/ay-skills-map.svg" alt="Choose among thirteen AY Skills covering product, UI, architecture, API, database, implementation, debugging, audio, improvement, writing, review, icons, and App Store release." width="100%">
+  <img src="assets/ay-skills-map.svg" alt="Choose among fourteen AY Skills covering expert lenses, product, UI, architecture, API, database, implementation, debugging, audio, improvement, writing, review, icons, and App Store release." width="100%">
 </p>
 
 ## Skills
@@ -22,6 +22,7 @@ So I turned them into standalone skills. A clear request gets done. If a real pr
 | Skill | Use it when | What it does |
 |---|---|---|
 | [`ay-product`](skills/ay-product/SKILL.md) | Turning a rough idea into a product direction, MVP, requirement, or PRD | Researches the problem and market, recommends a focused product, and makes assumptions testable |
+| [`ay-expert-lens`](skills/ay-expert-lens/SKILL.md) | Asking who understands an open problem best or requesting a real expert's documented perspective | Selects the closest verified framework, applies its decision rules, and separates source, inference, and recommendation |
 | [`ay-ui`](skills/ay-ui/SKILL.md) | Choosing visual direction, designing screens, or preparing a UI handoff | Locks one visual contract, iterates through visible screens, and records approved decisions |
 | [`ay-architecture`](skills/ay-architecture/SKILL.md) | Designing a new system or subsystem before code | Defines the simplest viable boundaries, ownership, deployment, failure, and evolution model |
 | [`ay-api`](skills/ay-api/SKILL.md) | Designing REST, GraphQL, gRPC, service, event, or webhook contracts | Derives stable consumer-facing behavior without mirroring storage tables |
@@ -39,7 +40,7 @@ Install one or all of them. They do not depend on a router or on each other, and
 
 For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement`, with `ay-review` checking consistency or implementation when useful. Once a release build exists, `ay-app-store` can turn its real UI into reproducible store screenshots before submission. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
 
-0.7.0 adds real catalog coexistence routing, PNG/SVG/runtime assertions, three end-to-end product journeys, standalone install checks, and a verified release archive. Conditional `ay-product` modes now load from a reference only when relevant.
+0.8.0 adds `ay-expert-lens` for applying verified expert frameworks to open questions without impersonation or invented quotes. Catalog coexistence routing, artifact and runtime assertions, three end-to-end journeys, standalone install checks, and verified release archives remain separate proof layers.
 
 ## Install
 
@@ -62,7 +63,7 @@ Install the full-stack delivery set:
 npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-api ay-database ay-implement ay-review -a codex claude-code -g -y
 ```
 
-Install all thirteen only when that is what you want:
+Install all fourteen only when that is what you want:
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y
@@ -87,6 +88,7 @@ Describe the task in ordinary language. The matching skill should fire on its ow
 
 ```text
 Research this idea and define a focused, testable MVP.
+Choose the real expert whose documented framework best fits this open decision, then apply it.
 Design the approved product screens one at a time, then prepare design.md.
 Design the system architecture, API contract, and database schema before code.
 Add an export flow to this app.
@@ -123,6 +125,8 @@ Choose the primary skill from the deliverable when responsibilities overlap:
 
 | Request | Primary when both are installed |
 |---|---|
+| Open-ended decision explicitly asking for a real expert framework | `ay-expert-lens`; a domain skill still owns any concrete artifact or execution |
+| First-person expert or celebrity simulation | A dedicated persona or Best Minds skill; `ay-expert-lens` does not impersonate the person |
 | General App Store preparation, submission, or rejection recovery | A dedicated App Store release skill; `ay-app-store` leads real-UI screenshot generation |
 | Apple AppIcon or `.icns` production and installation | A dedicated Apple icon asset skill; `ay-icon` leads an open metaphor and direction |
 | Prose-only natural Chinese long-form writing | A dedicated Chinese writing skill; `ay-write` leads research, English, or illustrated articles |
@@ -160,7 +164,7 @@ It only asks when style or editability would change the result, or when a new to
 
 ## Small by design
 
-Thirteen skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
+Fourteen skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
 
 AY Skills follows the [Agent Skills specification](https://agentskills.io/specification). Portable installation, live Codex and Claude routing, the native Claude Code plugin, CI, release contents, and remote installation are separate verification layers; support is claimed only for layers actually checked before a release. The Codex manifest targets local marketplace testing and future directory submission, not a currently public Codex plugin listing.
 
@@ -194,6 +198,8 @@ Model-backed evaluations require local authenticated CLIs and stay outside ordin
 AY Skills is original work informed by [Superpowers](https://github.com/obra/superpowers), [Anthropic Skills](https://github.com/anthropics/skills), [wshobson/agents](https://github.com/wshobson/agents), [PM Skills](https://github.com/phuryn/pm-skills), [awesome-copilot](https://github.com/github/awesome-copilot), [claude-skills](https://github.com/alirezarezvani/claude-skills), [mattpocock/skills](https://github.com/mattpocock/skills), and [Waza](https://github.com/tw93/Waza). The useful ideas are approval before implementation, distinctive and consistent UI direction, separate architecture/API/database responsibilities, engine-specific storage design, evidence-first discovery, and small skill boundaries.
 
 The store screenshot workflow is additionally informed by [store-screenshot-mockups](https://github.com/iamngoni/store-screenshot-mockups), [app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots), and [Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio): preserve the real shipped UI, make the deck reproducible, render at exact dimensions, and verify exported files. AY does not copy their skill text or runtime code, and intentionally leaves out mandatory modes, documents, commits, and architecture patterns.
+
+The question-relative expert selection in `ay-expert-lens` was prompted by [Best Minds](https://github.com/Agentchengfeng/best-minds) (MIT). AY uses an original, narrower workflow: apply verifiable published frameworks, distinguish source from inference, and never impersonate the person or invent what they would say.
 
 ## License
 

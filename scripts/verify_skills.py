@@ -13,6 +13,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SKILLS = (
     "ay-product",
+    "ay-expert-lens",
     "ay-ui",
     "ay-architecture",
     "ay-api",

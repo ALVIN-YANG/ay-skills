@@ -50,5 +50,9 @@
   {
     "name": "code-review",
     "description": "Review changes since a fixed commit, branch, tag, or merge-base against repository standards and the originating specification. Use for branch, pull request, or since-X code review."
+  },
+  {
+    "name": "best-minds",
+    "description": "Choose the person who understands a problem best and simulate that person. Use when the requested deliverable is first-person expert role-play, not verified framework analysis."
   }
 ]

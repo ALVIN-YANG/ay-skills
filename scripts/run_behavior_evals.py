@@ -384,7 +384,9 @@ def run_scenario(
     catalog: str,
 ) -> Result:
     scenario_id = str(scenario["id"])
-    with tempfile.TemporaryDirectory(prefix=f"ay-behavior-{scenario_id}-") as directory:
+    with tempfile.TemporaryDirectory(
+        prefix=f"ay-behavior-{scenario_id}-", ignore_cleanup_errors=True
+    ) as directory:
         root = Path(directory)
         workspace = root / "workspace"
         output = root / "final.txt"

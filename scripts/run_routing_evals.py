@@ -271,7 +271,9 @@ def main() -> int:
     if args.limit:
         scenarios = scenarios[: args.limit]
 
-    with tempfile.TemporaryDirectory(prefix="ay-skills-evals-") as directory:
+    with tempfile.TemporaryDirectory(
+        prefix="ay-skills-evals-", ignore_cleanup_errors=True
+    ) as directory:
         workdir = Path(directory) / "workspace"
         output_dir = Path(directory) / "output"
         installed = workdir / ".agents" / "skills"

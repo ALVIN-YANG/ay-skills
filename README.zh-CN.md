@@ -14,7 +14,7 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 所以我把它们做成了可以单独安装的 Skill。任务说清楚了就直接做；还有产品或技术上的关键选择，就先调查、问一次，然后在你确认的范围内完成。
 
 <p align="center">
-  <img src="assets/ay-skills-map.zh-CN.svg" alt="十三个 AY Skill 覆盖产品、UI、架构、API、数据库、实现、排错、音频、优化、写作、评审、图标和 App Store 发布。" width="100%">
+  <img src="assets/ay-skills-map.zh-CN.svg" alt="十四个 AY Skill 覆盖专家视角、产品、UI、架构、API、数据库、实现、排错、音频、优化、写作、评审、图标和 App Store 发布。" width="100%">
 </p>
 
 ## Skill
@@ -22,6 +22,7 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 | Skill | 什么时候用 | 它会做什么 |
 |---|---|---|
 | [`ay-product`](skills/ay-product/SKILL.md) | 把一个简单设想变成产品方向、MVP、需求或 PRD | 调查用户问题和市场，给出聚焦的产品建议，并把假设变成可验证的问题 |
+| [`ay-expert-lens`](skills/ay-expert-lens/SKILL.md) | 问“谁最懂这个”，或要求用真实专家的公开框架分析开放问题 | 选最匹配的可核验框架，应用判断规则，区分原始观点、推演和建议 |
 | [`ay-ui`](skills/ay-ui/SKILL.md) | 确定视觉方向、逐页设计产品界面或整理 UI 交接 | 锁定一套视觉契约，用可见页面迭代，只记录确认过的设计 |
 | [`ay-architecture`](skills/ay-architecture/SKILL.md) | 写代码前设计新系统或子系统 | 定义最简单可行的边界、数据归属、部署、故障隔离和演进方式 |
 | [`ay-api`](skills/ay-api/SKILL.md) | 设计 REST、GraphQL、gRPC、服务、事件或 Webhook 契约 | 从调用方任务推导稳定接口，不把数据库表直接翻译成 CRUD |
@@ -39,7 +40,7 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 
 完整产品通常按 `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement` 交接，需要时用 `ay-review` 检查文档一致性或实现结果。有了可发布构建后，`ay-app-store` 可以先用真实 UI 生成可复现的宣传图，再进入提交。这只是建议顺序，不是强制流水线。技术可行性会阻塞 UI 时，架构可以提前；每个 Skill 也都能从已有输入单独工作。
 
-0.7.0 增加了真实 Skill 共存路由、PNG/SVG/运行测试验收、三条端到端产品旅程、独立安装检查和可验证发布包。`ay-product` 的不同工作模式移进按需读取的 reference，常用入口更短。
+0.8.0 增加了 `ay-expert-lens`，用可核验的专家框架分析开放问题，不冒充本人，也不编造引语。共存路由、产物与运行验收、三条端到端旅程、独立安装和发布包仍是分开的证明层。
 
 ## 安装
 
@@ -62,7 +63,7 @@ npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture a
 npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-api ay-database ay-implement ay-review -a codex claude-code -g -y
 ```
 
-确定需要全部十三个时：
+确定需要全部十四个时：
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y
@@ -88,6 +89,7 @@ npx skills@latest remove ay-audio -g
 ```text
 给应用增加导出流程。
 调查这个设想，并定义一个聚焦、可验证的 MVP。
+找出最适合这个开放决策的真实专家框架，核验后应用到当前问题。
 把确认过的产品逐页做成设计图，再整理 design.md。
 写代码前先完成系统架构、接口和数据库设计。
 诊断并修复这个偶发测试。
@@ -123,6 +125,8 @@ AY Skills 可以和前端设计、PDF、表格、无障碍检查等专用 Skill 
 
 | 请求 | 同时安装时由谁主导 |
 |---|---|
+| 明确要求用真实专家框架分析开放决策 | `ay-expert-lens`；具体产物和执行仍由领域 Skill 负责 |
+| 要求第一人称模拟专家或名人 | 专用人格或 Best Minds Skill；`ay-expert-lens` 不冒充本人 |
 | 通用 App Store 准备、提交、拒审恢复 | 专用 App Store 发布 Skill；`ay-app-store` 主导真实 UI 宣传图 |
 | Apple AppIcon、`.icns` 生成和安装 | 专用 Apple 图标资产 Skill；`ay-icon` 主导开放的隐喻与方向 |
 | 纯中文长文、自然语言改稿 | 专用中文写作 Skill；`ay-write` 主导调研、英文或图解型文章 |
@@ -160,7 +164,7 @@ AY Skills 可以和前端设计、PDF、表格、无障碍检查等专用 Skill 
 
 ## 保持小而清楚
 
-十三个 Skill。没有路由器、模式标签、hooks、遥测、状态栏、自动提交或强制规划文件。每个 Skill 各做一件事，也能单独安装。
+十四个 Skill。没有路由器、模式标签、hooks、遥测、状态栏、自动提交或强制规划文件。每个 Skill 各做一件事，也能单独安装。
 
 AY Skills 遵循 [Agent Skills 规范](https://agentskills.io/specification)。便携安装、Codex 与 Claude 的实时路由、Claude Code 原生插件、CI、发布包和远程安装是彼此独立的验证层；每次发布只声明实际检查过的层级。Codex 插件清单面向本地市场测试和以后提交公共目录，目前不声称已公开上架。
 
@@ -194,6 +198,8 @@ CI 运行结构、单元、独立安装和发布包检查。路由测试可以�
 AY Skills 是原创项目，参考了 [Superpowers](https://github.com/obra/superpowers)、[Anthropic Skills](https://github.com/anthropics/skills)、[wshobson/agents](https://github.com/wshobson/agents)、[PM Skills](https://github.com/phuryn/pm-skills)、[awesome-copilot](https://github.com/github/awesome-copilot)、[claude-skills](https://github.com/alirezarezvani/claude-skills)、[mattpocock/skills](https://github.com/mattpocock/skills) 和 [Waza](https://github.com/tw93/Waza)。借鉴的是实现前确认、UI 风格一致、架构/API/数据库分工、按数据库引擎设计、证据优先和小职责边界。
 
 宣传图流程还参考了 [store-screenshot-mockups](https://github.com/iamngoni/store-screenshot-mockups)、[app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots) 和 [Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio)：保留真实上架 UI，让整套图可以复现，按准确尺寸渲染，并检查最终导出文件。项目没有复制它们的 Skill 文本或运行时代码，也没有引入强制模式、强制文档、自动提交和默认架构套路。
+
+`ay-expert-lens` 中“按问题选专家”的启发来自 MIT 许可的 [Best Minds](https://github.com/Agentchengfeng/best-minds)。AY 重新设计了更窄的原创流程：应用可核验的公开框架，区分来源与推演，不冒充本人，也不编造对方“会怎么说”。
 
 ## 许可证
 

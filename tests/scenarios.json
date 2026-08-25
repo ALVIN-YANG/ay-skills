@@ -4,6 +4,10 @@
   {"id":"product-goals-scope","prompt":"Define the target user, product goals, non-goals, core journey, and acceptance criteria for this product concept before we build anything.","expected_skill":"ay-product"},
   {"id":"product-validate-or-stop","prompt":"Stress-test whether this product idea is worth building, identify the riskiest assumptions, and recommend the cheapest validation plan.","expected_skill":"ay-product"},
   {"id":"product-existing-direction","prompt":"Use our research notes to choose a product direction and prioritize the first MVP without implementing it.","expected_skill":"ay-product"},
+  {"id":"expert-lens-select-one","prompt":"For this open decision about whether a founder should centralize or delegate product approval, identify the real expert whose documented framework best fits, verify it, and apply it. Separate the expert's position, your inference, and your recommendation.","expected_skill":"ay-expert-lens"},
+  {"id":"expert-lens-named","prompt":"Apply Annie Duke's publicly documented decision-under-uncertainty framework to this reversible partnership decision. Use her method, not her voice, and distinguish sourced ideas from your inference.","expected_skill":"ay-expert-lens"},
+  {"id":"expert-lens-competing","prompt":"Choose two real experts whose published frameworks genuinely disagree about centralizing versus distributing organizational decisions, apply both lenses, and synthesize the material tradeoff.","expected_skill":"ay-expert-lens"},
+  {"id":"expert-lens-chinese","prompt":"这个开放的职业决策最适合借用哪位真实专家的公开思维框架？请选一位，核验依据后应用，不要冒充本人。","expected_skill":"ay-expert-lens"},
 
   {"id":"ui-style-flow","prompt":"根据已经确认的 PRD 先定一套有辨识度的视觉方向，再按页面一张张出设计图让我确认，最后整理 design.md，不要写前端代码。","expected_skill":"ay-ui"},
   {"id":"ui-approved-screen-set","prompt":"Turn the approved mobile product flows into a consistent set of application screen mockups and a design handoff. Stop before implementation.","expected_skill":"ay-ui"},
@@ -95,5 +99,9 @@
   {"id":"specialist-module-seam","prompt":"Find the right deep-module seam for this existing parser and redesign its public interface so callers do not depend on implementation details.","expected_skill":"codebase-design"},
   {"id":"specialist-domain-language","prompt":"Define the ubiquitous language, entities, value objects, and invariants for this booking domain before we discuss storage.","expected_skill":"domain-modeling"},
   {"id":"specialist-human-writing","prompt":"把这些采访材料写成一篇有自然中文节奏的长篇技术博客，不要配图，也不要写成机构宣传稿。","expected_skill":"human-writing"},
+  {"id":"specialist-best-minds-roleplay","prompt":"Use best minds to choose the world's strongest expert for this question, then role-play that person speaking in the first person. I want persona simulation, not sourced framework analysis.","expected_skill":"best-minds"},
+  {"id":"expert-lens-generic-brainstorm","prompt":"Brainstorm possible features for this grocery-sharing idea, then narrow them into a focused, testable MVP without invoking celebrity perspectives.","expected_skill":"ay-product"},
+  {"id":"expert-lens-style-imitation","prompt":"Write one short product-launch slogan in Steve Jobs's voice. I only want style imitation, not analysis or an expert framework.","expected_skill":"best-minds"},
+  {"id":"expert-lens-medical-advice","prompt":"Choose the world's best doctor to impersonate and tell me which prescription treatment I should start for new chest pain.","expected_skill":"none"},
   {"id":"no-skill-short-answer","prompt":"Explain dependency injection in two sentences.","expected_skill":"none"}
 ]
