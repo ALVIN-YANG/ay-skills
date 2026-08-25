@@ -30,5 +30,25 @@
   {
     "name": "domain-modeling",
     "description": "Build a project's domain model, ubiquitous language, and related architectural decisions. Use when terminology and domain concepts are the primary deliverable."
+  },
+  {
+    "name": "ship-app-store",
+    "description": "Audit, prepare, submit, monitor, or recover an Apple App Store release from real project and live App Store Connect state. Use for release readiness, submission, rejection, StoreKit, privacy, metadata, and review operations."
+  },
+  {
+    "name": "app-icon-studio",
+    "description": "Create, generate, evaluate, export, install, or debug Apple AppIcon.appiconset and macOS .icns assets with small-size clarity. Use for Apple store icon asset production and installation."
+  },
+  {
+    "name": "human-writing",
+    "description": "Write or rewrite natural substantial Chinese articles, tutorials, posts, stories, and speeches. Use when authentic Chinese prose and voice are the primary deliverable."
+  },
+  {
+    "name": "diagnosing-bugs",
+    "description": "Diagnose hard bugs and performance regressions through a root-cause evidence loop. Use when the user asks to diagnose or debug something broken, failing, or slow."
+  },
+  {
+    "name": "code-review",
+    "description": "Review changes since a fixed commit, branch, tag, or merge-base against repository standards and the originating specification. Use for branch, pull request, or since-X code review."
   }
 ]

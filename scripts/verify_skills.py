@@ -154,7 +154,9 @@ def validate(root: Path = ROOT) -> list[str]:
 
     validate_manifests(root, version, errors)
     validate_scenarios(root, errors)
+    validate_ay_only_scenarios(root, errors)
     validate_execution_scenarios(root, errors)
+    validate_journey_scenarios(root, errors)
     validate_product_evals(root, errors)
     validate_docs(root, errors)
     return errors
@@ -253,6 +255,40 @@ def validate_scenarios(root: Path, errors: list[str]) -> None:
         errors.append("scenarios: every competing skill needs a routing case")
 
 
+def validate_ay_only_scenarios(root: Path, errors: list[str]) -> None:
+    scenarios = load_json(root / "tests" / "ay-only-scenarios.json", errors)
+    if not isinstance(scenarios, list):
+        return
+    if len(scenarios) < 5:
+        errors.append(f"AY-only scenarios: expected at least 5, found {len(scenarios)}")
+    ids: set[str] = set()
+    for scenario in scenarios:
+        if not isinstance(scenario, dict):
+            errors.append("AY-only scenarios: every entry must be an object")
+            continue
+        scenario_id = str(scenario.get("id", ""))
+        if not scenario_id or scenario_id in ids:
+            errors.append(f"AY-only scenarios: missing or duplicate id {scenario_id!r}")
+        ids.add(scenario_id)
+        if set(scenario) != {"id", "prompt", "expected_skill"}:
+            errors.append(f"{scenario_id}: AY-only routing fields do not match schema")
+        if scenario.get("expected_skill") not in EXPECTED_SKILLS:
+            errors.append(f"{scenario_id}: fallback must select an AY skill")
+        if "$ay-" in str(scenario.get("prompt", "")):
+            errors.append(f"{scenario_id}: fallback prompt must use implicit routing")
+
+
+def validate_patterns(label: str, patterns: object, errors: list[str]) -> None:
+    if not isinstance(patterns, list) or any(not isinstance(pattern, str) for pattern in patterns):
+        errors.append(f"{label}: regex patterns must be strings in a list")
+        return
+    for pattern in patterns:
+        try:
+            re.compile(pattern)
+        except re.error as error:
+            errors.append(f"{label}: invalid regex {pattern!r}: {error}")
+
+
 def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
     scenarios = load_json(root / "tests" / "execution-scenarios.json", errors)
     if not isinstance(scenarios, list):
@@ -273,6 +309,8 @@ def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
         covered.add(skill)
         if not isinstance(scenario.get("files"), dict):
             errors.append(f"{scenario_id}: files must be an object")
+        if "$ay-" in str(scenario.get("prompt", "")):
+            errors.append(f"{scenario_id}: behavior prompt must use implicit routing")
         if not any(
             key in scenario
             for key in (
@@ -283,6 +321,11 @@ def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
                 "final_any",
                 "final_all",
                 "final_none",
+                "final_regex",
+                "expected_png",
+                "expected_svg",
+                "verify_commands",
+                "reproduce",
             )
         ):
             errors.append(f"{scenario_id}: missing observable assertion")
@@ -293,9 +336,115 @@ def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
             for path, terms in created_all.items():
                 if not isinstance(terms, list) or not terms:
                     errors.append(f"{scenario_id}: {path} needs created_all terms")
+        for field in ("expected_png", "expected_svg"):
+            value = scenario.get(field, {})
+            if not isinstance(value, dict):
+                errors.append(f"{scenario_id}: {field} must be an object")
+        if "unchanged_files" in scenario and not isinstance(scenario["unchanged_files"], list):
+            errors.append(f"{scenario_id}: unchanged_files must be a list")
+        if "final_regex" in scenario:
+            validate_patterns(f"{scenario_id}/final_regex", scenario["final_regex"], errors)
+        commands = scenario.get("verify_commands", [])
+        if not isinstance(commands, list) or any(
+            not isinstance(command, list) or not command for command in commands
+        ):
+            errors.append(f"{scenario_id}: verify_commands must contain argument lists")
+        reproduce = scenario.get("reproduce", [])
+        if not isinstance(reproduce, list):
+            errors.append(f"{scenario_id}: reproduce must be a list")
+        else:
+            for check in reproduce:
+                if not isinstance(check, dict) or set(check) != {"path", "command"}:
+                    errors.append(f"{scenario_id}: reproduce checks need only path and command")
+                    continue
+                if not str(check.get("path", "")).strip():
+                    errors.append(f"{scenario_id}: reproduce path is missing")
+                command = check.get("command")
+                if not isinstance(command, list) or not command:
+                    errors.append(f"{scenario_id}: reproduce command must be an argument list")
+        fixture = scenario.get("fixture")
+        if fixture:
+            fixture_path = (root / "tests" / "fixtures" / str(fixture)).resolve()
+            try:
+                fixture_path.relative_to((root / "tests" / "fixtures").resolve())
+            except ValueError:
+                errors.append(f"{scenario_id}: fixture escapes tests/fixtures")
+            else:
+                if not fixture_path.is_dir():
+                    errors.append(f"{scenario_id}: fixture does not exist")
     missing = set(EXPECTED_SKILLS) - covered
     if missing:
         errors.append(f"execution scenarios: missing skills {', '.join(sorted(missing))}")
+
+
+def validate_journey_scenarios(root: Path, errors: list[str]) -> None:
+    scenarios = load_json(root / "tests" / "journey-scenarios.json", errors)
+    if not isinstance(scenarios, list):
+        return
+    if len(scenarios) < 3:
+        errors.append(f"journey scenarios: expected at least 3, found {len(scenarios)}")
+    ids: set[str] = set()
+    for scenario in scenarios:
+        if not isinstance(scenario, dict):
+            errors.append("journey scenarios: every entry must be an object")
+            continue
+        scenario_id = str(scenario.get("id", ""))
+        if not scenario_id or scenario_id in ids:
+            errors.append(f"journey scenarios: missing or duplicate id {scenario_id!r}")
+        ids.add(scenario_id)
+        fixture = root / "tests" / "fixtures" / str(scenario.get("fixture", ""))
+        if not fixture.is_dir():
+            errors.append(f"{scenario_id}: journey fixture does not exist")
+        steps = scenario.get("steps")
+        if not isinstance(steps, list) or len(steps) < 4:
+            errors.append(f"{scenario_id}: journey needs at least four steps")
+            continue
+        step_ids: set[str] = set()
+        for step in steps:
+            if not isinstance(step, dict):
+                errors.append(f"{scenario_id}: journey step must be an object")
+                continue
+            step_id = str(step.get("id", ""))
+            if not step_id or step_id in step_ids:
+                errors.append(f"{scenario_id}: missing or duplicate step {step_id!r}")
+            step_ids.add(step_id)
+            if "$ay-" in str(step.get("prompt", "")):
+                errors.append(f"{scenario_id}/{step_id}: journey prompt must use implicit routing")
+            if not isinstance(step.get("assert"), dict) or not step["assert"]:
+                errors.append(f"{scenario_id}/{step_id}: missing observable assertions")
+            elif "final_regex" in step["assert"]:
+                validate_patterns(
+                    f"{scenario_id}/{step_id}/final_regex",
+                    step["assert"]["final_regex"],
+                    errors,
+                )
+        cross = scenario.get("cross_artifact")
+        if not isinstance(cross, dict) or not isinstance(cross.get("required_terms"), dict):
+            errors.append(f"{scenario_id}: cross-artifact required terms are missing")
+        elif "required_patterns" not in cross:
+            errors.append(f"{scenario_id}: cross-artifact semantic patterns are missing")
+        else:
+            for field in ("required_patterns", "forbidden_patterns"):
+                patterns = cross.get(field, {})
+                if not isinstance(patterns, dict):
+                    errors.append(f"{scenario_id}: {field} must be an object")
+                    continue
+                for path, expressions in patterns.items():
+                    validate_patterns(f"{scenario_id}/{field}/{path}", expressions, errors)
+        review = steps[-1] if steps else {}
+        review_assert = review.get("assert", {}) if isinstance(review, dict) else {}
+        required_review_patterns = {
+            r"(?m)^BLOCKER_COUNT: 0\s*$",
+            r"(?m)^CRITICAL_COUNT: 0\s*$",
+        }
+        review_id = review.get("id") if isinstance(review, dict) else None
+        if review_id != "review" or not required_review_patterns.issubset(
+            set(review_assert.get("final_regex", []))
+        ):
+            errors.append(f"{scenario_id}: final review must prove zero blocker and critical counts")
+        commands = scenario.get("verify_commands")
+        if not isinstance(commands, list) or not commands:
+            errors.append(f"{scenario_id}: journey needs executable verification")
 
 
 def validate_product_evals(root: Path, errors: list[str]) -> None:
@@ -371,10 +520,15 @@ def validate_docs(root: Path, errors: list[str]) -> None:
         for command in (
             "scripts/run_routing_evals.py",
             "scripts/run_behavior_evals.py",
+            "scripts/run_journey_evals.py",
             "scripts/run_product_evals.py",
+            "scripts/verify_portable_install.py",
+            "scripts/package_release.py",
         ):
             if command not in text:
                 errors.append(f"{filename}: missing {command}")
+    if not (root / ".github" / "workflows" / "release.yml").is_file():
+        errors.append("docs: release workflow is missing")
 
 
 def main() -> int:

@@ -49,6 +49,13 @@ class ProductEvalTests(unittest.TestCase):
         self.assertIn(True, values)
         self.assertIn(False, values)
 
+    def test_network_disconnect_is_separate_from_quality_failure(self) -> None:
+        self.assertTrue(
+            product.is_infrastructure_error_text(
+                "failed to lookup address information; error sending request for url"
+            )
+        )
+
     def test_normalize_evaluation_accepts_exact_rubric(self) -> None:
         data = {
             "winner": "A",

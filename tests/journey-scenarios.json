@@ -1,0 +1,176 @@
+[
+  {
+    "id": "field-service-saas",
+    "fixture": "journey-field-service",
+    "steps": [
+      {
+        "id": "product",
+        "prompt": "Turn the settled brief.md into PRD.md. Creating the handoff is approved. Preserve WorkOrder, CompletionReport, offline Draft, IdempotencyKey, Conflict, tenant isolation, scope, non-goals, states, testable acceptance criteria, and the exact approved pure decision checkpoint without renaming its fields. Do not design UI, architecture, storage, or code.",
+        "assert": {
+          "expected_created": {"PRD.md": 900},
+          "created_all": {"PRD.md": ["WorkOrder", "CompletionReport", "Draft", "IdempotencyKey", "Conflict", "tenant"]}
+        }
+      },
+      {
+        "id": "ui",
+        "prompt": "Use PRD.md to create an approved UI checkpoint at design/job-flow.svg and a design.md handoff. Creating both is approved. The SVG must be exactly 390 by 844 and visibly contain Assigned work, Offline draft, Conflict, and Retry. Use a warm field-notebook visual direction. Preserve every product state and stop before frontend code.",
+        "assert": {
+          "expected_created": {"design.md": 800},
+          "created_all": {"design.md": ["WorkOrder", "Draft", "Conflict", "Retry", "accessibility"]},
+          "expected_svg": {"design/job-flow.svg": {"width": 390, "height": 844, "contains": ["Assigned work", "Offline draft", "Conflict", "Retry"]}}
+        }
+      },
+      {
+        "id": "architecture",
+        "prompt": "Create architecture.md from brief.md, PRD.md, and design.md. The architecture handoff is approved. Use the approved modular monolith and PostgreSQL constraints; define module boundaries, ownership, offline synchronization flow, tenant trust boundary, failure containment, deployment, and validation. Keep WorkOrder, CompletionReport, Draft, IdempotencyKey, and Conflict unchanged. Stop before endpoint payloads, physical tables, and code.",
+        "assert": {
+          "expected_created": {"architecture.md": 900},
+          "created_all": {"architecture.md": ["WorkOrder", "CompletionReport", "Draft", "IdempotencyKey", "Conflict", "tenant", "deployment"]}
+        }
+      },
+      {
+        "id": "api",
+        "prompt": "Create api.md from the approved artifacts. The API handoff is approved. Define consumer operations for assigned WorkOrders, Draft save, CompletionReport submission, IdempotencyKey retry, tenant authorization, and Conflict recovery. Preserve the exact pure decision checkpoint field names and results from brief.md. Include validation, errors, compatibility, and UI-state coverage. Stop before handlers and database tables.",
+        "assert": {
+          "expected_created": {"api.md": 850},
+          "created_all": {"api.md": ["WorkOrder", "CompletionReport", "Draft", "IdempotencyKey", "Conflict", "authorization"]}
+        }
+      },
+      {
+        "id": "database",
+        "prompt": "Create database.md for PostgreSQL from the approved artifacts. The schema design is approved. Preserve WorkOrder, CompletionReport, Draft, IdempotencyKey, Conflict, and tenant invariants; define constraints, indexes, transactions, concurrency, retention, and migration verification. Stop before DDL execution or application code.",
+        "assert": {
+          "expected_created": {"database.md": 850},
+          "created_all": {"database.md": ["WorkOrder", "CompletionReport", "Draft", "IdempotencyKey", "Conflict", "constraint", "index", "transaction"]}
+        }
+      },
+      {
+        "id": "implement",
+        "prompt": "Implement the exact pure submission-decision checkpoint already fixed in brief.md and the supplied tests in src/job_report.py without changing tests or design artifacts. Preserve the approved decision, conflictReason, draftPreserved, and idempotencyKey fields. Reject an unknown state or any required input that is blank after trimming. Run the supplied unit tests. Durable replay, persistence, authorization, and endpoint integration remain outside this implementation checkpoint.",
+        "assert": {
+          "created_all": {"src/job_report.py": ["Assigned", "Submitted", "Closed", "Conflict", "conflictReason", "draftPreserved", "idempotencyKey"]},
+          "unchanged_files": ["tests/test_job_report.py", "PRD.md", "design.md", "architecture.md", "api.md", "database.md"],
+          "final_any": ["test", "passed"]
+        }
+      },
+      {
+        "id": "review",
+        "prompt": "Review PRD.md, design.md, architecture.md, api.md, database.md, src/job_report.py, and the supplied tests for contradictions or defects in the approved pure submission-decision slice. Persistence, handlers, and the rest of the product are intentionally outside this checkpoint; report them as unverified boundaries, not blockers. Stay read-only. Lead with findings and name proof gaps. End with exactly two plain-text lines, without bullets or code formatting: BLOCKER_COUNT: N then CRITICAL_COUNT: N. Use zero only when no blocker or critical contradiction remains in the approved slice.",
+        "assert": {"expect_no_changes": true, "final_any": ["finding", "unverified", "no blocking"], "final_regex": ["(?m)^BLOCKER_COUNT: 0\\s*$", "(?m)^CRITICAL_COUNT: 0\\s*$"]}
+      }
+    ],
+    "cross_artifact": {
+      "required_terms": {
+        "PRD.md": ["WorkOrder", "CompletionReport", "Draft", "IdempotencyKey", "Conflict", "decision", "conflictReason", "draftPreserved"],
+        "design.md": ["WorkOrder", "Draft", "Conflict"],
+        "architecture.md": ["WorkOrder", "CompletionReport", "Draft", "IdempotencyKey", "Conflict"],
+        "api.md": ["WorkOrder", "CompletionReport", "Draft", "IdempotencyKey", "Conflict", "decision", "conflictReason", "draftPreserved"],
+        "database.md": ["WorkOrder", "CompletionReport", "Draft", "IdempotencyKey", "Conflict"],
+        "src/job_report.py": ["Assigned", "Submitted", "Closed", "Conflict", "conflictReason", "draftPreserved", "idempotencyKey"]
+      },
+      "required_patterns": {
+        "design.md": ["(?:Conflict.{0,240}(?:preserv|Draft|Retry)|(?:preserv|Draft|Retry).{0,240}Conflict)"],
+        "api.md": ["(?:closed.{0,180}(?:Conflict|409)|(?:Conflict|409).{0,180}closed)"],
+        "database.md": ["IdempotencyKey.{0,220}(?:unique|constraint|index)"]
+      },
+      "forbidden_patterns": {
+        "database.md": ["IdempotencyKey.{0,120}(?:not unique|non-unique)"]
+      }
+    },
+    "verify_commands": [["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]]
+  },
+  {
+    "id": "macos-photo-local",
+    "fixture": "journey-photo-local",
+    "steps": [
+      {
+        "id": "product",
+        "prompt": "Create PRD.md from the settled brief.md. Preserve ScanSession, CandidatePair, system Trash confirmation, local-only processing, cancellation, failure, relaunch persistence, non-goals, testable acceptance, and the exact approved pure review-decision checkpoint. Creating the handoff is approved. Stop before UI or implementation.",
+        "assert": {"expected_created": {"PRD.md": 750}, "created_all": {"PRD.md": ["ScanSession", "CandidatePair", "Trash", "local", "cancel", "failure"]}}
+      },
+      {
+        "id": "ui",
+        "prompt": "Create design.md and one 720 by 480 macOS SVG checkpoint at design/review.svg from PRD.md. Show CandidatePair, Keep reviewing, Confirm Trash, and Scan failed. The destructive confirmation button itself must visibly say Confirm Trash, never generic Confirm. Record keyboard, VoiceOver, contrast, focus, and reduced-motion accessibility decisions in design.md. Use a quiet photographic contact-sheet direction. The artifacts are approved; stop before Swift code.",
+        "assert": {"expected_created": {"design.md": 650}, "created_all": {"design.md": ["ScanSession", "CandidatePair", "Trash", "accessibility"]}, "expected_svg": {"design/review.svg": {"width": 720, "height": 480, "contains": ["CandidatePair", "Keep reviewing", "Confirm Trash", "Scan failed"]}}}
+      },
+      {
+        "id": "architecture",
+        "prompt": "Create architecture.md for this local-only macOS product from the approved artifacts. Define module boundaries, ScanSession ownership, CandidatePair analysis, sandbox and Trash adapter, failure containment, SQLite category choice, deployment, and validation. Do not add a backend, account, API, or code.",
+        "assert": {"expected_created": {"architecture.md": 700}, "created_all": {"architecture.md": ["ScanSession", "CandidatePair", "Trash", "SQLite", "local", "failure"]}}
+      },
+      {
+        "id": "database",
+        "prompt": "Create database.md for the approved SQLite local store. Model ScanSession, CandidatePair, review decisions, relaunch persistence, constraints, indexes, transactions, WAL concurrency, migrations, and integrity checks. The handoff is approved; do not execute DDL or add cloud storage.",
+        "assert": {"expected_created": {"database.md": 700}, "created_all": {"database.md": ["ScanSession", "CandidatePair", "constraint", "index", "transaction", "WAL"]}}
+      },
+      {
+        "id": "implement",
+        "prompt": "Implement the exact pure review-decision checkpoint fixed in brief.md and the supplied tests in src/review_decision.py without modifying tests or design documents. Accept a tuple of selected file IDs, require exactly one for confirm-trash, reject multiple selections and unknown states, and preserve every named ScanSession outcome. Run the supplied tests. SQLite, scanning, and Trash integration remain outside this implementation checkpoint.",
+        "assert": {"created_all": {"src/review_decision.py": ["selected_file_ids", "confirm-trash", "keep-reviewing", "retry-scan", "wait-for-scan", "restart-scan"]}, "unchanged_files": ["tests/test_review_decision.py", "PRD.md", "design.md", "architecture.md", "database.md"], "final_any": ["test", "passed"]}
+      },
+      {
+        "id": "review",
+        "prompt": "Review the product, UI, architecture, SQLite design, implementation, and tests for contradictions or defects in the approved pure review-decision slice. SQLite, scanning, and Trash integration are intentionally outside this checkpoint; report them as unverified boundaries, not blockers. Check state drift and automatic-deletion safety, stay read-only, and report findings by severity. End with exactly two plain-text lines, without bullets or code formatting: BLOCKER_COUNT: N then CRITICAL_COUNT: N. Use zero only when no blocker or critical contradiction remains in the approved slice.",
+        "assert": {"expect_no_changes": true, "final_any": ["finding", "unverified", "no blocking"], "final_regex": ["(?m)^BLOCKER_COUNT: 0\\s*$", "(?m)^CRITICAL_COUNT: 0\\s*$"]}
+      }
+    ],
+    "cross_artifact": {
+      "required_terms": {"PRD.md": ["ScanSession", "CandidatePair", "Trash", "selected file IDs"], "design.md": ["ScanSession", "CandidatePair", "Trash"], "architecture.md": ["ScanSession", "CandidatePair", "Trash"], "database.md": ["ScanSession", "CandidatePair"], "src/review_decision.py": ["selected_file_ids", "confirm-trash", "keep-reviewing", "retry-scan"]},
+      "required_patterns": {
+        "PRD.md": ["Trash.{0,180}(?:confirm|confirmation|explicit|user)"],
+        "design.md": ["(?:confirm|confirmation).{0,120}Trash"],
+        "architecture.md": ["(?:local-only|local only)"]
+      },
+      "forbidden_patterns": {
+        "PRD.md": ["(?:app|system).{0,40}(?:will|may|can).{0,30}automatic(?:ally)?.{0,40}(?:delete|Trash)"],
+        "design.md": ["(?:app|system).{0,40}(?:will|may|can).{0,30}automatic(?:ally)?.{0,40}(?:delete|Trash)"]
+      }
+    },
+    "verify_commands": [["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]]
+  },
+  {
+    "id": "transit-local-first",
+    "fixture": "journey-transit",
+    "steps": [
+      {
+        "id": "product",
+        "prompt": "Create PRD.md from brief.md. Preserve Stop, Departures, DataAge, Stale, manual Retry, permission denial, cached snapshot, non-goals, testable acceptance, and the exact approved pure display checkpoint including source-confirmed freshness. The product handoff is approved. Stop before design and implementation.",
+        "assert": {"expected_created": {"PRD.md": 700}, "created_all": {"PRD.md": ["Stop", "Departures", "DataAge", "Stale", "Retry", "permission"]}}
+      },
+      {
+        "id": "ui",
+        "prompt": "Create design.md and a 390 by 844 SVG checkpoint at design/departures.svg. Show Departures, DataAge, Stale, Retry, and Notifications off using a quiet transit-board editorial direction. Preserve PRD behavior. Creating both artifacts is approved; stop before frontend code.",
+        "assert": {"expected_created": {"design.md": 650}, "created_all": {"design.md": ["Stop", "Departures", "DataAge", "Stale", "Retry", "accessibility"]}, "expected_svg": {"design/departures.svg": {"width": 390, "height": 844, "contains": ["Departures", "DataAge", "Stale", "Retry", "Notifications off"]}}}
+      },
+      {
+        "id": "architecture",
+        "prompt": "Create architecture.md for the approved app and regional feed adapter. Define app/cache/feed boundaries, Stop and Departures ownership, one-minute refresh, Stale recovery, notification-permission isolation, deployment, failure containment, and validation. Stop before payloads, tables, and code.",
+        "assert": {"expected_created": {"architecture.md": 700}, "created_all": {"architecture.md": ["Stop", "Departures", "DataAge", "Stale", "Retry", "deployment"]}}
+      },
+      {
+        "id": "api",
+        "prompt": "Create api.md for the app-facing departure query and refresh behavior. Preserve Stop, Departures, DataAge, Stale, Retry, no-account access, errors, caching, compatibility, UI states, and the exact pure display checkpoint including source-confirmed freshness. The handoff is approved; stop before handlers or tables.",
+        "assert": {"expected_created": {"api.md": 650}, "created_all": {"api.md": ["Stop", "Departures", "DataAge", "Stale", "Retry", "error"]}}
+      },
+      {
+        "id": "implement",
+        "prompt": "Implement the exact pure display checkpoint fixed in brief.md and the supplied tests in src/data_age.py without modifying tests or design artifacts. Use the exact input names is_online, age_minutes, latest_refresh_success, and source_confirmed_current. Mark cached data Stale whenever any freshness signal fails. For no snapshot, preserve the exact online and offline strings from brief.md and never claim there are no Departures. Reject a negative DataAge and run the tests. Feed, cache, notification, and app integration remain outside this implementation checkpoint.",
+        "assert": {"created_all": {"src/data_age.py": ["source_confirmed_current", "Updated", "Stale", "Retry", "no snapshot"]}, "unchanged_files": ["tests/test_data_age.py", "PRD.md", "design.md", "architecture.md", "api.md"], "final_any": ["test", "passed"]}
+      },
+      {
+        "id": "review",
+        "prompt": "Review all approved artifacts, implementation, and tests for contradictions or defects in the approved pure display-state slice. Feed, cache, notification, and app integration are intentionally outside this checkpoint; report them as unverified boundaries, not blockers. Check DataAge and Stale consistency and accidental account scope, stay read-only, and lead with findings. End with exactly two plain-text lines, without bullets or code formatting: BLOCKER_COUNT: N then CRITICAL_COUNT: N. Use zero only when no blocker or critical contradiction remains in the approved slice.",
+        "assert": {"expect_no_changes": true, "final_any": ["finding", "unverified", "no blocking"], "final_regex": ["(?m)^BLOCKER_COUNT: 0\\s*$", "(?m)^CRITICAL_COUNT: 0\\s*$"]}
+      }
+    ],
+    "cross_artifact": {
+      "required_terms": {"PRD.md": ["Stop", "Departures", "DataAge", "Stale", "Retry", "source_confirmed_current", "no snapshot"], "design.md": ["Stop", "Departures", "DataAge", "Stale", "Retry"], "architecture.md": ["Stop", "Departures", "DataAge", "Stale", "Retry"], "api.md": ["Stop", "Departures", "DataAge", "Stale", "Retry", "source_confirmed_current", "no snapshot"], "src/data_age.py": ["source_confirmed_current", "Updated", "Stale", "Retry", "no snapshot"]},
+      "required_patterns": {
+        "PRD.md": ["Stale.{0,180}(?:Retry|cached|DataAge)"],
+        "design.md": ["(?:permission|Notifications off).{0,220}(?:Retry|settings|manual)"],
+        "api.md": ["DataAge.{0,180}(?:Stale|Updated|fresh)"]
+      }
+    },
+    "verify_commands": [["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]]
+  }
+]

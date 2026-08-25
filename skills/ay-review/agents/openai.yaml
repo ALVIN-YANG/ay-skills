@@ -1,4 +1,4 @@
 interface:
   display_name: "AY Review"
-  short_description: "Review intent correctness risk and proof"
-  default_prompt: "Use $ay-review to review this work against intent, risk, and evidence."
+  short_description: "Review cross-artifact intent risk and proof"
+  default_prompt: "Use $ay-review to review these artifacts for intent, consistency, risk, and evidence."

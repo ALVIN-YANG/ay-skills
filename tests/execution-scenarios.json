@@ -2,7 +2,7 @@
   {
     "id": "product-evidence-proposal",
     "skill": "ay-product",
-    "prompt": "Use $ay-product to turn the supplied research into a focused product proposal. Return the recommendation, target user, MVP and non-goals, testable acceptance criteria, assumptions, and validation plan in this response. Do not create or modify files.",
+    "prompt": "Turn the supplied research into a focused product proposal. Return the recommendation, target user, MVP and non-goals, testable acceptance criteria, assumptions, and validation plan in this response. Do not create or modify files.",
     "files": {"research.md": "Synthetic benchmark evidence. Four flatmates report buying duplicate pantry items because ownership is unclear. Three already use a shared chat but messages become stale. Two tried inventory apps and stopped because item entry took too long. No willingness-to-pay or retention evidence exists.\n"},
     "expect_no_changes": true,
     "final_all": ["target user", "non-goal", "acceptance", "assumption"],
@@ -11,14 +11,14 @@
   {
     "id": "product-validation-first",
     "skill": "ay-product",
-    "prompt": "Use $ay-product to assess the supplied concept and recommend what to do next. Do not create or modify files. Do not assume the product should be built.",
+    "prompt": "Assess the supplied concept and recommend what to do next. Do not create or modify files. Do not assume the product should be built.",
     "files": {"concept.md": "Synthetic benchmark evidence. The idea is another general-purpose team task app. Five target users say their current tools are sufficient. No distinct unmet job, switching trigger, distribution channel, or willingness-to-pay evidence has been found.\n"},
     "expect_no_changes": true
   },
   {
     "id": "product-approved-prd-file",
     "skill": "ay-product",
-    "prompt": "Use $ay-product to turn brief.md into PRD.md. Creating that file is approved. Define a local-only MVP with testable acceptance criteria; do not implement the product or modify other files.",
+    "prompt": "Turn brief.md into PRD.md. Creating that file is approved. Define a local-only MVP with testable acceptance criteria; do not implement the product or modify other files.",
     "files": {"brief.md": "A macOS app finds visually duplicate photos in a folder selected by the user. All analysis stays on device. It never deletes automatically. The first release supports review and moving selected duplicates to the system Trash.\n"},
     "expected_created": {"PRD.md": 800},
     "final_any": ["PRD.md"]
@@ -26,7 +26,7 @@
   {
     "id": "implement-precise-edit",
     "skill": "ay-implement",
-    "prompt": "Use $ay-implement to change status.txt from state=old to state=ready. This exact edit is approved. Do not change anything else.",
+    "prompt": "Change status.txt from state=old to state=ready. This exact edit is approved. Do not change anything else.",
     "files": {"status.txt": "state=old\n"},
     "expected_files": {"status.txt": "state=ready\n"},
     "allow_extra_changes": false
@@ -34,7 +34,7 @@
   {
     "id": "implement-vague-feature",
     "skill": "ay-implement",
-    "prompt": "Use $ay-implement to add offline mode. Product behavior is not defined yet. Inspect the supplied context and propose the user-visible behavior, scope, and acceptance evidence. Do not modify files until I approve the proposal.",
+    "prompt": "Add offline mode. Product behavior is not defined yet. Inspect the supplied context and propose the user-visible behavior, scope, and acceptance evidence. Do not modify files until I approve the proposal.",
     "files": {"product.txt": "The product currently works online only.\n"},
     "expect_no_changes": true,
     "final_any": ["offline", "approval", "approve"]
@@ -42,7 +42,7 @@
   {
     "id": "ui-approved-handoff",
     "skill": "ay-ui",
-    "prompt": "Use $ay-ui to turn the approved material into design.md. Creating that handoff is approved. Preserve the product behavior, describe the visual contract, screen flow, reusable components, states, accessibility, and asset references. Do not write frontend code or modify other files.",
+    "prompt": "Turn the approved material into design.md. Creating that handoff is approved. Preserve the product behavior, describe the visual contract, screen flow, reusable components, states, accessibility, and asset references. Do not write frontend code or modify other files.",
     "files": {
       "PRD.md": "Target: iPhone. A commuter saves a route, sees the next departure, and gets a local disruption alert. No account, social feed, ticket purchase, or ads. Permission denial must leave manual refresh usable.\n",
       "approved-ui.md": "Approved direction: quiet transit-board editorial style; off-white canvas, near-black text, signal orange only for disruption. Approved screens: route list, route detail, permission request, empty, offline, disruption. Use SF Pro and native iOS navigation. Final assets live under assets/ui/.\n"
@@ -54,7 +54,7 @@
   {
     "id": "architecture-approved-handoff",
     "skill": "ay-architecture",
-    "prompt": "Use $ay-architecture to create architecture.md from the supplied approved product and UI constraints. Creating the architecture handoff is approved. Choose the simplest viable system shape, define boundaries, data ownership, flows, failure containment, deployment, quality scenarios, risks, and validation. Do not design endpoints, tables, or code.",
+    "prompt": "Create architecture.md from the supplied approved product and UI constraints. Creating the architecture handoff is approved. Choose the simplest viable system shape, define boundaries, data ownership, flows, failure containment, deployment, quality scenarios, risks, and validation. Do not design endpoints, tables, or code.",
     "files": {
       "requirements.md": "A two-person team is building a regional transit alert app for at most 20,000 daily users in year one. It reads one public feed every minute, sends local-region notifications, stores saved routes, and must remain manually refreshable when notification permission is denied. Budget is constrained; there is no existing backend.\n",
       "ui.md": "The route list and detail screens show stale-data age, offline status, permission denial, retry, and disruption recovery.\n"
@@ -66,7 +66,7 @@
   {
     "id": "api-approved-handoff",
     "skill": "ay-api",
-    "prompt": "Use $ay-api to create a concise api.md for the supplied approved flows and architecture. Creating the contract is approved. Cover only these flows in at most 1400 words: consumer-oriented operations, authorization, validation, errors, idempotency, cursor pagination, conflict behavior, compatibility, and UI-state coverage. Do not research externally, mirror storage tables, or implement handlers.",
+    "prompt": "Create a concise api.md for the supplied approved flows and architecture. Creating the contract is approved. Cover only these flows in at most 1400 words: consumer-oriented operations, authorization, validation, errors, idempotency, cursor pagination, conflict behavior, compatibility, and UI-state coverage. Do not research externally, mirror storage tables, or implement handlers.",
     "files": {
       "flows.md": "An authenticated field technician lists assigned jobs, opens a job, submits one completion report with optional photos, retries safely after a timeout, and sees conflicts if a supervisor already closed it. The list needs stable cursor pagination.\n",
       "architecture.md": "A modular monolith owns jobs and reports. Object storage owns photo bytes. The API is HTTPS JSON. Tenant identity comes from the verified access token.\n"
@@ -78,7 +78,7 @@
   {
     "id": "database-postgresql-handoff",
     "skill": "ay-database",
-    "prompt": "Use $ay-database to create a concise database.md for PostgreSQL 18 from the supplied invariants and access paths. Creating the schema design is approved. Use the installed PostgreSQL reference; do not research externally in this fixed synthetic case, and flag version-sensitive items for live documentation verification. In at most 1600 words include keys, constraints, justified indexes, transaction and concurrency behavior, tenant isolation, retention, and a safe migration and verification plan. Do not run DDL or write application code.",
+    "prompt": "Create a concise database.md for PostgreSQL 18 from the supplied invariants and access paths. Creating the schema design is approved. Use the installed PostgreSQL reference; do not research externally in this fixed synthetic case, and flag version-sensitive items for live documentation verification. In at most 1600 words include keys, constraints, justified indexes, transaction and concurrency behavior, tenant isolation, retention, and a safe migration and verification plan. Do not run DDL or write application code.",
     "files": {
       "data-contract.md": "Each job belongs to one tenant and has a tenant-unique external reference. A completion report belongs to exactly one job and may be accepted only once. Retries carry an idempotency key unique per tenant for 30 days. Supervisors can close open jobs concurrently with technician submission, which must return a conflict rather than overwrite. Primary reads: paginated assigned open jobs ordered by due_at and lookup by tenant plus external reference. Reports are retained seven years.\n"
     },
@@ -89,7 +89,7 @@
   {
     "id": "fix-diagnose-only",
     "skill": "ay-fix",
-    "prompt": "Use $ay-fix to diagnose why summarize([]) crashes in divide.py. Do not modify files. Report the confirmed cause and evidence.",
+    "prompt": "Diagnose why summarize([]) crashes in divide.py. Do not modify files. Report the confirmed cause and evidence.",
     "files": {"divide.py": "def summarize(values):\n    return sum(values) / len(values)\n"},
     "expect_no_changes": true,
     "final_any": ["division by zero", "zerodivisionerror", "len(values)"]
@@ -97,7 +97,7 @@
   {
     "id": "audio-boundary-diagnosis",
     "skill": "ay-audio",
-    "prompt": "Use $ay-audio to diagnose the supplied macOS streaming TTS evidence. Do not modify files. Identify the failing boundary, the next repair direction, and what evidence is still required before claiming the crackle is fixed.",
+    "prompt": "Diagnose the supplied macOS streaming TTS evidence. Do not modify files. Identify the failing boundary, the next repair direction, and what evidence is still required before claiming the crackle is fixed.",
     "files": {"audio-evidence.txt": "Fixed phrase reproduction. Provider MP3 decodes without errors. The same turn's captured main-mixer output correlates with the independently decoded provider audio at 0.99999999 and has no clipping. Playback through the app crackles while the microphone AVAudioEngine remains running. Playback of the saved provider artifact through the system player is clean.\n"},
     "expect_no_changes": true,
     "final_all": ["output", "engine"],
@@ -106,7 +106,7 @@
   {
     "id": "improve-proposal-only",
     "skill": "ay-improve",
-    "prompt": "Use $ay-improve to improve the structure of service.py. Establish a concrete baseline and propose the smallest useful change. Do not modify files until I approve the proposal.",
+    "prompt": "Improve the structure of service.py. Establish a concrete baseline and propose the smallest useful change. Do not modify files until I approve the proposal.",
     "files": {"service.py": "class UserService:\n    pass\n\nclass BillingService:\n    pass\n"},
     "expect_no_changes": true,
     "final_any": ["baseline", "constraint", "no change"]
@@ -114,7 +114,7 @@
   {
     "id": "write-approved-draft",
     "skill": "ay-write",
-    "prompt": "Use $ay-write to turn notes.md into a complete 120 to 200 word article in article.md. The notes and direction are approved, so skip the outline checkpoint. Do not invent personal experience.",
+    "prompt": "Turn notes.md into a complete 120 to 200 word article in article.md. The notes and direction are approved, so skip the outline checkpoint. Do not invent personal experience.",
     "files": {"notes.md": "Title: Why coding agents need focused skills\nPoint: skills provide repeatable boundaries\nPoint: evidence matters more than confident claims\n"},
     "expected_created": {"article.md": 300},
     "final_any": ["article.md"]
@@ -122,7 +122,7 @@
   {
     "id": "review-read-only",
     "skill": "ay-review",
-    "prompt": "Use $ay-review to review config.py for release-blocking problems. Do not modify files. Lead with evidence-backed findings.",
+    "prompt": "Review config.py for release-blocking problems. Do not modify files. Lead with evidence-backed findings.",
     "files": {"config.py": "ADMIN_TOKEN = \"hard-coded-production-secret\"\n"},
     "expect_no_changes": true,
     "final_any": ["admin_token", "secret", "credential"]
@@ -130,7 +130,7 @@
   {
     "id": "icon-proposal-only",
     "skill": "ay-icon",
-    "prompt": "Use $ay-icon to design an App Store icon for this utility. Style and metaphor are not chosen. Propose one direction and wait. Do not modify files.",
+    "prompt": "Design an App Store icon for this utility. Style and metaphor are not chosen. Propose one direction and wait. Do not modify files.",
     "files": {"product.txt": "A local Finder right-click utility copies paths and creates files. It is not a hardware product.\n"},
     "expect_no_changes": true,
     "final_any": ["approval", "propose", "metaphor"]
@@ -138,19 +138,52 @@
   {
     "id": "app-store-audit-only",
     "skill": "ay-app-store",
-    "prompt": "Use $ay-app-store to audit this supplied iOS release snapshot. Do not modify files or perform live actions. State the highest proven release layer and the unverified App Store Connect evidence.",
+    "prompt": "Audit this supplied iOS release snapshot. Do not modify files or perform live actions. State the highest proven release layer and the unverified App Store Connect evidence.",
     "files": {"release.txt": "Bundle ID: com.example.vault\nVersion: 1.0\nBuild: 12\nLocal archive: passed\nNo upload processing result, submission ID, review state, or storefront check is supplied.\n"},
     "expect_no_changes": true,
-    "final_all": ["archive", "unverified"],
-    "final_any": ["layer 2", "level 2", "proof layer 2"]
+    "final_all": ["archive", "unverified"]
   },
   {
     "id": "app-store-screenshot-handoff",
     "skill": "ay-app-store",
-    "prompt": "Use $ay-app-store to create store-screenshots.md for the approved Mac App Store screenshot deck described in release.txt. Creating this reproducible handoff is approved. Use the supplied real release-capture paths as exact UI layers, define the three-slide story, final 2880x1800 outputs, renderer inputs, privacy handling, OCR and export validation, and stop before upload. Do not ask questions because the direction and copy are approved.",
-    "files": {"release.txt": "App: NetScope\nRelease build: 42, tested and archived\nPlatform: macOS\nLocale: zh-Hans\nDirection: dark navy canvas with local system fonts\nApproved slides: 看清网络质量 | 本机网络一眼看全 | 常用工具随手即用\nReal captures: raw/macos/01-quality.png | raw/macos/02-local.png | raw/macos/03-tools.png\nRaw captures contain fictional demo data and are gitignored.\n"},
+    "prompt": "Create the approved representative Mac App Store screenshot and store-screenshots.md. The supplied raw-ui.ppm is a synthetic raster release-capture fixture and must remain a proportional exact app layer. Run the existing render_store.py without installing anything, inspect the final output, record release build 42, source, target, privacy, OCR/copy, Alpha, re-export, and upload boundaries, then stop before upload. The direction, copy, renderer, and file changes are approved.",
+    "fixture": "store-screenshot",
+    "files": {"release.txt": "App: NetScope\nRelease build: 42, tested and archived\nPlatform: macOS\nLocale: en-US\nApproved copy: See network quality\nRaw capture: raw-ui.ppm\nRenderer: render_store.py\nTarget: output/en-US/01-quality.png at 2880x1800\nThe fixture contains fictional data.\n"},
     "expected_created": {"store-screenshots.md": 700},
     "created_all": {"store-screenshots.md": ["42", "2880", "real", "alpha", "ocr", "privacy", "upload"]},
+    "expected_png": {"output/en-US/01-quality.png": {"width": 2880, "height": 1800, "alpha": false}},
+    "unchanged_files": ["raw-ui.ppm", "render_store.py", "release.txt"],
+    "reproduce": [{"path": "output/en-US/01-quality.png", "command": ["python3", "render_store.py"]}],
     "final_any": ["store-screenshots.md"]
+  },
+  {
+    "id": "ui-visible-checkpoint",
+    "skill": "ay-ui",
+    "prompt": "Create one approved iPhone visual checkpoint at design/job-list.svg, exactly 390 by 844. The product behavior and visual direction in approved-ui.md are settled, and creating this SVG is approved. Show the Assigned jobs title, one AC-204 job card, an Offline status, and a Retry action using the supplied colors. Keep the SVG valid and stop before frontend code or design.md.",
+    "files": {"approved-ui.md": "Field technician job list. Visual direction: warm field notebook, paper background #F4EFE4, ink #17201D, safety orange #E46B2E. Required checkpoint content: Assigned jobs, AC-204, Offline, Retry.\n"},
+    "expected_svg": {"design/job-list.svg": {"width": 390, "height": 844, "contains": ["Assigned jobs", "AC-204", "Offline", "Retry"]}},
+    "final_any": ["job-list.svg"]
+  },
+  {
+    "id": "icon-approved-artifact",
+    "skill": "ay-icon",
+    "prompt": "Produce the already approved opaque 1024px iOS marketing icon by running the supplied render_icon.py. The metaphor, style, destination, renderer, and file creation are approved. Inspect output/AppIcon-1024.png, report its exact destination and validation, and do not invent another candidate or install it into an app project.",
+    "fixture": "icon-artifact",
+    "files": {},
+    "expected_png": {"output/AppIcon-1024.png": {"width": 1024, "height": 1024, "alpha": false}},
+    "unchanged_files": ["direction.md", "render_icon.py"],
+    "reproduce": [{"path": "output/AppIcon-1024.png", "command": ["python3", "render_icon.py"]}],
+    "final_any": ["AppIcon-1024.png", "1024"]
+  },
+  {
+    "id": "implement-runtime-offline",
+    "skill": "ay-implement",
+    "prompt": "Implement the approved offline status contract in src/cache_status.py: online returns Live; offline with cached_at returns Offline - cached followed by the timestamp; offline without cached_at returns Offline - no cached data. Modify only the implementation, run the supplied unit tests, and report the runtime evidence. This exact code change is approved.",
+    "fixture": "implement-runtime",
+    "files": {},
+    "created_all": {"src/cache_status.py": ["Offline - cached", "Offline - no cached data"]},
+    "unchanged_files": ["tests/test_cache_status.py"],
+    "verify_commands": [["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]],
+    "final_any": ["test", "passed"]
   }
 ]

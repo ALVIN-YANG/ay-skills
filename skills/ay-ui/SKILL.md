@@ -23,18 +23,20 @@ Turn approved product behavior into a coherent interface, then preserve the appr
 
 ## Establish the visual contract
 
-Inspect the approved requirements, product or repository, existing brand and design system, target platform, real content, and supplied references. Extract the primary journey, screen inventory, reusable states, and platform constraints. Do not silently change approved product behavior.
+Inspect the approved requirements, product or repository, existing brand and design system, target platform, real content, and supplied references. Extract the primary journey, stable domain terms, screen inventory, reusable states, and platform constraints. Do not rename or silently change approved product behavior.
 
 If the visual direction is open, recommend one distinctive direction with its rationale, typography, color, spacing, surface treatment, and one signature idea. Show only alternatives that expose a material tradeoff, then wait. Use already available design or image capabilities; adding a paid tool or dependency needs approval.
 
 ## Design through visible checkpoints
 
-Start with the screen that best tests hierarchy, content density, navigation, and the chosen visual idea. Inspect the rendered result before presenting it. Collect feedback that changes a decision, update the visual contract, then continue screen by screen unless the user explicitly asks for a batch.
+Start with the screen that best tests hierarchy, content density, navigation, and the chosen visual idea. Produce and inspect an actual rendered checkpoint before presenting it. A prose description or `design.md` alone is not a screen design. If no rendering capability is available, state that limitation instead of representing text as visual approval.
+
+Collect feedback that changes a decision, update the visual contract, then continue screen by screen unless the user explicitly asks for a batch.
 
 Keep tokens, components, icon language, content model, device frame, and approved assets consistent. Treat feedback as local unless it changes the shared contract. Cover loading, empty, error, permission, cancellation, recovery, disabled, and accessibility states when relevant. Account for responsive or platform-specific behavior instead of stretching one screenshot everywhere.
 
 ## Hand off the approved design
 
-When the user has approved the design set and requested a durable handoff, create `design.md` or the repository's established equivalent. Record only approved decisions: visual thesis, tokens, components, screens, flows, states, responsive rules, accessibility, asset paths, non-goals, and unresolved implementation constraints. Reference final assets rather than rejected drafts.
+When the user has approved the design set and requested a durable handoff, create `design.md` or the repository's established equivalent. Record only approved decisions: visual thesis, tokens, components, screens, flows, product terms and states, responsive rules, accessibility, asset paths, non-goals, and unresolved implementation constraints. Reference final assets rather than rejected drafts.
 
 Verify that the document and image set describe the same product. Stop before frontend code unless implementation is separately authorized.

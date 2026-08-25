@@ -23,7 +23,7 @@ Design from invariants and access paths, then apply the actual engine's behavior
 
 ## Establish the database contract
 
-Inspect available requirements, architecture, API, existing schema and migrations. Identify the exact engine and version, deployment model, driver or ORM, migration tool, workload, access paths, consistency, retention, tenancy, scale, security, backup, and recovery constraints. Preserve an existing engine unless evidence justifies migration.
+Inspect available requirements, architecture, API, existing schema and migrations. Preserve approved domain terms and invariants. Identify the exact engine and version, deployment model, driver or ORM, migration tool, workload, access paths, consistency, retention, tenancy, scale, security, backup, and recovery constraints. Preserve an existing engine unless evidence justifies migration.
 
 If engine choice is genuinely open, compare the smallest credible options against workload and operations; do not pick by fashion. For PostgreSQL read [PostgreSQL](references/postgresql.md), for MySQL or MariaDB read [MySQL](references/mysql.md), and for SQLite read [SQLite](references/sqlite.md). For another engine, consult its current primary documentation before using engine-specific claims.
 

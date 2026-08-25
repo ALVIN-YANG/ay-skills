@@ -39,22 +39,33 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 
 完整产品通常按 `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement` 交接，需要时用 `ay-review` 检查文档一致性或实现结果。有了可发布构建后，`ay-app-store` 可以先用真实 UI 生成可复现的宣传图，再进入提交。这只是建议顺序，不是强制流水线。技术可行性会阻塞 UI 时，架构可以提前；每个 Skill 也都能从已有输入单独工作。
 
-0.6.0 把 `ay-work` 改名为 `ay-implement`，让名字和“负责落地”的职责一致。
-
-0.6.1 给 `ay-app-store` 增加了真实 UI、可复现的宣传图流程，没有再拆一个宽泛的设计 Skill。
+0.7.0 增加了真实 Skill 共存路由、PNG/SVG/运行测试验收、三条端到端产品旅程、独立安装检查和可验证发布包。`ay-product` 的不同工作模式移进按需读取的 reference，常用入口更短。
 
 ## 安装
 
-同时安装到 Codex 和 Claude Code：
+建议先查看列表，再交互选择需要的 Skill：
 
 ```bash
-npx skills@latest add ALVIN-YANG/ay-skills -a codex claude-code -g -y
+npx skills@latest add ALVIN-YANG/ay-skills -l
+npx skills@latest add ALVIN-YANG/ay-skills
 ```
 
-想挑选单个 Skill，或者安装到当前项目：
+常用组合可以一次安装。产品与设计组合：
 
 ```bash
-npx skills@latest add ALVIN-YANG/ay-skills
+npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-review -a codex claude-code -g -y
+```
+
+全栈交付组合：
+
+```bash
+npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-api ay-database ay-implement ay-review -a codex claude-code -g -y
+```
+
+确定需要全部十三个时：
+
+```bash
+npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y
 ```
 
 Claude Code 也可以用原生插件：
@@ -62,6 +73,14 @@ Claude Code 也可以用原生插件：
 ```text
 /plugin marketplace add ALVIN-YANG/ay-skills
 /plugin install ay-skills@ay-skills
+```
+
+查看、升级和移除全局 Skill：
+
+```bash
+npx skills@latest list -g
+npx skills@latest update -g
+npx skills@latest remove ay-audio -g
 ```
 
 平时直接说要做什么，对应 Skill 会自己跟上。不必写 `$ay-implement`；只有想强制指定时才点名。
@@ -100,7 +119,28 @@ AY：已按确认范围完成并通过相关测试。离线写入仍未实现；
 
 AY Skills 可以和前端设计、PDF、表格、无障碍检查等专用 Skill 共存。任务命中专用 Skill 时，由专用 Skill 主导；需要时再沿用 AY 的批准和证据边界。
 
-不要同时全局安装两套职责相同的通用工作流，再指望每次都能自动选对。例如排错和代码评审各选一套主工作流，其他方案放到具体项目，或者在提示中明确指定。
+职责重叠时按交付物选主 Skill：
+
+| 请求 | 同时安装时由谁主导 |
+|---|---|
+| 通用 App Store 准备、提交、拒审恢复 | 专用 App Store 发布 Skill；`ay-app-store` 主导真实 UI 宣传图 |
+| Apple AppIcon、`.icns` 生成和安装 | 专用 Apple 图标资产 Skill；`ay-icon` 主导开放的隐喻与方向 |
+| 纯中文长文、自然语言改稿 | 专用中文写作 Skill；`ay-write` 主导调研、英文或图解型文章 |
+| 只问 Bug 为什么发生 | 专用诊断 Skill；需要完成修复时用 `ay-fix` |
+| 选择或深化模块接口、代码边界 | 专用代码库设计 Skill；边界确认后再用 `ay-improve` 执行重构 |
+| 明确从某个 commit/branch 做代码评审 | 专用代码评审 Skill；跨产品、设计、架构和实现用 `ay-review` |
+
+仍有歧义时，只在本项目安装其中一套，或者明确写 `$skill-name`。
+
+## 三条真实交接旅程
+
+仓库用同一份产品材料连续验证，而不是让每个 Skill 各写一份互不相干的文档：
+
+- FieldLog：产品定义、真实 SVG 页面、模块化单体、API、PostgreSQL、可运行实现和跨文档评审。
+- PairDown：本地 macOS 产品、页面、架构、SQLite、禁止自动删除的实现与评审。
+- NextStop：无账号公交产品、离线与权限状态、页面、架构、API、可运行实现与评审。
+
+这些是合成测试案例，不冒充真实用户研究或线上产品成绩。定义见 [`tests/journey-scenarios.json`](tests/journey-scenarios.json)。
 
 ## 什么时候会停下来问你
 
@@ -130,14 +170,22 @@ AY Skills 遵循 [Agent Skills 规范](https://agentskills.io/specification)。�
 ```bash
 python3 scripts/verify_skills.py
 python3 -m unittest discover -s tests -v
+python3 scripts/verify_portable_install.py
+python3 scripts/package_release.py --output /tmp/ay-skills.tar.gz
+python3 scripts/package_release.py --verify /tmp/ay-skills.tar.gz
 python3 scripts/run_routing_evals.py --host codex
+python3 scripts/run_routing_evals.py --host codex --catalog global
+python3 scripts/run_routing_evals.py --host codex --catalog ay-only
 python3 scripts/run_routing_evals.py --host claude
 python3 scripts/run_behavior_evals.py
+python3 scripts/run_journey_evals.py
 python3 scripts/run_product_evals.py
 python3 scripts/run_product_evals.py --research-mode live
 ```
 
-CI 运行结构和单元测试。路由测试覆盖全部 AY Skill、不该触发 AY 的请求，以及专用 Skill 共存场景。Codex 黑盒测试会真的执行隔离任务，检查可观察结果和批准边界。产品评测用固定案例和同一套评分标准，对比 `ay-product` 与未安装 Skill 的基线；实时市场调研单独运行。实时测试需要本机 CLI 和可用账号；黑盒执行目前只覆盖 Codex。
+CI 运行结构、单元、独立安装和发布包检查。路由测试可以使用固定竞品目录、本机真实全局目录，或只安装 AY 来验证独立回退。Codex 行为测试默认同时安装 AY 与固定竞品 Skill，提示不点名 Skill，并检查文件、PNG、SVG、不可修改的测试、生成物可复现性和可执行结果。旅程测试在同一工作区连续交接，要求语义约束一致，并由最终复核明确证明阻断项为零。产品评测继续使用固定案例、holdout 和统一评分标准；实时市场调研单独运行。
+
+需要模型账号的动态评测不放进普通 CI。PNG 测试夹具还需要 Pillow；本机没有时用 `uv run --with pillow` 临时运行，不把它加入项目依赖。结果写入本地 `eval-results/`；旅程失败会保留工作区与最终答复，修正评分器后可用 `--recheck-dir` 重验，不必再次调用模型。网络故障单独显示为 `INFRA`，不计作 Skill 失败。发布说明只记录该版本实际跑过的模型、CLI、目录和通过率。推送 `v<VERSION>` tag 后，发布工作流才会创建并重新下载 GitHub Release；源码版本、tag 和公开 Release 是不同状态。
 
 </details>
 

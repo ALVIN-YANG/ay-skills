@@ -39,22 +39,33 @@ Install one or all of them. They do not depend on a router or on each other, and
 
 For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement`, with `ay-review` checking consistency or implementation when useful. Once a release build exists, `ay-app-store` can turn its real UI into reproducible store screenshots before submission. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
 
-`ay-work` was renamed to `ay-implement` in 0.6.0 so the name matches its responsibility.
-
-0.6.1 adds a real-UI, reproducible App Store screenshot workflow to `ay-app-store` without creating another broad design skill.
+0.7.0 adds real catalog coexistence routing, PNG/SVG/runtime assertions, three end-to-end product journeys, standalone install checks, and a verified release archive. Conditional `ay-product` modes now load from a reference only when relevant.
 
 ## Install
 
-Install all of them for Codex and Claude Code:
+List the skills first, then choose interactively:
 
 ```bash
-npx skills@latest add ALVIN-YANG/ay-skills -a codex claude-code -g -y
+npx skills@latest add ALVIN-YANG/ay-skills -l
+npx skills@latest add ALVIN-YANG/ay-skills
 ```
 
-To choose individual skills or install them in the current project:
+Install a product-and-design set:
 
 ```bash
-npx skills@latest add ALVIN-YANG/ay-skills
+npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-review -a codex claude-code -g -y
+```
+
+Install the full-stack delivery set:
+
+```bash
+npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-api ay-database ay-implement ay-review -a codex claude-code -g -y
+```
+
+Install all thirteen only when that is what you want:
+
+```bash
+npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y
 ```
 
 Claude Code also supports the native plugin:
@@ -62,6 +73,14 @@ Claude Code also supports the native plugin:
 ```text
 /plugin marketplace add ALVIN-YANG/ay-skills
 /plugin install ay-skills@ay-skills
+```
+
+Inspect, update, or remove global skills:
+
+```bash
+npx skills@latest list -g
+npx skills@latest update -g
+npx skills@latest remove ay-audio -g
 ```
 
 Describe the task in ordinary language. The matching skill should fire on its own. Naming `$ay-implement` or another skill is optional, only when you want to force one.
@@ -100,7 +119,28 @@ of scope; real-device reconnect behavior is the only unverified surface.
 
 AY Skills can sit beside specific artifact and tool skills such as frontend design, PDF, spreadsheet, or accessibility workflows. The specific skill should lead; AY supplies the approval and evidence boundary when useful.
 
-Avoid installing two broad workflows for the same job and expecting reliable automatic routing. For example, choose one primary debugging or code-review workflow, install alternatives per project, or invoke the one you want explicitly.
+Choose the primary skill from the deliverable when responsibilities overlap:
+
+| Request | Primary when both are installed |
+|---|---|
+| General App Store preparation, submission, or rejection recovery | A dedicated App Store release skill; `ay-app-store` leads real-UI screenshot generation |
+| Apple AppIcon or `.icns` production and installation | A dedicated Apple icon asset skill; `ay-icon` leads an open metaphor and direction |
+| Prose-only natural Chinese long-form writing | A dedicated Chinese writing skill; `ay-write` leads research, English, or illustrated articles |
+| Diagnosis without a requested repair | A dedicated diagnosis workflow; use `ay-fix` when the repair should be completed |
+| Choosing or deepening a module interface or seam | A dedicated codebase-design skill; use `ay-improve` after the refactor boundary is settled |
+| Code review since a commit or branch | A dedicated code-review skill; use `ay-review` across product, design, architecture, and implementation |
+
+If the boundary is still ambiguous, install one workflow at project scope or explicitly name `$skill-name`.
+
+## Three realistic handoff journeys
+
+The repository carries the same product material through consecutive stages instead of letting every skill write an unrelated document:
+
+- FieldLog: product, real SVG screen, modular monolith, API, PostgreSQL, executable implementation, and cross-artifact review.
+- PairDown: local macOS product, screen, architecture, SQLite, no-auto-delete implementation, and review.
+- NextStop: account-free transit product, offline and permission states, screen, architecture, API, executable implementation, and review.
+
+These are synthetic evaluation fixtures, not user-research or production-success claims. See [`tests/journey-scenarios.json`](tests/journey-scenarios.json).
 
 ## When it stops to ask
 
@@ -130,14 +170,22 @@ AY Skills follows the [Agent Skills specification](https://agentskills.io/specif
 ```bash
 python3 scripts/verify_skills.py
 python3 -m unittest discover -s tests -v
+python3 scripts/verify_portable_install.py
+python3 scripts/package_release.py --output /tmp/ay-skills.tar.gz
+python3 scripts/package_release.py --verify /tmp/ay-skills.tar.gz
 python3 scripts/run_routing_evals.py --host codex
+python3 scripts/run_routing_evals.py --host codex --catalog global
+python3 scripts/run_routing_evals.py --host codex --catalog ay-only
 python3 scripts/run_routing_evals.py --host claude
 python3 scripts/run_behavior_evals.py
+python3 scripts/run_journey_evals.py
 python3 scripts/run_product_evals.py
 python3 scripts/run_product_evals.py --research-mode live
 ```
 
-Static checks run in CI. Routing evals cover all AY skills, no-skill requests, and coexistence with more specific skills. The black-box Codex suite runs real isolated tasks and verifies observable changes and approval boundaries. Product evals compare `ay-product` with an unskilled baseline against fixed cases and a shared rubric; current market research runs separately. Live model checks require the matching local CLI and account access; black-box execution currently covers Codex.
+CI runs structural, unit, standalone-install, and release-archive checks. Routing can use the reproducible competitor fixture, the current global Codex catalog, or AY alone to prove standalone fallbacks. Codex behavior cases install AY beside fixture competitors, never name the target skill in the prompt, and assert files, PNGs, SVGs, protected tests, reproducible generated assets, and executable results. Journey cases keep one workspace across handoffs and require semantic invariants plus a zero-blocker final review. Product evaluation retains fixed cases, holdouts, and one rubric; live market research runs separately.
+
+Model-backed evaluations require local authenticated CLIs and stay outside ordinary CI. PNG fixture cases also require Pillow; run them through `uv run --with pillow` when it is not already available, without adding it to the project. Evaluations write ignored results under `eval-results/`; journey failures preserve the workspace and final messages, and `--recheck-dir` can re-run final assertions without another model call. Network failures are reported separately as `INFRA`, not skill failures. Release notes should record only the model, CLI, catalog, and pass rate actually checked for that version. Pushing a `v<VERSION>` tag builds, publishes, downloads, and re-verifies the GitHub Release, so source version, tag, and public release remain distinct states.
 
 </details>
 

@@ -1,0 +1,8 @@
+[
+  {"id":"fallback-product","prompt":"Research this rough product idea and turn it into a focused, testable MVP before any design or code.","expected_skill":"ay-product"},
+  {"id":"fallback-chinese-article","prompt":"把这些材料写成一篇完整、自然、事实可靠的中文技术文章。","expected_skill":"ay-write"},
+  {"id":"fallback-diagnose-only","prompt":"Diagnose why this regression happens. Do not modify files.","expected_skill":"ay-fix"},
+  {"id":"fallback-apple-icon","prompt":"The icon direction is approved. Generate and install the Apple AppIcon assets.","expected_skill":"ay-icon"},
+  {"id":"fallback-app-store-release","prompt":"Prepare and submit this verified iOS App Store release; this is the chosen release workflow.","expected_skill":"ay-app-store"},
+  {"id":"fallback-branch-review","prompt":"Review this branch since main against its issue and repository standards.","expected_skill":"ay-review"}
+]

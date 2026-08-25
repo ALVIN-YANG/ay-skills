@@ -23,7 +23,7 @@ Turn approved intent and design into a verified change without reopening settled
 
 ## Establish the implementation contract
 
-Read project instructions, working-tree state, relevant code and tests, nearby history, and approved product, UI, architecture, API, or database artifacts that exist. Trace the requested behavior from entry point through affected consumers. Separate settled decisions, discoverable facts, and unresolved choices.
+Read project instructions, working-tree state, relevant code and tests, nearby history, and approved product, UI, architecture, API, or database artifacts that exist. Trace the requested behavior from entry point through affected consumers. Preserve stable terms, states, authorization, failure behavior, and data invariants across those handoffs. Separate settled decisions, discoverable facts, and unresolved choices.
 
 Act directly when the request or approved artifact fixes the target, observable result, and acceptance boundary. A small explicit change needs no restated plan.
 
@@ -39,6 +39,6 @@ If new evidence triggers the approval contract, stop at a safe point, show how i
 
 ## Verify the delivered result
 
-Exercise the highest relevant proof surface: source check, test, build, package, install, migration rehearsal, deployment, runtime, device, render, or published page. Trace important acceptance criteria back to the evidence. Keep these layers distinct.
+Exercise the highest relevant proof surface: source check, test, build, package, install, migration rehearsal, deployment, runtime, device, render, or published page. A sentinel edit or keyword-bearing file does not prove a feature. Trace important acceptance criteria and upstream states to executed evidence. Keep proof layers distinct.
 
 Lead with the delivered outcome. State what was verified, external actions completed, and any proof surface still unverified.

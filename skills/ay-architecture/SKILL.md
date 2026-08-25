@@ -23,7 +23,7 @@ Choose the simplest system shape that satisfies the product and its real constra
 
 ## Read the system from its use
 
-Inspect available requirements, approved UI flows, current code and infrastructure, team constraints, traffic shape, data sensitivity, budget, compliance, and operational expectations. If UI exists, trace each important state through latency, permissions, offline behavior, failure, cancellation, and recovery. Architecture may precede UI only when a feasibility or risk decision blocks useful interface design.
+Inspect available requirements, approved UI flows, current code and infrastructure, team constraints, traffic shape, data sensitivity, budget, compliance, and operational expectations. Preserve upstream domain terms and trace each important state through latency, permissions, offline behavior, failure, cancellation, and recovery. Architecture may precede UI only when a feasibility or risk decision blocks useful interface design.
 
 Separate known constraints from estimates and preferences. Ask only about a choice that changes the system shape and cannot be discovered. Recommend a default with its tradeoff.
 

@@ -20,3 +20,9 @@ jobs:
         run: python3 scripts/verify_skills.py
       - name: Run tests
         run: python3 -m unittest discover -s tests -v
+      - name: Verify standalone skill copies
+        run: python3 scripts/verify_portable_install.py
+      - name: Verify release contents
+        run: |
+          python3 scripts/package_release.py --output "${RUNNER_TEMP}/ay-skills.tar.gz"
+          python3 scripts/package_release.py --verify "${RUNNER_TEMP}/ay-skills.tar.gz"

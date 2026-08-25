@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 import json
 import os
 from pathlib import Path
@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCENARIOS = ROOT / "tests" / "scenarios.json"
 SCHEMA = ROOT / "tests" / "routing.schema.json"
 COMPETING_SKILLS = ROOT / "tests" / "competing-skills.json"
+AY_ONLY_SCENARIOS = ROOT / "tests" / "ay-only-scenarios.json"
 
 
 @dataclass(frozen=True)
@@ -34,12 +35,18 @@ def is_infrastructure_error(result: Result) -> bool:
     lowered = result.error.lower()
     return any(
         marker in lowered
-        for marker in ("connectionrefused", "unable to connect to api")
+        for marker in (
+            "connectionrefused",
+            "unable to connect to api",
+            "failed to lookup address information",
+            "stream disconnected before completion",
+            "error sending request for url",
+        )
     )
 
 
 def print_result(result: Result) -> None:
-    mark = "PASS" if result.passed else "FAIL"
+    mark = "PASS" if result.passed else "INFRA" if is_infrastructure_error(result) else "FAIL"
     print(
         f"{mark} {result.scenario_id}: expected={result.expected} "
         f"actual={result.actual} reason={result.reason}",
@@ -84,6 +91,42 @@ def isolated_codex_env(root: Path) -> dict[str, str]:
         isolated_auth.chmod(0o600)
     env["CODEX_HOME"] = str(isolated_home)
     return env
+
+
+def global_skill_directories() -> list[Path]:
+    source_home = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex")).expanduser()
+    candidates: list[Path] = []
+    for pattern in (
+        "skills/*/SKILL.md",
+        "skills/.system/*/SKILL.md",
+    ):
+        candidates.extend(source_home.glob(pattern))
+    candidates.extend((Path.home() / ".agents" / "skills").glob("*/SKILL.md"))
+    unique: dict[str, Path] = {}
+    for skill_file in sorted(candidates):
+        unique.setdefault(skill_file.parent.name, skill_file.parent)
+    return list(unique.values())
+
+
+def install_catalog(installed: Path, catalog: str) -> None:
+    if catalog == "global":
+        for skill_root in global_skill_directories():
+            target = installed / skill_root.name
+            if target.exists() or skill_root.name.startswith("ay-"):
+                continue
+            shutil.copytree(skill_root, target)
+    elif catalog == "fixture":
+        competing_skills = json.loads(COMPETING_SKILLS.read_text(encoding="utf-8"))
+        for skill in competing_skills:
+            install_skill_stub(installed, skill)
+
+    for skill in ROOT.joinpath("skills").iterdir():
+        if not skill.is_dir():
+            continue
+        target = installed / skill.name
+        if target.exists():
+            shutil.rmtree(target)
+        shutil.copytree(skill, target)
 
 
 def parse_response(path: Path, host: str) -> dict[str, object]:
@@ -195,10 +238,21 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", choices=("codex", "claude"), required=True)
     parser.add_argument("--model")
+    parser.add_argument(
+        "--catalog",
+        choices=("fixture", "global", "ay-only"),
+        default="fixture",
+        help="Use reproducible competitor descriptions or the current global Codex catalog",
+    )
     parser.add_argument("--parallel", type=int, default=2)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--ids", nargs="+", help="Run only the named scenario ids")
     parser.add_argument("--timeout", type=int, default=240)
+    parser.add_argument(
+        "--results-dir",
+        type=Path,
+        default=ROOT / "eval-results" / "routing",
+    )
     return parser.parse_args()
 
 
@@ -206,7 +260,8 @@ def main() -> int:
     args = parse_args()
     if args.parallel < 1:
         raise SystemExit("--parallel must be positive")
-    scenarios = json.loads(SCENARIOS.read_text(encoding="utf-8"))
+    scenario_file = AY_ONLY_SCENARIOS if args.catalog == "ay-only" else SCENARIOS
+    scenarios = json.loads(scenario_file.read_text(encoding="utf-8"))
     if args.ids:
         wanted = set(args.ids)
         scenarios = [scenario for scenario in scenarios if scenario["id"] in wanted]
@@ -222,12 +277,7 @@ def main() -> int:
         installed = workdir / ".agents" / "skills"
         installed.mkdir(parents=True)
         output_dir.mkdir()
-        for skill in ROOT.joinpath("skills").iterdir():
-            if skill.is_dir():
-                shutil.copytree(skill, installed / skill.name)
-        competing_skills = json.loads(COMPETING_SKILLS.read_text(encoding="utf-8"))
-        for skill in competing_skills:
-            install_skill_stub(installed, skill)
+        install_catalog(installed, args.catalog)
 
         results: list[Result] = []
         pending = scenarios
@@ -247,8 +297,9 @@ def main() -> int:
                     "ABORTED: Claude API is unreachable; remaining routing cases were not started",
                     flush=True,
                 )
-                return 1
-            pending = scenarios[1:]
+                pending = []
+            else:
+                pending = scenarios[1:]
 
         with ThreadPoolExecutor(max_workers=args.parallel) as executor:
             futures = [
@@ -268,12 +319,31 @@ def main() -> int:
                 results.append(result)
                 print_result(result)
 
-    failures = [result for result in results if not result.passed]
+    infrastructure = [result for result in results if is_infrastructure_error(result)]
+    failures = [
+        result for result in results if not result.passed and result not in infrastructure
+    ]
+    args.results_dir.mkdir(parents=True, exist_ok=True)
+    summary = {
+        "host": args.host,
+        "catalog": args.catalog,
+        "model": args.model,
+        "passed": sum(result.passed for result in results),
+        "failed": len(failures),
+        "infrastructure_errors": len(infrastructure),
+        "total": len(results),
+        "results": [asdict(result) for result in sorted(results, key=lambda item: item.scenario_id)],
+    }
+    args.results_dir.joinpath(f"{args.host}-{args.catalog}.json").write_text(
+        json.dumps(summary, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     print(
-        f"RESULT: {len(results) - len(failures)}/{len(results)} cases passed on {args.host}",
+        f"RESULT: {sum(result.passed for result in results)}/{len(results)} passed, "
+        f"{len(failures)} failed, {len(infrastructure)} infrastructure errors on {args.host}",
         flush=True,
     )
-    return 1 if failures else 0
+    return 2 if infrastructure else 1 if failures else 0
 
 
 if __name__ == "__main__":

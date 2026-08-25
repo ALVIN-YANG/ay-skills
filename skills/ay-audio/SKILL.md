@@ -23,30 +23,30 @@ Deliver continuous voice playback by proving each audio boundary instead of patc
 
 ## Establish the audio contract
 
-Inspect provider documentation and a live response. Record transport, encoding, sample rate, channel count, bit depth, endianness, framing, and whether each chunk is raw audio or a complete file. Decode transport wrappers such as hex exactly once. Never infer the format from a filename or an earlier implementation.
+Inspect provider documentation and a live response. Record transport, encoding, sample rate, channels, bit depth, endianness, framing, and whether chunks are raw audio or complete files. Decode wrappers such as hex exactly once. Never infer format from a filename or old implementation.
 
 Map `provider → transport → parser/decoder → mixer → device`. Reproduce with a fixed sentence and the user's actual output route.
 
 ## Isolate the failing boundary
 
-Capture the exact provider bytes and, when applicable, the digital mixer output from the same turn. Decode or play each artifact through an independent system path.
+Capture provider bytes and, when applicable, digital mixer output from the same turn. Decode or play each through an independent path.
 
-- Bad provider artifact means a request, contract, voice, or service problem.
-- Clean provider bytes but bad mixer output means parsing, conversion, scheduling, or buffering.
-- Clean mixer output but bad audible output means device routing, competing engines, lifecycle, or hardware.
+- Bad provider artifact points to request, contract, voice, or service.
+- Clean provider bytes but bad mixer output points to parsing, conversion, scheduling, or buffering.
+- Clean mixer output but bad audible output points to routing, competing engines, lifecycle, or hardware.
 
 Run the smallest check that separates competing hypotheses. Do not hand-write MP3 frame repair or repeatedly tune buffers before locating the bad boundary.
 
 ## Implement the narrow path
 
-Prefer provider-native linear PCM for simple streaming speech. On Apple platforms, use a correct `AudioStreamBasicDescription`, reusable AudioQueue buffers, whole-sample alignment, and a measured prebuffer. Use an incremental system parser only when compressed transport is required.
+Prefer provider-native linear PCM for simple streaming speech. Use an incremental system parser only when compressed transport is required.
 
-Keep one explicit state machine for idle, listening, thinking, speaking, interruption, and cancellation. Suspend the capture engine while ordinary TTS owns output; design full-duplex and barge-in deliberately. Tag turns so stopped or superseded streams cannot finish into a later turn. Dispose queues only after callbacks and continuations are settled.
+Keep one explicit ownership state for listening, speaking, interruption, and cancellation. Design full-duplex deliberately. Tag turns so stopped streams cannot finish into later turns, and dispose queues only after callbacks settle.
 
-Read [references/apple-streaming-voice.md](references/apple-streaming-voice.md) before changing an Apple streaming TTS pipeline.
+Read [Apple streaming voice](references/apple-streaming-voice.md) before changing an Apple pipeline; it contains PCM, queue lifecycle, compressed fallback, graph ownership, and device-verification details.
 
 ## Prove the audible result
 
-Verify the request payload and playback format, then run the real app for at least two consecutive turns, interruption, replay, and capture resume. Check logs for byte counts, start, finish, cancellation, underrun, and errors.
+Verify request payload and playback format, then run the real app through consecutive turns, interruption, replay, and capture resume. Check byte counts, start, finish, cancellation, underrun, and errors.
 
 Builds and digital tests do not prove clean sound. Keep implementation, automated checks, installed runtime, and human listening as separate evidence. Ask the user for the final perceptual verdict when the symptom is audible.

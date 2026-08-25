@@ -63,3 +63,16 @@
 - 每个平台同一时间通常只有一个含 App 版本的 submission 在审；其他项目的并行限制以当前后台为准。
 - API、网页和第三方 CLI 覆盖范围不同。能写字段不等于能完成账号协议、税务、银行或所有首次 IAP 流程。
 - 标准 EULA 默认适用不代表订阅审核页面一定能从元数据看到 Terms 链接；按实际审核反馈和当前后台要求补齐可见入口。
+
+## 证据阶梯
+
+逐层报告，不用上一层替代下一层：
+
+1. 源码或元数据已经修改。
+2. 测试和 archive 已通过。
+3. 上传包完成 Apple processing。
+4. 正确 Build 与 IAP 已加入目标 submission。
+5. Submission ID 和审核状态已确认。
+6. App Review 已通过。
+7. 版本为 Ready for Distribution。
+8. 目标 storefront 可以实际下载。

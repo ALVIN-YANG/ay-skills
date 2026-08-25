@@ -1,6 +1,6 @@
 ---
 name: ay-improve
-description: Improve an existing codebase's structure, maintainability, performance, or developer experience from a measured baseline without scope drift. Use when refactoring, optimization, simplification, cleanup, renaming, or extraction is the primary task, including 重构, 优化性能, 整理代码, or 简化, and there is no bug symptom. Do not use for greenfield system architecture or design-only work.
+description: Improve an existing codebase's structure, maintainability, performance, or developer experience from a measured baseline without scope drift. Use when refactoring, optimization, simplification, cleanup, renaming, or extraction is the primary task, including 重构, 优化性能, 整理代码, or 简化, and there is no bug symptom. Let a dedicated module-design skill lead when the interface or seam itself is unresolved. Do not use for greenfield architecture or design-only work.
 ---
 
 # AY Improve

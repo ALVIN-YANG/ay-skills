@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 import sys
+import tempfile
 import unittest
 
 
@@ -23,9 +24,37 @@ class RoutingEvalTests(unittest.TestCase):
         )
         self.assertTrue(routing.is_infrastructure_error(result))
 
+    def test_dns_failure_is_infrastructure_error(self) -> None:
+        result = routing.Result(
+            "case",
+            False,
+            "",
+            "error",
+            "",
+            "failed to lookup address information; stream disconnected before completion",
+        )
+        self.assertTrue(routing.is_infrastructure_error(result))
+
     def test_wrong_route_is_not_infrastructure_error(self) -> None:
         result = routing.Result("case", False, "ay-ui", "ay-product", "wrong boundary")
         self.assertFalse(routing.is_infrastructure_error(result))
+
+    def test_fixture_catalog_includes_real_overlap_cases(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            installed = Path(directory) / "skills"
+            installed.mkdir()
+            routing.install_catalog(installed, "fixture")
+            self.assertTrue((installed / "ay-app-store" / "SKILL.md").is_file())
+            self.assertTrue((installed / "ship-app-store" / "SKILL.md").is_file())
+            self.assertTrue((installed / "app-icon-studio" / "SKILL.md").is_file())
+
+    def test_ay_only_catalog_has_no_competitor_stubs(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            installed = Path(directory) / "skills"
+            installed.mkdir()
+            routing.install_catalog(installed, "ay-only")
+            self.assertTrue((installed / "ay-app-store" / "SKILL.md").is_file())
+            self.assertFalse((installed / "ship-app-store").exists())
 
 
 if __name__ == "__main__":

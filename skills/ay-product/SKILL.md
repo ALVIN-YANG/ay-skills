@@ -21,35 +21,35 @@ description: Research and shape rough product ideas into evidence-backed product
 
 ## Frame the decision and evidence
 
-Inspect supplied material and the product or repository. Name the decision: validate, build, narrow, differentiate, or stop. Frame the user, trigger, job, workaround, consequence, and hypotheses.
+Inspect supplied material and the product or repository. Name the decision: validate, build, narrow, differentiate, or stop. Frame the user, trigger, job, current workaround, consequence, and riskiest hypotheses.
 
-Research only when permitted and decision-relevant. Prefer primary sources; cite consequential claims. Company pages prove offerings, not demand. Never invent research, traction, quotes, or measurements. Separate facts, inferences, recommendations, and assumptions. Honor source limits.
+Research only when permitted and decision-relevant. Prefer primary sources. Company pages prove offerings, not demand. Never invent research, traction, quotes, or measurements. Separate facts, inferences, recommendations, and assumptions.
 
 Diagnose observed behavior before redesigning an existing product. Preserve approved choices unless unsafe or impossible. With weak evidence, do not manufacture a PRD.
 
 ## Converge with minimal interruption
 
-Find discoverable facts yourself. Ask one compact batch only when choices materially change the user, problem, model, behavior, scope, cost, or risk. Recommend a default and tradeoff. If asked to choose, use explicit assumptions.
+Find discoverable facts yourself. Ask one compact batch only when a choice changes user, behavior, scope, cost, or risk. Recommend a default and tradeoff.
 
-When direction is open, compare doing nothing, workarounds, direct products, and adjacent substitutes at the decision point. Derive the switching trigger and wedge; avoid inventories.
+When direction is open, compare doing nothing, workarounds, products, and substitutes. Derive the switching trigger and wedge instead of listing features.
 
-Explore plausible directions. Test value, usability, feasibility, viability, ethics, and distribution. For broad concepts, choose one user, job, and wedge. Validation-first or no-build is valid. Rank assumptions; give critical ones a credible test, observable evidence, and decision rule.
+Choose one user, job, and wedge for a broad concept. Test value, usability, feasibility, viability, ethics, and distribution. Give critical assumptions a test, evidence, and decision rule. No-build is valid.
+
+Read [product modes](references/product-modes.md) when deciding among a new idea, existing-product diagnosis, fixed brief, validation-only proposal, or sensitive product.
 
 ## Deliver the product definition
 
-Include relevant items:
+Include only relevant items:
 
-- thesis, user, trigger, job, problem, evidence, and current alternative
-- chosen position, reason to switch, rejected directions, and tradeoffs when direction is open
-- goals, non-goals, journey, relevant states, and product rules
-- requirements traceable from trigger to outcome, with testable acceptance criteria and relevant empty, cancel, failure, recovery, permission, and safe-default behavior
-- measurements covering signal, denominator, window, guardrails, and decision rule; never invent baselines or targets
+- user, trigger, job, evidence, current alternative, and thesis
+- chosen position, switch reason, tradeoffs, goals, and non-goals
+- journey, stable terms, states, rules, and traceable requirements
+- testable acceptance for relevant empty, cancel, failure, recovery, permission, and safe-default behavior
+- measurements with signal, denominator, window, guardrail, and decision rule; never invent targets
 - assumptions, tests, risks, dependencies, and open decisions
 
-For sensitive products, state data, access, consent, retention, recourse, and unresolved policy dependencies before recommending scope.
+Do not force sections or hide missing evidence with detail. Distinguish proposals, validated demand, technical proof, and release readiness.
 
-Do not force irrelevant sections or hide missing evidence with detail. No-build needs a bounded test plus explicit build and stop gates, not invented requirements. A fixed brief needs behavioral clarity, not reopened strategy. Distinguish proposals, validated demand, technical proof, and release readiness.
-
-Create files only for a requested handoff. Stop before downstream design and implementation unless authorized.
+Create files only for a requested handoff. Preserve terms and state names for downstream traceability. Stop before design and implementation unless authorized.
 
 Report the recommendation, evidence, tradeoffs, and what still requires user or technical validation.

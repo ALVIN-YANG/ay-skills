@@ -1,6 +1,6 @@
 ---
 name: ay-icon
-description: Design and ship store-ready app icons for iOS, iPadOS, macOS, and Android. Use when creating, replacing, or restyling an App Store, Play Store, or launcher icon, AppIcon, .icns, adaptive icon, or 1024 marketing icon, or when the user says the icon is ugly, wants a new icon, 换图标, 重做图标, 上架图标, or 图标太丑. Do not use for in-app UI glyphs, favicons-only work, article figures, or brand systems without a store-icon deliverable.
+description: Choose and approve a store-icon metaphor and visual direction, then create the assets when needed. Use when the deliverable is an App Store, Play Store, launcher, AppIcon, .icns, adaptive-icon, 换图标, 重做图标, or 图标太丑 request. Let a dedicated Apple icon asset skill lead exact AppIcon generation, export, installation, or debugging when available. Do not use for in-app glyphs or favicons-only work.
 ---
 
 # AY Icon
@@ -31,7 +31,7 @@ A request that names metaphor, style, and destination is approval. If those are 
 
 ## Generate
 
-Use already available image generation. Do not add a paid API, CLI, or dependency without approval.
+If a dedicated platform icon-production skill is installed and the metaphor is settled, let it lead generation, export, and installation. Otherwise use already available image generation. Do not add a paid API, CLI, or dependency without approval.
 
 - Square full-bleed artwork. No baked rounded-square plate, device frame, or extra margin.
 - No letters, numbers, watermarks, or real brand marks.
@@ -39,10 +39,10 @@ Use already available image generation. Do not add a paid API, CLI, or dependenc
 - Default to a matte illustration unless the user asked for glass, clay, sketch, or similar.
 - Keep metaphor and palette stable across sizes and appearances.
 
-Generate three or four candidates. Inspect each against these rules before showing a pick. Reject oily default 3D, blob-like animals, and marks that vanish on white.
+Generate only enough candidates to expose a meaningful choice. Inspect each before showing a pick. Reject generic 3D, unrelated characters, and marks that vanish on light or dark backgrounds.
 
 ## Ship
 
-Write into the project's existing icon set and required sizes. Do not invent a second catalog. Apply a system mask only when the platform needs it and the project does not already bake one.
+An asset request is incomplete until image files exist and have been inspected at full and small sizes. Write into the project's existing icon set and required sizes. Do not invent a second catalog. Apply a system mask only when the platform needs it and the project does not already bake one.
 
 If asked to install or open the app, do that after the assets compile. Report destinations, skipped appearances, and any unverified store listing surface.

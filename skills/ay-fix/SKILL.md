@@ -1,6 +1,6 @@
 ---
 name: ay-fix
-description: Diagnose and repair bugs, regressions, crashes, hangs, test failures, incorrect behavior, and unexpected slowness through evidence and root cause. Use when something is broken or used to work, including 修bug, 崩溃, 报错, 测试挂了, or 怎么突然坏了; keep diagnosis read-only unless the user also asks for a fix. Do not use for planned improvements without a failure symptom.
+description: Diagnose and repair bugs, regressions, crashes, hangs, test failures, incorrect behavior, and unexpected slowness through evidence and root cause. Use when something broke or the user asks to diagnose, 修bug, repair, or implement a proven fix; keep diagnosis read-only unless repair is requested. Let a dedicated diagnosis-only workflow lead a diagnosis-only request when available. Do not use for planned improvements without a failure symptom.
 ---
 
 # AY Fix

@@ -34,6 +34,21 @@ class CaseResult:
     skilled_failures: tuple[str, ...] = ()
     skilled_question_batches: int = 0
     error: str = ""
+    infrastructure_error: bool = False
+
+
+def is_infrastructure_error_text(text: str) -> bool:
+    lowered = text.lower()
+    return any(
+        marker in lowered
+        for marker in (
+            "connectionrefused",
+            "unable to connect to api",
+            "failed to lookup address information",
+            "stream disconnected before completion",
+            "error sending request for url",
+        )
+    )
 
 
 def isolated_codex_env(root: Path) -> dict[str, str]:
@@ -274,12 +289,25 @@ def run_case(
                 int(skilled_eval["question_batches"]),
             )
     except (OSError, RuntimeError, subprocess.TimeoutExpired, json.JSONDecodeError) as error:
-        return CaseResult(run_id, False, error=str(error))
+        detail = str(error)
+        return CaseResult(
+            run_id,
+            False,
+            error=detail,
+            infrastructure_error=is_infrastructure_error_text(detail),
+        )
 
 
 def summarize(results: list[CaseResult], rubric: dict[str, object]) -> tuple[dict[str, object], bool]:
     completed = [result for result in results if result.passed]
-    failed_runs = [result.run_id for result in results if not result.passed]
+    infrastructure_runs = [
+        result.run_id for result in results if result.infrastructure_error
+    ]
+    failed_runs = [
+        result.run_id
+        for result in results
+        if not result.passed and not result.infrastructure_error
+    ]
     skilled_scores = [result.skilled_score for result in completed]
     baseline_scores = [result.baseline_score for result in completed]
     wins = sum(result.skilled_winner for result in completed)
@@ -300,7 +328,7 @@ def summarize(results: list[CaseResult], rubric: dict[str, object]) -> tuple[dic
             rubric.get("maximum_average_question_batches", 1.0)
         ),
     }
-    passed = bool(completed) and not failed_runs and all(
+    passed = bool(completed) and not failed_runs and not infrastructure_runs and all(
         (
             median_skilled >= thresholds["minimum_median_total"],
             effective_win_rate >= thresholds["minimum_win_rate"],
@@ -313,6 +341,7 @@ def summarize(results: list[CaseResult], rubric: dict[str, object]) -> tuple[dic
         "runs": len(results),
         "completed": len(completed),
         "failed_runs": failed_runs,
+        "infrastructure_runs": infrastructure_runs,
         "median_skilled_score": median_skilled,
         "median_baseline_score": statistics.median(baseline_scores) if baseline_scores else 0.0,
         "skilled_wins": wins,
@@ -397,7 +426,8 @@ def main() -> int:
                     f"critical={len(result.skilled_failures)}"
                 )
             else:
-                print(f"FAIL {result.run_id}: {result.error}")
+                mark = "INFRA" if result.infrastructure_error else "FAIL"
+                print(f"{mark} {result.run_id}: {result.error}")
 
     summary, passed = summarize(results, rubric)
     results_dir.mkdir(parents=True, exist_ok=True)
@@ -406,7 +436,7 @@ def main() -> int:
         encoding="utf-8",
     )
     print(json.dumps(summary, ensure_ascii=False, indent=2))
-    return 0 if passed else 1
+    return 2 if summary["infrastructure_runs"] else 0 if passed else 1
 
 
 if __name__ == "__main__":

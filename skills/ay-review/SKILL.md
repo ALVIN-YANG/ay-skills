@@ -1,6 +1,6 @@
 ---
 name: ay-review
-description: Review a diff, branch, pull request, product or design artifact, implementation, or delivery state against intent, repository standards, correctness, risk, consistency, and verification evidence. Use when a general audit, cross-artifact check, pre-merge check, or review-then-fix workflow is requested, including 评审, code review, 看看能不能合, or 发布前检查. Yield primary review to a more specific security, accessibility, framework, or artifact skill when one applies.
+description: Review product, UI, architecture, API, database, implementation, or delivery artifacts for intent, correctness, risk, cross-artifact consistency, and proof. Use when a general audit, review-then-fix, 发布前检查, or check spanning several handoffs is requested. Let a dedicated since-commit or pull-request code-review skill lead branch diffs when installed, and yield to specific security or accessibility review.
 ---
 
 # AY Review

@@ -1,6 +1,6 @@
 ---
 name: ay-app-store
-description: Create store screenshots and audit, prepare, submit, monitor, or recover Apple App Store releases from verified project and live App Store Connect state. Use when the user asks to 生成 App Store 宣传图, 上架, 发布, 提交审核, 重新提交, 检查审核状态, 处理 App Review 拒绝, prepare TestFlight or App Store builds, or reconcile StoreKit, privacy, EULA, screenshots, metadata, or review information for an Apple-platform app. Do not use for Google Play-only publishing, store-icon creation, ASO-only research, UI mockups, or ordinary feature implementation.
+description: Create reproducible real-UI store screenshots, or act as the chosen workflow for auditing, submitting, monitoring, and recovering Apple App Store releases. Use when the request is 生成 App Store 宣传图, 上架, 提交审核, App Review 拒绝, StoreKit, privacy, metadata, or live review state. When another dedicated App Store release skill is installed, let it lead generic release work and use ay-app-store for screenshot generation. Do not use for store icons, UI mockups, or ordinary implementation.
 ---
 
 # AY App Store
@@ -23,41 +23,26 @@ Move an Apple release through verified states. Never equate a local build, proce
 
 ## Establish facts
 
-Inspect repository state, build/signing, entitlements, packaged purpose strings, privacy, StoreKit, legal links, screenshots, and release automation. `python3 scripts/scan_apple_release.py <repo>` is a read-only inventory, not a compliance verdict.
+Inspect source, build/signing, entitlements, packaged purpose strings, privacy, StoreKit, legal links, screenshots, and automation. `python3 scripts/scan_apple_release.py <repo>` is an inventory, not a verdict.
 
 Refresh Apple documentation before policy conclusions. Use [Apple workflow](references/apple-workflow.md) for official checks and [tooling](references/tooling.md) for credential boundaries.
 
-Reconcile identity, privacy, commerce, review metadata, and account readiness against live App Store Connect state. Prefer live state over code or email inference. “Changes needed” is only a pointer; inspect every rejected item and Resolution Center message.
+For general release work, reconcile identity, privacy, commerce, metadata, and account readiness against live App Store Connect. Prefer live state. Let another dedicated release workflow lead unless the user chose this one.
 
 ## Prepare store screenshots
 
-For screenshot creation or refresh, read [store screenshot workflow](references/store-screenshots.md). Start from the current release build, not a design mockup. Keep the captured app layer exact; generated art may support only the surrounding canvas.
+For screenshot creation or refresh, read [store screenshot workflow](references/store-screenshots.md). Start from the current release build, keep the captured app layer exact, and use generated art only around it.
 
-A precise generation request authorizes project artifacts, not upload or submission. If direction is open, propose one deck direction and representative slide. Report sources, targets, locales, exports, checks, and unverified state.
+A precise generation request authorizes artifacts, not upload. If direction is open, propose one direction and representative slide. The deliverable is incomplete until final images exist and are inspected; Markdown alone is not a deck. Report sources, targets, locales, exports, checks, and unverified state.
 
 ## Resolve and prove
 
-Classify gaps as code/build, metadata, commerce, explanation, or account work. Use [rejection playbook](references/rejection-playbook.md) for privacy, subscription/EULA, missing-item, and summary-email cases.
-
-Prove states independently:
-
-1. Source or metadata changed.
-2. Tests and archive passed.
-3. Upload finished Apple processing.
-4. Build and IAP items joined the intended submission.
-5. Submission ID and review state are confirmed.
-6. Review passed.
-7. Version is Ready for Distribution.
-8. Storefront download works.
-
-Report the highest proven layer and all unverified layers.
+Classify gaps as code/build, metadata, commerce, explanation, or account work. Use [rejection playbook](references/rejection-playbook.md) for recovery and the [Apple workflow evidence ladder](references/apple-workflow.md#证据阶梯) to separate change, archive, processing, submission, review, distribution, and storefront proof. Report the highest proven layer and every unverified layer.
 
 ## Operate live surfaces
 
-Prefer supported APIs or existing automation; use signed-in UI where required. Installing tools, reusing cookies, or calling private APIs needs approval.
+Prefer supported APIs or existing automation. Installing tools, reusing cookies, or calling private APIs needs approval.
 
 A precise request to submit or resubmit the named app/version is approval. Unrequested cancellation, deletion, pricing, territories, agreements, banking/tax, credentials, members, or reviewer replies need separate approval.
 
-Before mutation recheck app, platform, version, build, products, and submission; afterwards reread state and capture stable IDs. Never store secrets or full banking/identity data.
-
-`assets/release-dossier-template.md` is optional.
+Before mutation recheck app, platform, version, build, products, and submission; afterwards reread state and stable IDs. Never store secrets or full identity data. Use `assets/release-dossier-template.md` only for a requested durable handoff.

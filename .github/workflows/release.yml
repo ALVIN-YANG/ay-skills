@@ -1,0 +1,49 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Verify tag, skills, and manifests
+        run: python3 scripts/verify_skills.py
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Verify standalone skill copies
+        run: python3 scripts/verify_portable_install.py
+      - name: Build and verify release archive
+        run: |
+          python3 scripts/package_release.py --output "dist/ay-skills-${GITHUB_REF_NAME}.tar.gz"
+          python3 scripts/package_release.py --verify "dist/ay-skills-${GITHUB_REF_NAME}.tar.gz"
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "${GITHUB_REF_NAME}"
+          "dist/ay-skills-${GITHUB_REF_NAME}.tar.gz"
+          --verify-tag --generate-notes --title "AY Skills ${GITHUB_REF_NAME}"
+
+  remote-archive:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Download published archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download "${GITHUB_REF_NAME}" --pattern "ay-skills-${GITHUB_REF_NAME}.tar.gz"
+      - name: Verify downloaded release contents
+        run: python3 scripts/package_release.py --verify "ay-skills-${GITHUB_REF_NAME}.tar.gz"

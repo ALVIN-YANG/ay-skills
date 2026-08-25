@@ -23,7 +23,7 @@ Turn user and domain actions into a stable contract without exposing storage acc
 
 ## Derive the contract
 
-Inspect available product requirements, UI states, architecture, consumers, existing conventions, and compatibility obligations. Map each client action to a domain command, query, event, or stream. Do not begin by turning tables into CRUD endpoints.
+Inspect available product requirements, UI states, architecture, consumers, existing conventions, and compatibility obligations. Preserve approved domain terms and state outcomes. Map each client action to a domain command, query, event, or stream. Do not begin by turning tables into CRUD endpoints.
 
 Choose REST, GraphQL, gRPC, events, webhooks, or an internal interface from caller needs, ecosystem, latency, coupling, and evolution constraints. Preserve an established protocol unless evidence justifies change. Ask only about an undiscoverable decision that materially changes consumers or compatibility.
 
