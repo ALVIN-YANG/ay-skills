@@ -9,12 +9,12 @@
   <p><a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
-AY Skills started with the things that kept bothering me when I worked with AI: product ideas became specs before anyone checked the user or market, screen designs drifted between rounds, backend code began without settled boundaries or contracts, bugs were guessed at, streaming voice glitches were patched without tracing the audio path, refactors had no baseline, reviews changed the code, and releases mixed local, submitted, and live states into one vague claim.
+AY Skills started with the things that kept bothering me when I worked with AI: product ideas became specs before anyone checked the user or market, screen designs drifted between rounds, backend code began without settled boundaries or contracts, bugs were guessed at, streaming voice glitches were patched without tracing the audio path, refactors had no baseline, reviews changed the code, and store screenshots quietly replaced the shipped UI with marketing fiction.
 
 So I turned them into standalone skills. A clear request gets done. If a real product or technical choice is still open, the agent investigates, asks once, and continues inside the boundary you approved.
 
 <p align="center">
-  <img src="assets/ay-skills-map.svg" alt="Choose among fourteen AY Skills covering expert lenses, product, UI, architecture, API, database, implementation, debugging, audio, improvement, writing, review, icons, and App Store release." width="100%">
+  <img src="assets/ay-skills-map.svg" alt="Choose among fourteen AY Skills covering expert lenses, product, UI, architecture, API, database, implementation, debugging, audio, improvement, writing, review, icons, and App Store screenshots." width="100%">
 </p>
 
 ## Skills
@@ -34,13 +34,13 @@ So I turned them into standalone skills. A clear request gets done. If a real pr
 | [`ay-write`](skills/ay-write/SKILL.md) | Writing or substantially rewriting an article, tutorial, or visual explainer | Produces clear, natural long-form prose without filler |
 | [`ay-review`](skills/ay-review/SKILL.md) | Reviewing a diff, branch, plan, or release | Stays read-only and reports consequential issues backed by evidence |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | Creating or replacing an App Store, Play Store, or launcher icon | Locks metaphor and style, then generates, inspects, and installs the mark |
-| [`ay-app-store`](skills/ay-app-store/SKILL.md) | Creating store screenshots or preparing, submitting, monitoring, and recovering an Apple App Store release | Builds truthful screenshots from the release-build UI, then reconciles code, metadata, commerce, account, and live review state |
+| [`ay-app-store`](skills/ay-app-store/SKILL.md) | Creating localized App Store screenshot decks from shipped UI | Preserves the exact app layer, keeps the deck reproducible, and validates upload candidates before handoff |
 
 Install one or all of them. They do not depend on a router or on each other, and a small change does not have to become a planning exercise.
 
 For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement`, with `ay-review` checking consistency or implementation when useful. Once a release build exists, `ay-app-store` can turn its real UI into reproducible store screenshots before submission. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
 
-0.8.0 adds `ay-expert-lens` for applying verified expert frameworks to open questions without impersonation or invented quotes. Catalog coexistence routing, artifact and runtime assertions, three end-to-end journeys, standalone install checks, and verified release archives remain separate proof layers.
+0.9.0 narrows `ay-app-store` to one job: truthful, reproducible App Store screenshots. It no longer uploads builds, submits releases, handles review state, or changes application code. The workflow now includes an original dependency-free validator for count, encoding, exact dimensions, and PNG transparency.
 
 ## Install
 
@@ -99,7 +99,6 @@ Turn these notes into a clear illustrated article.
 Review this branch without changing files.
 Redesign this app's store icon and install the asset set.
 Create reproducible Mac App Store screenshots from the current release build.
-Prepare this iOS app for App Review and submit the verified version.
 ```
 
 ## A short example
@@ -127,7 +126,7 @@ Choose the primary skill from the deliverable when responsibilities overlap:
 |---|---|
 | Open-ended decision explicitly asking for a real expert framework | `ay-expert-lens`; a domain skill still owns any concrete artifact or execution |
 | First-person expert or celebrity simulation | A dedicated persona or Best Minds skill; `ay-expert-lens` does not impersonate the person |
-| General App Store preparation, submission, or rejection recovery | A dedicated App Store release skill; `ay-app-store` leads real-UI screenshot generation |
+| App Store upload, submission, review state, or rejection recovery | A dedicated App Store release skill; `ay-app-store` stops after screenshot validation |
 | Apple AppIcon or `.icns` production and installation | A dedicated Apple icon asset skill; `ay-icon` leads an open metaphor and direction |
 | Prose-only natural Chinese long-form writing | A dedicated Chinese writing skill; `ay-write` leads research, English, or illustrated articles |
 | Diagnosis without a requested repair | A dedicated diagnosis workflow; use `ay-fix` when the repair should be completed |
@@ -197,7 +196,7 @@ Model-backed evaluations require local authenticated CLIs and stay outside ordin
 
 AY Skills is original work informed by [Superpowers](https://github.com/obra/superpowers), [Anthropic Skills](https://github.com/anthropics/skills), [wshobson/agents](https://github.com/wshobson/agents), [PM Skills](https://github.com/phuryn/pm-skills), [awesome-copilot](https://github.com/github/awesome-copilot), [claude-skills](https://github.com/alirezarezvani/claude-skills), [mattpocock/skills](https://github.com/mattpocock/skills), and [Waza](https://github.com/tw93/Waza). The useful ideas are approval before implementation, distinctive and consistent UI direction, separate architecture/API/database responsibilities, engine-specific storage design, evidence-first discovery, and small skill boundaries.
 
-The store screenshot workflow is additionally informed by [store-screenshot-mockups](https://github.com/iamngoni/store-screenshot-mockups), [app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots), and [Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio): preserve the real shipped UI, make the deck reproducible, render at exact dimensions, and verify exported files. AY does not copy their skill text or runtime code, and intentionally leaves out mandatory modes, documents, commits, and architecture patterns.
+The store screenshot workflow is additionally informed by MIT-licensed [app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots), [Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio), [ai-appshots](https://github.com/thiagoperes/ai-appshots), and [fastlane](https://github.com/fastlane/fastlane): keep one reproducible deck state, organize exports by locale and device, preserve the shipped UI, and fail invalid files before upload. AY uses original instructions and validator code rather than copying their text, templates, or runtime code.
 
 The question-relative expert selection in `ay-expert-lens` was prompted by [Best Minds](https://github.com/Agentchengfeng/best-minds) (MIT). AY uses an original, narrower workflow: apply verifiable published frameworks, distinguish source from inference, and never impersonate the person or invent what they would say.
 

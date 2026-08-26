@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "ay-skills",
-      "description": "Approval-aware skills from verified expert lenses and product design through architecture, implementation, verification, and release.",
-      "version": "0.8.0",
+      "description": "Approval-aware skills from verified expert lenses and product design through architecture, implementation, verification, and truthful store screenshots.",
+      "version": "0.9.0",
       "category": "development",
       "source": "./",
       "homepage": "https://github.com/ALVIN-YANG/ay-skills"

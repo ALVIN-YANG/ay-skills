@@ -9,12 +9,12 @@
   <p><a href="README.md">English</a></p>
 </div>
 
-AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品点子还没查用户和市场就写成了需求，多轮页面设计越画越不像一套，后端还没定边界和契约就开始写代码，Bug 靠猜，流式语音有杂音却不分层排查，重构没有基线，评审时顺手改代码，发布时又把本地、提交和线上状态混为一谈。
+AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品点子还没查用户和市场就写成了需求，多轮页面设计越画越不像一套，后端还没定边界和契约就开始写代码，Bug 靠猜，流式语音有杂音却不分层排查，重构没有基线，评审时顺手改代码，上架宣传图还会偷偷把真实产品画成不存在的样子。
 
 所以我把它们做成了可以单独安装的 Skill。任务说清楚了就直接做；还有产品或技术上的关键选择，就先调查、问一次，然后在你确认的范围内完成。
 
 <p align="center">
-  <img src="assets/ay-skills-map.zh-CN.svg" alt="十四个 AY Skill 覆盖专家视角、产品、UI、架构、API、数据库、实现、排错、音频、优化、写作、评审、图标和 App Store 发布。" width="100%">
+  <img src="assets/ay-skills-map.zh-CN.svg" alt="十四个 AY Skill 覆盖专家视角、产品、UI、架构、API、数据库、实现、排错、音频、优化、写作、评审、图标和 App Store 宣传图。" width="100%">
 </p>
 
 ## Skill
@@ -34,13 +34,13 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 | [`ay-write`](skills/ay-write/SKILL.md) | 写文章、教程、长篇改稿或图文解释 | 写出自然、清楚、没有废话的长内容 |
 | [`ay-review`](skills/ay-review/SKILL.md) | 评审代码、分支、方案或发布准备度 | 默认只读，只报告重要且有证据的问题 |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | 设计或替换 App Store、Play 商店或启动器图标 | 先锁定隐喻和风格，再生成、检查并装进资源 |
-| [`ay-app-store`](skills/ay-app-store/SKILL.md) | 生成宣传图，或准备、提交、跟踪和修复 Apple App Store 发布 | 用当前构建的真实 UI 制作宣传图，再对齐代码、元数据、付费项目、账号和实时审核状态 |
+| [`ay-app-store`](skills/ay-app-store/SKILL.md) | 用当前发布构建的真实 UI 生成多语言 App Store 宣传图 | 保持应用界面原样、让整套图可以复现，并在交接前校验上传候选文件 |
 
 可以只装一个，也可以全部安装。它们彼此不依赖，不需要路由器，也不会把一个小改动变成一场规划会议。
 
 完整产品通常按 `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement` 交接，需要时用 `ay-review` 检查文档一致性或实现结果。有了可发布构建后，`ay-app-store` 可以先用真实 UI 生成可复现的宣传图，再进入提交。这只是建议顺序，不是强制流水线。技术可行性会阻塞 UI 时，架构可以提前；每个 Skill 也都能从已有输入单独工作。
 
-0.8.0 增加了 `ay-expert-lens`，用可核验的专家框架分析开放问题，不冒充本人，也不编造引语。共存路由、产物与运行验收、三条端到端旅程、独立安装和发布包仍是分开的证明层。
+0.9.0 把 `ay-app-store` 收窄成一件事：制作真实、可复现的 App Store 宣传图。它不再上传构建、提交审核、处理审核状态或修改应用代码，并新增一个原创、无第三方依赖的校验脚本，检查数量、编码、准确尺寸和 PNG 透明通道。
 
 ## 安装
 
@@ -99,7 +99,6 @@ npx skills@latest remove ay-audio -g
 评审这个分支，不要修改文件。
 重做这个应用的上架图标并装进资源。
 用当前发布构建生成一套可复现的 Mac App Store 宣传图。
-检查这个 iOS App 的审核准备情况，并提交确认无误的版本。
 ```
 
 ## 一个实际例子
@@ -127,7 +126,7 @@ AY Skills 可以和前端设计、PDF、表格、无障碍检查等专用 Skill 
 |---|---|
 | 明确要求用真实专家框架分析开放决策 | `ay-expert-lens`；具体产物和执行仍由领域 Skill 负责 |
 | 要求第一人称模拟专家或名人 | 专用人格或 Best Minds Skill；`ay-expert-lens` 不冒充本人 |
-| 通用 App Store 准备、提交、拒审恢复 | 专用 App Store 发布 Skill；`ay-app-store` 主导真实 UI 宣传图 |
+| App Store 上传、提交、审核状态或拒审恢复 | 专用 App Store 发布 Skill；`ay-app-store` 在宣传图校验后停止 |
 | Apple AppIcon、`.icns` 生成和安装 | 专用 Apple 图标资产 Skill；`ay-icon` 主导开放的隐喻与方向 |
 | 纯中文长文、自然语言改稿 | 专用中文写作 Skill；`ay-write` 主导调研、英文或图解型文章 |
 | 只问 Bug 为什么发生 | 专用诊断 Skill；需要完成修复时用 `ay-fix` |
@@ -197,7 +196,7 @@ CI 运行结构、单元、独立安装和发布包检查。路由测试可以�
 
 AY Skills 是原创项目，参考了 [Superpowers](https://github.com/obra/superpowers)、[Anthropic Skills](https://github.com/anthropics/skills)、[wshobson/agents](https://github.com/wshobson/agents)、[PM Skills](https://github.com/phuryn/pm-skills)、[awesome-copilot](https://github.com/github/awesome-copilot)、[claude-skills](https://github.com/alirezarezvani/claude-skills)、[mattpocock/skills](https://github.com/mattpocock/skills) 和 [Waza](https://github.com/tw93/Waza)。借鉴的是实现前确认、UI 风格一致、架构/API/数据库分工、按数据库引擎设计、证据优先和小职责边界。
 
-宣传图流程还参考了 [store-screenshot-mockups](https://github.com/iamngoni/store-screenshot-mockups)、[app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots) 和 [Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio)：保留真实上架 UI，让整套图可以复现，按准确尺寸渲染，并检查最终导出文件。项目没有复制它们的 Skill 文本或运行时代码，也没有引入强制模式、强制文档、自动提交和默认架构套路。
+宣传图流程还参考了采用 MIT 许可的 [app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots)、[Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio)、[ai-appshots](https://github.com/thiagoperes/ai-appshots) 和 [fastlane](https://github.com/fastlane/fastlane)：保存唯一可复现的 deck 状态，按语言与设备整理导出，保留真实 UI，并在上传前让错误文件直接失败。项目使用原创说明和校验代码，没有复制它们的文本、模板或运行时代码。
 
 `ay-expert-lens` 中“按问题选专家”的启发来自 MIT 许可的 [Best Minds](https://github.com/Agentchengfeng/best-minds)。AY 重新设计了更窄的原创流程：应用可核验的公开框架，区分来源与推演，不冒充本人，也不编造对方“会怎么说”。
 

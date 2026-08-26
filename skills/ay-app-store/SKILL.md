@@ -1,11 +1,11 @@
 ---
 name: ay-app-store
-description: Create reproducible real-UI store screenshots, or act as the chosen workflow for auditing, submitting, monitoring, and recovering Apple App Store releases. Use when the request is 生成 App Store 宣传图, 上架, 提交审核, App Review 拒绝, StoreKit, privacy, metadata, or live review state. When another dedicated App Store release skill is installed, let it lead generic release work and use ay-app-store for screenshot generation. Do not use for store icons, UI mockups, or ordinary implementation.
+description: Create and validate reproducible Apple App Store screenshot decks from exact shipped UI captures. Use when asked for App Store 宣传图, localized screenshot sets, device framing, marketing copy overlays, exact-size exports, or screenshot truth checks. Do not use for build upload, submission, review status, StoreKit or privacy setup, app icons, product UI design, or application implementation.
 ---
 
-# AY App Store
+# AY App Store Screenshots
 
-Move an Apple release through verified states. Never equate a local build, processed upload, submission, approval, and downloadable storefront listing.
+Turn current shipped UI into truthful, reproducible upload candidates. Stop before App Store Connect upload or other release work.
 
 ## Approval contract
 
@@ -21,28 +21,18 @@ Move an Apple release through verified states. Never equate a local build, proce
 - Preserve unrelated and user-authored work. Verify the real requested outcome before claiming completion.
 <!-- ay-contract:end -->
 
-## Establish facts
+## Build the deck
 
-Inspect source, build/signing, entitlements, packaged purpose strings, privacy, StoreKit, legal links, screenshots, and automation. `python3 scripts/scan_apple_release.py <repo>` is an inventory, not a verdict.
+Read [the screenshot workflow](references/store-screenshots.md). Establish the release build, source captures, device slots, orientations, locales, ordered claims, and current Apple dimensions. If art direction is open, propose one direction and one representative slide before producing the set.
 
-Refresh Apple documentation before policy conclusions. Use [Apple workflow](references/apple-workflow.md) for official checks and [tooling](references/tooling.md) for credential boundaries.
+Capture the running release candidate. Keep its visible app surface as an exact proportional layer; do not repaint, regenerate, or silently improve the product UI. Do not change application code merely to create a better screenshot. Use fictional data and recapture when the shipped UI changes.
 
-For general release work, reconcile identity, privacy, commerce, metadata, and account readiness against live App Store Connect. Prefer live state. Let another dedicated release workflow lead unless the user chose this one.
+Prefer an existing project renderer. Otherwise create the smallest local, data-driven renderer that fits the repository stack. Installing a dependency, copying a third-party template, or using a hosted service needs approval. Persist source paths, slide order, copy, locales, target sizes, crop behavior, and the export command so another machine can reproduce the deck.
 
-## Prepare store screenshots
+## Prove the exports
 
-For screenshot creation or refresh, read [store screenshot workflow](references/store-screenshots.md). Start from the current release build, keep the captured app layer exact, and use generated art only around it.
+Inspect final pixels and storefront-size thumbnails. Check truthful claims, paid-feature disclosure, private data, copy, glyphs, truncation, safe margins, proportional geometry, and right-to-left layouts where relevant.
 
-A precise generation request authorizes artifacts, not upload. If direction is open, propose one direction and representative slide. The deliverable is incomplete until final images exist and are inspected; Markdown alone is not a deck. Report sources, targets, locales, exports, checks, and unverified state.
+Run `python3 scripts/validate_store_screenshots.py <slot-directory> --size WIDTHxHEIGHT` once per locale and device slot. It checks count, encoding, exact dimensions, and PNG transparency without external packages; it does not replace visual inspection or current Apple documentation.
 
-## Resolve and prove
-
-Classify gaps as code/build, metadata, commerce, explanation, or account work. Use [rejection playbook](references/rejection-playbook.md) for recovery and the [Apple workflow evidence ladder](references/apple-workflow.md#证据阶梯) to separate change, archive, processing, submission, review, distribution, and storefront proof. Report the highest proven layer and every unverified layer.
-
-## Operate live surfaces
-
-Prefer supported APIs or existing automation. Installing tools, reusing cookies, or calling private APIs needs approval.
-
-A precise request to submit or resubmit the named app/version is approval. Unrequested cancellation, deletion, pricing, territories, agreements, banking/tax, credentials, members, or reviewer replies need separate approval.
-
-Before mutation recheck app, platform, version, build, products, and submission; afterwards reread state and stable IDs. Never store secrets or full identity data. Use `assets/release-dossier-template.md` only for a requested durable handoff.
+Finish with the source-to-output mapping, export command, validation results, and any unverified device or locale. Keep experiments outside upload-candidate directories and hand upload, submission, review, and rejection work to a release workflow.

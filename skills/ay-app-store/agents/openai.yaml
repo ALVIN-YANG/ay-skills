@@ -1,4 +1,4 @@
 interface:
-  display_name: "AY App Store"
-  short_description: "Create screenshots and complete verified App Store releases"
-  default_prompt: "Use $ay-app-store to create truthful store screenshots or complete this verified Apple App Store release without crossing unapproved external actions."
+  display_name: "AY App Store Screenshots"
+  short_description: "Create truthful, reproducible App Store screenshots"
+  default_prompt: "Use $ay-app-store to turn exact shipped UI captures into a reproducible, validated App Store screenshot deck, then stop before upload."

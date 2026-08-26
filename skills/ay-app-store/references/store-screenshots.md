@@ -1,43 +1,46 @@
 # Store screenshot workflow
 
-Use this reference for App Store upload candidates, not ordinary product UI design. Checked against Apple sources on 2026-08-20; refresh them before each release because device slots and accepted sizes change.
+Use this reference for Apple App Store screenshot upload candidates, not product UI design or release operations. Apple sources were refreshed on 2026-08-26; check them again for every release.
 
-## Establish the target
+## Establish the target and story
 
-Confirm the app, release build, platforms, device classes, orientations, locales, screenshot slots, and current Apple dimensions. Apple currently accepts one to ten JPEG or PNG screenshots per slot and rejects alpha or transparency. Mac screenshots use an accepted 16:10 size, including 2880×1800. Treat the current App Store Connect form and [Apple screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications) as authoritative.
+Confirm the app and release build, platforms, device classes, orientations, locales, screenshot slots, and current dimensions. Treat the live App Store Connect form and [Apple screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications) as authoritative. Apple currently accepts one to ten JPEG or PNG files per slot and rejects alpha or transparency.
 
-Define the ordered story from approved product claims. Lead with the strongest user outcome, give each slide one job, and keep copy factual and readable at storefront-thumbnail size. Disclose paid requirements when the depicted capability needs an in-app purchase. If visual direction is unsettled, present one deck direction and one representative slide for approval.
+Order the deck around approved product claims. Lead with the strongest user outcome, give each slide one job, and make its headline readable at storefront-thumbnail size. Disclose paid requirements when a depicted capability needs an in-app purchase. If the story or visual direction is unsettled, present one recommended deck direction and one representative slide for approval.
 
 ## Capture the shipped product
 
-Run the current release candidate and capture the real app on the target simulator, device, or Mac at native scale. Prefer deterministic fictional demo data or fixtures; never expose a real person's account, network, hardware, or location data. Remove cursors, selection handles, debug overlays, failure alerts, and unrelated system UI before capture.
+Run the current release candidate and capture it on the target simulator, device, or Mac at native scale. Use an existing demo account or deterministic fictional data. Never expose a real person's account, network, hardware, health, financial, or location data. Remove cursors, debug overlays, failure alerts, and unrelated system UI before capture.
 
-The visible app surface in an upload candidate must remain an exact captured layer. Crop or mask private fields and scale proportionally, but do not stretch, repaint, regenerate, or silently improve controls, text, content, or product states. Recapture after material UI changes. Image generation may explore art direction or create truthful background decoration; it must not fabricate the app itself.
+The app surface in an upload candidate must remain an exact captured layer. Scale proportionally and crop only with intent; never stretch, repaint, regenerate, or silently improve controls, text, content, or product states. Recapture after material UI changes. Image generation may explore art direction or create truthful background decoration, but it must not fabricate the app itself.
 
-Apple requires screenshots to show the app in use and accurately reflect its core experience. Review [App Review Guidelines 2.3](https://developer.apple.com/app-store/review/guidelines/#accurate-metadata) before finalizing claims, content, or overlays.
+Apple requires metadata and screenshots to match the current core experience. Review [App Review Guidelines 2.3](https://developer.apple.com/app-store/review/guidelines/#accurate-metadata) before finalizing claims, overlays, or paid-feature disclosure.
 
 ## Compose reproducibly
 
-Render directly at each final target resolution with local fonts. Preserve the capture's aspect ratio with deliberate fit, fill, or crop behavior. Keep headings, decoration, and device framing outside the exact app layer unless the overlay truthfully explains interaction.
+Separate capture, composition, and export. Prefer the project's existing renderer. Otherwise create the smallest local renderer in the current stack; do not scaffold a large editor when a data file plus a short render command is enough.
 
-Prefer an existing project renderer or deck format. Otherwise create the smallest project-local reproducible renderer using the repository's current stack; adding a dependency, paid service, or hosted editor needs approval. Preserve source paths, slide order, copy, locales, target sizes, crop coordinates, and export command in code or data. Keep private raw captures out of Git while retaining enough instructions to recapture them.
+Keep one canonical deck state in code or structured data. Record source paths or recapture instructions, release build, slide order, copy by locale, target sizes, fit/fill/crop behavior, fonts, colors, and export command. Keep private raw captures out of Git. Use stable output folders such as `store-screenshots/<device>/<locale>/` so one directory maps to one App Store Connect slot.
+
+Render directly at each final size with local fonts. Connected multi-slide art is acceptable only when every exported crop also works alone and no required copy or critical UI is split. Recheck line breaks for every locale; translation alone does not prove layout. Treat right-to-left decks as distinct compositions.
 
 ## Validate the exported files
 
-Inspect the final exported pixels, not only the editor preview. Verify:
+Run the bundled validator once per slot directory with dimensions taken from current Apple documentation:
 
-- accepted dimensions, orientation, JPEG/PNG encoding, no alpha, and no unintended upscaling;
-- proportional UI geometry, complete text, safe margins, consistent visual system, and useful variation across the set;
-- OCR or an independent copy check for every locale, including punctuation, glyphs, truncation, and right-to-left layout where applicable;
-- readable thumbnails, truthful claims, current shipped features, paid-feature disclosure, fictional data, content rights, and no private or debug material;
-- a clean re-export from the saved renderer or deck state produces the same upload candidates.
+```bash
+python3 scripts/validate_store_screenshots.py store-screenshots/mac/en-US --size 2880x1800
+```
 
-Keep experiments separate from upload candidates. Report generation, visual inspection, App Store upload acceptance, and submission as separate evidence layers.
+Then inspect the final pixels and thumbnails. Verify proportional UI geometry, complete copy and glyphs, readable hierarchy, safe margins, useful variation, truthful claims, fictional data, rights, and no private or debug material. Re-export from saved state and compare the outputs. Keep experiments outside upload-candidate folders.
 
-## Implementation influences
+Report rendering, script validation, visual inspection, upload acceptance, and submission as separate evidence. This skill stops before upload.
 
-This original workflow uses ideas, not copied code or text, from:
+## Open-source influences
 
-- [iamngoni/store-screenshot-mockups](https://github.com/iamngoni/store-screenshot-mockups): exact real-UI layers and separation of exploratory generated art from upload candidates.
-- [ParthJadhav/app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots) (MIT): ordered marketing stories, thumbnail-readable copy, reproducible deck state, and exact exports.
-- [gyugyu86/app-store-screenshot-studio](https://github.com/gyugyu86/app-store-screenshot-studio) (MIT; bundled fonts under OFL-1.1): local rendering, proportional fit/fill, localization, and opaque exports.
+AY uses original instructions and validator code. The workflow borrows patterns, not text or runtime code, from these reviewed projects:
+
+- [ParthJadhav/app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots) (MIT): canonical JSON deck state, locale/device export bundles, thumbnail-first copy, and resumable editing.
+- [gyugyu86/app-store-screenshot-studio](https://github.com/gyugyu86/app-store-screenshot-studio) (MIT; bundled fonts OFL-1.1): local-only rendering, proportional fit/fill, saved deck state, and opaque exports.
+- [thiagoperes/ai-appshots](https://github.com/thiagoperes/ai-appshots) (MIT): configuration-driven capture/composition/export and validation before staging.
+- [fastlane/fastlane](https://github.com/fastlane/fastlane) (MIT): reproducible capture and locale-oriented screenshot organization in existing release automation.

@@ -1,6 +1,6 @@
 {
   "name": "ay-skills",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Small, human-approved workflows for AI coding agents.",
   "author": {
     "name": "Alvin Yang",
@@ -28,7 +28,7 @@
   "interface": {
     "displayName": "AY Skills",
     "shortDescription": "Approval-aware workflows for AI coding agents",
-    "longDescription": "Approval-aware workflows from verified expert lenses and evidence-backed product design through UI, architecture, APIs, databases, implementation, verification, writing, store screenshots, and Apple release.",
+    "longDescription": "Approval-aware workflows from verified expert lenses and evidence-backed product design through UI, architecture, APIs, databases, implementation, verification, writing, and truthful store screenshots.",
     "developerName": "Alvin Yang",
     "category": "Developer Tools",
     "capabilities": [
@@ -46,7 +46,7 @@
       "Diagnose this failure before repairing it.",
       "Trace this streaming voice failure from provider bytes to audible output.",
       "Write a clear technical article with useful visuals.",
-      "Create truthful screenshots from this release build and complete the Apple App Store release."
+      "Create truthful, reproducible App Store screenshots from this release build and validate every export."
     ]
   }
 }

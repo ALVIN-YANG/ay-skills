@@ -147,21 +147,13 @@
     "final_any": ["approval", "propose", "metaphor"]
   },
   {
-    "id": "app-store-audit-only",
-    "skill": "ay-app-store",
-    "prompt": "Audit this supplied iOS release snapshot. Do not modify files or perform live actions. State the highest proven release layer and the unverified App Store Connect evidence.",
-    "files": {"release.txt": "Bundle ID: com.example.vault\nVersion: 1.0\nBuild: 12\nLocal archive: passed\nNo upload processing result, submission ID, review state, or storefront check is supplied.\n"},
-    "expect_no_changes": true,
-    "final_all": ["archive", "unverified"]
-  },
-  {
     "id": "app-store-screenshot-handoff",
     "skill": "ay-app-store",
     "prompt": "Create the approved representative Mac App Store screenshot and store-screenshots.md. The supplied raw-ui.ppm is a synthetic raster release-capture fixture and must remain a proportional exact app layer. Run the existing render_store.py without installing anything, inspect the final output, record release build 42, source, target, privacy, OCR/copy, Alpha, re-export, and upload boundaries, then stop before upload. The direction, copy, renderer, and file changes are approved.",
     "fixture": "store-screenshot",
     "files": {"release.txt": "App: NetScope\nRelease build: 42, tested and archived\nPlatform: macOS\nLocale: en-US\nApproved copy: See network quality\nRaw capture: raw-ui.ppm\nRenderer: render_store.py\nTarget: output/en-US/01-quality.png at 2880x1800\nThe fixture contains fictional data.\n"},
     "expected_created": {"store-screenshots.md": 700},
-    "created_all": {"store-screenshots.md": ["42", "2880", "real", "alpha", "ocr", "privacy", "upload"]},
+    "created_all": {"store-screenshots.md": ["42", "2880", "alpha", "ocr", "privacy", "upload"]},
     "expected_png": {"output/en-US/01-quality.png": {"width": 2880, "height": 1800, "alpha": false}},
     "unchanged_files": ["raw-ui.ppm", "render_store.py", "release.txt"],
     "reproduce": [{"path": "output/en-US/01-quality.png", "command": ["python3", "render_store.py"]}],
