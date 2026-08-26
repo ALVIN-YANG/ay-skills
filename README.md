@@ -34,13 +34,13 @@ So I turned them into standalone skills. A clear request gets done. If a real pr
 | [`ay-write`](skills/ay-write/SKILL.md) | Writing or substantially rewriting an article, tutorial, or visual explainer | Produces clear, natural long-form prose without filler |
 | [`ay-review`](skills/ay-review/SKILL.md) | Reviewing a diff, branch, plan, or release | Stays read-only and reports consequential issues backed by evidence |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | Creating or replacing an App Store, Play Store, or launcher icon | Locks metaphor and style, then generates, inspects, and installs the mark |
-| [`ay-app-store`](skills/ay-app-store/SKILL.md) | Creating localized App Store screenshot decks from shipped UI | Preserves the exact app layer, keeps the deck reproducible, and validates upload candidates before handoff |
+| [`ay-store-screenshots`](skills/ay-store-screenshots/SKILL.md) | Creating localized App Store screenshot decks from shipped UI | Preserves the exact app layer, keeps the deck reproducible, and validates upload candidates before handoff |
 
 Install one or all of them. They do not depend on a router or on each other, and a small change does not have to become a planning exercise.
 
-For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement`, with `ay-review` checking consistency or implementation when useful. Once a release build exists, `ay-app-store` can turn its real UI into reproducible store screenshots before submission. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
+For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement`, with `ay-review` checking consistency or implementation when useful. Once a release build exists, `ay-store-screenshots` can turn its real UI into reproducible store screenshots before submission. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
 
-0.9.0 narrows `ay-app-store` to one job: truthful, reproducible App Store screenshots. It no longer uploads builds, submits releases, handles review state, or changes application code. The workflow now includes an original dependency-free validator for count, encoding, exact dimensions, and PNG transparency.
+0.10.0 renames the screenshot-only skill to `ay-store-screenshots`. It creates truthful, reproducible App Store screenshots and no longer attracts build uploads, release submission, review state, or application development. Its original dependency-free validator checks count, encoding, exact dimensions, and PNG transparency.
 
 ## Install
 
@@ -126,7 +126,7 @@ Choose the primary skill from the deliverable when responsibilities overlap:
 |---|---|
 | Open-ended decision explicitly asking for a real expert framework | `ay-expert-lens`; a domain skill still owns any concrete artifact or execution |
 | First-person expert or celebrity simulation | A dedicated persona or Best Minds skill; `ay-expert-lens` does not impersonate the person |
-| App Store upload, submission, review state, or rejection recovery | A dedicated App Store release skill; `ay-app-store` stops after screenshot validation |
+| App Store upload, submission, review state, or rejection recovery | A dedicated App Store release skill; `ay-store-screenshots` stops after screenshot validation |
 | Apple AppIcon or `.icns` production and installation | A dedicated Apple icon asset skill; `ay-icon` leads an open metaphor and direction |
 | Prose-only natural Chinese long-form writing | A dedicated Chinese writing skill; `ay-write` leads research, English, or illustrated articles |
 | Diagnosis without a requested repair | A dedicated diagnosis workflow; use `ay-fix` when the repair should be completed |

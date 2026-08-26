@@ -44,7 +44,7 @@ class RoutingEvalTests(unittest.TestCase):
             installed = Path(directory) / "skills"
             installed.mkdir()
             routing.install_catalog(installed, "fixture")
-            self.assertTrue((installed / "ay-app-store" / "SKILL.md").is_file())
+            self.assertTrue((installed / "ay-store-screenshots" / "SKILL.md").is_file())
             self.assertTrue((installed / "ship-app-store" / "SKILL.md").is_file())
             self.assertTrue((installed / "app-icon-studio" / "SKILL.md").is_file())
 
@@ -53,7 +53,7 @@ class RoutingEvalTests(unittest.TestCase):
             installed = Path(directory) / "skills"
             installed.mkdir()
             routing.install_catalog(installed, "ay-only")
-            self.assertTrue((installed / "ay-app-store" / "SKILL.md").is_file())
+            self.assertTrue((installed / "ay-store-screenshots" / "SKILL.md").is_file())
             self.assertFalse((installed / "ship-app-store").exists())
 
 

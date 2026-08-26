@@ -1,4 +1,0 @@
-interface:
-  display_name: "AY App Store Screenshots"
-  short_description: "Create truthful, reproducible App Store screenshots"
-  default_prompt: "Use $ay-app-store to turn exact shipped UI captures into a reproducible, validated App Store screenshot deck, then stop before upload."

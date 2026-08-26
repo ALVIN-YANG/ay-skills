@@ -34,7 +34,7 @@
     <g transform="translate(0 124)"><rect width="260" height="104" rx="16" fill="#161B22"/><rect width="5" height="104" rx="2.5" fill="#5DADE2"/><text x="24" y="40" class="skill">$ay-expert-lens</text><text x="24" y="69" class="label">Apply verified expert frames</text></g>
     <g transform="translate(280 124)"><rect width="260" height="104" rx="16" fill="#161B22"/><rect width="5" height="104" rx="2.5" fill="#F6A94A"/><text x="24" y="40" class="skill">$ay-write</text><text x="24" y="69" class="label">Clear, factual visual writing</text></g>
     <g transform="translate(560 124)"><rect width="260" height="104" rx="16" fill="#161B22"/><rect width="5" height="104" rx="2.5" fill="#FB7185"/><text x="24" y="40" class="skill">$ay-icon</text><text x="24" y="69" class="label">Store-ready launcher icons</text></g>
-    <g transform="translate(840 124)"><rect width="280" height="104" rx="16" fill="#161B22"/><rect width="5" height="104" rx="2.5" fill="#22C55E"/><text x="24" y="40" class="skill">$ay-app-store</text><text x="24" y="69" class="label">Truthful store screenshots</text></g>
+    <g transform="translate(840 124)"><rect width="280" height="104" rx="16" fill="#161B22"/><rect width="5" height="104" rx="2.5" fill="#22C55E"/><text x="24" y="40" class="skill">$ay-store-screenshots</text><text x="24" y="69" class="label">Truthful store screenshots</text></g>
   </g>
 
   <g transform="translate(40 755)">

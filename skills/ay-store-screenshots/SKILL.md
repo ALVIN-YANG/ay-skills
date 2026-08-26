@@ -1,9 +1,9 @@
 ---
-name: ay-app-store
+name: ay-store-screenshots
 description: Create and validate reproducible Apple App Store screenshot decks from exact shipped UI captures. Use when asked for App Store 宣传图, localized screenshot sets, device framing, marketing copy overlays, exact-size exports, or screenshot truth checks. Do not use for build upload, submission, review status, StoreKit or privacy setup, app icons, product UI design, or application implementation.
 ---
 
-# AY App Store Screenshots
+# AY Store Screenshots
 
 Turn current shipped UI into truthful, reproducible upload candidates. Stop before App Store Connect upload or other release work.
 

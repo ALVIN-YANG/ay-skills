@@ -148,7 +148,7 @@
   },
   {
     "id": "app-store-screenshot-handoff",
-    "skill": "ay-app-store",
+    "skill": "ay-store-screenshots",
     "prompt": "Create the approved representative Mac App Store screenshot and store-screenshots.md. The supplied raw-ui.ppm is a synthetic raster release-capture fixture and must remain a proportional exact app layer. Run the existing render_store.py without installing anything, inspect the final output, record release build 42, source, target, privacy, OCR/copy, Alpha, re-export, and upload boundaries, then stop before upload. The direction, copy, renderer, and file changes are approved.",
     "fixture": "store-screenshot",
     "files": {"release.txt": "App: NetScope\nRelease build: 42, tested and archived\nPlatform: macOS\nLocale: en-US\nApproved copy: See network quality\nRaw capture: raw-ui.ppm\nRenderer: render_store.py\nTarget: output/en-US/01-quality.png at 2880x1800\nThe fixture contains fictional data.\n"},

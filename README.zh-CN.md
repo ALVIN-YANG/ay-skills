@@ -34,13 +34,13 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 | [`ay-write`](skills/ay-write/SKILL.md) | 写文章、教程、长篇改稿或图文解释 | 写出自然、清楚、没有废话的长内容 |
 | [`ay-review`](skills/ay-review/SKILL.md) | 评审代码、分支、方案或发布准备度 | 默认只读，只报告重要且有证据的问题 |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | 设计或替换 App Store、Play 商店或启动器图标 | 先锁定隐喻和风格，再生成、检查并装进资源 |
-| [`ay-app-store`](skills/ay-app-store/SKILL.md) | 用当前发布构建的真实 UI 生成多语言 App Store 宣传图 | 保持应用界面原样、让整套图可以复现，并在交接前校验上传候选文件 |
+| [`ay-store-screenshots`](skills/ay-store-screenshots/SKILL.md) | 用当前发布构建的真实 UI 生成多语言 App Store 宣传图 | 保持应用界面原样、让整套图可以复现，并在交接前校验上传候选文件 |
 
 可以只装一个，也可以全部安装。它们彼此不依赖，不需要路由器，也不会把一个小改动变成一场规划会议。
 
-完整产品通常按 `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement` 交接，需要时用 `ay-review` 检查文档一致性或实现结果。有了可发布构建后，`ay-app-store` 可以先用真实 UI 生成可复现的宣传图，再进入提交。这只是建议顺序，不是强制流水线。技术可行性会阻塞 UI 时，架构可以提前；每个 Skill 也都能从已有输入单独工作。
+完整产品通常按 `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement` 交接，需要时用 `ay-review` 检查文档一致性或实现结果。有了可发布构建后，`ay-store-screenshots` 可以先用真实 UI 生成可复现的宣传图，再进入提交。这只是建议顺序，不是强制流水线。技术可行性会阻塞 UI 时，架构可以提前；每个 Skill 也都能从已有输入单独工作。
 
-0.9.0 把 `ay-app-store` 收窄成一件事：制作真实、可复现的 App Store 宣传图。它不再上传构建、提交审核、处理审核状态或修改应用代码，并新增一个原创、无第三方依赖的校验脚本，检查数量、编码、准确尺寸和 PNG 透明通道。
+0.10.0 把截图专用 Skill 改名为 `ay-store-screenshots`。它只制作真实、可复现的 App Store 宣传图，不会再吸引构建上传、提交审核、审核状态或应用开发任务。原创的无依赖校验脚本负责检查数量、编码、准确尺寸和 PNG 透明通道。
 
 ## 安装
 
@@ -126,7 +126,7 @@ AY Skills 可以和前端设计、PDF、表格、无障碍检查等专用 Skill 
 |---|---|
 | 明确要求用真实专家框架分析开放决策 | `ay-expert-lens`；具体产物和执行仍由领域 Skill 负责 |
 | 要求第一人称模拟专家或名人 | 专用人格或 Best Minds Skill；`ay-expert-lens` 不冒充本人 |
-| App Store 上传、提交、审核状态或拒审恢复 | 专用 App Store 发布 Skill；`ay-app-store` 在宣传图校验后停止 |
+| App Store 上传、提交、审核状态或拒审恢复 | 专用 App Store 发布 Skill；`ay-store-screenshots` 在宣传图校验后停止 |
 | Apple AppIcon、`.icns` 生成和安装 | 专用 Apple 图标资产 Skill；`ay-icon` 主导开放的隐喻与方向 |
 | 纯中文长文、自然语言改稿 | 专用中文写作 Skill；`ay-write` 主导调研、英文或图解型文章 |
 | 只问 Bug 为什么发生 | 专用诊断 Skill；需要完成修复时用 `ay-fix` |

@@ -12,7 +12,7 @@ import zlib
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location(
     "validate_store_screenshots",
-    ROOT / "skills" / "ay-app-store" / "scripts" / "validate_store_screenshots.py",
+    ROOT / "skills" / "ay-store-screenshots" / "scripts" / "validate_store_screenshots.py",
 )
 assert SPEC and SPEC.loader
 validator = importlib.util.module_from_spec(SPEC)
