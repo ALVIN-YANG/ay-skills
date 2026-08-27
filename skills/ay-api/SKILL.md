@@ -25,6 +25,8 @@ Turn user and domain actions into a stable contract without exposing storage acc
 
 Inspect available product requirements, UI states, architecture, consumers, existing conventions, and compatibility obligations. Preserve approved domain terms and state outcomes. Map each client action to a domain command, query, event, or stream. Do not begin by turning tables into CRUD endpoints.
 
+Use one canonical name for each domain concept across operations, events, and versions. Follow transport naming conventions, but do not create synonyms or reuse one name for different meanings. When an established boundary uses another name, record the explicit mapping and compatibility reason.
+
 Choose REST, GraphQL, gRPC, events, webhooks, or an internal interface from caller needs, ecosystem, latency, coupling, and evolution constraints. Preserve an established protocol unless evidence justifies change. Ask only about an undiscoverable decision that materially changes consumers or compatibility.
 
 Scale the handoff to the actual operations. Omit generic standards and patterns that cannot be traced to a supplied consumer, risk, or compatibility need.

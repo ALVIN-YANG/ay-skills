@@ -79,11 +79,12 @@
     "skill": "ay-api",
     "prompt": "Create a concise api.md for the supplied approved flows and architecture. Creating the contract is approved. Cover only these flows in at most 1400 words: consumer-oriented operations, authorization, validation, errors, idempotency, cursor pagination, conflict behavior, compatibility, and UI-state coverage. Do not research externally, mirror storage tables, or implement handlers.",
     "files": {
-      "flows.md": "An authenticated field technician lists assigned jobs, opens a job, submits one completion report with optional photos, retries safely after a timeout, and sees conflicts if a supervisor already closed it. The list needs stable cursor pagination.\n",
-      "architecture.md": "A modular monolith owns jobs and reports. Object storage owns photo bytes. The API is HTTPS JSON. Tenant identity comes from the verified access token.\n"
+      "flows.md": "An authenticated field technician lists assigned work orders, opens a work order, submits one completion report with optional photos, retries safely after a timeout, and sees conflicts if a supervisor already closed it. The approved concept name is WorkOrder; every API request field and event uses the exact field name workOrderId for its identifier. The list needs stable cursor pagination.\n",
+      "architecture.md": "A modular monolith owns work orders and completion reports. Object storage owns photo bytes. The API is HTTPS JSON. Tenant identity comes from the verified access token.\n"
     },
     "expected_created": {"api.md": 900},
-    "created_all": {"api.md": ["authorization", "idempotency", "cursor", "conflict", "compatibility"]},
+    "created_all": {"api.md": ["authorization", "idempotency", "cursor", "conflict", "compatibility", "workOrderId"]},
+    "created_none": {"api.md": ["jobId", "reportJobId"]},
     "final_any": ["api.md"]
   },
   {
@@ -95,7 +96,7 @@
     },
     "expected_created": {"ios-integration.md": 900},
     "created_all": {"ios-integration.md": ["1.4", "1.3", "POST /v1/reports", "Idempotency-Key", "workOrderId", "completedAt", "latitude", "longitude", "reportId", "ACCEPTED", "INVALID_GPS", "WORK_ORDER_CLOSED", "请求", "参数", "成功", "响应", "iOS"]},
-    "created_none": {"ios-integration.md": ["ReportRepository", "CompletionReportService", "outbox", "GET /v1/users", "POST /v1/admin/reports"]},
+    "created_none": {"ios-integration.md": ["ReportRepository", "CompletionReportService", "outbox", "GET /v1/users", "POST /v1/admin/reports", "jobId", "reportJobId"]},
     "unchanged_files": ["release-scope.md"],
     "final_any": ["ios-integration.md"]
   },
@@ -104,10 +105,11 @@
     "skill": "ay-database",
     "prompt": "Create a concise database.md for PostgreSQL 18 from the supplied invariants and access paths. Creating the schema design is approved. Use the installed PostgreSQL reference; do not research externally in this fixed synthetic case, and flag version-sensitive items for live documentation verification. In at most 1600 words include keys, constraints, justified indexes, transaction and concurrency behavior, tenant isolation, retention, and a safe migration and verification plan. Do not run DDL or write application code.",
     "files": {
-      "data-contract.md": "Each job belongs to one tenant and has a tenant-unique external reference. A completion report belongs to exactly one job and may be accepted only once. Retries carry an idempotency key unique per tenant for 30 days. Supervisors can close open jobs concurrently with technician submission, which must return a conflict rather than overwrite. Primary reads: paginated assigned open jobs ordered by due_at and lookup by tenant plus external reference. Reports are retained seven years.\n"
+      "data-contract.md": "The approved concept is WorkOrder. API requests and events call its identifier workOrderId. PostgreSQL uses snake_case, so named columns and foreign keys use work_order_id consistently. The WorkOrder table may retain the established table-local primary key id, but the database handoff must show its mapping to workOrderId. Each work order belongs to one tenant and has a tenant-unique external reference. A CompletionReport belongs to exactly one WorkOrder and may be accepted only once. Retries carry an idempotency key unique per tenant for 30 days. Supervisors can close open work orders concurrently with technician submission, which must return a conflict rather than overwrite. Primary reads: paginated assigned open work orders ordered by due_at and lookup by tenant plus external reference. Reports are retained seven years.\n"
     },
     "expected_created": {"database.md": 1000},
-    "created_all": {"database.md": ["constraint", "index", "transaction", "tenant", "retention", "migration"]},
+    "created_all": {"database.md": ["constraint", "index", "transaction", "tenant", "retention", "migration", "workOrderId", "work_order_id"]},
+    "created_none": {"database.md": ["job_id"]},
     "final_any": ["database.md", "postgresql"]
   },
   {

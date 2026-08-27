@@ -25,6 +25,8 @@ Design from invariants and access paths, then apply the actual engine's behavior
 
 Inspect available requirements, architecture, API, existing schema and migrations. Preserve approved domain terms and invariants. Identify the exact engine and version, deployment model, driver or ORM, migration tool, workload, access paths, consistency, retention, tenancy, scale, security, backup, and recovery constraints. Preserve an existing engine unless evidence justifies migration.
 
+Keep one semantic name per domain concept across related tables and handoffs. Storage casing or contextual forms may differ, such as `work_order_id` and `workOrderId`; document the mapping. Do not create synonyms or let one field name carry different meanings.
+
 If engine choice is genuinely open, compare the smallest credible options against workload and operations; do not pick by fashion. For PostgreSQL read [PostgreSQL](references/postgresql.md), for MySQL or MariaDB read [MySQL](references/mysql.md), and for SQLite read [SQLite](references/sqlite.md). For another engine, consult its current primary documentation before using engine-specific claims.
 
 ## Model invariants, then storage

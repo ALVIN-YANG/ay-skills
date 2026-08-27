@@ -41,6 +41,8 @@ Every documented HTTP operation requires:
 
 Tables cover only real fields and state name, location when relevant, type, requiredness, meaning, and constraints.
 
+Keep canonical concept and state names across operations and messages. Show verified source mappings; never silently rename or invent aliases.
+
 Every event or message requires direction, trigger, consumer-visible delivery behavior, a payload example, and a field table. Include reliability behavior only when contractual.
 
 Give a separate response or payload example for each special error requiring distinct handling. End with one error summary table containing every mentioned error's transport or HTTP status, stable code, condition, client action, and retry policy. Add no unsupported generic errors.
