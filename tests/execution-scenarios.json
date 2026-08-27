@@ -87,6 +87,19 @@
     "final_any": ["api.md"]
   },
   {
+    "id": "integration-ios-release-handoff",
+    "skill": "ay-integration-docs",
+    "prompt": "Use release-scope.md to create ios-integration.md in concise Chinese. Creating this handoff is approved. Document only the iOS-visible POST /v1/reports change for release 1.4 versus 1.3. Include the business condition, a concrete request example, request-parameter table, successful response example, response-field table, a separate example for each special error, client action, compatibility, and one complete error summary table. Do not research externally or include internal, admin, other-client, or unchanged interfaces.",
+    "files": {
+      "release-scope.md": "Consumer: iOS field app. Baseline: 1.3. Target: 1.4. Business behavior: an assigned technician submits one completion report for an open work order. Changed operation: POST /v1/reports. Required header: Idempotency-Key, string, unique per submission. Request JSON fields: workOrderId string required; completedAt RFC 3339 string required; latitude number required from -90 through 90; longitude number required from -180 through 180. Success: HTTP 201 with reportId string and status ACCEPTED. Special error: HTTP 422, code INVALID_GPS, when coordinates are outside the allowed range; show the coordinate error and do not retry unchanged input. Special error: HTTP 409, code WORK_ORDER_CLOSED, when a supervisor already closed the work order; preserve the draft, refresh the work order, and do not retry automatically. Compatibility: additive operation, iOS 1.3 remains supported; iOS 1.4 must add the submission flow. Internal detail to exclude: ReportRepository now writes through CompletionReportService and an outbox table. Unchanged and out of scope: GET /v1/users. Admin-only and out of scope: POST /v1/admin/reports.\n"
+    },
+    "expected_created": {"ios-integration.md": 900},
+    "created_all": {"ios-integration.md": ["1.4", "1.3", "POST /v1/reports", "Idempotency-Key", "workOrderId", "completedAt", "latitude", "longitude", "reportId", "ACCEPTED", "INVALID_GPS", "WORK_ORDER_CLOSED", "请求", "参数", "成功", "响应", "iOS"]},
+    "created_none": {"ios-integration.md": ["ReportRepository", "CompletionReportService", "outbox", "GET /v1/users", "POST /v1/admin/reports"]},
+    "unchanged_files": ["release-scope.md"],
+    "final_any": ["ios-integration.md"]
+  },
+  {
     "id": "database-postgresql-handoff",
     "skill": "ay-database",
     "prompt": "Create a concise database.md for PostgreSQL 18 from the supplied invariants and access paths. Creating the schema design is approved. Use the installed PostgreSQL reference; do not research externally in this fixed synthetic case, and flag version-sensitive items for live documentation verification. In at most 1600 words include keys, constraints, justified indexes, transaction and concurrency behavior, tenant isolation, retention, and a safe migration and verification plan. Do not run DDL or write application code.",

@@ -246,6 +246,18 @@ def verify_result(
             if missing:
                 errors.append(f"{path}: missed expected content terms: {missing}")
 
+    created_none = scenario.get("created_none", {})
+    if isinstance(created_none, dict):
+        for path, terms in created_none.items():
+            content = after.get(str(path))
+            if content is None:
+                errors.append(f"{path}: was not created for forbidden content checks")
+                continue
+            lowered = content.decode("utf-8", errors="replace").lower()
+            present = [str(term) for term in terms if str(term).lower() in lowered]
+            if present:
+                errors.append(f"{path}: included forbidden content terms: {present}")
+
     expected_png = scenario.get("expected_png", {})
     if isinstance(expected_png, dict):
         for path, expectation in expected_png.items():

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Integration Docs"
+  short_description: "Write focused client API and message handoffs"
+  default_prompt: "Use $ay-integration-docs to write a concise client-facing handoff for only the relevant API and message changes in this release."

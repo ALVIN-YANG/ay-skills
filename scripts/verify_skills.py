@@ -17,6 +17,7 @@ EXPECTED_SKILLS = (
     "ay-ui",
     "ay-architecture",
     "ay-api",
+    "ay-integration-docs",
     "ay-database",
     "ay-implement",
     "ay-fix",
@@ -325,6 +326,7 @@ def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
                 "final_regex",
                 "expected_png",
                 "expected_svg",
+                "created_none",
                 "verify_commands",
                 "reproduce",
             )
@@ -337,6 +339,13 @@ def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
             for path, terms in created_all.items():
                 if not isinstance(terms, list) or not terms:
                     errors.append(f"{scenario_id}: {path} needs created_all terms")
+        created_none = scenario.get("created_none", {})
+        if not isinstance(created_none, dict):
+            errors.append(f"{scenario_id}: created_none must be an object")
+        else:
+            for path, terms in created_none.items():
+                if not isinstance(terms, list) or not terms:
+                    errors.append(f"{scenario_id}: {path} needs created_none terms")
         for field in ("expected_png", "expected_svg"):
             value = scenario.get(field, {})
             if not isinstance(value, dict):

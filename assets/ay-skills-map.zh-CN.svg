@@ -1,6 +1,6 @@
-<svg width="100%" viewBox="0 0 1200 930" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title description">
+<svg width="100%" viewBox="0 0 1200 1052" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title description">
   <title id="title">AY Skills 从设想到验证交付</title>
-  <desc id="description">六个设计与交付 Skill 组成可选产品流程，八个专用 Skill 处理专家视角、排错、音频、优化、写作、评审、图标和 App Store 宣传图。</desc>
+  <desc id="description">七个设计与交付 Skill 组成可选产品流程，八个专用 Skill 处理专家视角、排错、音频、优化、写作、评审、图标和 App Store 宣传图。</desc>
   <style>
     text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
     .section { fill: #8B949E; font-size: 16px; font-weight: 700; letter-spacing: 1.5px; }
@@ -8,21 +8,22 @@
     .label { fill: #A7B0BA; font-size: 15px; font-weight: 500; }
     .step { font-size: 14px; font-weight: 800; }
   </style>
-  <rect x="1" y="1" width="1198" height="928" rx="24" fill="#0D1117" stroke="#30363D" stroke-width="2"/>
+  <rect x="1" y="1" width="1198" height="1050" rx="24" fill="#0D1117" stroke="#30363D" stroke-width="2"/>
   <text x="48" y="55" fill="#F0F6FC" font-size="30" font-weight="760">从设想到可验证交付</text>
   <text x="48" y="82" fill="#8B949E" font-size="17">可以单独用一个，也可以让确认过的决策沿完整流程交接。</text>
 
   <text x="48" y="125" class="section">产品工作流</text>
-  <rect x="40" y="145" width="1120" height="270" rx="18" fill="#161B22" stroke="#30363D"/>
+  <rect x="40" y="145" width="1120" height="392" rx="18" fill="#161B22" stroke="#30363D"/>
   <g transform="translate(60 169)"><rect width="346" height="100" rx="14" fill="#5DADE2" fill-opacity=".12" stroke="#5DADE2"/><circle cx="30" cy="31" r="16" fill="#5DADE2"/><text x="26" y="36" class="step" fill="#0D1117">1</text><text x="58" y="37" class="skill">$ay-product</text><text x="24" y="72" class="label">调查问题，完成产品定义与 PRD</text></g>
   <g transform="translate(427 169)"><rect width="346" height="100" rx="14" fill="#A78BFA" fill-opacity=".12" stroke="#A78BFA"/><circle cx="30" cy="31" r="16" fill="#A78BFA"/><text x="26" y="36" class="step" fill="#0D1117">2</text><text x="58" y="37" class="skill">$ay-ui</text><text x="24" y="72" class="label">逐页确认界面，沉淀 design.md</text></g>
   <g transform="translate(794 169)"><rect width="346" height="100" rx="14" fill="#F6A94A" fill-opacity=".12" stroke="#F6A94A"/><circle cx="30" cy="31" r="16" fill="#F6A94A"/><text x="26" y="36" class="step" fill="#0D1117">3</text><text x="58" y="37" class="skill">$ay-architecture</text><text x="24" y="72" class="label">确定系统边界、归属和部署</text></g>
   <g transform="translate(60 291)"><rect width="346" height="100" rx="14" fill="#30BFA5" fill-opacity=".12" stroke="#30BFA5"/><circle cx="30" cy="31" r="16" fill="#30BFA5"/><text x="26" y="36" class="step" fill="#0D1117">4</text><text x="58" y="37" class="skill">$ay-api</text><text x="24" y="72" class="label">从调用方任务推导服务契约</text></g>
   <g transform="translate(427 291)"><rect width="346" height="100" rx="14" fill="#38BDF8" fill-opacity=".12" stroke="#38BDF8"/><circle cx="30" cy="31" r="16" fill="#38BDF8"/><text x="26" y="36" class="step" fill="#0D1117">5</text><text x="58" y="37" class="skill">$ay-database</text><text x="24" y="72" class="label">按具体数据库引擎设计数据</text></g>
   <g transform="translate(794 291)"><rect width="346" height="100" rx="14" fill="#7C8CF8" fill-opacity=".13" stroke="#7C8CF8"/><circle cx="30" cy="31" r="16" fill="#7C8CF8"/><text x="26" y="36" class="step" fill="#0D1117">6</text><text x="58" y="37" class="skill">$ay-implement</text><text x="24" y="72" class="label">落地确认过的决策并完成验证</text></g>
+  <g transform="translate(427 413)"><rect width="346" height="100" rx="14" fill="#E879F9" fill-opacity=".12" stroke="#E879F9"/><circle cx="30" cy="31" r="16" fill="#E879F9"/><text x="26" y="36" class="step" fill="#0D1117">7</text><text x="58" y="37" class="skill">$ay-integration-docs</text><text x="24" y="72" class="label">只写当前客户端需要的联调文档</text></g>
 
-  <text x="48" y="459" class="section">专用 SKILL</text>
-  <g transform="translate(40 479)">
+  <text x="48" y="581" class="section">专用 SKILL</text>
+  <g transform="translate(40 601)">
     <g><rect width="260" height="104" rx="16" fill="#161B22"/><rect width="5" height="104" rx="2.5" fill="#F26D78"/><text x="24" y="40" class="skill">$ay-fix</text><text x="24" y="69" class="label">先证根因，再修复</text></g>
     <g transform="translate(280 0)"><rect width="260" height="104" rx="16" fill="#161B22"/><rect width="5" height="104" rx="2.5" fill="#38BDF8"/><text x="24" y="40" class="skill">$ay-audio</text><text x="24" y="69" class="label">从语音字节追到听感</text></g>
     <g transform="translate(560 0)"><rect width="260" height="104" rx="16" fill="#161B22"/><rect width="5" height="104" rx="2.5" fill="#30BFA5"/><text x="24" y="40" class="skill">$ay-improve</text><text x="24" y="69" class="label">优化前后都要测</text></g>
@@ -33,7 +34,7 @@
     <g transform="translate(840 124)"><rect width="280" height="104" rx="16" fill="#161B22"/><rect width="5" height="104" rx="2.5" fill="#22C55E"/><text x="24" y="40" class="skill">$ay-store-screenshots</text><text x="24" y="69" class="label">真实、可复现的宣传图</text></g>
   </g>
 
-  <g transform="translate(40 755)">
+  <g transform="translate(40 877)">
     <rect width="1120" height="126" rx="18" fill="#111820" stroke="#30363D"/>
     <text x="24" y="42" fill="#F0F6FC" font-size="19" font-weight="720">所有 Skill 共用同一份批准契约</text>
     <text x="24" y="75" fill="#A7B0BA" font-size="16">任务说清楚就直接做，遇到重大选择才停一次等确认。</text>

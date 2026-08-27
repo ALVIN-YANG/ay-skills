@@ -77,6 +77,15 @@ class BehaviorEvalTests(unittest.TestCase):
         )
         self.assertTrue(any("idempotency" in error for error in errors))
 
+    def test_verify_result_rejects_forbidden_created_content(self) -> None:
+        errors = behavior.verify_result(
+            {"created_none": {"ios-api.md": ["ReportRepository", "/v1/admin"]}},
+            {},
+            {"ios-api.md": b"POST /v1/reports\nInternal: ReportRepository"},
+            "Created ios-api.md",
+        )
+        self.assertTrue(any("ReportRepository" in error for error in errors))
+
     def test_verify_result_checks_required_and_forbidden_terms(self) -> None:
         errors = behavior.verify_result(
             {

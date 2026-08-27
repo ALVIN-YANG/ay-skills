@@ -54,5 +54,9 @@
   {
     "name": "best-minds",
     "description": "Choose the person who understands a problem best and simulate that person. Use when the requested deliverable is first-person expert role-play, not verified framework analysis."
+  },
+  {
+    "name": "api-reference-docs",
+    "description": "Generate comprehensive public API reference documentation from an OpenAPI specification. Use when every operation in a public API should appear in a complete reference portal."
   }
 ]

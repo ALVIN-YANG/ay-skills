@@ -14,7 +14,7 @@ AY Skills started with the things that kept bothering me when I worked with AI: 
 So I turned them into standalone skills. A clear request gets done. If a real product or technical choice is still open, the agent investigates, asks once, and continues inside the boundary you approved.
 
 <p align="center">
-  <img src="assets/ay-skills-map.svg" alt="Choose among fourteen AY Skills covering expert lenses, product, UI, architecture, API, database, implementation, debugging, audio, improvement, writing, review, icons, and App Store screenshots." width="100%">
+  <img src="assets/ay-skills-map.svg" alt="Choose among fifteen AY Skills covering expert lenses, product, UI, architecture, API, client integration docs, database, implementation, debugging, audio, improvement, writing, review, icons, and App Store screenshots." width="100%">
 </p>
 
 ## Skills
@@ -26,6 +26,7 @@ So I turned them into standalone skills. A clear request gets done. If a real pr
 | [`ay-ui`](skills/ay-ui/SKILL.md) | Choosing visual direction, designing screens, or preparing a UI handoff | Locks one visual contract, iterates through visible screens, and records approved decisions |
 | [`ay-architecture`](skills/ay-architecture/SKILL.md) | Designing a new system or subsystem before code | Defines the simplest viable boundaries, ownership, deployment, failure, and evolution model |
 | [`ay-api`](skills/ay-api/SKILL.md) | Designing REST, GraphQL, gRPC, service, event, or webhook contracts | Derives stable consumer-facing behavior without mirroring storage tables |
+| [`ay-integration-docs`](skills/ay-integration-docs/SKILL.md) | Handing approved or implemented API and message changes to a specific client team | Writes only relevant consumer-visible behavior, examples, fields, errors, compatibility, and client action |
 | [`ay-database`](skills/ay-database/SKILL.md) | Choosing a database or designing schemas, indexes, transactions, and migrations | Starts from invariants and access paths, then applies the exact engine's behavior |
 | [`ay-implement`](skills/ay-implement/SKILL.md) | Implementing an approved feature, design, or general code change | Preserves settled decisions, makes the smallest complete change, and verifies the result |
 | [`ay-fix`](skills/ay-fix/SKILL.md) | Debugging a bug, regression, crash, flaky test, or slowdown | Confirms the cause before making the smallest useful repair |
@@ -38,9 +39,9 @@ So I turned them into standalone skills. A clear request gets done. If a real pr
 
 Install one or all of them. They do not depend on a router or on each other, and a small change does not have to become a planning exercise.
 
-For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement`, with `ay-review` checking consistency or implementation when useful. Once a release build exists, `ay-store-screenshots` can turn its real UI into reproducible store screenshots before submission. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
+For a full product, the usual handoff is `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement → ay-integration-docs`, with `ay-review` checking consistency or implementation when useful. The final documentation step is needed only when another client team consumes the changed contract. Once a release build exists, `ay-store-screenshots` can turn its real UI into reproducible store screenshots before submission. This is guidance, not a required pipeline: architecture can move earlier when technical feasibility blocks UI, and any skill can run alone from existing approved inputs.
 
-0.10.0 renames the screenshot-only skill to `ay-store-screenshots`. It creates truthful, reproducible App Store screenshots and no longer attracts build uploads, release submission, review state, or application development. Its original dependency-free validator checks count, encoding, exact dimensions, and PNG transparency.
+0.11.0 adds `ay-integration-docs` for client-specific API, event, and message handoffs. It filters by consumer and release, requires usable request and response examples plus field tables for every documented interface, shows special-error examples, and closes with one complete error summary. Unchanged interfaces and internal implementation stay out.
 
 ## Install
 
@@ -60,10 +61,10 @@ npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture a
 Install the full-stack delivery set:
 
 ```bash
-npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-api ay-database ay-implement ay-review -a codex claude-code -g -y
+npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-api ay-database ay-implement ay-integration-docs ay-review -a codex claude-code -g -y
 ```
 
-Install all fourteen only when that is what you want:
+Install all fifteen only when that is what you want:
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y
@@ -91,6 +92,7 @@ Research this idea and define a focused, testable MVP.
 Choose the real expert whose documented framework best fits this open decision, then apply it.
 Design the approved product screens one at a time, then prepare design.md.
 Design the system architecture, API contract, and database schema before code.
+Write the iOS integration document for only the API and message changes in this release.
 Add an export flow to this app.
 Diagnose and fix this intermittent test.
 Diagnose why this macOS streaming TTS crackles and fix the proven audio boundary.
@@ -126,6 +128,8 @@ Choose the primary skill from the deliverable when responsibilities overlap:
 |---|---|
 | Open-ended decision explicitly asking for a real expert framework | `ay-expert-lens`; a domain skill still owns any concrete artifact or execution |
 | First-person expert or celebrity simulation | A dedicated persona or Best Minds skill; `ay-expert-lens` does not impersonate the person |
+| Designing a new API, event, or message contract | `ay-api`; `ay-integration-docs` documents an already approved or implemented contract for its consumer |
+| Exhaustive public API reference from OpenAPI | A dedicated API reference generator; `ay-integration-docs` deliberately filters by client and release scope |
 | App Store upload, submission, review state, or rejection recovery | A dedicated App Store release skill; `ay-store-screenshots` stops after screenshot validation |
 | Apple AppIcon or `.icns` production and installation | A dedicated Apple icon asset skill; `ay-icon` leads an open metaphor and direction |
 | Prose-only natural Chinese long-form writing | A dedicated Chinese writing skill; `ay-write` leads research, English, or illustrated articles |
@@ -163,7 +167,7 @@ It only asks when style or editability would change the result, or when a new to
 
 ## Small by design
 
-Fourteen skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
+Fifteen skills. No router, modes, hooks, telemetry, statusline, automatic commits, or mandatory planning files. Each skill has one job and can be installed on its own.
 
 AY Skills follows the [Agent Skills specification](https://agentskills.io/specification). Portable installation, live Codex and Claude routing, the native Claude Code plugin, CI, release contents, and remote installation are separate verification layers; support is claimed only for layers actually checked before a release. The Codex manifest targets local marketplace testing and future directory submission, not a currently public Codex plugin listing.
 
@@ -199,6 +203,8 @@ AY Skills is original work informed by [Superpowers](https://github.com/obra/sup
 The store screenshot workflow is additionally informed by MIT-licensed [app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots), [Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio), [ai-appshots](https://github.com/thiagoperes/ai-appshots), and [fastlane](https://github.com/fastlane/fastlane): keep one reproducible deck state, organize exports by locale and device, preserve the shipped UI, and fail invalid files before upload. AY uses original instructions and validator code rather than copying their text, templates, or runtime code.
 
 The question-relative expert selection in `ay-expert-lens` was prompted by [Best Minds](https://github.com/Agentchengfeng/best-minds) (MIT). AY uses an original, narrower workflow: apply verifiable published frameworks, distinguish source from inference, and never impersonate the person or invent what they would say.
+
+The client-impact boundary in `ay-integration-docs` is informed by Apache-2.0 [oasdiff](https://github.com/oasdiff/oasdiff) and the API documentation work in MIT-licensed [wshobson/agents](https://github.com/wshobson/agents) and [awesome-copilot](https://github.com/github/awesome-copilot). AY uses original instructions and adds the narrower consumer-and-release filter, observable business semantics, required examples and field tables, and explicit exclusion of internal or unchanged behavior.
 
 ## License
 

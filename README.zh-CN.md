@@ -14,7 +14,7 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 所以我把它们做成了可以单独安装的 Skill。任务说清楚了就直接做；还有产品或技术上的关键选择，就先调查、问一次，然后在你确认的范围内完成。
 
 <p align="center">
-  <img src="assets/ay-skills-map.zh-CN.svg" alt="十四个 AY Skill 覆盖专家视角、产品、UI、架构、API、数据库、实现、排错、音频、优化、写作、评审、图标和 App Store 宣传图。" width="100%">
+  <img src="assets/ay-skills-map.zh-CN.svg" alt="十五个 AY Skill 覆盖专家视角、产品、UI、架构、API、客户端联调文档、数据库、实现、排错、音频、优化、写作、评审、图标和 App Store 宣传图。" width="100%">
 </p>
 
 ## Skill
@@ -26,6 +26,7 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 | [`ay-ui`](skills/ay-ui/SKILL.md) | 确定视觉方向、逐页设计产品界面或整理 UI 交接 | 锁定一套视觉契约，用可见页面迭代，只记录确认过的设计 |
 | [`ay-architecture`](skills/ay-architecture/SKILL.md) | 写代码前设计新系统或子系统 | 定义最简单可行的边界、数据归属、部署、故障隔离和演进方式 |
 | [`ay-api`](skills/ay-api/SKILL.md) | 设计 REST、GraphQL、gRPC、服务、事件或 Webhook 契约 | 从调用方任务推导稳定接口，不把数据库表直接翻译成 CRUD |
+| [`ay-integration-docs`](skills/ay-integration-docs/SKILL.md) | 把确认或实现过的接口与消息变化交接给指定客户端 | 只写相关的可见行为、示例、字段、异常、兼容性和客户端动作 |
 | [`ay-database`](skills/ay-database/SKILL.md) | 选择数据库，或设计表、索引、事务和迁移 | 从业务约束与访问路径出发，再应用具体数据库引擎的规则 |
 | [`ay-implement`](skills/ay-implement/SKILL.md) | 落地已经确认的功能、设计或普通代码变更 | 保留已确认决策，完成最小闭环，并验证真实结果 |
 | [`ay-fix`](skills/ay-fix/SKILL.md) | 排查 Bug、回归、崩溃、偶发失败或异常变慢 | 先确认根因，再做最小有效修复 |
@@ -38,9 +39,9 @@ AY Skills 来自我每天和 AI 一起做事时反复遇到的烦心事：产品
 
 可以只装一个，也可以全部安装。它们彼此不依赖，不需要路由器，也不会把一个小改动变成一场规划会议。
 
-完整产品通常按 `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement` 交接，需要时用 `ay-review` 检查文档一致性或实现结果。有了可发布构建后，`ay-store-screenshots` 可以先用真实 UI 生成可复现的宣传图，再进入提交。这只是建议顺序，不是强制流水线。技术可行性会阻塞 UI 时，架构可以提前；每个 Skill 也都能从已有输入单独工作。
+完整产品通常按 `ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement → ay-integration-docs` 交接，需要时用 `ay-review` 检查文档一致性或实现结果。只有存在另一个消费端团队时，才需要最后的联调文档。有了可发布构建后，`ay-store-screenshots` 可以先用真实 UI 生成可复现的宣传图，再进入提交。这只是建议顺序，不是强制流水线。技术可行性会阻塞 UI 时，架构可以提前；每个 Skill 也都能从已有输入单独工作。
 
-0.10.0 把截图专用 Skill 改名为 `ay-store-screenshots`。它只制作真实、可复现的 App Store 宣传图，不会再吸引构建上传、提交审核、审核状态或应用开发任务。原创的无依赖校验脚本负责检查数量、编码、准确尺寸和 PNG 透明通道。
+0.11.0 新增 `ay-integration-docs`，专门给指定客户端写接口、事件和消息交接文档。它按消费端和版本范围过滤内容，要求每个接口都有可用的请求与响应示例和字段表，特殊异常单独给示例，全文最后归总异常。未改接口和内部实现不会混进来。
 
 ## 安装
 
@@ -60,10 +61,10 @@ npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture a
 全栈交付组合：
 
 ```bash
-npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-api ay-database ay-implement ay-review -a codex claude-code -g -y
+npx skills@latest add ALVIN-YANG/ay-skills -s ay-product ay-ui ay-architecture ay-api ay-database ay-implement ay-integration-docs ay-review -a codex claude-code -g -y
 ```
 
-确定需要全部十四个时：
+确定需要全部十五个时：
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y
@@ -92,6 +93,7 @@ npx skills@latest remove ay-audio -g
 找出最适合这个开放决策的真实专家框架，核验后应用到当前问题。
 把确认过的产品逐页做成设计图，再整理 design.md。
 写代码前先完成系统架构、接口和数据库设计。
+根据本期后端改动，只给 iOS 写它需要的接口和消息联调文档。
 诊断并修复这个偶发测试。
 排查这个 macOS 流式 TTS 为什么噼啪响，并修复已确认的音频边界。
 从真实基线出发简化这个模块。
@@ -126,6 +128,8 @@ AY Skills 可以和前端设计、PDF、表格、无障碍检查等专用 Skill 
 |---|---|
 | 明确要求用真实专家框架分析开放决策 | `ay-expert-lens`；具体产物和执行仍由领域 Skill 负责 |
 | 要求第一人称模拟专家或名人 | 专用人格或 Best Minds Skill；`ay-expert-lens` 不冒充本人 |
+| 设计新的 API、事件或消息契约 | `ay-api`；`ay-integration-docs` 只把已确认或已实现的契约交接给消费端 |
+| 根据 OpenAPI 生成全量公共接口参考 | 专用 API 文档生成工具；`ay-integration-docs` 会按客户端和版本范围主动过滤 |
 | App Store 上传、提交、审核状态或拒审恢复 | 专用 App Store 发布 Skill；`ay-store-screenshots` 在宣传图校验后停止 |
 | Apple AppIcon、`.icns` 生成和安装 | 专用 Apple 图标资产 Skill；`ay-icon` 主导开放的隐喻与方向 |
 | 纯中文长文、自然语言改稿 | 专用中文写作 Skill；`ay-write` 主导调研、英文或图解型文章 |
@@ -163,7 +167,7 @@ AY Skills 可以和前端设计、PDF、表格、无障碍检查等专用 Skill 
 
 ## 保持小而清楚
 
-十四个 Skill。没有路由器、模式标签、hooks、遥测、状态栏、自动提交或强制规划文件。每个 Skill 各做一件事，也能单独安装。
+十五个 Skill。没有路由器、模式标签、hooks、遥测、状态栏、自动提交或强制规划文件。每个 Skill 各做一件事，也能单独安装。
 
 AY Skills 遵循 [Agent Skills 规范](https://agentskills.io/specification)。便携安装、Codex 与 Claude 的实时路由、Claude Code 原生插件、CI、发布包和远程安装是彼此独立的验证层；每次发布只声明实际检查过的层级。Codex 插件清单面向本地市场测试和以后提交公共目录，目前不声称已公开上架。
 
@@ -199,6 +203,8 @@ AY Skills 是原创项目，参考了 [Superpowers](https://github.com/obra/supe
 宣传图流程还参考了采用 MIT 许可的 [app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots)、[Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio)、[ai-appshots](https://github.com/thiagoperes/ai-appshots) 和 [fastlane](https://github.com/fastlane/fastlane)：保存唯一可复现的 deck 状态，按语言与设备整理导出，保留真实 UI，并在上传前让错误文件直接失败。项目使用原创说明和校验代码，没有复制它们的文本、模板或运行时代码。
 
 `ay-expert-lens` 中“按问题选专家”的启发来自 MIT 许可的 [Best Minds](https://github.com/Agentchengfeng/best-minds)。AY 重新设计了更窄的原创流程：应用可核验的公开框架，区分来源与推演，不冒充本人，也不编造对方“会怎么说”。
+
+`ay-integration-docs` 的客户端影响边界参考了采用 Apache-2.0 许可的 [oasdiff](https://github.com/oasdiff/oasdiff)，以及 MIT 许可的 [wshobson/agents](https://github.com/wshobson/agents) 和 [awesome-copilot](https://github.com/github/awesome-copilot) 中的 API 文档做法。AY 使用原创说明，增加了更窄的消费端与版本过滤、可观察业务语义、必需示例与字段表，并明确排除内部实现和未改行为。
 
 ## 许可证
 

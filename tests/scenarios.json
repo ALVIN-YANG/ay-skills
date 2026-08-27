@@ -27,6 +27,12 @@
   {"id":"api-webhook","prompt":"Design a signed webhook contract with delivery semantics, replay protection, retry behavior, ordering expectations, and deprecation policy.","expected_skill":"ay-api"},
   {"id":"api-openapi","prompt":"Create api.md and an OpenAPI contract from the approved product, UI, and architecture artifacts. Stop before implementation and table design.","expected_skill":"ay-api"},
 
+  {"id":"integration-ios-release","prompt":"根据后端 1.4 相对 1.3 的已实现改动，给 iOS 写一份本期接口变更 Markdown。只写 iOS 会调用的改动接口、业务条件、请求响应示例、字段表和异常处理，不要写服务端内部实现或未改接口。","expected_skill":"ay-integration-docs"},
+  {"id":"integration-android-handoff","prompt":"Turn this approved controller diff and tests into a concise Android integration handoff. Include only consumer-visible operations in this release, with request and response examples, parameter tables, special error examples, and one error summary table.","expected_skill":"ay-integration-docs"},
+  {"id":"integration-device-message","prompt":"把本期新增的 MQTT 指令和设备上报消息整理成给固件端的联调文档，只解释触发条件、payload、字段、确认与重试行为，不要写 broker 拓扑和服务端处理类。","expected_skill":"ay-integration-docs"},
+  {"id":"integration-no-visible-change","prompt":"Compare the approved release scope with the previous client contract and report whether the desktop client has any visible API or message change. Do not pad the answer with unchanged interfaces.","expected_skill":"ay-integration-docs"},
+  {"id":"integration-client-upgrade","prompt":"Write the web client's upgrade note for only the changed GraphQL query and subscription in this release, including concrete payloads, field meaning, compatibility, and client action.","expected_skill":"ay-integration-docs"},
+
   {"id":"database-postgresql","prompt":"Design a PostgreSQL 18 schema from these invariants and access paths, including constraints, indexes, transactions, tenancy, and an online migration plan.","expected_skill":"ay-database"},
   {"id":"database-mysql","prompt":"Design the physical schema for MySQL 8.4 InnoDB and account for clustered primary keys, secondary indexes, locking, and online DDL.","expected_skill":"ay-database"},
   {"id":"database-sqlite","prompt":"Design the SQLite data model and migrations for this offline macOS app, including foreign-key setup, WAL concurrency, busy handling, and integrity checks.","expected_skill":"ay-database"},
@@ -99,6 +105,7 @@
   {"id":"specialist-module-seam","prompt":"Find the right deep-module seam for this existing parser and redesign its public interface so callers do not depend on implementation details.","expected_skill":"codebase-design"},
   {"id":"specialist-domain-language","prompt":"Define the ubiquitous language, entities, value objects, and invariants for this booking domain before we discuss storage.","expected_skill":"domain-modeling"},
   {"id":"specialist-human-writing","prompt":"把这些采访材料写成一篇有自然中文节奏的长篇技术博客，不要配图，也不要写成机构宣传稿。","expected_skill":"human-writing"},
+  {"id":"specialist-api-reference","prompt":"Render this complete OpenAPI specification into a public developer reference that includes every operation and shared schema, not a release-specific client handoff.","expected_skill":"api-reference-docs"},
   {"id":"specialist-best-minds-roleplay","prompt":"Use best minds to choose the world's strongest expert for this question, then role-play that person speaking in the first person. I want persona simulation, not sourced framework analysis.","expected_skill":"best-minds"},
   {"id":"expert-lens-generic-brainstorm","prompt":"Brainstorm possible features for this grocery-sharing idea, then narrow them into a focused, testable MVP without invoking celebrity perspectives.","expected_skill":"ay-product"},
   {"id":"expert-lens-style-imitation","prompt":"Write one short product-launch slogan in Steve Jobs's voice. I only want style imitation, not analysis or an expert framework.","expected_skill":"best-minds"},
