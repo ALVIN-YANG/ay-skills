@@ -29,7 +29,17 @@ Do not treat aesthetics, file size alone, or a new abstraction as evidence. If n
 
 ## Propose the smallest leverage
 
-Trace every proposed file, dependency, abstraction, and public behavior to the measured constraint. Recommend the smallest option that materially improves it. Include:
+After understanding the affected flow, compare solutions in this order:
+
+1. no change or deletion
+2. reuse code or configuration already present
+3. use the language standard library or native platform
+4. use an installed dependency
+5. add the smallest new code or dependency
+
+Stop at the first option that fully satisfies the approved behavior. This guides design; it is not code golf. Do not sacrifice stable module boundaries, readability, trust-boundary validation, data-loss protection, security, accessibility, or explicit requirements.
+
+Trace the chosen files, dependencies, abstractions, and behavior to the demonstrated constraint. Include:
 
 - baseline and evidence
 - intended improvement and success measure
@@ -37,10 +47,12 @@ Trace every proposed file, dependency, abstraction, and public behavior to the m
 - scope, risk, and relevant alternative
 - verification method
 
+For a deliberately limited solution, name its capability ceiling and observable upgrade trigger in an existing proposal or handoff. Do not create a comment or artifact only for this record.
+
 Wait for approval before restructuring unless the user's instruction already specifies the exact transformation.
 
 ## Implement and compare
 
 Preserve behavior unless the approved proposal says otherwise. Prefer a deep, stable interface over layers of helpers. Avoid speculative extensibility, unrelated cleanup, and dependencies whose cost exceeds the improvement. Use the existing architecture as evidence; changing the system shape needs the same proposal boundary as any other material change.
 
-Verify the success measure and neighboring behavior. Distinguish measured gains from reasoned expectations. Review the final diff for scope traceability, then report the before/after evidence and remaining tradeoffs.
+Verify the success measure and neighboring behavior. Less code or fewer dependencies help only when behavior, safeguards, and checks remain intact. Separate measured gains from expectations; do not claim saved lines, cost, or time without a comparable baseline. Review scope traceability, then report before/after evidence and remaining tradeoffs.

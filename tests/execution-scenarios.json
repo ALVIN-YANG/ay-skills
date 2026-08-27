@@ -138,6 +138,20 @@
     "final_any": ["baseline", "constraint", "no change"]
   },
   {
+    "id": "improve-minimal-solution",
+    "skill": "ay-improve",
+    "prompt": "Simplify formatter.py without changing format_name's public signature or behavior. This refactor is approved. Prefer existing Python capabilities, modify only formatter.py, run the supplied test, and do not add dependencies or files.",
+    "files": {
+      "formatter.py": "class NameFormatter:\n    def __init__(self, separator=\" \"):\n        self.separator = separator\n\n    def format(self, first, last):\n        return self.separator.join((first, last))\n\ndef format_name(first, last):\n    return NameFormatter().format(first, last)\n",
+      "test_formatter.py": "import unittest\n\nfrom formatter import format_name\n\n\nclass FormatNameTests(unittest.TestCase):\n    def test_formats_name(self):\n        self.assertEqual(format_name(\"Ada\", \"Lovelace\"), \"Ada Lovelace\")\n\n    def test_rejects_non_string_parts(self):\n        with self.assertRaises(TypeError):\n            format_name(\"Ada\", None)\n\n\nif __name__ == \"__main__\":\n    unittest.main()\n"
+    },
+    "expected_files": {"formatter.py": "def format_name(first, last):\n    return \" \".join((first, last))\n"},
+    "allow_extra_changes": false,
+    "unchanged_files": ["test_formatter.py"],
+    "verify_commands": [["python3", "-m", "unittest", "-v", "test_formatter.py"]],
+    "final_any": ["test", "passed"]
+  },
+  {
     "id": "write-approved-draft",
     "skill": "ay-write",
     "prompt": "Turn notes.md into a complete 120 to 200 word article in article.md. The notes and direction are approved, so skip the outline checkpoint. Do not invent personal experience.",

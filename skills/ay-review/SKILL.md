@@ -39,6 +39,8 @@ Check:
 
 Every finding must have an exact location or artifact, a triggering state, a real impact, and evidence that existing guards do not prevent it. Read upstream callers and downstream consumers before reporting. Drop vague concerns and style preferences that do not affect the contract.
 
+When the request specifically asks about simplification or over-engineering, add a complexity lens after correctness and risk. Check whether the same approved behavior can be delivered by deletion, existing code, the standard library or native platform, an installed dependency, a narrower interface, or removal of speculative flexibility. Report only a concrete replacement at an exact location and state how behavior would be preserved. Do not use line count as severity, estimate hypothetical savings, or let minimality override safeguards and explicit requirements.
+
 ## Report
 
 Lead with findings ordered by severity. Keep ranges tight and separate blockers from advisory improvements. Then state assumptions and unverified proof surfaces. Zero findings is valid.
