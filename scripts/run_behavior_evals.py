@@ -214,10 +214,6 @@ def verify_result(
         for path, expected in expected_files.items():
             if after.get(str(path)) != str(expected).encode("utf-8"):
                 errors.append(f"{path}: content did not match")
-        if expected_files and not scenario.get("allow_extra_changes", True):
-            extras = changes - {str(path) for path in expected_files}
-            if extras:
-                errors.append(f"extra changes: {', '.join(sorted(extras))}")
 
     unchanged_files = scenario.get("unchanged_files", [])
     if isinstance(unchanged_files, list):
@@ -303,6 +299,22 @@ def verify_result(
                 missing = [str(term) for term in expectation.get("contains", []) if str(term).lower() not in lowered]
                 if missing:
                     errors.append(f"{path}: missed visible terms: {missing}")
+
+    if scenario.get("allow_extra_changes") is False:
+        allowed_changes: set[str] = set()
+        for assertions in (
+            expected_files,
+            expected_created,
+            created_all,
+            created_none,
+            expected_png,
+            expected_svg,
+        ):
+            if isinstance(assertions, dict):
+                allowed_changes.update(str(path) for path in assertions)
+        extras = changes - allowed_changes
+        if extras:
+            errors.append(f"extra changes: {', '.join(sorted(extras))}")
 
     final_any = scenario.get("final_any", [])
     if isinstance(final_any, list) and final_any:

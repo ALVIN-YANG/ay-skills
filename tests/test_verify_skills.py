@@ -88,6 +88,17 @@ class VerifySkillsTests(unittest.TestCase):
             errors = verify_skills.validate(checkout)
             self.assertTrue(any("missing observable assertion" in error for error in errors))
 
+    def test_execution_case_rejects_non_boolean_extra_change_flag(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            checkout = Path(directory) / "checkout"
+            shutil.copytree(ROOT, checkout, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            scenarios = checkout / "tests" / "execution-scenarios.json"
+            data = json.loads(scenarios.read_text(encoding="utf-8"))
+            data[0]["allow_extra_changes"] = "false"
+            scenarios.write_text(json.dumps(data), encoding="utf-8")
+            errors = verify_skills.validate(checkout)
+            self.assertTrue(any("allow_extra_changes must be a boolean" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

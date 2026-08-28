@@ -31,9 +31,11 @@ If implementation would require inventing material product behavior, system shap
 
 ## Implement coherently
 
-Follow repository conventions and make the smallest complete change that satisfies the approved contract. Preserve behavior outside that boundary. Keep code, configuration, tests, generated artifacts, and migrations consistent where the change crosses them.
+Make the smallest complete change within repository conventions. Preserve behavior outside the approved boundary. Keep tests, configuration, generated artifacts, and migrations coherent.
 
-Create specs, tickets, scratch files, or abstractions only when requested, required by the repository, or necessary for a durable handoff. Do not add speculative layers or translate every upstream artifact mechanically into code.
+Organize code around cohesive responsibilities. Keep a function at one abstraction level and a file or package centered on a recognizable domain capability. Split mixed change reasons, lifecycles, dependencies, or side effects; keep code together when separation creates pass-through files or one-use interfaces. Avoid generic `util`, `common`, `helpers`, or `types` dumping grounds. Keep public surfaces small and names consistent with approved domain terms.
+
+Add artifacts, abstractions, or dependencies only when requested, repository-required, or needed. Do not translate every upstream artifact mechanically.
 
 If new evidence triggers the approval contract, stop at a safe point, show how it changes the agreed result, and recommend the next decision. Otherwise continue without another checkpoint.
 

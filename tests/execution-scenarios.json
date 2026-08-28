@@ -51,6 +51,53 @@
     "final_any": ["offline", "approval", "approve"]
   },
   {
+    "id": "implement-cohesive-layout",
+    "skill": "ay-implement",
+    "prompt": "Implement the approved batch order intake under a new orders package. Follow the neighboring inventory package's responsibility boundaries. Parse CSV columns sku, quantity, and unit_price; reject a blank sku, nonpositive quantity, or negative price; calculate Decimal totals; save accepted lines through an in-memory repository; return the accepted count and total. The public behavior is fixed by the supplied tests. Code changes are approved. Use only the standard library, run the tests, and do not modify inventory or tests.",
+    "fixture": "implement-structure",
+    "files": {},
+    "expected_created": {
+      "orders/__init__.py": 80,
+      "orders/domain.py": 180,
+      "orders/parsing.py": 300,
+      "orders/repository.py": 220,
+      "orders/service.py": 220
+    },
+    "created_all": {
+      "orders/__init__.py": ["InMemoryOrderRepository", "import_orders"],
+      "orders/domain.py": ["OrderLine", "ImportResult", "Decimal"],
+      "orders/parsing.py": ["csv", "unit_price", "ValueError"],
+      "orders/repository.py": ["InMemoryOrderRepository", "save", "all"],
+      "orders/service.py": ["import_orders", "accepted_count", "total"]
+    },
+    "allow_extra_changes": false,
+    "unchanged_files": [
+      "inventory/__init__.py",
+      "inventory/domain.py",
+      "inventory/parsing.py",
+      "inventory/repository.py",
+      "inventory/service.py",
+      "tests/test_orders.py"
+    ],
+    "verify_commands": [["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]],
+    "final_any": ["test", "passed"]
+  },
+  {
+    "id": "implement-no-fragmentation",
+    "skill": "ay-implement",
+    "prompt": "Add normalize_tag to the existing tags.py module. It must trim surrounding whitespace, lowercase the text, collapse internal whitespace, and join the words with hyphens. Preserve tags_for_display and the existing single-module structure. This exact behavior change is approved. Use only the standard library, run the supplied tests, and do not modify the tests.",
+    "files": {
+      "tags.py": "def tags_for_display(tags):\n    return \", \".join(tags)\n",
+      "test_tags.py": "import unittest\n\nfrom tags import normalize_tag, tags_for_display\n\n\nclass TagTests(unittest.TestCase):\n    def test_formats_tags_for_display(self):\n        self.assertEqual(tags_for_display([\"news\", \"local\"]), \"news, local\")\n\n    def test_normalizes_tag(self):\n        self.assertEqual(normalize_tag(\"  Field   Service \"), \"field-service\")\n        self.assertEqual(normalize_tag(\"   \"), \"\")\n\n\nif __name__ == \"__main__\":\n    unittest.main()\n"
+    },
+    "created_all": {"tags.py": ["def normalize_tag", "split", "join"]},
+    "created_none": {"tags.py": ["class TagNormalizer", "Protocol", "ABC"]},
+    "allow_extra_changes": false,
+    "unchanged_files": ["test_tags.py"],
+    "verify_commands": [["python3", "-m", "unittest", "-v", "test_tags.py"]],
+    "final_any": ["test", "passed"]
+  },
+  {
     "id": "ui-approved-handoff",
     "skill": "ay-ui",
     "prompt": "Turn the approved material into design.md. Creating that handoff is approved. Preserve the product behavior, describe the visual contract, screen flow, reusable components, states, accessibility, and asset references. Do not write frontend code or modify other files.",

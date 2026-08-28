@@ -34,6 +34,7 @@ Check:
 - **Intent:** requested behavior, non-goals, missing consumers, scope drift.
 - **Consistency:** user journeys, system boundaries, API contracts, data invariants, and implementation agree where they overlap.
 - **Correctness:** concrete inputs, states, sequences, boundaries, and failure handling.
+- **Structure:** cohesive functions; capability-centered files and packages; small interfaces; consistent domain names; no dumping grounds or pass-through layers.
 - **Risk:** data loss, permissions, security, concurrency, compatibility, migration, rollback, and external effects when relevant.
 - **Evidence:** whether tests exercise the changed path and whether source, build, package, install, deployment, runtime, device, or published proof is being conflated.
 

@@ -352,6 +352,8 @@ def validate_execution_scenarios(root: Path, errors: list[str]) -> None:
                 errors.append(f"{scenario_id}: {field} must be an object")
         if "unchanged_files" in scenario and not isinstance(scenario["unchanged_files"], list):
             errors.append(f"{scenario_id}: unchanged_files must be a list")
+        if "allow_extra_changes" in scenario and not isinstance(scenario["allow_extra_changes"], bool):
+            errors.append(f"{scenario_id}: allow_extra_changes must be a boolean")
         if "final_regex" in scenario:
             validate_patterns(f"{scenario_id}/final_regex", scenario["final_regex"], errors)
         commands = scenario.get("verify_commands", [])

@@ -68,6 +68,29 @@ class BehaviorEvalTests(unittest.TestCase):
         )
         self.assertEqual(errors, [])
 
+    def test_verify_result_rejects_extra_changes_for_created_assertions(self) -> None:
+        scenario = {
+            "expected_created": {"orders/service.py": 10},
+            "created_all": {"orders/service.py": ["import_orders"]},
+            "allow_extra_changes": False,
+        }
+        after = {
+            "orders/service.py": b"def import_orders():\n    return []\n",
+            "helpers.py": b"pass\n",
+        }
+        errors = behavior.verify_result(scenario, {}, after, "Implemented")
+        self.assertTrue(any("helpers.py" in error for error in errors))
+
+        self.assertEqual(
+            behavior.verify_result(
+                scenario,
+                {},
+                {"orders/service.py": after["orders/service.py"]},
+                "Implemented",
+            ),
+            [],
+        )
+
     def test_verify_result_reports_missing_created_content(self) -> None:
         errors = behavior.verify_result(
             {"created_all": {"api.md": ["authorization", "idempotency"]}},

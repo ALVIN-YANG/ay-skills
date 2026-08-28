@@ -53,6 +53,6 @@ Wait for approval before restructuring unless the user's instruction already spe
 
 ## Implement and compare
 
-Preserve behavior unless the approved proposal says otherwise. Prefer a deep, stable interface over layers of helpers. Avoid speculative extensibility, unrelated cleanup, and dependencies whose cost exceeds the improvement. Use the existing architecture as evidence; changing the system shape needs the same proposal boundary as any other material change.
+Preserve behavior unless approved otherwise. Prefer a deep, stable interface over helper layers. Treat size, nesting, parameters, and dependency fan-out as signals, not quotas. Split units mixing unrelated responsibilities or dependencies; merge pass-through files and one-use interfaces. Organize packages by domain capability; avoid generic `util`, `common`, `helpers`, or `types` dumping grounds; keep contract names consistent. Avoid speculative extensibility and unrelated cleanup. Changing the system shape still needs an approved proposal.
 
 Verify the success measure and neighboring behavior. Less code or fewer dependencies help only when behavior, safeguards, and checks remain intact. Separate measured gains from expectations; do not claim saved lines, cost, or time without a comparable baseline. Review scope traceability, then report before/after evidence and remaining tradeoffs.
