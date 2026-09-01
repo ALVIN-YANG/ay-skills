@@ -68,6 +68,24 @@ class VerifySkillsTests(unittest.TestCase):
             errors = verify_skills.validate(ROOT)
         self.assertTrue(any("release tag must match VERSION" in error for error in errors))
 
+    def test_contributing_must_keep_model_evaluation_commands(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            checkout = Path(directory) / "checkout"
+            shutil.copytree(ROOT, checkout, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            contributing = checkout / "CONTRIBUTING.md"
+            text = contributing.read_text(encoding="utf-8")
+            contributing.write_text(
+                text.replace("python3 scripts/run_behavior_evals.py\n", ""),
+                encoding="utf-8",
+            )
+            errors = verify_skills.validate(checkout)
+            self.assertTrue(
+                any(
+                    "CONTRIBUTING.md: missing scripts/run_behavior_evals.py" in error
+                    for error in errors
+                )
+            )
+
     def test_execution_case_needs_observable_assertion(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             checkout = Path(directory) / "checkout"

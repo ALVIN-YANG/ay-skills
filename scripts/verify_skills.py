@@ -518,27 +518,56 @@ def validate_product_evals(root: Path, errors: list[str]) -> None:
 
 
 def validate_docs(root: Path, errors: list[str]) -> None:
-    for filename in ("README.md", "README.zh-CN.md"):
+    documentation = (
+        "README.md",
+        "README.zh-CN.md",
+        "CONTRIBUTING.md",
+        "docs/choosing-a-skill.md",
+        "docs/choosing-a-skill.zh-CN.md",
+        "docs/influences.md",
+    )
+    texts: dict[str, str] = {}
+    for filename in documentation:
         path = root / filename
         if not path.is_file():
             errors.append(f"docs: missing {filename}")
             continue
         text = path.read_text(encoding="utf-8")
+        texts[filename] = text
+        for target in LINK_RE.findall(text):
+            if target.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            relative = target.split("#", 1)[0]
+            if relative and not (path.parent / relative).exists():
+                errors.append(f"{filename}: missing linked path {relative}")
+        if "TODO" in text:
+            errors.append(f"{filename}: contains TODO placeholder")
+
+    for filename in ("README.md", "README.zh-CN.md"):
+        text = texts.get(filename, "")
         for name in EXPECTED_SKILLS:
             if name not in text:
                 errors.append(f"{filename}: missing {name}")
-        if "TODO" in text:
-            errors.append(f"{filename}: contains TODO placeholder")
-        for command in (
-            "scripts/run_routing_evals.py",
-            "scripts/run_behavior_evals.py",
-            "scripts/run_journey_evals.py",
-            "scripts/run_product_evals.py",
-            "scripts/verify_portable_install.py",
-            "scripts/package_release.py",
-        ):
-            if command not in text:
-                errors.append(f"{filename}: missing {command}")
+        choosing = (
+            "docs/choosing-a-skill.zh-CN.md"
+            if filename.endswith("zh-CN.md")
+            else "docs/choosing-a-skill.md"
+        )
+        for required_link in ("CONTRIBUTING.md", choosing, "docs/influences.md"):
+            if required_link not in text:
+                errors.append(f"{filename}: missing {required_link}")
+
+    contributing = texts.get("CONTRIBUTING.md", "")
+    for command in (
+        "scripts/run_routing_evals.py",
+        "scripts/run_behavior_evals.py",
+        "scripts/run_journey_evals.py",
+        "scripts/run_product_evals.py",
+        "scripts/verify_portable_install.py",
+        "scripts/package_release.py",
+    ):
+        if command not in contributing:
+            errors.append(f"CONTRIBUTING.md: missing {command}")
     if not (root / ".github" / "workflows" / "release.yml").is_file():
         errors.append("docs: release workflow is missing")
 

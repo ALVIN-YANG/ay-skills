@@ -23,6 +23,11 @@ class ReleasePackageTests(unittest.TestCase):
             archive = Path(directory) / "ay-skills.tar.gz"
             package_release.build_archive(archive, ROOT)
             self.assertEqual(package_release.verify_archive(archive, ROOT), [])
+            packaged = package_release.manifest(ROOT)["files"]
+            self.assertIn("CONTRIBUTING.md", packaged)
+            self.assertIn("docs/choosing-a-skill.md", packaged)
+            self.assertIn("docs/choosing-a-skill.zh-CN.md", packaged)
+            self.assertIn("docs/influences.md", packaged)
 
     def test_verifier_rejects_unreadable_archive(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -14,12 +14,13 @@ import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 TOP_LEVEL = (
+    "CONTRIBUTING.md",
     "LICENSE",
     "README.md",
     "README.zh-CN.md",
     "VERSION",
 )
-TREES = (".claude-plugin", ".codex-plugin", "assets", "skills")
+TREES = (".claude-plugin", ".codex-plugin", "assets", "docs", "skills")
 IGNORED_PARTS = {".DS_Store", "__pycache__"}
 
 
