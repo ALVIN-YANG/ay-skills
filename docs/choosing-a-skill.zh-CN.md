@@ -27,6 +27,7 @@ ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-imple
 | 只诊断故障，不要求修复 | 专用诊断流程；需要一并修复时用 `ay-fix` |
 | 选择或深化模块接口与边界 | 专用代码库设计 Skill；边界确认后再用 `ay-improve` |
 | 从某个 commit、分支或 merge base 评审代码 | 专用 diff 评审 Skill；跨产品和交付物时用 `ay-review` |
-| 写自然中文长文 | 专用中文写作 Skill；调研、英文或图解型内容用 `ay-write` |
+| 撰写或修改中文、英文作品 | `ay-write`，纯文字文章也由它负责；用户明确选用其他技能时尊重该选择 |
+| 把助手刚才的回答重新讲简短 | 专用回答改写 Skill，不触发文章创作流程 |
 
 仍然难以区分时，只安装拥有当前交付物的那个 Skill，或者在请求中直接点名。

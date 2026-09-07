@@ -65,7 +65,10 @@
 
   {"id":"write-new-article","prompt":"Write a practical article explaining why capable coding agents still need skills.","expected_skill":"ay-write"},
   {"id":"write-direct-draft","prompt":"Write the full article now from these approved notes; skip the outline checkpoint.","expected_skill":"ay-write"},
-  {"id":"write-line-edit","prompt":"Rewrite the supplied English paragraphs to remove AI-like wording while preserving their structure and claims.","expected_skill":"none"},
+  {"id":"write-line-edit","prompt":"Rewrite the supplied English paragraphs to remove AI-like wording while preserving their structure and claims.","expected_skill":"ay-write"},
+  {"id":"write-chinese-explainer","prompt":"把这份技术材料写成一篇中文博客，面向会写业务代码但不懂任务恢复的人。结论容易找到，术语跟着例子解释。","expected_skill":"ay-write"},
+  {"id":"write-chinese-rewrite","prompt":"这篇文章晦涩、像机器写的。请保留事实和关键限制，改成同事能读懂的自然中文。","expected_skill":"ay-write"},
+  {"id":"write-fiction","prompt":"写一个三百字的小故事，主角是第一次值夜班的便利店店员。不需要总结或道理。","expected_skill":"ay-write"},
   {"id":"write-illustrated","prompt":"Create an illustrated technical article about agent approval boundaries with useful diagrams.","expected_skill":"ay-write"},
   {"id":"write-plugin-needed","prompt":"Create an article with an editable draw.io architecture diagram, but no drawing capability is currently installed.","expected_skill":"ay-write"},
 
@@ -104,7 +107,7 @@
   {"id":"specialist-mobile-image","prompt":"Generate one premium iPhone screen concept image for this supplied checkout layout. I only need the bitmap, not a design workflow or code.","expected_skill":"imagegen-frontend-mobile"},
   {"id":"specialist-module-seam","prompt":"Find the right deep-module seam for this existing parser and redesign its public interface so callers do not depend on implementation details.","expected_skill":"codebase-design"},
   {"id":"specialist-domain-language","prompt":"Define the ubiquitous language, entities, value objects, and invariants for this booking domain before we discuss storage.","expected_skill":"domain-modeling"},
-  {"id":"specialist-human-writing","prompt":"把这些采访材料写成一篇有自然中文节奏的长篇技术博客，不要配图，也不要写成机构宣传稿。","expected_skill":"human-writing"},
+  {"id":"specialist-human-writing","prompt":"这次明确使用 $human-writing，把这些采访材料写成有自然中文节奏的长篇技术博客，不要配图。","expected_skill":"human-writing"},
   {"id":"specialist-api-reference","prompt":"Render this complete OpenAPI specification into a public developer reference that includes every operation and shared schema, not a release-specific client handoff.","expected_skill":"api-reference-docs"},
   {"id":"specialist-best-minds-roleplay","prompt":"Use best minds to choose the world's strongest expert for this question, then role-play that person speaking in the first person. I want persona simulation, not sourced framework analysis.","expected_skill":"best-minds"},
   {"id":"expert-lens-generic-brainstorm","prompt":"Brainstorm possible features for this grocery-sharing idea, then narrow them into a focused, testable MVP without invoking celebrity perspectives.","expected_skill":"ay-product"},

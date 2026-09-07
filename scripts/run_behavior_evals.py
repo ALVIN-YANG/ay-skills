@@ -82,8 +82,8 @@ def isolated_codex_env(root: Path) -> dict[str, str]:
     return env
 
 
-def install_skill_stub(installed: Path, skill: dict[str, str]) -> None:
-    skill_root = installed / skill["name"]
+def install_skill_stub(installed: Path, skill: dict[str, str | bool]) -> None:
+    skill_root = installed / str(skill["name"])
     if skill_root.exists():
         return
     skill_root.mkdir()
@@ -95,6 +95,12 @@ def install_skill_stub(installed: Path, skill: dict[str, str]) -> None:
         f"Use this skill for {skill['name']} tasks.\n",
         encoding="utf-8",
     )
+    if skill.get("allow_implicit_invocation") is False:
+        agents = skill_root / "agents"
+        agents.mkdir()
+        agents.joinpath("openai.yaml").write_text(
+            "policy:\n  allow_implicit_invocation: false\n", encoding="utf-8"
+        )
 
 
 def install_catalog(installed: Path, target_skill: str, catalog: str) -> None:

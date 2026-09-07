@@ -207,6 +207,36 @@
     "final_any": ["article.md"]
   },
   {
+    "id": "write-chinese-clarity",
+    "skill": "ay-write",
+    "prompt": "按 notes.md 写一篇清楚自然的中文技术说明到 article.md，读者背景已在材料里。直接写成稿，不需要先交提纲，不配图，不查外部资料，不发布。只创建 article.md，不改输入材料。不要编造作者亲历。",
+    "fixture": "writing-clarity",
+    "files": {},
+    "expected_created": {"article.md": 450},
+    "allow_extra_changes": false,
+    "unchanged_files": ["notes.md"],
+    "final_any": ["article.md"]
+  },
+  {
+    "id": "write-english-holdout",
+    "skill": "ay-write",
+    "prompt": "Turn notes.md into a short plain-English article at article.md for the stated readers. Draft directly, preserve the numbers and limitations, and do not add sources, personal experience, images, or extra files. Keep notes.md unchanged.",
+    "fixture": "writing-holdout",
+    "files": {},
+    "expected_created": {"article.md": 300},
+    "created_all": {"article.md": ["200"]},
+    "allow_extra_changes": false,
+    "unchanged_files": ["notes.md"],
+    "final_any": ["article.md"]
+  },
+  {
+    "id": "write-review-only",
+    "skill": "ay-write",
+    "prompt": "只读这段稿子，指出妨碍理解的句子和缺失解释。不要改文件，不要重写整篇，不要发布。",
+    "files": {"draft.md": "通过生命周期解耦，系统实现过程语义的持续性与状态归属的一致性。该方案显著提升了成功率，但目前没有测量记录。\n"},
+    "expect_no_changes": true
+  },
+  {
     "id": "review-read-only",
     "skill": "ay-review",
     "prompt": "Review config.py for release-blocking problems. Do not modify files. Lead with evidence-backed findings.",

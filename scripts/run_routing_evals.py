@@ -66,8 +66,8 @@ def make_prompt(scenario: dict[str, object]) -> str:
     )
 
 
-def install_skill_stub(installed: Path, skill: dict[str, str]) -> None:
-    skill_root = installed / skill["name"]
+def install_skill_stub(installed: Path, skill: dict[str, str | bool]) -> None:
+    skill_root = installed / str(skill["name"])
     skill_root.mkdir()
     skill_root.joinpath("SKILL.md").write_text(
         "---\n"
@@ -77,6 +77,12 @@ def install_skill_stub(installed: Path, skill: dict[str, str]) -> None:
         f"Use this skill for {skill['name']} tasks.\n",
         encoding="utf-8",
     )
+    if skill.get("allow_implicit_invocation") is False:
+        agents = skill_root / "agents"
+        agents.mkdir()
+        agents.joinpath("openai.yaml").write_text(
+            "policy:\n  allow_implicit_invocation: false\n", encoding="utf-8"
+        )
 
 
 def isolated_codex_env(root: Path) -> dict[str, str]:

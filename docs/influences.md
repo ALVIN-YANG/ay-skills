@@ -32,3 +32,9 @@ AY applies verifiable published frameworks, separates sources from inference, an
 The client-impact boundary in `ay-integration-docs` was informed by Apache-2.0 [oasdiff](https://github.com/oasdiff/oasdiff), plus the API documentation work in MIT-licensed [wshobson/agents](https://github.com/wshobson/agents) and [awesome-copilot](https://github.com/github/awesome-copilot).
 
 AY adds a consumer-and-release filter, observable business semantics, required examples and field tables, and explicit exclusion of internal or unchanged behavior.
+
+## Clear writing
+
+The writing revisions draw on [Google Technical Writing](https://developers.google.com/tech-writing/one/short-sentences), [NN/G content comprehension testing](https://www.nngroup.com/articles/testing-content-websites/), and [Anthropic's guidance on concise instructions and representative examples](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+
+AY's prose instructions and before/after examples are original. They separate preserving facts, making an explanation understandable, and evaluating it with real readers. No upstream prose, test data, or validator was copied; AI review is not presented as proof of human comprehension.

@@ -41,7 +41,8 @@
   },
   {
     "name": "human-writing",
-    "description": "Write or rewrite natural substantial Chinese articles, tutorials, posts, stories, and speeches. Use when authentic Chinese prose and voice are the primary deliverable."
+    "description": "Write or rewrite natural substantial Chinese articles, tutorials, posts, stories, and speeches. Use when authentic Chinese prose and voice are the primary deliverable.",
+    "allow_implicit_invocation": false
   },
   {
     "name": "diagnosing-bugs",

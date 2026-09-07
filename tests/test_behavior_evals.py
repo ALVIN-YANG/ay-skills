@@ -31,6 +31,15 @@ def rgb_png(width: int, height: int) -> bytes:
 
 
 class BehaviorEvalTests(unittest.TestCase):
+    def test_fixture_keeps_manual_writing_alternative_out_of_implicit_selection(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            installed = Path(directory) / "skills"
+            installed.mkdir()
+            behavior.install_catalog(installed, "ay-write", "fixture")
+            policy = (installed / "human-writing/agents/openai.yaml").read_text()
+            self.assertIn("allow_implicit_invocation: false", policy)
+            self.assertTrue((installed / "ay-write/SKILL.md").is_file())
+
     def test_network_disconnect_is_infrastructure_error(self) -> None:
         self.assertTrue(
             behavior.is_infrastructure_error_text(

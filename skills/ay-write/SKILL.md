@@ -1,11 +1,11 @@
 ---
 name: ay-write
-description: Research, structure, draft, rewrite, and illustrate substantial articles or technical explainers. Use when a long-form article, 写技术文章, evidence gathering, visual plan, diagram, English, or bilingual deliverable is central. Let a dedicated natural-Chinese writing skill lead prose-only Chinese articles when available. Do not use for short answers, UI copy, or narrow documentation edits.
+description: Draft, research, or revise authored Chinese and English prose with clear meaning and a natural voice. Use when writing articles, technical explainers, posts, stories, or speeches; 写文章、中文写作、改稿、说人话、去 AI 味 in supplied prose. Own prose-only Chinese writing as well as illustrated work. Do not use for ordinary conversational answers, shortening the assistant's last reply, UI strings, or API handoff documents.
 ---
 
 # AY Write
 
-Create writing that earns attention through insight, clarity, voice, and useful visuals.
+Write so the intended reader understands without supplying missing explanations.
 
 ## Approval contract
 
@@ -21,30 +21,30 @@ Create writing that earns attention through insight, clarity, voice, and useful 
 - Preserve unrelated and user-authored work. Verify the real requested outcome before claiming completion.
 <!-- ay-contract:end -->
 
-## Shape the article
+## Establish the reading task
 
-Infer the audience, reader prerequisites, core claim, voice baseline, factual stakes, destination, and available source material. Ask only for decisions that remain consequential.
+Infer the reader's existing knowledge, the question or experience the piece should deliver, genre, language, and destination. Use supplied writing as the voice baseline. Ask only about consequential gaps.
 
-For a new article, submit one recommended thesis, outline, and visual plan together. Explain what each visual teaches. Wait for approval unless the user explicitly asks to draft directly or skip the outline.
+Draft or revise directly when the request and material establish the outcome. Do not require outline approval by default. Preserve requested structure; propose changes only when they alter intent or an approval boundary.
 
-For an existing draft, preserve meaning and voice. A precise rewrite request is already approved; propose structural changes before silently reordering or deleting sections.
+For explainers or unclear prose, read [references/clear-prose.md](references/clear-prose.md). Use relevant examples as comparisons, not a mandatory template.
 
-## Research and write
+## Preserve meaning while writing plainly
 
-Prefer primary, current sources for factual claims. Never invent the author's experience, quotes, opinions, usage history, measurements, or results. When writing in the author's voice, use supplied material or published pieces as the baseline.
+Verify factual claims with suitable primary sources. Do not invent the author's experiences, attributed beliefs, quotes, measurements, or results. Label hypothetical examples. Fiction may invent within the requested premise.
 
-Ground concepts before later sections rely on them. Lead with a concrete tension, observation, or useful promise. Use examples that carry the argument. Cut repeated conclusions, generic transitions, inflated claims, filler headings, and explanations the audience already owns.
+In explanatory writing, answer the reader's question early, then explain through a concrete example. Put implementation details and secondary exceptions after the main explanation. Preserve conditions, uncertainty, and safety limits; simplification must not strengthen a claim.
 
-Natural prose is not decorative informality. Keep the author's stance, choose familiar words, vary rhythm only when it serves meaning, and let strong details replace promotional adjectives.
+Name the actor, action, and consequence. Keep useful technical terms and explain unfamiliar ones when needed. Remove repetitive conclusions, empty abstractions, and transitions that add nothing. Naturalness does not require slang, simulated mistakes, banned punctuation, or sentence-length quotas. Narrative and fiction need not begin with a conclusion.
 
-## Make visuals earn their place
+## Use visuals selectively
 
-Read [references/visuals.md](references/visuals.md) when the article benefits from figures or the user requests them. Choose the medium yourself from the explanatory job and available capabilities. Ask about tools only when style or editability changes the deliverable.
+Read [references/visuals.md](references/visuals.md) when a visual explains something better than prose or is requested. Respect the project's formats and existing capabilities.
 
-An approved visual plan authorizes using available drawing or image-generation capabilities. Request approval before installing a plugin or dependency, using a paid capability, or introducing a new project runtime.
+Approval for writing does not authorize publishing, paid tools, new dependencies, or unrelated edits.
 
-## Verify and deliver
+## Check understanding and deliver
 
-Check claims, citations, links, code, image filenames, alt text, editable sources, exports, and the rendered article when possible. Remove decorative figures that teach nothing.
+Check whether the reader can recover the intended answer and next action from the text alone. Identify unsupported jumps, unclear referents, and unexplained terms; fix the passages, not just the score. Automated prose checks and AI review are aids, not proof of human comprehension.
 
-Deliver the article and assets in the requested location. State factual or rendering gaps without adding an unsolicited essay about the editing process.
+Verify claims, links, examples, assets, and rendered layout in proportion to the task. Deliver only the requested work and material limitations. When asked to improve this skill, turn concrete feedback into a regression case; do not silently rewrite skill or user settings during ordinary writing.

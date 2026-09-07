@@ -27,6 +27,7 @@ This is guidance, not a required pipeline. Move architecture earlier when feasib
 | Diagnose a failure without a requested repair | A dedicated diagnosis workflow; use `ay-fix` when the repair should also be completed |
 | Choose or deepen a module interface or seam | A dedicated codebase-design skill; use `ay-improve` after the boundary is settled |
 | Review changes since a commit, branch, or merge base | A dedicated diff-review skill; use `ay-review` across product and delivery artifacts |
-| Write natural Chinese long-form prose | A dedicated Chinese writing skill; `ay-write` leads research, English, or illustrated work |
+| Write or rewrite authored Chinese or English prose | `ay-write`, including prose-only articles; respect an explicitly selected alternative |
+| Shorten the assistant's immediately preceding answer | A dedicated clear-response skill, not the authored-writing workflow |
 
 If two skills still appear to overlap, install only the one that owns the immediate deliverable or name it explicitly in the request.

@@ -1,4 +1,4 @@
 interface:
   display_name: "AY Write"
-  short_description: "Research and create illustrated long-form content"
-  default_prompt: "Use $ay-write to research and create a clear article whose visuals teach something useful."
+  short_description: "Clear, natural Chinese and English writing"
+  default_prompt: "Use $ay-write to draft or revise this piece for its intended readers, preserving facts while making the explanation easy to follow."

@@ -22,11 +22,11 @@ For each proposed figure, state:
 4. whether editability matters
 5. where it belongs in the article
 
-Include this with the outline approval. Do not ask the user to choose a drawing tool unless style, collaboration, or editability creates a real tradeoff.
+For a clearly authorized article, make these decisions while drafting. Include them in a proposal only when a visual changes scope, cost, or a consequential design choice. Do not require a separate outline approval or ask the user to choose a drawing tool without a real tradeoff.
 
 ## Produce
 
-Inspect available capabilities first. Use an existing suitable capability after visual-plan approval. If the required medium is unavailable, prefer an equivalent native format; request installation only when the format itself is required.
+Inspect available capabilities first. Use an existing suitable capability within the approved scope, preserving project conventions such as build-time Mermaid or existing SVG assets. If the required medium is unavailable, prefer an equivalent native format; request approval when installation, paid use, or a new runtime is necessary.
 
 Keep labels short and readable. Preserve source files, export at an appropriate web size, use stable descriptive filenames, and verify the rendered result in its destination. Cite external data and respect asset licenses.
 

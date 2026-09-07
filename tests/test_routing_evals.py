@@ -57,6 +57,16 @@ class RoutingEvalTests(unittest.TestCase):
             self.assertTrue((installed / "ay-store-screenshots" / "SKILL.md").is_file())
             self.assertFalse((installed / "ship-app-store").exists())
 
+    def test_fixture_preserves_explicit_only_alternative(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            installed = Path(directory) / "skills"
+            installed.mkdir()
+            routing.install_catalog(installed, "fixture")
+            policy = (installed / "human-writing/agents/openai.yaml").read_text()
+            self.assertIn("allow_implicit_invocation: false", policy)
+            primary = (installed / "ay-write/agents/openai.yaml").read_text()
+            self.assertNotIn("allow_implicit_invocation: false", primary)
+
 
 if __name__ == "__main__":
     unittest.main()

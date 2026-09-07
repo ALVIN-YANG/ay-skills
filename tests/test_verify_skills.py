@@ -75,7 +75,7 @@ class VerifySkillsTests(unittest.TestCase):
             contributing = checkout / "CONTRIBUTING.md"
             text = contributing.read_text(encoding="utf-8")
             contributing.write_text(
-                text.replace("python3 scripts/run_behavior_evals.py\n", ""),
+                text.replace("scripts/run_behavior_evals.py", "scripts/removed_behavior_evals.py"),
                 encoding="utf-8",
             )
             errors = verify_skills.validate(checkout)
