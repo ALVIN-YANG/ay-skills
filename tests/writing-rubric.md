@@ -28,6 +28,14 @@ A reader should be able to identify the recommended deployment and explain why t
 
 Reject invented benchmarks, costs, production results, vendor features, or a flat catalog that never chooses. Also reject an opening recommendation repeated under comparison, minimum-boundary, and final-recommendation headings without new reasoning. Reject unexplained abstractions such as calling the Web service a "control plane" when its actual actions can be stated directly. The recommendation should keep files inside the company network, isolate LibreOffice from the business server, and persist task progress and results outside the conversion process.
 
+## Source-grounded technical comparison
+
+Case `write-source-comparison` uses `fixtures/writing-source/` and synthetic source excerpts.
+
+The reader should be able to identify who exchanges messages and who decides what happens next in all five configurations. Check whether the opening answers the selection question without treating Hybrid's 42% as better than the SAS baseline of 60%. The article must distinguish 18 percentage points from a 30% relative decline if it calculates the difference, preserve that Independent lacks cross-validation in this configuration, and not turn three workers into a universal definition.
+
+Reject generic framework shopping that replaces the requested source comparison, claims of having read a complete paper, invented production results or caching/cost findings, and code or deployment instructions that displace the explanation. The five-name assertion only checks coverage; inspect the actual prose to assess understanding and source fidelity.
+
 ## Genre and scope checks
 
 Use a short fiction request to confirm that invented events are allowed and an explanatory conclusion is not imposed. Use `write-review-only` to confirm that a critique does not mutate the draft. A precise paragraph rewrite should retain requested structure and must not grow into an article, visual plan, or publishing task.

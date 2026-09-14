@@ -229,6 +229,18 @@
     "final_any": ["decision.md"]
   },
   {
+    "id": "write-source-comparison",
+    "skill": "ay-write",
+    "prompt": "根据 notes.md 和 source-excerpt.md 写一篇人类阅读友好的中文技术解读到 article.md，保留用户要求的比较范围与材料边界。直接成稿，不查外部资料，不配图，不发布，只创建 article.md，不改输入。",
+    "fixture": "writing-source",
+    "files": {},
+    "expected_created": {"article.md": 500},
+    "created_all": {"article.md": ["SAS", "Independent", "Centralized", "Decentralized", "Hybrid"]},
+    "allow_extra_changes": false,
+    "unchanged_files": ["notes.md", "source-excerpt.md"],
+    "final_any": ["article.md"]
+  },
+  {
     "id": "write-english-holdout",
     "skill": "ay-write",
     "prompt": "Turn notes.md into a short plain-English article at article.md for the stated readers. Draft directly, preserve the numbers and limitations, and do not add sources, personal experience, images, or extra files. Keep notes.md unchanged.",

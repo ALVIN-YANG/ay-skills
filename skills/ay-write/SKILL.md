@@ -27,7 +27,9 @@ Infer the reader's existing knowledge, the question or experience the piece shou
 
 Draft or revise directly when the request and material establish the outcome. Do not require outline approval by default. Preserve requested structure; propose changes only when they alter intent or an approval boundary.
 
-For explainers or unclear prose, read [references/clear-prose.md](references/clear-prose.md). Use relevant examples as comparisons, not a mandatory template.
+For explainers or unclear prose, read [clear-prose.md](references/clear-prose.md). Examples are not templates.
+
+For technical articles, also read [technical-articles.md](references/technical-articles.md).
 
 ## Preserve meaning while writing plainly
 

@@ -36,7 +36,7 @@ Network and authentication failures are reported as infrastructure errors, not s
 For writing changes, run the focused cases and inspect actual prose using [the writing rubric](tests/writing-rubric.md). File creation, keyword assertions, and a successful AI review do not prove human comprehension. The fixture catalog retains `human-writing` as an explicit-only alternative; the global catalog reflects the user's actual installation.
 
 ```bash
-python3 scripts/run_behavior_evals.py --catalog target --ids write-chinese-clarity write-english-holdout write-review-only
+python3 scripts/run_behavior_evals.py --catalog target --ids write-chinese-clarity write-technical-selection write-source-comparison write-english-holdout write-review-only
 python3 scripts/run_routing_evals.py --host codex --ids write-chinese-explainer write-chinese-rewrite write-line-edit write-fiction specialist-human-writing specialist-clear-rewrite no-skill-short-answer
 ```
 

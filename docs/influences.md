@@ -38,3 +38,5 @@ AY adds a consumer-and-release filter, observable business semantics, required e
 The writing revisions draw on [Google Technical Writing](https://developers.google.com/tech-writing/one/short-sentences), [NN/G content comprehension testing](https://www.nngroup.com/articles/testing-content-websites/), and [Anthropic's guidance on concise instructions and representative examples](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 
 AY's prose instructions and before/after examples are original. They separate preserving facts, making an explanation understandable, and evaluating it with real readers. No upstream prose, test data, or validator was copied; AI review is not presented as proof of human comprehension.
+
+The technical-article workflow also draws on Daniele Procida's [Diátaxis](https://diataxis.fr/start-here/): different reader needs call for different forms of explanation, instruction, and reference. AY's workflow and acceptance checks are original adaptations for articles, not a copied template or a requirement to split every topic into four documents.
