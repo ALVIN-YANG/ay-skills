@@ -218,6 +218,17 @@
     "final_any": ["article.md"]
   },
   {
+    "id": "write-technical-selection",
+    "skill": "ay-write",
+    "prompt": "根据 notes.md 写一篇中文技术选型说明到 decision.md，帮助目标读者选出适合的运行方式。直接成稿，不查外部资料，不配图，不发布，不编造测量结果或作者经历。只创建 decision.md，不修改输入材料。",
+    "fixture": "writing-selection",
+    "files": {},
+    "expected_created": {"decision.md": 500},
+    "allow_extra_changes": false,
+    "unchanged_files": ["notes.md"],
+    "final_any": ["decision.md"]
+  },
+  {
     "id": "write-english-holdout",
     "skill": "ay-write",
     "prompt": "Turn notes.md into a short plain-English article at article.md for the stated readers. Draft directly, preserve the numbers and limitations, and do not add sources, personal experience, images, or extra files. Keep notes.md unchanged.",
