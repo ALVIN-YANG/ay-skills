@@ -317,5 +317,54 @@
     "unchanged_files": ["tests/test_cache_status.py"],
     "verify_commands": [["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]],
     "final_any": ["test", "passed"]
+  },
+  {
+    "id": "review-design-complete",
+    "skill": "ay-review",
+    "prompt": "Review design.md for implementation handoff readiness using only this document. Explain the system in your own words, distinguish blocking gaps from design preferences, and cite the relevant sections. For each gap name the affected operation or input field as written. Do not create or modify files. End with two plain lines: READINESS: READY or READINESS: BLOCKED, then BLOCKER_COUNT: followed by the number of blocking gaps.",
+    "files": {
+      "design.md": "# Completion report design\n\n## Goal and scope\nA single-process, in-memory demonstration lets a technician submit one completion report for an assigned WorkOrder. This is a fixed exercise, not a durable production service. No network, photos, persistence, background queue, or multiple processes. Data loss on process exit is accepted. Design decisions do not authorize implementation.\n\n## Boundary and ownership\nImplement the domain operation in orders.py. WorkOrder is owned by the order store and has tenant_id, work_order_id, state (Open or Closed), and completion_report_id (initially None). The report store owns immutable Report records indexed by (tenant_id, work_order_id), which also serves as report_id, and the retry index. Every existing order owns one stable lock created with the order. A caller supplies an authenticated tenant_id. The operation must scope every lookup to that tenant. An absent order or tenant mismatch returns NOT_FOUND without disclosing another tenant's data.\n\n## Operation and validation\nThe caller guarantees authenticated nonempty string tenant_id and work_order_id. submit_report(tenant_id, work_order_id, idempotency_key, body) returns exactly {report_id: (tenant_id, work_order_id), status: ACCEPTED} on success or {error: CODE} on rejection. idempotency_key must be a string with non-whitespace content and is stored unchanged. body must be a dictionary with exactly one field, summary, whose value is a string with non-whitespace content; strip summary for validation and replay comparison. A missing, extra, incorrectly typed, empty, or whitespace-only key or summary returns INVALID_INPUT before lookup or mutation. A supervisor uses close_order(tenant_id, work_order_id) to move Open to Closed. It returns {status: CLOSED}, including an already-Closed no-op; an absent order or tenant mismatch returns {error: NOT_FOUND}. Closing keeps any accepted report intact.\n\n## Retry and concurrent closure\nUse (tenant_id, work_order_id, idempotency_key) as the retry-index key. Under the order lock, check this index first: the same normalized summary returns the original report_id and ACCEPTED even after closure; a different summary returns IDEMPOTENCY_CONFLICT. For a new key, Closed returns WORK_ORDER_CLOSED; an Open order that already has a report returns ALREADY_REPORTED. Otherwise use (tenant_id, work_order_id) as report_id, insert the immutable report and retry entry, and set completion_report_id together before releasing the lock. Rejections mutate nothing. A retained per-order lock covers both submit_report and close_order, including all checks and writes. Hence whichever acquires the lock first defines the result; a close that wins prevents new submission, while a previously accepted replay remains valid. Keep retry entries for the process lifetime. There are no callbacks or partial network failures inside the lock.\n\n## Rationale and alternatives\nThe in-memory store and per-order lock fit this exercise's lifecycle. A database, durable outbox, and distributed locks add capabilities outside the supplied scope. These choices do not claim production durability or cross-process safety.\n\n## Acceptance and remaining decisions\nVerify success once, identical replay before and after closure, different-payload replay, a second key, blank key or summary, tenant mismatch, and both controlled lock-order outcomes. Assert report count, retry entries, original report_id, and unchanged state on rejection. The supplied operation and error behavior are fixed; there are no material decisions left for this exercise. Tests remain to be written and executed; this document makes no runtime verification claim.\n"
+    },
+    "expect_no_changes": true,
+    "final_regex": [
+      "(?m)^READINESS: READY[ ]*$",
+      "(?m)^BLOCKER_COUNT: 0[ ]*$"
+    ]
+  },
+  {
+    "id": "review-design-missing-decisions",
+    "skill": "ay-review",
+    "prompt": "Review design.md for implementation handoff readiness using only this document. Explain the system in your own words, distinguish blocking gaps from design preferences, and cite the relevant sections. For each gap name the affected operation or input field as written. Do not create or modify files. End with two plain lines: READINESS: READY or READINESS: BLOCKED, then BLOCKER_COUNT: followed by the number of blocking gaps.",
+    "files": {
+      "design.md": "# Completion report design\n\n## Goal and scope\nA single-process, in-memory demonstration lets a technician submit one completion report for an assigned WorkOrder. This is a fixed exercise, not a durable production service. No network, photos, persistence, background queue, or multiple processes. Data loss on process exit is accepted. Design decisions do not authorize implementation.\n\n## Boundary and ownership\nImplement the domain operation in orders.py. WorkOrder is owned by the order store and has tenant_id, work_order_id, state (Open or Closed), and completion_report_id (initially None). The report store owns immutable Report records indexed by (tenant_id, work_order_id), which also serves as report_id, and the retry index. Every existing order owns one stable lock created with the order. A caller supplies an authenticated tenant_id. The operation must scope every lookup to that tenant. An absent order or tenant mismatch returns NOT_FOUND without disclosing another tenant's data.\n\n## Operation and validation\nThe caller guarantees authenticated nonempty string tenant_id and work_order_id. submit_report(tenant_id, work_order_id, idempotency_key, body) returns exactly {report_id: (tenant_id, work_order_id), status: ACCEPTED} on success or {error: CODE} on rejection. idempotency_key must be a string with non-whitespace content and is stored unchanged. body must be a dictionary with exactly one field, summary, whose value is a string with non-whitespace content; strip summary for validation and replay comparison. A missing, extra, incorrectly typed, empty, or whitespace-only key or summary returns INVALID_INPUT before lookup or mutation. A supervisor uses close_order(tenant_id, work_order_id) to move Open to Closed. It returns {status: CLOSED}, including an already-Closed no-op; an absent order or tenant mismatch returns {error: NOT_FOUND}. Closing keeps any accepted report intact.\n\n## Retry and concurrent closure\nRetries and supervisor closure follow the normal process.\n\n## Rationale and alternatives\nThe in-memory store and per-order lock fit this exercise's lifecycle. A database, durable outbox, and distributed locks add capabilities outside the supplied scope. These choices do not claim production durability or cross-process safety.\n\n## Acceptance and remaining decisions\nVerify success once, identical replay before and after closure, different-payload replay, a second key, blank key or summary, tenant mismatch, and both controlled lock-order outcomes. Assert report count, retry entries, original report_id, and unchanged state on rejection. The supplied operation and error behavior are fixed; there are no material decisions left for this exercise. Tests remain to be written and executed; this document makes no runtime verification claim.\n"
+    },
+    "expect_no_changes": true,
+    "final_all": [
+      "submit_report",
+      "idempotency_key"
+    ],
+    "final_regex": [
+      "(?m)^READINESS: BLOCKED[ ]*$",
+      "(?m)^BLOCKER_COUNT: [1-9][0-9]*[ ]*$"
+    ]
+  },
+  {
+    "id": "implement-design-provider-drift",
+    "skill": "ay-implement",
+    "prompt": "Implement the approved change in design.md against the supplied code. Preserve its implementation boundary and existing tests. Report what you delivered and any discrepancy between the design and the current provider. End with a plain line: IMPLEMENTATION: COMPLETE or IMPLEMENTATION: BLOCKED.",
+    "files": {
+      "design.md": "# Approved offline status change\nThe product must show Live while online, and Offline - cached <fetched_at> while offline with the last successfully fetched snapshot. The existing FeedClient.latest() is assumed to retain and return that snapshot without a network connection. Use it from display_status(client) in src/cache_status.py. Preserve the client interface and lifecycle. Only src/cache_status.py is in the approved implementation boundary. Provider changes, new storage, dependencies, and an offline label that omits the cached timestamp are outside this approval. Existing source and tests must be inspected. The implementation must work with the supplied provider, not a replacement.\n",
+      "src/cache_status.py": "def display_status(client):\n    return \"Live\"\n",
+      "src/feed_client.py": "class FeedClient:\n    def __init__(self, connected=True):\n        self.connected = connected\n\n    def latest(self):\n        if not self.connected:\n            raise ConnectionError(\"Network unavailable\")\n        return {\"fetched_at\": \"2026-01-02T03:04:05Z\"}\n",
+      "tests/test_cache_status.py": "import unittest\nfrom src.cache_status import display_status\nfrom src.feed_client import FeedClient\n\nclass StatusTests(unittest.TestCase):\n    def test_online(self):\n        self.assertEqual(display_status(FeedClient()), \"Live\")\n"
+    },
+    "expect_no_changes": true,
+    "final_all": [
+      "FeedClient",
+      "latest"
+    ],
+    "final_regex": [
+      "(?m)^IMPLEMENTATION: BLOCKED[ ]*$"
+    ]
   }
 ]

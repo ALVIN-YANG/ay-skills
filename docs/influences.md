@@ -15,6 +15,12 @@ AY Skills is original work informed by the following projects. Their ideas were 
 
 The relevant ideas include approval before implementation, consistent UI direction, separate architecture/API/database responsibilities, engine-specific storage design, evidence-first discovery, and narrow skill boundaries.
 
+## Design handoffs
+
+The handoff checks were informed by the University of Michigan's [Elephant-Goldfish skills](https://github.com/eecs498-aase/materials/tree/795b99ce2e5b39eacfda488e6db0b9b812143252/egm/skills). AY adapts three ideas: a document must carry the design without its author's conversation, reviewers must distinguish missing decisions from disagreements, and implementation must expose material conflicts with the approved design.
+
+The reviewed repository metadata reported no license, and its tree contained no identifiable license file on 2026-10-12. Only the ideas informed this work; no upstream instructions, templates, scripts, or test data were copied. AY keeps its independent skills, existing approval contract, and optional handoff artifacts.
+
 ## App Store screenshots
 
 The screenshot workflow was informed by MIT-licensed [app-store-screenshots](https://github.com/ParthJadhav/app-store-screenshots), [Shotsmith](https://github.com/gyugyu86/app-store-screenshot-studio), [ai-appshots](https://github.com/thiagoperes/ai-appshots), and [fastlane](https://github.com/fastlane/fastlane).

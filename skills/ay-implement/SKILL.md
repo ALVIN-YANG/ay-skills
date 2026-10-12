@@ -23,7 +23,7 @@ Turn approved intent and design into a verified change without reopening settled
 
 ## Establish the implementation contract
 
-Read project instructions, working-tree state, relevant code and tests, nearby history, and approved product, UI, architecture, API, or database artifacts that exist. Trace the requested behavior from entry point through affected consumers. Preserve stable terms, states, authorization, failure behavior, and data invariants across those handoffs. Separate settled decisions, discoverable facts, and unresolved choices.
+Read project instructions, working-tree state, relevant code, tests, history, and existing approved handoffs. Trace the requested behavior from entry point through affected consumers. Preserve stable terms, states, authorization, failure behavior, and data invariants across those handoffs. Separate settled decisions, discoverable facts, and unresolved choices.
 
 Act directly when the request or approved artifact fixes the target, observable result, and acceptance boundary. A small explicit change needs no restated plan.
 
@@ -37,7 +37,7 @@ Organize code around cohesive responsibilities. Keep a function at one abstracti
 
 Add artifacts, abstractions, or dependencies only when requested, repository-required, or needed. Do not translate every upstream artifact mechanically.
 
-If new evidence triggers the approval contract, stop at a safe point, show how it changes the agreed result, and recommend the next decision. Otherwise continue without another checkpoint.
+Verify design assumptions before editing. If the approved result cannot work with the supplied system within scope, stop before changing implementation and recommend a decision with evidence. Do not add unapproved state, change ownership, substitute contracts or providers, or call a partial implementation complete. Otherwise continue without another checkpoint.
 
 ## Verify the delivered result
 

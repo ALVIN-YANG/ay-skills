@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import importlib.util
 import binascii
+import json
 from pathlib import Path
 import struct
+import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import zlib
 
 
@@ -31,6 +34,56 @@ def rgb_png(width: int, height: int) -> bytes:
 
 
 class BehaviorEvalTests(unittest.TestCase):
+    def test_handoff_cases_accept_expected_verdicts_and_reject_opposites(self) -> None:
+        cases = {case["id"]: case for case in json.loads(behavior.SCENARIOS.read_text())}
+        examples = {
+            "review-design-complete": ("READINESS: READY\nBLOCKER_COUNT: 0", "READINESS: BLOCKED\nBLOCKER_COUNT: 1"),
+            "review-design-missing-decisions": ("READINESS: BLOCKED\nBLOCKER_COUNT: 2", "READINESS: READY\nBLOCKER_COUNT: 0"),
+            "implement-design-provider-drift": ("IMPLEMENTATION: BLOCKED", "IMPLEMENTATION: COMPLETE"),
+        }
+        for case_id, (accepted, rejected) in examples.items():
+            with self.subTest(case=case_id):
+                case = cases[case_id]
+                context = " ".join(case.get("final_all", [])) + "\n"
+                self.assertEqual(behavior.verify_result(case, {}, {}, context + accepted), [])
+                self.assertEqual(behavior.verify_result(case, {}, {}, context + accepted.replace("\n", "  \n") + "  \n"), [])
+                self.assertTrue(behavior.verify_result(case, {}, {}, context + rejected))
+
+    def test_model_evidence_survives_cleanup_even_when_assertions_fail(self) -> None:
+        def fake_codex(command, **kwargs):
+            workspace = Path(command[command.index("--cd") + 1])
+            output = Path(command[command.index("--output-last-message") + 1])
+            if command[-1] == "Create the approved handoff.":
+                workspace.joinpath("architecture.md").write_text("Proposed system boundary.\n")
+            output.write_text("A proposal, not runtime verification.\n")
+            return subprocess.CompletedProcess(command, 0, "", "")
+
+        with tempfile.TemporaryDirectory() as directory:
+            evidence = Path(directory) / "evidence"
+            scenario = {
+                "id": "evidence-test", "skill": "ay-architecture",
+                "prompt": "Create the approved handoff.",
+                "files": {"brief.md": "Keep this input unchanged.\n"},
+                "expected_created": {"architecture.md": 1000},
+            }
+            with patch.object(behavior.subprocess, "run", side_effect=fake_codex):
+                result = behavior.run_scenario(scenario, None, 30, "target", evidence)
+            self.assertFalse(result.passed)
+            self.assertIn("only", result.error)
+            self.assertEqual(evidence.joinpath("final.txt").read_text(),
+                             "A proposal, not runtime verification.\n")
+            self.assertEqual(evidence.joinpath("outputs/architecture.md").read_text(),
+                             "Proposed system boundary.\n")
+            self.assertFalse(evidence.joinpath("outputs/brief.md").exists())
+            review = {
+                "id": "evidence-test", "skill": "ay-review",
+                "prompt": "Review without changes.", "files": {}, "expect_no_changes": True,
+            }
+            with patch.object(behavior.subprocess, "run", side_effect=fake_codex):
+                result = behavior.run_scenario(review, None, 30, "target", evidence)
+            self.assertTrue(result.passed)
+            self.assertFalse(evidence.joinpath("outputs").exists())
+
     def test_fixture_keeps_manual_writing_alternative_out_of_implicit_selection(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             installed = Path(directory) / "skills"

@@ -412,6 +412,7 @@ def run_scenario(
     model: str | None,
     timeout: int,
     catalog: str,
+    evidence_dir: Path | None = None,
 ) -> Result:
     scenario_id = str(scenario["id"])
     with tempfile.TemporaryDirectory(
@@ -491,6 +492,21 @@ def run_scenario(
         except OSError as error:
             return Result(scenario_id, False, "could not inspect result", str(error))
 
+        if evidence_dir is not None:
+            evidence_dir.mkdir(parents=True, exist_ok=True)
+            evidence_dir.joinpath("final.txt").write_text(final_message, encoding="utf-8")
+            evidence_dir.joinpath("transcript.txt").write_text(
+                completed.stdout + completed.stderr, encoding="utf-8"
+            )
+            previous_outputs = evidence_dir / "outputs"
+            if previous_outputs.exists():
+                shutil.rmtree(previous_outputs)
+            for relative in changed_paths(before, after):
+                if relative in after:
+                    saved = evidence_dir / "outputs" / relative
+                    saved.parent.mkdir(parents=True, exist_ok=True)
+                    saved.write_bytes(after[relative])
+
         errors = verify_result(scenario, before, after, final_message)
         errors.extend(
             verify_reproducible_outputs(
@@ -563,7 +579,10 @@ def main() -> int:
     results: list[Result] = []
     with ThreadPoolExecutor(max_workers=args.parallel) as executor:
         futures = [
-            executor.submit(run_scenario, scenario, args.model, args.timeout, args.catalog)
+            executor.submit(
+                run_scenario, scenario, args.model, args.timeout, args.catalog,
+                args.results_dir / str(scenario["id"]),
+            )
             for scenario in scenarios
         ]
         for future in as_completed(futures):

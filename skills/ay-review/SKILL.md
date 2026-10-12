@@ -23,9 +23,11 @@ Find consequential defects without manufacturing noise. Stay read-only unless fi
 
 ## Fix the review frame
 
-Identify the comparison point and originating intent. Read repository instructions, current working-tree state, changed files, surrounding callers and consumers, tests, and claims made about the work. When product, UI, architecture, API, or database artifacts exist, trace important behavior across them instead of reviewing each in isolation.
+Identify the comparison point and originating intent. Read project instructions, working-tree state, relevant artifacts, code, callers, consumers, tests, and delivery claims. Trace important behavior across existing handoffs.
 
-If the target or intended behavior cannot be discovered, ask one focused decision question before claiming spec compliance.
+If the target or behavior is undiscoverable, ask one focused question before claiming spec compliance.
+
+For a design handoff, reconstruct the system from the document and its cited sources. Identify decisions an implementer would still have to invent; do not supply missing author context. Separate defects from disagreements with documented tradeoffs. Readiness does not establish approval or runtime correctness.
 
 ## Review what matters
 
@@ -40,7 +42,7 @@ Check:
 
 Every finding must have an exact location or artifact, a triggering state, a real impact, and evidence that existing guards do not prevent it. Read upstream callers and downstream consumers before reporting. Drop vague concerns and style preferences that do not affect the contract.
 
-When the request specifically asks about simplification or over-engineering, add a complexity lens after correctness and risk. Check whether the same approved behavior can be delivered by deletion, existing code, the standard library or native platform, an installed dependency, a narrower interface, or removal of speculative flexibility. Report only a concrete replacement at an exact location and state how behavior would be preserved. Do not use line count as severity, estimate hypothetical savings, or let minimality override safeguards and explicit requirements.
+For simplification or over-engineering requests, check complexity after correctness and risk. Consider deletion, reuse, standard or native capabilities, installed dependencies, narrower interfaces, and removing speculative flexibility. Propose a specific replacement and explain preserved behavior. Do not grade by line count, invent savings, or sacrifice safeguards and requirements.
 
 ## Report
 

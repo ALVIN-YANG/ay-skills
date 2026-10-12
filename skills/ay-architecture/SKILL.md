@@ -25,7 +25,7 @@ Choose the simplest system shape that satisfies the product and its real constra
 
 Inspect available requirements, approved UI flows, current code and infrastructure, team constraints, traffic shape, data sensitivity, budget, compliance, and operational expectations. Preserve upstream domain terms and trace each important state through latency, permissions, offline behavior, failure, cancellation, and recovery. Architecture may precede UI only when a feasibility or risk decision blocks useful interface design.
 
-Separate known constraints from estimates and preferences. Ask only about a choice that changes the system shape and cannot be discovered. Recommend a default with its tradeoff.
+Ask only about a choice that changes the system shape and cannot be discovered. Recommend a default with its tradeoff.
 
 ## Define boundaries before technologies
 
@@ -38,5 +38,7 @@ Select store categories, protocols, and deployment units at this level, but leav
 ## Make the proposal testable
 
 Describe quality attributes with scenarios and observable limits: availability, latency, throughput, consistency, privacy, recovery, cost, and operability only where relevant. Include failure containment, migration or evolution path, risks, rejected options, and the cheapest validation for uncertain assumptions.
+
+Make an approved handoff understandable without the conversation. State material decisions and reasons, cite supporting artifacts, and separate confirmed constraints, estimates, assumptions, and preferences. Name unresolved choices and their consequences; do not present them as settled.
 
 Create `architecture.md`, an ADR, or diagrams only when requested or needed for an approved handoff. Stop before API detail, database schema, and implementation unless separately authorized.
