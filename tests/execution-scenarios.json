@@ -207,6 +207,17 @@
     "final_any": ["article.md"]
   },
   {
+    "id": "write-reading-density",
+    "skill": "ay-write",
+    "prompt": "依据 notes.md，把 draft.md 改写成一篇介绍消息队列的中文文章，保存为 article.md。面向材料指定的读者，保留必要事实和限制，直接成稿。不配图，不查外部资料，不发布；只创建 article.md，不修改输入材料。",
+    "fixture": "writing-density",
+    "files": {},
+    "expected_created": {"article.md": 300},
+    "allow_extra_changes": false,
+    "unchanged_files": ["notes.md", "draft.md"],
+    "final_any": ["article.md"]
+  },
+  {
     "id": "write-chinese-clarity",
     "skill": "ay-write",
     "prompt": "按 notes.md 写一篇清楚自然的中文技术说明到 article.md，读者背景已在材料里。直接写成稿，不需要先交提纲，不配图，不查外部资料，不发布。只创建 article.md，不改输入材料。不要编造作者亲历。",

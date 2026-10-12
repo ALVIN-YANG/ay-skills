@@ -1,4 +1,4 @@
 interface:
   display_name: "AY Write"
-  short_description: "Clear, natural Chinese and English writing"
-  default_prompt: "Use $ay-write to draft or revise this piece for its intended readers, preserving facts while making the explanation easy to follow."
+  short_description: "Modular prose and anime explainers with a recurring cast"
+  default_prompt: "Use $ay-write to write an information-dense article with a compact opening, clear connected modules, an overview image, and images for important modules using the bundled recurring cast unless I request text only."

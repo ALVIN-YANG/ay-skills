@@ -60,7 +60,7 @@ npx skills@latest add ALVIN-YANG/ay-skills
 | Skill | 适合处理 |
 |---|---|
 | [`ay-audio`](skills/ay-audio/SKILL.md) | 实现或排查 Apple 平台的流式 TTS 与语音播放 |
-| [`ay-write`](skills/ay-write/SKILL.md) | 撰写或修改清楚自然的中文、英文文章、帖子、故事与说明 |
+| [`ay-write`](skills/ay-write/SKILL.md) | 撰写信息密度高、模块清楚且逻辑连贯的文章，用固定动漫角色绘制概览与重要模块配图 |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | 设计并安装商店或启动器图标 |
 | [`ay-store-screenshots`](skills/ay-store-screenshots/SKILL.md) | 用发布版本的真实 UI 制作可复现的 App Store 宣传图 |
 

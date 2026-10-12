@@ -1,11 +1,11 @@
 ---
 name: ay-write
-description: Draft, research, or revise authored Chinese and English prose with clear meaning and a natural voice. Use when writing articles, technical explainers, posts, stories, or speeches; 写文章、中文写作、改稿、说人话、去 AI 味 in supplied prose. Own prose-only Chinese writing as well as illustrated work. Do not use for ordinary conversational answers, shortening the assistant's last reply, UI strings, or API handoff documents.
+description: Draft or revise concise, information-dense Chinese and English prose with clear openings and detailed anime information graphics. Use when writing articles, technical explainers, posts, stories, or speeches; 写文章、中文写作、改稿、说人话、去 AI 味 in supplied prose. Honor text-only requests. Do not use for ordinary conversational answers, shortening the assistant's last reply, UI strings, or API handoff documents.
 ---
 
 # AY Write
 
-Write so the intended reader understands without supplying missing explanations.
+Maximize useful information per unit of reading effort; preserve understanding and recall.
 
 ## Approval contract
 
@@ -23,30 +23,32 @@ Write so the intended reader understands without supplying missing explanations.
 
 ## Establish the reading task
 
-Infer the reader's existing knowledge, the question or experience the piece should deliver, genre, language, and destination. Use supplied writing as the voice baseline. Ask only about consequential gaps.
+Identify the reading task; preserve the supplied voice. Draft directly when the outcome is clear. Respect requested structure and length; ask only consequential questions, without outline approval.
 
-Draft or revise directly when the request and material establish the outcome. Do not require outline approval by default. Preserve requested structure; propose changes only when they alter intent or an approval boundary.
+For explainers, read [clear-prose.md](references/clear-prose.md); for technical articles, also read [technical-articles.md](references/technical-articles.md).
 
-For explainers or unclear prose, read [clear-prose.md](references/clear-prose.md). Examples are not templates.
+## Lead with the whole answer
 
-For technical articles, also read [technical-articles.md](references/technical-articles.md).
+Explanatory openings summarize the whole answer and decisive conditions. An introduction's first sentence says what the thing is and what it does. Give the answer, not a promise to explain. Narrative and fiction follow the requested opening.
 
-## Preserve meaning while writing plainly
+## Cut reading effort
 
-Verify factual claims with suitable primary sources. Do not invent the author's experiences, attributed beliefs, quotes, measurements, or results. Label hypothetical examples. Fiction may invent within the requested premise.
+Divide full articles into distinct knowledge modules with informative headings. Order them by the reader's understanding and connect their reasoning; avoid disconnected lists or a fixed outline.
 
-In explanatory writing, answer the reader's question early, then explain through a concrete example. Put implementation details and secondary exceptions after the main explanation. Preserve conditions, uncertainty, and safety limits; simplification must not strengthen a claim.
+Preserve necessary coverage while cutting repetition. After the opening, explain each point once, using a complete example with decisive limits. Remove familiar background, tangents, empty transitions, and routine recaps. Implementation and tutorials require an explicit request.
 
-Name the actor, action, and consequence. Keep useful technical terms and explain unfamiliar ones when needed. Remove repetitive conclusions, empty abstractions, and transitions that add nothing. Naturalness does not require slang, simulated mistakes, banned punctuation, or sentence-length quotas. Narrative and fiction need not begin with a conclusion.
+Keep actors, actions, consequences, and causal steps clear; explain unfamiliar terms. Preserve facts, conditions, uncertainty, and safety limits. Verify claims with primary sources; distinguish facts from inferences. Never invent experiences, quotes, measurements, or results. Label hypothetical examples; fiction may invent.
 
-## Use visuals selectively
+## Make it memorable
 
-Read [references/visuals.md](references/visuals.md) when a visual explains something better than prose or is requested. Respect the project's formats and existing capabilities.
+Full articles include an opening overview image and an explanatory image for each important knowledge module, unless the user requests text only. Default to Japanese cel shading and the bundled character reference; honor alternative styles. Show mechanisms, relationships, steps, and decisive limits with readable labels, arrows, and captions. Preserve useful detail, not decorative filler.
 
-Approval for writing does not authorize publishing, paid tools, new dependencies, or unrelated edits.
+Read [visuals.md](references/visuals.md). Respect project formats. Report unavailable image production; a prompt is not an image.
+
+Writing approval excludes publishing, paid tools, new dependencies, and unrelated edits.
 
 ## Check understanding and deliver
 
-Check whether the reader can recover the intended answer and next action from the text alone. Identify unsupported jumps, unclear referents, and unexplained terms; fix the passages, not just the score. Automated prose checks and AI review are aids, not proof of human comprehension.
+Read back the finished draft; revise it for density before delivery. Merge repeated explanations; preserve distinct facts and causal steps. Check opening coverage, visual coverage, and reading budgets. AI review cannot prove human comprehension.
 
-Verify claims, links, examples, assets, and rendered layout in proportion to the task. Deliver only the requested work and material limitations. When asked to improve this skill, turn concrete feedback into a regression case; do not silently rewrite skill or user settings during ordinary writing.
+Verify links, assets, and layout. Preserve skill-improvement feedback as regression cases; ordinary writing does not authorize skill edits.
