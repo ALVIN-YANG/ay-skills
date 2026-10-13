@@ -48,6 +48,13 @@ python3 scripts/run_behavior_evals.py --catalog target --ids write-chinese-clari
 python3 scripts/run_routing_evals.py --host codex --ids write-chinese-explainer write-chinese-rewrite write-line-edit write-fiction specialist-human-writing specialist-clear-rewrite no-skill-short-answer
 ```
 
+For product website changes, freeze cases before editing the skill and inspect their saved outputs using [the website rubric](tests/website-rubric.md). Review rendered desktop and mobile pages and actual action targets; artifact assertions alone do not prove visual quality.
+
+```bash
+python3 scripts/run_behavior_evals.py --catalog target --ids website-proposal-only website-approved-static-page website-design-only-handoff website-two-visible-directions
+python3 scripts/run_routing_evals.py --host codex --ids website-product-homepage website-approved-build website-design-only website-two-directions specialist-frontend specialist-frontend-workspace specialist-oil-ui ui-style-flow specialist-web-audit
+```
+
 ## Release evidence
 
 Keep `VERSION`, plugin manifests, and the release tag aligned. A source change, successful CI run, pushed tag, published GitHub Release, downloaded archive, and remote install are separate proof layers.

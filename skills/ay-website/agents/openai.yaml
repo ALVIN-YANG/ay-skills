@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Website"
+  short_description: "Design product websites from content to visible proof"
+  default_prompt: "Use $ay-website to design this product website, implement within the approved scope, and verify its desktop, mobile, and visitor actions."

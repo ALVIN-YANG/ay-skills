@@ -6,7 +6,7 @@
 
 [简体中文](README.zh-CN.md)
 
-AY Skills is a set of fifteen standalone skills for coding agents. Each skill defines when the agent can proceed, when a decision needs your approval, and what evidence counts as done.
+AY Skills is a set of sixteen standalone skills for coding agents. Each skill defines when the agent can proceed, when a decision needs your approval, and what evidence counts as done.
 
 ## Quick start
 
@@ -41,6 +41,7 @@ The skills are independent. They do not require a router, shared runtime, modes,
 | [`ay-expert-lens`](skills/ay-expert-lens/SKILL.md) | Apply a real expert's documented framework to an open decision |
 | [`ay-product`](skills/ay-product/SKILL.md) | Research a product idea and define a focused, testable direction |
 | [`ay-ui`](skills/ay-ui/SKILL.md) | Choose a visual direction, design screens, and prepare a UI handoff |
+| [`ay-website`](skills/ay-website/SKILL.md) | Design product websites, compare visual directions, and verify responsive pages |
 | [`ay-architecture`](skills/ay-architecture/SKILL.md) | Set system boundaries, ownership, deployment, and failure behavior |
 | [`ay-api`](skills/ay-api/SKILL.md) | Design consumer-facing APIs, events, webhooks, and service contracts |
 | [`ay-database`](skills/ay-database/SKILL.md) | Design schemas, indexes, transactions, and migrations for the exact engine |
@@ -90,7 +91,7 @@ Development commands and the limits of each proof layer are in [CONTRIBUTING.md]
 
 ## Other install options
 
-Install all fifteen skills for Codex and Claude Code:
+Install all sixteen skills for Codex and Claude Code:
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y

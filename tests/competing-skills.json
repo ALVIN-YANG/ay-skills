@@ -59,5 +59,9 @@
   {
     "name": "api-reference-docs",
     "description": "Generate comprehensive public API reference documentation from an OpenAPI specification. Use when every operation in a public API should appear in a complete reference portal."
+  },
+  {
+    "name": "oil-ui",
+    "description": "Design and build distinctive websites, apps, dashboards, and frontend components through product-grounded direction exploration, visual comparison, and screenshot review. Use when creating or redesigning a UI, or when the user explicitly selects oil-ui."
   }
 ]

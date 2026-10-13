@@ -377,5 +377,94 @@
     "final_regex": [
       "(?m)^IMPLEMENTATION: BLOCKED[ ]*$"
     ]
+  },
+  {
+    "id": "website-proposal-only",
+    "skill": "ay-website",
+    "prompt": "Read brief.md and recommend one product website direction, page hierarchy, and visitor action. The brand and visual direction are open. Return a proposal for approval; do not create or modify files. Do not browse.",
+    "fixture": "website",
+    "files": {},
+    "expect_no_changes": true
+  },
+  {
+    "id": "website-approved-static-page",
+    "skill": "ay-website",
+    "prompt": "Create site/index.html from brief.md and approved-brand.md. The content, direction, and implementation are approved. Use inline CSS and only standard browser features; create no other files and preserve the inputs. Make the complete page responsive, with the workflow section and working in-page CTA. Inspect the page at 1440x900 and 390x844 if available, and report exactly what you checked. Do not browse or publish.",
+    "fixture": "website",
+    "files": {
+      "approved-brand.md": "Approved direction: a quiet research index. Paper #F4F1E8, ink #172923, moss #557C61. Use a local serif for the headline and a local sans-serif for body text. Hero: large left-aligned headline above an illustrative arrangement of folder tabs and note slips; lower sections use a numbered editorial rhythm. Preserve this direction on narrow mobile. The illustration is conceptual, not an app screenshot.\n"
+    },
+    "expected_created": {
+      "site/index.html": 2000
+    },
+    "created_all": {
+      "site/index.html": [
+        "FlowPocket",
+        "Keep your research within reach.",
+        "#how-it-works",
+        "mailto:hello@flowpocket.example",
+        "macOS 14"
+      ]
+    },
+    "unchanged_files": [
+      "brief.md",
+      "approved-brand.md"
+    ],
+    "allow_extra_changes": false
+  },
+  {
+    "id": "website-design-only-handoff",
+    "skill": "ay-website",
+    "prompt": "Read brief.md and approved-brand.md. Write only 官网设计.md as a design handoff for the approved website. Include page hierarchy, exact visitor actions, typography and color decisions, truthful imagery, and desktop/mobile rules. Do not create HTML, SVG, images, or code. Preserve the source files. Do not browse.",
+    "fixture": "website",
+    "files": {
+      "approved-brand.md": "Approved direction: a quiet research index. Paper #F4F1E8, ink #172923, moss #557C61. Serif headline, sans-serif text. One illustrative folder-and-note composition, followed by numbered workflow steps.\n"
+    },
+    "expected_created": {
+      "官网设计.md": 900
+    },
+    "created_all": {
+      "官网设计.md": [
+        "FlowPocket",
+        "#how-it-works",
+        "mailto:hello@flowpocket.example",
+        "macOS 14"
+      ]
+    },
+    "unchanged_files": [
+      "brief.md",
+      "approved-brand.md"
+    ],
+    "allow_extra_changes": false
+  },
+  {
+    "id": "website-two-visible-directions",
+    "skill": "ay-website",
+    "prompt": "Read brief.md. Creating exactly two first-screen HTML prototypes and a comparison page is approved. Produce preview/direction-a.html, preview/direction-b.html, and preview/compare.html with inline CSS and no other files. Use the same approved headline, supporting copy, and CTA at the same 1440x900 comparison viewport. The two directions should make different composition and focal-image choices within the research utility identity, rather than changing only colors. A minimal local workflow target may sit below the first screen so #how-it-works resolves. Link the comparison page to each prototype. Inspect rendered previews if available and recommend one direction with a reason; do not implement the full site, browse, or publish.",
+    "fixture": "website",
+    "files": {},
+    "expected_created": {
+      "preview/direction-a.html": 1500,
+      "preview/direction-b.html": 1500,
+      "preview/compare.html": 500
+    },
+    "created_all": {
+      "preview/direction-a.html": [
+        "Keep your research within reach.",
+        "#how-it-works"
+      ],
+      "preview/direction-b.html": [
+        "Keep your research within reach.",
+        "#how-it-works"
+      ],
+      "preview/compare.html": [
+        "direction-a.html",
+        "direction-b.html"
+      ]
+    },
+    "unchanged_files": [
+      "brief.md"
+    ],
+    "allow_extra_changes": false
   }
 ]

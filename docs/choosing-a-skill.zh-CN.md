@@ -18,6 +18,8 @@ ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-imple
 |---|---|
 | 用真实专家的公开方法分析开放问题 | `ay-expert-lens`；具体产物和执行仍由领域 Skill 负责 |
 | 第一人称模拟专家或名人 | 专用人格 Skill；`ay-expert-lens` 不冒充本人 |
+| 设计产品官网或落地页，并在批准范围内实现 | `ay-website`；用户明确选择建站工具或设计 Skill 时尊重该选择 |
+| 在前端实现前设计应用页面和交互状态 | `ay-ui`；通用 Web UI 实现由专用前端 Skill 主导 |
 | 设计新的 API、事件或消息契约 | `ay-api` |
 | 给某个客户端写本期已确认或已实现的契约变化 | `ay-integration-docs` |
 | 根据 OpenAPI 生成完整公共参考 | 专用 API 文档生成器 |

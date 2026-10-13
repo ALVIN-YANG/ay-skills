@@ -1,6 +1,6 @@
 ---
 name: ay-ui
-description: Design and approve product interfaces before frontend implementation. Use when the primary deliverable is visual direction, application screens, screen-by-screen mockups, interaction states, a design system, or a design.md handoff, including 定设计风格, 生成设计图, UI方案, or 一张张确认页面. Do not use for product strategy, store icons, a single decorative image, UI compliance review, or requests primarily asking to write frontend code.
+description: Design and approve product interfaces before frontend implementation. Use when the primary deliverable is visual direction, application screens, screen-by-screen mockups, interaction states, a design system, or a design.md handoff, including 定设计风格, 生成设计图, UI方案, or 一张张确认页面. Do not use for product marketing websites, product strategy, store icons, a single decorative image, UI compliance review, or requests primarily asking to write frontend code.
 ---
 
 # AY UI

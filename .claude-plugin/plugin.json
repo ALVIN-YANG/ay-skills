@@ -1,6 +1,6 @@
 {
   "name": "ay-skills",
-  "version": "0.11.2",
+  "version": "0.12.0",
   "description": "Small, human-approved workflows for AI coding agents.",
   "author": {
     "name": "Alvin Yang",
@@ -29,6 +29,7 @@
     "./skills/ay-product",
     "./skills/ay-expert-lens",
     "./skills/ay-ui",
+    "./skills/ay-website",
     "./skills/ay-architecture",
     "./skills/ay-api",
     "./skills/ay-integration-docs",

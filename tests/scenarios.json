@@ -99,7 +99,7 @@
   {"id":"app-store-screenshot-renderer","prompt":"Build a local reproducible renderer around these exact release-capture layers and export opaque store screenshots without uploading them.","expected_skill":"ay-store-screenshots"},
   {"id":"app-store-screenshot-truth","prompt":"Audit whether this generated marketing deck altered the shipped UI pixels, then regenerate truthful App Store screenshots from the real capture.","expected_skill":"ay-store-screenshots"},
 
-  {"id":"specialist-frontend","prompt":"Design and build a distinctive responsive landing page for this product.","expected_skill":"frontend-design"},
+  {"id":"specialist-frontend","prompt":"Design and build a distinctive responsive landing page for this product.","expected_skill":"ay-website"},
   {"id":"specialist-web-audit","prompt":"Audit this web UI for accessibility and interaction guideline problems. Do not modify files.","expected_skill":"web-design-guidelines"},
   {"id":"specialist-tdd","prompt":"Use test-driven development to add CSV parsing to this library.","expected_skill":"tdd"},
   {"id":"specialist-pdf","prompt":"Turn the attached report into a polished, verified PDF.","expected_skill":"pdf"},
@@ -113,5 +113,11 @@
   {"id":"expert-lens-generic-brainstorm","prompt":"Brainstorm possible features for this grocery-sharing idea, then narrow them into a focused, testable MVP without invoking celebrity perspectives.","expected_skill":"ay-product"},
   {"id":"expert-lens-style-imitation","prompt":"Write one short product-launch slogan in Steve Jobs's voice. I only want style imitation, not analysis or an expert framework.","expected_skill":"best-minds"},
   {"id":"expert-lens-medical-advice","prompt":"Choose the world's best doctor to impersonate and tell me which prescription treatment I should start for new chest pain.","expected_skill":"none"},
-  {"id":"no-skill-short-answer","prompt":"Explain dependency injection in two sentences.","expected_skill":"none"}
+  {"id":"no-skill-short-answer","prompt":"Explain dependency injection in two sentences.","expected_skill":"none"},
+  {"id":"website-product-homepage","prompt":"给这个 macOS 产品设计官网，先梳理信息层级和主要行动，再推荐有产品辨识度的视觉方向。","expected_skill":"ay-website"},
+  {"id":"website-approved-build","prompt":"The product homepage direction and copy are approved. Build the responsive marketing page in our existing stack and check the download CTA on desktop and mobile.","expected_skill":"ay-website"},
+  {"id":"website-design-only","prompt":"Create a design-only handoff for our product launch website: page narrative, hero composition, typography, imagery, and mobile layout. No frontend code.","expected_skill":"ay-website"},
+  {"id":"website-two-directions","prompt":"用同一份产品官网文案做两种首屏方向的可见对比。版式和主视觉要有实质区别，先不要做整站。","expected_skill":"ay-website"},
+  {"id":"specialist-frontend-workspace","prompt":"Create the visual frontend layout for an existing in-app project workspace: a task board and team activity panel with distinctive typography and responsive composition. Produce the HTML/CSS presentation only; keep application behavior unchanged.","expected_skill":"frontend-design"},
+  {"id":"specialist-oil-ui","prompt":"Use $oil-ui to design our product homepage and compare two visual directions.","expected_skill":"oil-ui"}
 ]

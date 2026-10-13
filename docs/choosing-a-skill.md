@@ -18,6 +18,8 @@ This is guidance, not a required pipeline. Move architecture earlier when feasib
 |---|---|
 | Apply a real expert's published framework to an open decision | `ay-expert-lens`; the domain skill still owns a concrete artifact or execution |
 | Simulate an expert or celebrity in the first person | A dedicated persona skill; `ay-expert-lens` does not impersonate people |
+| Design a product homepage, marketing website, or landing page; build it within approved scope | `ay-website`; respect an explicitly selected builder or design skill |
+| Design application screens and interaction states before frontend implementation | `ay-ui`; a dedicated frontend skill leads general web UI implementation |
 | Design a new API, event, or message contract | `ay-api` |
 | Document an approved or implemented contract for one client and release | `ay-integration-docs` |
 | Generate an exhaustive public reference from OpenAPI | A dedicated API reference generator |

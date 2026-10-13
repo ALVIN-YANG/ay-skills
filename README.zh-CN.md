@@ -6,7 +6,7 @@
 
 [English](README.md)
 
-AY Skills 是十五个可以单独安装的 coding-agent Skill。每个 Skill 都写清楚三件事：什么时候可以直接做，什么决定需要你确认，做到哪一步才算有证据。
+AY Skills 是十六个可以单独安装的 coding-agent Skill。每个 Skill 都写清楚三件事：什么时候可以直接做，什么决定需要你确认，做到哪一步才算有证据。
 
 ## 快速开始
 
@@ -41,6 +41,7 @@ npx skills@latest add ALVIN-YANG/ay-skills
 | [`ay-expert-lens`](skills/ay-expert-lens/SKILL.md) | 用真实专家公开的方法分析开放问题 |
 | [`ay-product`](skills/ay-product/SKILL.md) | 调查产品设想，给出聚焦且可验证的方向 |
 | [`ay-ui`](skills/ay-ui/SKILL.md) | 确定视觉方向、设计页面并整理 UI 交接 |
+| [`ay-website`](skills/ay-website/SKILL.md) | 设计产品官网、比较视觉方向，并验证响应式页面 |
 | [`ay-architecture`](skills/ay-architecture/SKILL.md) | 确定系统边界、归属、部署与故障行为 |
 | [`ay-api`](skills/ay-api/SKILL.md) | 设计面向调用方的接口、事件、Webhook 与服务契约 |
 | [`ay-database`](skills/ay-database/SKILL.md) | 按具体数据库设计表、索引、事务与迁移 |
@@ -89,7 +90,7 @@ AY：已按确认范围完成并通过相关测试。离线写入仍不在本次
 
 ## 其他安装方式
 
-给 Codex 和 Claude Code 安装全部十五个 Skill：
+给 Codex 和 Claude Code 安装全部十六个 Skill：
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y

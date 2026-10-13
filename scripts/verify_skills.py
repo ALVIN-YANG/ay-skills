@@ -15,6 +15,7 @@ EXPECTED_SKILLS = (
     "ay-product",
     "ay-expert-lens",
     "ay-ui",
+    "ay-website",
     "ay-architecture",
     "ay-api",
     "ay-integration-docs",
