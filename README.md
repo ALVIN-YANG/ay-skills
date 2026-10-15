@@ -61,7 +61,7 @@ The skills are independent. They do not require a router, shared runtime, modes,
 | Skill | Use it for |
 |---|---|
 | [`ay-audio`](skills/ay-audio/SKILL.md) | Build or debug streaming TTS and voice playback on Apple platforms |
-| [`ay-write`](skills/ay-write/SKILL.md) | Write questions, articles, guides, and stories with shared clarity rules and form-specific structure |
+| [`ay-write`](skills/ay-write/SKILL.md) | Write articles, Q&A, guides, stories, Chinese social posts, and video scripts with shared clarity rules |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | Design and install store or launcher icons |
 | [`ay-store-screenshots`](skills/ay-store-screenshots/SKILL.md) | Produce reproducible App Store screenshots from shipped UI |
 

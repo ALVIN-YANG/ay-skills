@@ -55,6 +55,13 @@ python3 scripts/run_behavior_evals.py --catalog target --ids write-interview-qa 
 python3 scripts/run_routing_evals.py --host codex --ids write-interview-bank write-faq-rewrite no-skill-rag-fact specialist-tech-doc-style specialist-interview-collection write-chinese-explainer write-fiction
 ```
 
+For Chinese social writing, freeze the WeChat, Xiaohongshu, and voiceover cases before editing and compare the same original/revised bundles. Inspect the actual copy, requested length, source fidelity, and spoken timing estimate using the writing rubric. The different-topic storyboard and title-only cases check transfer and narrow scope. Keep HTML formatting and video production separate from prose drafting.
+
+```bash
+python3 scripts/run_behavior_evals.py --catalog target --ids write-social-wechat write-social-xhs write-social-video write-social-video-holdout write-social-title-only write-interview-holdout write-reading-density write-narrative-opening
+python3 scripts/run_routing_evals.py --host codex --ids write-wechat-article write-xhs-note write-video-copy specialist-wechat-layout write-interview-bank no-skill-short-answer
+```
+
 For product website changes, freeze cases before editing the skill and inspect their saved outputs using [the website rubric](tests/website-rubric.md). Review rendered desktop and mobile pages and actual action targets; artifact assertions alone do not prove visual quality.
 
 ```bash

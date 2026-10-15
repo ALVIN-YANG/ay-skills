@@ -71,5 +71,9 @@
   {
     "name": "interview-collector",
     "description": "Collect public interview reports, deduplicate related questions while preserving follow-ups, attach source provenance, classify the question bank, and rank traceable report samples. Use when sourcing and maintaining an interview question collection is the primary task."
+  },
+  {
+    "name": "gzh-design",
+    "description": "Format an existing article as WeChat Official Account HTML with reusable visual themes and copy-ready preview. Use for 公众号排版, 微信 HTML, or explicit gzh-design requests; the primary task is formatting an existing draft."
   }
 ]

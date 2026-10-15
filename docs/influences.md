@@ -54,3 +54,17 @@ AY's prose instructions and before/after examples are original. They separate pr
 The writing-type distinctions also draw on Daniele Procida's [Diátaxis](https://diataxis.fr/start-here/): learning, doing, lookup, and understanding call for different documentation forms. AY applies that distinction to technical writing and interview study entries; narrative is outside this framework's technical-documentation scope. The branches and acceptance checks are original adaptations, not a copied template or a requirement to split every topic into four documents.
 
 The common rules were also compared with Fenng's MIT-licensed [Tech-Doc-Style-Chinese](https://github.com/Fenng/Tech-Doc-Style-Chinese/tree/b119d01c9bb7cd132b3c62fafdff34227c4410d1), reviewed on 2026-10-15. The useful overlap is protecting facts, conditions, and machine-readable literals before optimizing style. AY's instructions and synthetic question sets are original; upstream text, templates, checkers, and task stages were not copied. Paired trials compare actual output without claiming a universally best skill or measured human recall.
+
+## Chinese social writing
+
+The social-writing additions were informed by three task-specific candidates, reviewed on 2026-10-15:
+
+| Reference | Useful idea | License review at the pinned revision |
+|---|---|---|
+| [classfang/weixin-mp-skills: wechat-article-write](https://github.com/classfang/weixin-mp-skills/tree/6f71866de118ab06a5640364fe037cd434eec20c/wechat-article-write) | Reader purpose, useful original substance, connected arguments, and mobile reading; writing is distinct from optional HTML formatting | Repository metadata reported no license; the recursive tree contained no identifiable license file |
+| [Vink567/xiaohongshu-writer](https://github.com/Vink567/xiaohongshu-writer/tree/b04cf573216e471aa992cee6e3cd136608ccda25) | Coordinate title, first-card copy, and body; change the presentation for reviews, tutorials, and stories | MIT license file inspected |
+| [ShortVideo-AI/short-video-script-skill](https://github.com/ShortVideo-AI/short-video-script-skill/tree/5b42b3bfb5199483a90614070b374c23758e7807) | Write for speech, check duration, and distinguish spoken copy from shots and release packaging | Frontmatter declares MIT, but repository metadata and the recursive tree provided no independent license file |
+
+These are references for fit, not proven quality winners. AY's wording and synthetic cases are original; no upstream instructions, templates, scripts, assets, or test data were copied. AY does not adopt mandatory title counts, staged confirmations, fixed personas, emoji quotas, algorithm promises, engagement bait, or automatic publishing. Estimated script duration remains distinct from a timed recording or a rendered video.
+
+Also inspected: MIT-licensed [zdyya/writer-skill](https://github.com/zdyya/writer-skill/tree/dd100aaf4bb4c028bbda6b11184d232c4c0a0737) and [sangjiexun/koubo-script-skill](https://github.com/sangjiexun/koubo-script-skill/tree/68f48daa19caa4d3b8df41caeccd58eefa4aa533), whose full production workflows exceed this writing-only scope. MIT-licensed [v0id-byte/xiaohongshu-writer](https://github.com/v0id-byte/xiaohongshu-writer/tree/57e93b7579e7256c24626d39df6901b3654ce9c7) attributes rules to an official enterprise guide without a traceable source in the inspected skill; AY does not treat its fixed metrics or recommendation claims as platform facts.
