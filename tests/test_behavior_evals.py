@@ -100,6 +100,14 @@ class BehaviorEvalTests(unittest.TestCase):
             )
         )
 
+    def test_rejected_account_model_is_infrastructure_error(self) -> None:
+        self.assertTrue(
+            behavior.is_infrastructure_error_text(
+                "The 'gpt-5.5' model is not supported when using Codex with a ChatGPT account."
+            )
+        )
+        self.assertFalse(behavior.is_infrastructure_error_text("missing required answer"))
+
     def test_changed_paths_detects_create_edit_and_delete(self) -> None:
         before = {"edit.txt": b"old", "delete.txt": b"gone", "same.txt": b"same"}
         after = {"edit.txt": b"new", "create.txt": b"new", "same.txt": b"same"}

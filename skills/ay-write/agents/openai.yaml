@@ -1,4 +1,4 @@
 interface:
   display_name: "AY Write"
-  short_description: "Modular prose and anime explainers with a recurring cast"
-  default_prompt: "Use $ay-write to write an information-dense article with a compact opening, clear connected modules, an overview image, and images for important modules using the bundled recurring cast unless I request text only."
+  short_description: "Clear prose shaped for questions, articles, guides, and stories"
+  default_prompt: "Use $ay-write to draft or revise this text for its readers and writing type, preserving facts and conditions while matching the requested form, length, and voice."

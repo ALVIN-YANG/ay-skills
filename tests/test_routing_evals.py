@@ -39,6 +39,13 @@ class RoutingEvalTests(unittest.TestCase):
         result = routing.Result("case", False, "ay-ui", "ay-product", "wrong boundary")
         self.assertFalse(routing.is_infrastructure_error(result))
 
+    def test_rejected_account_model_is_infrastructure_error(self) -> None:
+        result = routing.Result(
+            "case", False, "ay-write", "error", "",
+            "The 'gpt-5.5' model is not supported when using Codex with a ChatGPT account.",
+        )
+        self.assertTrue(routing.is_infrastructure_error(result))
+
     def test_fixture_catalog_includes_real_overlap_cases(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             installed = Path(directory) / "skills"

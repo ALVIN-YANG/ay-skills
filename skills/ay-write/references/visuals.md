@@ -1,6 +1,6 @@
 # Make the article's main point memorable
 
-Full articles and full-article rewrites include a Japanese cel-shaded anime overview near the opening and an explanatory image beside each important knowledge module. Respect explicit text-only requests, another chosen style, and narrow paragraph edits. Do not add a picture to a read-only critique.
+Full explanatory articles and their full rewrites include a Japanese cel-shaded anime overview near the opening and an explanatory image beside each important knowledge module. Interview answers, FAQ and reference entries, procedures, narrow edits, and fiction do not inherit this requirement; illustrate them only when requested or when a figure materially helps the task. Respect explicit text-only requests and another chosen style. Do not add a picture to a read-only critique.
 
 The overview is a visual summary of the article, with comprehensive, detailed coverage of its main content. Module images explain their own mechanism, process, comparison, or decision in greater detail. An anime character beside a laptop is insufficient if the topic is task recovery or duplicate requests.
 

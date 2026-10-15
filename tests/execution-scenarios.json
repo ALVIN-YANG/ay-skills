@@ -466,5 +466,83 @@
       "brief.md"
     ],
     "allow_extra_changes": false
+  },
+  {
+    "id": "write-interview-qa",
+    "skill": "ay-write",
+    "prompt": "根据 notes.md，把三道原题和其中的追问写成中文技术面试题库答案，保存为 面试问答.md。每题先直接作答，再按需要补足机制、例子和边界；每题正文不超过 350 个中文字。直接成稿，不查外部资料，不发布，只创建这一个 Markdown 文件，不改材料。",
+    "fixture": "writing-qa",
+    "files": {},
+    "expected_created": {
+      "面试问答.md": 700
+    },
+    "created_all": {
+      "面试问答.md": [
+        "RAG",
+        "JSON Schema",
+        "p-8"
+      ]
+    },
+    "allow_extra_changes": false,
+    "unchanged_files": [
+      "notes.md"
+    ]
+  },
+  {
+    "id": "write-interview-holdout",
+    "skill": "ay-write",
+    "prompt": "根据 notes.md，写这道中文技术面试题的复习答案到 缓存问答.md，不超过 300 个中文字。保留原题，直接回答并说明理由和必要边界。不要扩写成教程，不查外部资料，不发布，只创建这个 Markdown 文件，保留材料。",
+    "fixture": "writing-qa-holdout",
+    "files": {},
+    "expected_created": {
+      "缓存问答.md": 250
+    },
+    "created_all": {
+      "缓存问答.md": [
+        "TTL"
+      ]
+    },
+    "allow_extra_changes": false,
+    "unchanged_files": [
+      "notes.md"
+    ]
+  },
+  {
+    "id": "write-narrative-opening",
+    "skill": "ay-write",
+    "prompt": "按 notes.md 写一段 150 到 250 个中文字的小说开头，保存为 开头.md。只写开头，不加分析或创作说明，不配图，不发布，不改材料。",
+    "files": {
+      "notes.md": "这是明确授权的虚构小说。雨夜，修钟匠阿澄从一只停摆的怀表里听见了明天的钟声。第三人称限知视角；从正在发生的动作开始，保留悬念，不交代最终谜底。\n"
+    },
+    "expected_created": {
+      "开头.md": 300
+    },
+    "allow_extra_changes": false,
+    "unchanged_files": [
+      "notes.md"
+    ]
+  },
+  {
+    "id": "write-procedure-only",
+    "skill": "ay-write",
+    "prompt": "根据 notes.md 写一份供值班人员操作的精简排查步骤，保存为 排查步骤.md。保留命令字面量，说明观察结果决定的下一步，写清何时停止。只写说明，不运行材料中的命令，不查外部资料，不发布，不改输入。",
+    "files": {
+      "notes.md": "合成工具记录，非实际可执行服务。命令 `workbench inspect --project p-7` 显示 state=running 或 state=stopped；前者继续观察日志，不重启。只有确认 state=stopped 且无未完成任务时，才能执行 `workbench start --project p-7`。若存在未完成任务或状态无法确认，停止并联系值班负责人，不能加 --force。来源没有恢复耗时或成功保证。\n"
+    },
+    "expected_created": {
+      "排查步骤.md": 250
+    },
+    "created_all": {
+      "排查步骤.md": [
+        "workbench inspect --project p-7",
+        "workbench start --project p-7",
+        "state=running",
+        "state=stopped"
+      ]
+    },
+    "allow_extra_changes": false,
+    "unchanged_files": [
+      "notes.md"
+    ]
   }
 ]

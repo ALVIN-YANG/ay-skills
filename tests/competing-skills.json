@@ -63,5 +63,13 @@
   {
     "name": "oil-ui",
     "description": "Design and build distinctive websites, apps, dashboards, and frontend components through product-grounded direction exploration, visual comparison, and screenshot review. Use when creating or redesigning a UI, or when the user explicitly selects oil-ui."
+  },
+  {
+    "name": "tech-doc-style-chinese",
+    "description": "Draft or revise Chinese technical documentation, product and UI copy, reference material, operating manuals, and troubleshooting guides while protecting facts, constraints, and machine-readable literals. Respect an explicit request to use tech-doc-style-chinese."
+  },
+  {
+    "name": "interview-collector",
+    "description": "Collect public interview reports, deduplicate related questions while preserving follow-ups, attach source provenance, classify the question bank, and rank traceable report samples. Use when sourcing and maintaining an interview question collection is the primary task."
   }
 ]

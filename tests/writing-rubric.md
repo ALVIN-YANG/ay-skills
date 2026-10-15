@@ -57,3 +57,16 @@ Use a short fiction request to confirm that invented events are allowed and an e
 For each run record the CLI/model when known, skill revision, raw input, actual output, and specific passages that helped or blocked understanding. Report factual preservation, task scope, and explanation quality separately. AI review is a preliminary judgment, not representative human testing.
 
 When a reader objects, preserve the original passage and the proposed correction as a candidate case. Only mark wording as user-approved after actual confirmation. Recheck another subject before turning feedback into a general instruction; do not reward uniform punctuation, arbitrary sentence lengths, or the presence of a preferred heading.
+
+
+## Writing type boundaries and interview Q&A
+
+Freeze `write-interview-qa` and the different-topic `write-interview-holdout` before editing the skill. Compare the original AY instructions, the pinned Fenng bundle, and the revised AY instructions using identical tasks, evidence, output limits, model, and sandbox. An upstream skill's reputation is not an output-quality result.
+
+Check the actual answers, not keyword counts: the opening answers the exact question; a short answer still explains the decisive mechanism and limits; original questions and the separate follow-up survive; each card can be read alone. Reject invented personal experience, benchmark claims, service APIs, automatic deduplication, unsupported authorization, and unconditional retry or freshness promises. The RAG answer distinguishes retrieval from supported/correct generation. Schema validation must not authorize deletion of p-8. The timeout follow-up must acknowledge the absent idempotency and query capabilities. The cache answer must retain the expiry/update distinction and concurrent-check/decrement boundary. Literal JSON values must survive; typography improvements do not authorize changing them.
+
+Record answer length against the requested budget without presenting it as measured recall or reading time. Cards should not acquire article intros, repeated conclusions, a universal four-part template, mandatory visuals, or a mock interview. Interview-report provenance supports what was reportedly asked; official technical material supports the answer. Neither report popularity nor this synthetic fixture proves interview frequency.
+
+`write-procedure-only` checks steps, conditions, observed outcomes, and a stopping point; it must preserve the command arguments and not execute them. `write-narrative-opening` checks that clearly authorized fiction remains fiction, starts in action, and keeps the requested viewpoint and unresolved mystery. Do not impose answer-first exposition or a technical article outline on it. Existing explanation, English, source-comparison, and read-only review cases guard the common rules.
+
+AI inspection can identify factual or structural failures. It does not establish human comprehension, memorization, or a universally best writing skill. Record close or inconclusive comparisons as such.

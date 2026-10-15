@@ -119,5 +119,10 @@
   {"id":"website-design-only","prompt":"Create a design-only handoff for our product launch website: page narrative, hero composition, typography, imagery, and mobile layout. No frontend code.","expected_skill":"ay-website"},
   {"id":"website-two-directions","prompt":"用同一份产品官网文案做两种首屏方向的可见对比。版式和主视觉要有实质区别，先不要做整站。","expected_skill":"ay-website"},
   {"id":"specialist-frontend-workspace","prompt":"Create the visual frontend layout for an existing in-app project workspace: a task board and team activity panel with distinctive typography and responsive composition. Produce the HTML/CSS presentation only; keep application behavior unchanged.","expected_skill":"frontend-design"},
-  {"id":"specialist-oil-ui","prompt":"Use $oil-ui to design our product homepage and compare two visual directions.","expected_skill":"oil-ui"}
+  {"id":"specialist-oil-ui","prompt":"Use $oil-ui to design our product homepage and compare two visual directions.","expected_skill":"oil-ui"},
+  {"id":"write-interview-bank","prompt":"把这些已经收集好的中文技术面试题写成题库参考答案，保留原题和追问，逐题直接回答，再解释必要机制和边界。不要采集新题或模拟面试。","expected_skill":"ay-write"},
+  {"id":"write-faq-rewrite","prompt":"把现有 FAQ 答案改得更清楚，逐条保留问题、代码字面量、版本条件和例外，不要扩写成博客文章。","expected_skill":"ay-write"},
+  {"id":"no-skill-rag-fact","prompt":"RAG 是什么意思？用两句话解释。","expected_skill":"none"},
+  {"id":"specialist-tech-doc-style","prompt":"Use $tech-doc-style-chinese to revise this Chinese technical troubleshooting document, preserving commands and conditions.","expected_skill":"tech-doc-style-chinese"},
+  {"id":"specialist-interview-collection","prompt":"采集最近半年的公开面经，合并同义题，保留追问和原帖来源，按可追溯样本频次排序。","expected_skill":"interview-collector"}
 ]

@@ -48,6 +48,13 @@ python3 scripts/run_behavior_evals.py --catalog target --ids write-chinese-clari
 python3 scripts/run_routing_evals.py --host codex --ids write-chinese-explainer write-chinese-rewrite write-line-edit write-fiction specialist-human-writing specialist-clear-rewrite no-skill-short-answer
 ```
 
+For writing-type changes, add the Q&A, different-topic holdout, procedure, and narrative cases to the existing prose checks. Use the same supported model and CLI for paired trials and inspect the outputs against the writing rubric. A provider's rejection of a model is infrastructure failure, not a writing-quality result. Question provenance and technical answer evidence are separate.
+
+```bash
+python3 scripts/run_behavior_evals.py --catalog target --ids write-interview-qa write-interview-holdout write-procedure-only write-narrative-opening write-reading-density write-source-comparison write-english-holdout write-review-only
+python3 scripts/run_routing_evals.py --host codex --ids write-interview-bank write-faq-rewrite no-skill-rag-fact specialist-tech-doc-style specialist-interview-collection write-chinese-explainer write-fiction
+```
+
 For product website changes, freeze cases before editing the skill and inspect their saved outputs using [the website rubric](tests/website-rubric.md). Review rendered desktop and mobile pages and actual action targets; artifact assertions alone do not prove visual quality.
 
 ```bash

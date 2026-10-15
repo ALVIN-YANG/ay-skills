@@ -1,11 +1,9 @@
 ---
 name: ay-write
-description: Draft or revise concise, information-dense Chinese and English prose with clear openings and detailed anime information graphics. Use when writing articles, technical explainers, posts, stories, or speeches; 写文章、中文写作、改稿、说人话、去 AI 味 in supplied prose. Honor text-only requests. Do not use for ordinary conversational answers, shortening the assistant's last reply, UI strings, or API handoff documents.
+description: Write or revise Chinese and English prose matched to its reading task. Use when authoring articles, technical explanations, interview-bank answers, FAQ entries, guides, stories, or speeches; 中文写作、面试题库答案、技术问答、改稿、去 AI 味. Exclude conversational answers, mock interviews, interview sourcing, UI copy, API handoffs, and assistant-reply shortening.
 ---
 
 # AY Write
-
-Maximize useful information per unit of reading effort; preserve understanding and recall.
 
 ## Approval contract
 
@@ -21,34 +19,28 @@ Maximize useful information per unit of reading effort; preserve understanding a
 - Preserve unrelated and user-authored work. Verify the real requested outcome before claiming completion.
 <!-- ay-contract:end -->
 
-## Establish the reading task
+## Common rules
 
-Identify the reading task; preserve the supplied voice. Draft directly when the outcome is clear. Respect requested structure and length; ask only consequential questions, without outline approval.
+Identify audience, purpose, form, voice, and budget. Draft directly when clear, without outline approval; preserve narrow edit and read-only review boundaries.
 
-For explainers, read [clear-prose.md](references/clear-prose.md); for technical articles, also read [technical-articles.md](references/technical-articles.md).
+Preserve facts, conditions, uncertainty, causality, and machine-readable literals. Verify factual claims with primary sources; distinguish evidence from inference. Never invent experience, quotes, measurements, or results. Label hypothetical examples; requested fiction may invent.
 
-## Lead with the whole answer
+Keep actors, actions, and referents clear. Explain unfamiliar terms. Cut redundancy without losing necessary mechanisms or limits. Respect project conventions and requested structure.
 
-Explanatory openings summarize the whole answer and decisive conditions. An introduction's first sentence says what the thing is and what it does. Give the answer, not a promise to explain. Narrative and fiction follow the requested opening.
+## Match the writing task
 
-## Cut reading effort
+- **Interview Q&A and FAQ:** Answer each exact question first; add necessary explanation, examples, and limits. Preserve follow-ups and version conditions. Keep entries independently readable; avoid article scaffolding and interview simulation.
+- **Explanations and selection articles:** Open with the whole answer and decisive conditions; introductions define the subject immediately. Connect knowledge modules in understanding order, using a complete example and material tradeoffs.
+- **Tutorials and how-to guides:** Give prerequisites, actions, observable checks, and relevant failure or stopping conditions. Writing instructions does not authorize running commands.
+- **Reference:** Organize for lookup with consistent terms and stable structure.
+- **Narrative and speeches:** Preserve requested viewpoint, pacing, and voice; do not force an explanatory opening or technical outline.
 
-Divide full articles into distinct knowledge modules with informative headings. Order them by the reader's understanding and connect their reasoning; avoid disconnected lists or a fixed outline.
+For factual explanations, read [clear-prose.md](references/clear-prose.md); for technical writing, also read [technical-articles.md](references/technical-articles.md).
 
-Preserve necessary coverage while cutting repetition. After the opening, explain each point once, using a complete example with decisive limits. Remove familiar background, tangents, empty transitions, and routine recaps. Implementation and tutorials require an explicit request.
+## Visuals and delivery
 
-Keep actors, actions, consequences, and causal steps clear; explain unfamiliar terms. Preserve facts, conditions, uncertainty, and safety limits. Verify claims with primary sources; distinguish facts from inferences. Never invent experiences, quotes, measurements, or results. Label hypothetical examples; fiction may invent.
+Full explanatory articles have opening and important-module images unless text only is requested. Default to Japanese cel shading and the bundled character reference; honor other styles. Read [visuals.md](references/visuals.md) for illustrations. Q&A, reference entries, narrow edits, and fiction do not inherit article illustration requirements.
 
-## Make it memorable
+Revise the draft; verify coverage, density, facts, links, assets, and layout. AI review cannot prove human comprehension or recall. A prompt is not an image; report unavailable production.
 
-Full articles include an opening overview image and an explanatory image for each important knowledge module, unless the user requests text only. Default to Japanese cel shading and the bundled character reference; honor alternative styles. Show mechanisms, relationships, steps, and decisive limits with readable labels, arrows, and captions. Preserve useful detail, not decorative filler.
-
-Read [visuals.md](references/visuals.md). Respect project formats. Report unavailable image production; a prompt is not an image.
-
-Writing approval excludes publishing, paid tools, new dependencies, and unrelated edits.
-
-## Check understanding and deliver
-
-Read back the finished draft; revise it for density before delivery. Merge repeated explanations; preserve distinct facts and causal steps. Check opening coverage, visual coverage, and reading budgets. AI review cannot prove human comprehension.
-
-Verify links, assets, and layout. Preserve skill-improvement feedback as regression cases; ordinary writing does not authorize skill edits.
+Writing approval excludes publishing, paid tools, new dependencies, and unrelated edits. Ordinary writing does not authorize skill edits.

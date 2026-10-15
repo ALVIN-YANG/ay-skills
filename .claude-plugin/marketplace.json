@@ -10,7 +10,7 @@
     {
       "name": "ay-skills",
       "description": "Approval-aware skills from verified expert lenses and product design through architecture, client integration handoffs, implementation, verification, and truthful store screenshots.",
-      "version": "0.12.0",
+      "version": "0.12.1",
       "category": "development",
       "source": "./",
       "homepage": "https://github.com/ALVIN-YANG/ay-skills"

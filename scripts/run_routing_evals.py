@@ -41,6 +41,7 @@ def is_infrastructure_error(result: Result) -> bool:
             "failed to lookup address information",
             "stream disconnected before completion",
             "error sending request for url",
+            "model is not supported when using codex with a chatgpt account",
         )
     )
 
