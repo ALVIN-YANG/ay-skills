@@ -7,10 +7,10 @@ Choose the primary skill from the work you need delivered. A domain or artifact-
 A typical sequence is:
 
 ```text
-ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement → ay-integration-docs
+ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement → ay-write
 ```
 
-This is guidance, not a required pipeline. Move architecture earlier when feasibility blocks UI. Skip `ay-integration-docs` unless another client team consumes the changed contract. Use `ay-review` where a read-only consistency check is useful. Every skill can also run alone from approved inputs.
+This is guidance, not a required pipeline. Move architecture earlier when feasibility blocks UI. Use `ay-write` for the client handoff when another team consumes the changed contract. Use `ay-review` where a read-only consistency check is useful. Every skill can also run alone from approved inputs.
 
 ## Common overlaps
 
@@ -21,7 +21,7 @@ This is guidance, not a required pipeline. Move architecture earlier when feasib
 | Design a product homepage, marketing website, or landing page; build it within approved scope | `ay-website`; respect an explicitly selected builder or design skill |
 | Design application screens and interaction states before frontend implementation | `ay-ui`; a dedicated frontend skill leads general web UI implementation |
 | Design a new API, event, or message contract | `ay-api` |
-| Document an approved or implemented contract for one client and release | `ay-integration-docs` |
+| Document an approved or implemented contract for one client and release | `ay-write` |
 | Generate an exhaustive public reference from OpenAPI | A dedicated API reference generator |
 | Upload or submit an App Store release, check review state, or recover from rejection | A dedicated App Store release skill |
 | Produce truthful store screenshots from a release build | `ay-store-screenshots` |

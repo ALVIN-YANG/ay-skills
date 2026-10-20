@@ -1,6 +1,6 @@
 ---
 name: ay-write
-description: Write or revise Chinese and English prose. Use when authoring articles, Q&A, guides, stories, speeches, or social content; 中文写作、面试题库、公众号、小红书、视频文案、口播、改稿、去 AI 味. Exclude conversations, mock interviews, interview sourcing, UI copy, API handoffs, layout-only work, and assistant-reply shortening.
+description: Write or revise Chinese and English prose. Use when authoring articles, Q&A, guides, stories, speeches, social content, or consumer handoffs for approved/implemented APIs and messages; 中文写作、面试题库、公众号、小红书、视频文案、口播、改稿、去 AI 味、联调文档、客户端升级说明. Exclude contract design, conversations, mock interviews, interview sourcing, UI copy, layout-only work, and assistant-reply shortening.
 ---
 
 # AY Write
@@ -33,14 +33,15 @@ Keep actors, actions, and referents clear. Explain unfamiliar terms. Cut redunda
 - **Explanations and selection articles:** Open with the answer and decisive conditions; define the subject immediately. Connect modules in understanding order, using a complete example and material tradeoffs.
 - **Tutorials and how-to guides:** Give prerequisites, actions, observable checks, and relevant failure or stopping conditions. Writing instructions does not authorize running commands.
 - **Reference:** Organize for lookup with consistent terms and stable structure.
+- **Integration handoffs:** Read [integration-docs.md](references/integration-docs.md) for consumer and release scope, contract evidence, field tables, examples, and error handling. Document existing decisions; do not invent contracts.
 - **Narrative and speeches:** Preserve requested viewpoint, pacing, and voice; do not force an explanatory opening or technical outline.
 - **WeChat, Xiaohongshu, and video:** Read [social-writing.md](references/social-writing.md) for platform packaging, speech, and timing. Deliver requested parts only.
 
-For factual explanations, read [clear-prose.md](references/clear-prose.md); for technical writing, also read [technical-articles.md](references/technical-articles.md).
+For factual explanations, read [clear-prose.md](references/clear-prose.md); for other technical writing, read [technical-articles.md](references/technical-articles.md).
 
 ## Visuals and delivery
 
-Full explanatory articles include opening and module images, defaulting to Japanese cel shading and the bundled cast; honor requested styles and text-only scope. Read [visuals.md](references/visuals.md) for illustrations. Q&A, reference entries, narrow edits, fiction, and social content do not inherit this requirement.
+Full explanatory articles include opening and module images, defaulting to Japanese cel shading and the bundled cast; honor requested styles and text-only scope. Read [visuals.md](references/visuals.md) for illustrations. Q&A, reference entries, integration handoffs, narrow edits, fiction, and social content do not inherit this requirement.
 
 Revise; verify coverage, facts, links, assets, and layout. AI review cannot prove human comprehension or recall. A prompt is not an image; report unavailable production.
 

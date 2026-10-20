@@ -1,4 +1,4 @@
 interface:
   display_name: "AY Write"
-  short_description: "Clear articles, Q&A, social posts, and spoken video scripts"
+  short_description: "Clear prose, social content, and client integration handoffs"
   default_prompt: "Use $ay-write to draft or revise this text for its readers and writing type, preserving facts and conditions while matching the requested form, length, and voice."

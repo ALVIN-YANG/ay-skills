@@ -7,10 +7,10 @@
 一条常用顺序是：
 
 ```text
-ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement → ay-integration-docs
+ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-implement → ay-write
 ```
 
-这不是强制流水线。技术可行性会阻塞 UI 时，可以提前做架构。没有其他客户端消费接口变化时，不需要 `ay-integration-docs`。需要只读检查时再用 `ay-review`。每个 Skill 也能从已有输入单独工作。
+这不是强制流水线。技术可行性会阻塞 UI 时，可以提前做架构。有其他客户端消费接口变化时，用 `ay-write` 编写联调文档。需要只读检查时再用 `ay-review`。每个 Skill 也能从已有输入单独工作。
 
 ## 容易混淆的情况
 
@@ -21,7 +21,7 @@ ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-imple
 | 设计产品官网或落地页，并在批准范围内实现 | `ay-website`；用户明确选择建站工具或设计 Skill 时尊重该选择 |
 | 在前端实现前设计应用页面和交互状态 | `ay-ui`；通用 Web UI 实现由专用前端 Skill 主导 |
 | 设计新的 API、事件或消息契约 | `ay-api` |
-| 给某个客户端写本期已确认或已实现的契约变化 | `ay-integration-docs` |
+| 给某个客户端写本期已确认或已实现的契约变化 | `ay-write` |
 | 根据 OpenAPI 生成完整公共参考 | 专用 API 文档生成器 |
 | 上传、提交 App Store、检查审核状态或处理拒审 | 专用 App Store 发布 Skill |
 | 用发布构建生成真实上架宣传图 | `ay-store-screenshots` |

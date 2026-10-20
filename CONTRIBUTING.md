@@ -31,6 +31,8 @@ These evaluations require authenticated local CLIs and stay outside ordinary CI.
 
 PNG fixture cases require Pillow. If it is not installed, run the relevant command with `uv run --with pillow` instead of adding Pillow to the project.
 
+Codex routing and behavior evaluations disable real global skill paths only in each test process, so global copies cannot override the fixture catalog. The global catalog explicitly copies the selected installed competitors into its temporary workspace; user settings and global files stay unchanged.
+
 Network and authentication failures are reported as infrastructure errors, not skill failures. Record only the model, CLI, catalog, and pass rate actually checked.
 
 For design-handoff changes, freeze the cases before editing skills and run the same cases before and after. Behavior evaluations save the final response and changed outputs under each case's results directory for inspection.
@@ -53,6 +55,13 @@ For writing-type changes, add the Q&A, different-topic holdout, procedure, and n
 ```bash
 python3 scripts/run_behavior_evals.py --catalog target --ids write-interview-qa write-interview-holdout write-procedure-only write-narrative-opening write-reading-density write-source-comparison write-english-holdout write-review-only
 python3 scripts/run_routing_evals.py --host codex --ids write-interview-bank write-faq-rewrite no-skill-rag-fact specialist-tech-doc-style specialist-interview-collection write-chinese-explainer write-fiction
+```
+
+For integration-writing changes, keep the original consumer, release, source, examples and error-handling constraints. Compare the same HTTP, MQTT and no-visible-change cases before and after moving the rules; inspect actual outputs with the writing rubric. Contract design must still select `ay-api`.
+
+```bash
+python3 scripts/run_behavior_evals.py --catalog target --ids integration-ios-release-handoff integration-device-release-handoff integration-no-visible-change-readonly api-approved-handoff write-interview-holdout write-social-video write-review-only
+python3 scripts/run_routing_evals.py --host codex --ids integration-ios-release integration-android-handoff integration-device-message integration-no-visible-change integration-client-upgrade integration-existing-openapi api-rest-contract api-openapi api-chinese-design specialist-api-reference
 ```
 
 For Chinese social writing, freeze the WeChat, Xiaohongshu, and voiceover cases before editing and compare the same original/revised bundles. Inspect the actual copy, requested length, source fidelity, and spoken timing estimate using the writing rubric. The different-topic storyboard and title-only cases check transfer and narrow scope. Keep HTML formatting and video production separate from prose drafting.

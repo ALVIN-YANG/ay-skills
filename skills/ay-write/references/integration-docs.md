@@ -1,25 +1,6 @@
----
-name: ay-integration-docs
-description: Write concise consumer-specific Markdown handoffs for approved or implemented APIs, events, messages, and release deltas. Use when backend, web, mobile, desktop, or device teams need 接口文档, 消息协议, 联调说明, 客户端升级说明, or 本期接口变更. Do not use to design a new contract, generate an exhaustive public API reference, describe internal implementation, write product release notes, or document unchanged interfaces.
----
+# Client integration handoffs
 
-# AY Integration Docs
-
-Give one consumer the observable contract it needs.
-
-## Approval contract
-
-<!-- ay-contract:start -->
-- Read the full request and investigate discoverable facts before asking the user.
-- Treat review, diagnosis, explanation, and planning as read-only unless the user also requests change.
-- Treat a precise instruction as approval when target, observable result, and acceptance boundary are clear.
-- A broad outcome authorizes investigation, not file or artifact changes based on choices the agent must invent.
-- For a materially underspecified change, present one recommended proposal and wait for approval.
-- After approval, execute autonomously inside the approved boundary; do not ask about ordinary implementation details.
-- Reopen approval only when new evidence changes behavior, architecture, data contracts, dependencies, scope, risk, cost, rollback, or external actions.
-- Perform external actions only when the request or approved proposal includes them. Confirm the exact target before an irreversible action.
-- Preserve unrelated and user-authored work. Verify the real requested outcome before claiming completion.
-<!-- ay-contract:end -->
+Document an approved or implemented contract for one consumer and release. This writing task does not design a new contract or replace a complete public API reference.
 
 ## Select visible scope
 

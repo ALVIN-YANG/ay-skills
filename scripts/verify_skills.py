@@ -18,7 +18,6 @@ EXPECTED_SKILLS = (
     "ay-website",
     "ay-architecture",
     "ay-api",
-    "ay-integration-docs",
     "ay-database",
     "ay-implement",
     "ay-fix",

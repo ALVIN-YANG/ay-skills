@@ -41,7 +41,7 @@ AY applies verifiable published frameworks, separates sources from inference, an
 
 ## Client integration documentation
 
-The client-impact boundary in `ay-integration-docs` was informed by Apache-2.0 [oasdiff](https://github.com/oasdiff/oasdiff), plus the API documentation work in MIT-licensed [wshobson/agents](https://github.com/wshobson/agents) and [awesome-copilot](https://github.com/github/awesome-copilot).
+The client-impact boundary in `ay-write` integration handoffs (formerly `ay-integration-docs`) was informed by Apache-2.0 [oasdiff](https://github.com/oasdiff/oasdiff), plus the API documentation work in MIT-licensed [wshobson/agents](https://github.com/wshobson/agents) and [awesome-copilot](https://github.com/github/awesome-copilot).
 
 AY adds a consumer-and-release filter, observable business semantics, required examples and field tables, and explicit exclusion of internal or unchanged behavior.
 

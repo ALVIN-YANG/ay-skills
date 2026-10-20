@@ -136,7 +136,7 @@
   },
   {
     "id": "integration-ios-release-handoff",
-    "skill": "ay-integration-docs",
+    "skill": "ay-write",
     "prompt": "Use release-scope.md to create ios-integration.md in concise Chinese. Creating this handoff is approved. Document only the iOS-visible POST /v1/reports change for release 1.4 versus 1.3. Include the business condition, a concrete request example, request-parameter table, successful response example, response-field table, a separate example for each special error, client action, compatibility, and one complete error summary table. Do not research externally or include internal, admin, other-client, or unchanged interfaces.",
     "files": {
       "release-scope.md": "Consumer: iOS field app. Baseline: 1.3. Target: 1.4. Business behavior: an assigned technician submits one completion report for an open work order. Changed operation: POST /v1/reports. Required header: Idempotency-Key, string, unique per submission. Request JSON fields: workOrderId string required; completedAt RFC 3339 string required; latitude number required from -90 through 90; longitude number required from -180 through 180. Success: HTTP 201 with reportId string and status ACCEPTED. Special error: HTTP 422, code INVALID_GPS, when coordinates are outside the allowed range; show the coordinate error and do not retry unchanged input. Special error: HTTP 409, code WORK_ORDER_CLOSED, when a supervisor already closed the work order; preserve the draft, refresh the work order, and do not retry automatically. Compatibility: additive operation, iOS 1.3 remains supported; iOS 1.4 must add the submission flow. Internal detail to exclude: ReportRepository now writes through CompletionReportService and an outbox table. Unchanged and out of scope: GET /v1/users. Admin-only and out of scope: POST /v1/admin/reports.\n"
@@ -636,6 +636,52 @@
     "prompt": "只把 draft.md 的公众号标题改得更清楚、更想让人点开，给一个推荐标题及一句理由，直接回复，不改文件。",
     "files": {
       "draft.md": "# 我用了三天，效率暴涨10倍！\n\n本文只是对一份纸质每周任务清单的结构分析：左侧列三件重要任务，右侧记临时事项，下方写未完成原因。没有实际使用记录、计时或效果数据。\n"
+    },
+    "expect_no_changes": true
+  },
+  {
+    "id": "integration-device-release-handoff",
+    "skill": "ay-write",
+    "prompt": "根据 release-scope.md，给固件团队写本期新增消息的联调文档到 firmware-integration.md。直接成稿，只创建这一个 Markdown 文件，保留输入材料，不查外部资料。",
+    "files": {
+      "release-scope.md": "合成接口记录。消费者：固件团队，版本从 2.0 升到 2.1。新增下行 MQTT topic devices/{deviceId}/commands/set-level，云端在用户调节风扇档位时发给设备。deviceId 为路径中的字符串设备标识。payload 的 commandId 字符串必填、level 整数必填且范围 0 到 100。新增上行 topic devices/{deviceId}/events/level-result：固件收到指令后报告 status=ACCEPTED，实际调档完成再报告 status=APPLIED；ACCEPTED 只表示已接收，不能显示为已执行。上行 commandId 字符串、status 字符串必填；status=REJECTED 时 code 字符串必填，唯一已确认 code 是 INVALID_LEVEL，此时调用方应修正档位，不能原样重发。上行示例必须区分接收、执行成功和拒绝。材料没有确认 QoS、重复投递处理、重发间隔或超时期限。旧版 2.0 不支持新消息，云端只有确认设备支持 2.1 时才发送新指令。其他客户端相关且不在本次范围：/admin/fan-tuning；未变化且不在范围：devices/{deviceId}/telemetry。内部实现：FanCommandService、command_outbox、broker 集群三节点。这些内部实现不对固件构成协议。\n"
+    },
+    "expected_created": {
+      "firmware-integration.md": 1000
+    },
+    "created_all": {
+      "firmware-integration.md": [
+        "devices/{deviceId}/commands/set-level",
+        "devices/{deviceId}/events/level-result",
+        "commandId",
+        "level",
+        "ACCEPTED",
+        "APPLIED",
+        "REJECTED",
+        "INVALID_LEVEL",
+        "待确认"
+      ]
+    },
+    "created_none": {
+      "firmware-integration.md": [
+        "FanCommandService",
+        "command_outbox",
+        "/admin/fan-tuning",
+        "devices/{deviceId}/telemetry"
+      ]
+    },
+    "allow_extra_changes": false,
+    "unchanged_files": [
+      "release-scope.md"
+    ]
+  },
+  {
+    "id": "integration-no-visible-change-readonly",
+    "skill": "ay-write",
+    "prompt": "对照 before.md 和 after.md，判断本期桌面客户端是否需要调整接入，简短说明依据。直接回复，不创建或修改文件。",
+    "files": {
+      "before.md": "桌面客户端契约 v3.0：GET /v1/jobs/{jobId} 返回 jobId 字符串、state 枚举 RUNNING/SUCCEEDED/FAILED；不存在时 HTTP 404、code JOB_NOT_FOUND。只读查询，不承诺任务耗时。\n",
+      "after.md": "桌面客户端契约 v3.1：GET /v1/jobs/{jobId} 返回 jobId 字符串、state 枚举 RUNNING/SUCCEEDED/FAILED；不存在时 HTTP 404、code JOB_NOT_FOUND。只读查询，不承诺任务耗时。本期仅把 JobRepository 换成新的内部缓存，并新增管理员接口 POST /v1/admin/rebuild；桌面客户端不使用管理员接口。\n"
     },
     "expect_no_changes": true
   }

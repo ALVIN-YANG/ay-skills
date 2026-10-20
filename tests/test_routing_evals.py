@@ -52,7 +52,8 @@ class RoutingEvalTests(unittest.TestCase):
             installed.mkdir()
             routing.install_catalog(installed, "fixture")
             self.assertTrue((installed / "ay-store-screenshots" / "SKILL.md").is_file())
-            self.assertTrue((installed / "ay-integration-docs" / "SKILL.md").is_file())
+            self.assertTrue((installed / "ay-write" / "references" / "integration-docs.md").is_file())
+            self.assertFalse((installed / "ay-integration-docs").exists())
             self.assertTrue((installed / "ship-app-store" / "SKILL.md").is_file())
             self.assertTrue((installed / "app-icon-studio" / "SKILL.md").is_file())
 

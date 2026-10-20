@@ -86,6 +86,23 @@ def install_skill_stub(installed: Path, skill: dict[str, str | bool]) -> None:
         )
 
 
+def codex_skill_isolation_args() -> list[str]:
+    """Keep global skill discovery from leaking into the installed eval catalog."""
+    source_home = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex")).expanduser()
+    roots = (Path.home() / ".agents" / "skills", source_home / "skills", Path("/etc/codex/skills"))
+    paths: set[Path] = set()
+    for root in roots:
+        if root.is_dir():
+            paths.update(path.resolve() for path in root.rglob("SKILL.md"))
+            paths.update(path.resolve() for path in root.glob("*/SKILL.md"))
+    if not paths:
+        return []
+    entries = ",".join(
+        "{path=" + json.dumps(str(path)) + ",enabled=false}" for path in sorted(paths)
+    )
+    return ["-c", "skills.config=[" + entries + "]"]
+
+
 def isolated_codex_env(root: Path) -> dict[str, str]:
     env = os.environ.copy()
     source_home = Path(env.get("CODEX_HOME", Path.home() / ".codex")).expanduser().resolve()
@@ -169,6 +186,7 @@ def run_scenario(
             "--ephemeral",
             "--ignore-user-config",
             "--ignore-rules",
+            *codex_skill_isolation_args(),
             "--sandbox",
             "read-only",
             "--skip-git-repo-check",

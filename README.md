@@ -6,7 +6,7 @@
 
 [简体中文](README.zh-CN.md)
 
-AY Skills is a set of sixteen standalone skills for coding agents. Each skill defines when the agent can proceed, when a decision needs your approval, and what evidence counts as done.
+AY Skills is a set of fifteen standalone skills for coding agents. Each skill defines when the agent can proceed, when a decision needs your approval, and what evidence counts as done.
 
 ## Quick start
 
@@ -51,7 +51,6 @@ The skills are independent. They do not require a router, shared runtime, modes,
 | Skill | Use it for |
 |---|---|
 | [`ay-implement`](skills/ay-implement/SKILL.md) | Implement an approved change and verify the result |
-| [`ay-integration-docs`](skills/ay-integration-docs/SKILL.md) | Document only the API and message changes a specific client needs |
 | [`ay-fix`](skills/ay-fix/SKILL.md) | Confirm a bug's cause, then make the smallest useful repair |
 | [`ay-improve`](skills/ay-improve/SKILL.md) | Refactor or optimize from a measured baseline |
 | [`ay-review`](skills/ay-review/SKILL.md) | Review product and delivery artifacts without silently editing them |
@@ -61,9 +60,11 @@ The skills are independent. They do not require a router, shared runtime, modes,
 | Skill | Use it for |
 |---|---|
 | [`ay-audio`](skills/ay-audio/SKILL.md) | Build or debug streaming TTS and voice playback on Apple platforms |
-| [`ay-write`](skills/ay-write/SKILL.md) | Write articles, Q&A, guides, stories, Chinese social posts, and video scripts with shared clarity rules |
+| [`ay-write`](skills/ay-write/SKILL.md) | Write articles, Q&A, social content, video scripts, and client integration handoffs |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | Design and install store or launcher icons |
 | [`ay-store-screenshots`](skills/ay-store-screenshots/SKILL.md) | Produce reproducible App Store screenshots from shipped UI |
+
+Since v0.13.0, `ay-integration-docs` is part of `ay-write`. Update to `ay-write` and remove the old standalone skill from existing installations. API contract design remains in `ay-api`.
 
 See [Choosing a skill](docs/choosing-a-skill.md) for common overlaps and a typical product handoff.
 
@@ -91,7 +92,7 @@ Development commands and the limits of each proof layer are in [CONTRIBUTING.md]
 
 ## Other install options
 
-Install all sixteen skills for Codex and Claude Code:
+Install all fifteen skills for Codex and Claude Code:
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y
