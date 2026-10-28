@@ -8,5 +8,6 @@
   {"id":"fallback-app-store-screenshots","prompt":"Turn these exact shipped iPhone UI captures into a reproducible localized App Store screenshot deck and validate every export.","expected_skill":"ay-store-screenshots"},
   {"id":"fallback-integration-docs","prompt":"根据本期后端改动给 Android 写精简接口变更文档，只写它用到的改动接口、消息、示例、字段和异常，不写内部实现。","expected_skill":"ay-write"},
   {"id":"fallback-branch-review","prompt":"Review this branch since main against its issue and repository standards.","expected_skill":"ay-review"},
-  {"id":"fallback-product-website","prompt":"为产品设计官网和落地页，确定面向访客的信息层级、视觉方向与下载入口，并检查手机布局。","expected_skill":"ay-website"}
+  {"id":"fallback-product-website","prompt":"为产品设计官网和落地页，确定面向访客的信息层级、视觉方向与下载入口，并检查手机布局。","expected_skill":"ay-website"},
+  {"id":"fallback-agent-eval","prompt":"对比两个客服 Agent 提示词，设计可复现的多轮任务评测，校准裁判，分析成功率、成本和退化。","expected_skill":"ay-agent-eval"}
 ]

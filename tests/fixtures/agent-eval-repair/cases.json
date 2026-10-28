@@ -1,0 +1,22 @@
+[
+  {
+    "intent": "lookup",
+    "allow_write": false,
+    "expected": "read"
+  },
+  {
+    "intent": "lookup",
+    "allow_write": true,
+    "expected": "read"
+  },
+  {
+    "intent": "set_address",
+    "allow_write": false,
+    "expected": "deny"
+  },
+  {
+    "intent": "set_address",
+    "allow_write": true,
+    "expected": "write"
+  }
+]

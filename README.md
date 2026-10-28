@@ -6,7 +6,7 @@
 
 [简体中文](README.zh-CN.md)
 
-AY Skills is a set of fifteen standalone skills for coding agents. Each skill defines when the agent can proceed, when a decision needs your approval, and what evidence counts as done.
+AY Skills is a set of sixteen standalone skills for coding agents. Each skill defines when the agent can proceed, when a decision needs your approval, and what evidence counts as done.
 
 ## Quick start
 
@@ -59,6 +59,7 @@ The skills are independent. They do not require a router, shared runtime, modes,
 
 | Skill | Use it for |
 |---|---|
+| [`ay-agent-eval`](skills/ay-agent-eval/SKILL.md) | Evaluate agent outcomes, measurement quality, and bounded repair experiments |
 | [`ay-audio`](skills/ay-audio/SKILL.md) | Build or debug streaming TTS and voice playback on Apple platforms |
 | [`ay-write`](skills/ay-write/SKILL.md) | Write articles, Q&A, social content, video scripts, and client integration handoffs |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | Design and install store or launcher icons |
@@ -92,7 +93,7 @@ Development commands and the limits of each proof layer are in [CONTRIBUTING.md]
 
 ## Other install options
 
-Install all fifteen skills for Codex and Claude Code:
+Install all sixteen skills for Codex and Claude Code:
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y

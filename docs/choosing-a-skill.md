@@ -16,6 +16,7 @@ This is guidance, not a required pipeline. Move architecture earlier when feasib
 
 | Request | Primary skill |
 |---|---|
+| Design, audit, or run agent behavior evaluations and evaluation-driven repairs | `ay-agent-eval`; ordinary code review and unit testing keep their own skills |
 | Apply a real expert's published framework to an open decision | `ay-expert-lens`; the domain skill still owns a concrete artifact or execution |
 | Simulate an expert or celebrity in the first person | A dedicated persona skill; `ay-expert-lens` does not impersonate people |
 | Design a product homepage, marketing website, or landing page; build it within approved scope | `ay-website`; respect an explicitly selected builder or design skill |

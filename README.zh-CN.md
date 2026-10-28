@@ -6,7 +6,7 @@
 
 [English](README.md)
 
-AY Skills 是十五个可以单独安装的 coding-agent Skill。每个 Skill 都写清楚三件事：什么时候可以直接做，什么决定需要你确认，做到哪一步才算有证据。
+AY Skills 是十六个可以单独安装的 coding-agent Skill。每个 Skill 都写清楚三件事：什么时候可以直接做，什么决定需要你确认，做到哪一步才算有证据。
 
 ## 快速开始
 
@@ -59,6 +59,7 @@ npx skills@latest add ALVIN-YANG/ay-skills
 
 | Skill | 适合处理 |
 |---|---|
+| [`ay-agent-eval`](skills/ay-agent-eval/SKILL.md) | 检查 Agent 评测可信度，对比版本并在授权范围内迭代修复 |
 | [`ay-audio`](skills/ay-audio/SKILL.md) | 实现或排查 Apple 平台的流式 TTS 与语音播放 |
 | [`ay-write`](skills/ay-write/SKILL.md) | 按问答、文章、指南、叙事、自媒体和接口联调文档组织写作，共用事实与清晰表达准则 |
 | [`ay-icon`](skills/ay-icon/SKILL.md) | 设计并安装商店或启动器图标 |
@@ -91,7 +92,7 @@ AY：已按确认范围完成并通过相关测试。离线写入仍不在本次
 
 ## 其他安装方式
 
-给 Codex 和 Claude Code 安装全部十五个 Skill：
+给 Codex 和 Claude Code 安装全部十六个 Skill：
 
 ```bash
 npx skills@latest add ALVIN-YANG/ay-skills -s '*' -a codex claude-code -g -y

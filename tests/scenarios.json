@@ -132,5 +132,10 @@
   {"id":"write-wechat-draft","prompt":"把这些采访材料写成一篇给年轻职场人看的公众号文章，要有标题和完整正文，保持采访对象的原意。","expected_skill":"ay-write"},
   {"id":"api-chinese-design","prompt":"为尚未实现的订单服务设计接口文档，确定操作、权限、字段、幂等和错误语义，作为后续实现依据。","expected_skill":"ay-api"},
   {"id":"integration-existing-openapi","prompt":"根据已经确认的 OpenAPI 和本期提交，给 Web 团队整理本次升级要接入的接口说明，保留现有字段和错误语义。","expected_skill":"ay-write"},
-  {"id":"integration-no-change-note","prompt":"为桌面客户端撰写本期接口升级说明，依据已实现的提交与上一版契约，只记录客户端可见变化；没有变化时用一句话说明，不要填空模板。","expected_skill":"ay-write"}
+  {"id":"integration-no-change-note","prompt":"为桌面客户端撰写本期接口升级说明，依据已实现的提交与上一版契约，只记录客户端可见变化；没有变化时用一句话说明，不要填空模板。","expected_skill":"ay-write"},
+  {"id":"agent-eval-compare","prompt":"对比两个客服 Agent 提示词，设计可复现的多轮任务评测，校准裁判，分析成功率、成本和退化。","expected_skill":"ay-agent-eval"},
+  {"id":"agent-eval-audit","prompt":"审查这个工具型 Agent 的评测记录与评分器，判断分数上涨是否来自重试筛选或数据泄漏。只读。","expected_skill":"ay-agent-eval"},
+  {"id":"agent-eval-repair","prompt":"根据这些 Agent badcase 运行基线与候选对比，并在已批准的代码范围和调用预算内迭代修复，检查回归。","expected_skill":"ay-agent-eval"},
+  {"id":"agent-eval-resume","prompt":"恢复已授权的 Agent 长程评测实验，核对实验记录、预算和最佳版本，再决定继续或停止。","expected_skill":"ay-agent-eval"},
+  {"id":"agent-eval-not-parameters","prompt":"这张表里模型 A 上下文 32000，模型 B 是 64000，哪个更大？只回答名称。","expected_skill":"none"}
 ]

@@ -83,3 +83,11 @@ python3 scripts/run_routing_evals.py --host codex --ids website-product-homepage
 Keep `VERSION`, plugin manifests, and the release tag aligned. A source change, successful CI run, pushed tag, published GitHub Release, downloaded archive, and remote install are separate proof layers.
 
 Pushing `v<VERSION>` starts the release workflow. Do not claim the public release until the workflow has published the archive and the downloaded artifact has been verified.
+
+
+For agent-evaluation skill changes, freeze cases before editing and compare the installed baseline with the candidate under identical isolated conditions. Inspect decisions and computations with [the agent-evaluation rubric](tests/agent-eval-rubric.md), not just file creation or passing keywords. These synthetic tests assess skill behavior, not production-agent quality.
+
+```bash
+python3 scripts/run_behavior_evals.py --catalog target --ids agent-eval-misleading-score agent-eval-protocol-drift agent-eval-stop-budget agent-eval-authorized-repair
+python3 scripts/run_routing_evals.py --host codex --ids agent-eval-compare agent-eval-audit agent-eval-repair agent-eval-resume agent-eval-not-parameters specialist-tdd no-skill-short-answer
+```

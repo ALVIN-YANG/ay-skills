@@ -39,6 +39,7 @@
     "./skills/ay-improve",
     "./skills/ay-write",
     "./skills/ay-review",
+    "./skills/ay-agent-eval",
     "./skills/ay-icon",
     "./skills/ay-store-screenshots"
   ]

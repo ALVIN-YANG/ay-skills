@@ -16,6 +16,7 @@ ay-product → ay-ui → ay-architecture → ay-api → ay-database → ay-imple
 
 | 请求 | 主 Skill |
 |---|---|
+| 设计、审查或运行 Agent 行为评测，并据此在授权范围内修复 | `ay-agent-eval`；普通代码审查和单元测试仍用各自技能 |
 | 用真实专家的公开方法分析开放问题 | `ay-expert-lens`；具体产物和执行仍由领域 Skill 负责 |
 | 第一人称模拟专家或名人 | 专用人格 Skill；`ay-expert-lens` 不冒充本人 |
 | 设计产品官网或落地页，并在批准范围内实现 | `ay-website`；用户明确选择建站工具或设计 Skill 时尊重该选择 |

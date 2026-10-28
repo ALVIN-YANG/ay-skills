@@ -1,0 +1,4 @@
+interface:
+  display_name: "AY Agent Eval"
+  short_description: "Evaluate agent behavior and guide bounded, evidence-based repairs"
+  default_prompt: "Use $ay-agent-eval to inspect this agent evaluation, compare versions under a fixed protocol, and run or repair only within the approved scope and budget."

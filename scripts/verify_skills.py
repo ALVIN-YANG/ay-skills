@@ -25,6 +25,7 @@ EXPECTED_SKILLS = (
     "ay-improve",
     "ay-write",
     "ay-review",
+    "ay-agent-eval",
     "ay-icon",
     "ay-store-screenshots",
 )

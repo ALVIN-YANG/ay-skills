@@ -68,3 +68,10 @@ The social-writing additions were informed by three task-specific candidates, re
 These are references for fit, not proven quality winners. AY's wording and synthetic cases are original; no upstream instructions, templates, scripts, assets, or test data were copied. AY does not adopt mandatory title counts, staged confirmations, fixed personas, emoji quotas, algorithm promises, engagement bait, or automatic publishing. Estimated script duration remains distinct from a timed recording or a rendered video.
 
 Also inspected: MIT-licensed [zdyya/writer-skill](https://github.com/zdyya/writer-skill/tree/dd100aaf4bb4c028bbda6b11184d232c4c0a0737) and [sangjiexun/koubo-script-skill](https://github.com/sangjiexun/koubo-script-skill/tree/68f48daa19caa4d3b8df41caeccd58eefa4aa533), whose full production workflows exceed this writing-only scope. MIT-licensed [v0id-byte/xiaohongshu-writer](https://github.com/v0id-byte/xiaohongshu-writer/tree/57e93b7579e7256c24626d39df6901b3654ce9c7) attributes rules to an official enterprise guide without a traceable source in the inspected skill; AY does not treat its fixed metrics or recommendation claims as platform facts.
+
+
+## Agent evaluation
+
+`ay-agent-eval` adapts the user's existing local skill and protocol, reviewed on 2026-10-28. It remains independently installable and requires no evaluation framework, paid service, multi-agent setup, or background controller. Its detailed source notes remain in the protocol. No upstream code, templates, or passages were imported.
+
+The admission decision applies Percy Liang and collaborators' [HELM framework](https://arxiv.org/abs/2211.09110): explicit scenario coverage, multiple relevant metrics, standardized comparison and inspectable evidence. HELM evaluates language models; applying those principles to tool state, authorization and bounded repair is AY's adaptation. [Anthropic's agent-evaluation guidance](https://www.anthropic.com/research/demystifying-evals-for-ai-agents) supports outcome checks, calibrated graders and trial accounting. Framework reputation is not evidence that this skill improves a given agent.
