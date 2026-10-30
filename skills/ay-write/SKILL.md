@@ -41,7 +41,7 @@ For factual explanations, read [clear-prose.md](references/clear-prose.md); for 
 
 ## Visuals and delivery
 
-Full explanatory articles include opening and module images, defaulting to Japanese cel shading and the bundled cast; honor requested styles and text-only scope. Read [visuals.md](references/visuals.md) for illustrations. Q&A, reference entries, integration handoffs, narrow edits, fiction, and social content do not inherit this requirement.
+Full explanatory articles include opening and module images, defaulting to cinematic photorealism and the bundled cast; honor requested styles and text-only scope. Read [visuals.md](references/visuals.md) for illustrations. Q&A, reference entries, integration handoffs, narrow edits, fiction, and social content do not inherit this requirement.
 
 Revise; verify coverage, facts, links, assets, and layout. AI review cannot prove human comprehension or recall. A prompt is not an image; report unavailable production.
 
