@@ -92,3 +92,13 @@ For the MQTT case, distinguish command direction, accepted receipt, applied comp
 Check that interface-design requests still select ay-api, implemented-contract handoffs select ay-write, and general articles, interview answers, social writing and public API-reference generation keep their boundaries. Handoffs do not inherit article scaffolding or illustrations. Inspect changed paths and transcripts to confirm documentation did not authorize contract changes, code edits or publishing.
 
 The unchanged-contract boundary has two selection cases: a request only to audit whether anything changed belongs to ay-review; a request to write a client upgrade note belongs to ay-write even when the correct note is one sentence saying nothing changed. Preserve this distinction rather than broadening the writing trigger to all contract audits.
+
+## Natural wording without collateral edits
+
+Freeze `write-natural-local-edit` and `write-natural-social-holdout` before editing the skill. Run them and the reading-density, English and read-only cases against the original and candidate bundles under identical CLI/model conditions. Inspect actual passages; output files and literal assertions establish only scope and coverage.
+
+For the local edit, keep the two paragraphs, the sorting-versus-approval distinction, all three export formats, consistent task terminology and `task_id`, the server capability condition, and the unknown timeout outcome. Remove the unsupported efficiency claim without inventing measurements. Check whether the long modifier and decorative metaphor become clear actions. A necessary contrast, factual enumeration, repeated term, or quoted statement is not a defect merely because a detector flags it.
+
+For the community notice, preserve Saturday 14:00–16:00, all three requested items, the exact quotation, and the distinction between attendance and borrowing a cart. Remove redundant event information and empty transitions without adding headings, metaphors, experiences, or a false requirement to show the card on entry. This different subject checks transfer rather than technical phrasing alone.
+
+Judge factual preservation, scope, and useful wording separately. Preserve author preferences where supplied. Reject random sentence fragmentation, forced synonyms, blanket punctuation bans, automatic reports, extra approval steps, and claims that a lower detection score proves readability. Classifier separation of AI and human text is not a reader-quality measure. Close or already-successful baseline cases remain inconclusive evidence of improvement; AI inspection does not establish human preference.

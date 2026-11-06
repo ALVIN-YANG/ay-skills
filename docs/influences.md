@@ -75,3 +75,9 @@ Also inspected: MIT-licensed [zdyya/writer-skill](https://github.com/zdyya/write
 `ay-agent-eval` adapts the user's existing local skill and protocol, reviewed on 2026-10-28. It remains independently installable and requires no evaluation framework, paid service, multi-agent setup, or background controller. Its detailed source notes remain in the protocol. No upstream code, templates, or passages were imported.
 
 The admission decision applies Percy Liang and collaborators' [HELM framework](https://arxiv.org/abs/2211.09110): explicit scenario coverage, multiple relevant metrics, standardized comparison and inspectable evidence. HELM evaluates language models; applying those principles to tool state, authorization and bounded repair is AY's adaptation. [Anthropic's agent-evaluation guidance](https://www.anthropic.com/research/demystifying-evals-for-ai-agents) supports outcome checks, calibrated graders and trial accounting. Framework reputation is not evidence that this skill improves a given agent.
+
+## Natural wording
+
+The distinction between countable writing features and context-dependent editing decisions was informed by [lieflat-less-ai-tone](https://github.com/larashero3-dotcom/lieflat-less-ai-tone/tree/53160078a04926d98de57a233549612d1b89bdc9), reviewed on 2026-11-06. Its license file is CC BY-NC 4.0; no upstream skill text, code, examples, data, thresholds, or assets were copied into AY's MIT-licensed distribution.
+
+AY's original instructions and synthetic cases focus on reader cost: stable terms, faithful metaphors, useful contrasts and enumerations, and changes at the paragraph or sentence level warranted by a specific problem. The research numbers were not independently reproduced and are not AY quality claims. AY keeps direct execution of authorized rewrites and adds no required detector, report, approval checkpoint, or HTML output.

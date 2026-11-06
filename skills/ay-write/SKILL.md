@@ -25,7 +25,7 @@ Identify audience, purpose, form, voice, and budget. Draft directly when clear; 
 
 Preserve facts, conditions, uncertainty, causality, and machine-readable literals. Verify factual claims with primary sources; distinguish evidence from inference. Never invent experience, quotes, measurements, or results. Label hypothetical examples; requested fiction may invent.
 
-Keep actors, actions, and referents clear. Explain unfamiliar terms. Cut redundancy without losing mechanisms or limits. Respect requested conventions and structure.
+Keep actors, actions, and referents clear. Explain unfamiliar terms. Cut redundancy without losing mechanisms or limits. Respect requested conventions and structure. Keep terms stable; allow repetition.
 
 ## Match the writing task
 
@@ -37,7 +37,7 @@ Keep actors, actions, and referents clear. Explain unfamiliar terms. Cut redunda
 - **Narrative and speeches:** Preserve requested viewpoint, pacing, and voice; do not force an explanatory opening or technical outline.
 - **WeChat, Xiaohongshu, and video:** Read [social-writing.md](references/social-writing.md) for platform packaging, speech, and timing. Deliver requested parts only.
 
-For factual explanations, read [clear-prose.md](references/clear-prose.md); for other technical writing, read [technical-articles.md](references/technical-articles.md).
+For rewrites and factual explanations, read [clear-prose.md](references/clear-prose.md); for other technical writing, read [technical-articles.md](references/technical-articles.md).
 
 ## Visuals and delivery
 
