@@ -23,6 +23,8 @@ description: Write or revise Chinese and English prose. Use when authoring artic
 
 Deliver the requested text directly. Include drafting notes, alternatives, or editing rationale only on request. Respect the reader, voice, form, and length.
 
+Before drafting an article, choose one point worth developing and know why it matters to the intended reader. Check that the title and opening set the same expectation and that the body delivers on it.
+
 Cut throat-clearing, previews of the next sentence, and summaries that repeat the answer. Add background or examples to resolve a specific gap. Stop once the reader can understand or act.
 
 Read the shortened passage in order. Restore any missing reason, unclear subject, or condition detached from its action. Keep connected thoughts in flowing prose. Preserve facts, uncertainty, literals, and source boundaries. Verify factual claims against primary sources. Label hypothetical examples. Only requested fiction may invent events.
