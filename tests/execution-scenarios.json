@@ -53,7 +53,7 @@
   {
     "id": "implement-cohesive-layout",
     "skill": "ay-implement",
-    "prompt": "Implement the approved batch order intake under a new orders package. Follow the neighboring inventory package's responsibility boundaries. Parse CSV columns sku, quantity, and unit_price; reject a blank sku, nonpositive quantity, or negative price; calculate Decimal totals; save accepted lines through an in-memory repository; return the accepted count and total. The public behavior is fixed by the supplied tests. Code changes are approved. Use only the standard library, run the tests, and do not modify inventory or tests.",
+    "prompt": "Implement the approved batch order intake under a new orders package. Follow the neighboring inventory package's responsibility boundaries. Put OrderLine and ImportResult in orders/domain.py. Parse CSV columns sku, quantity, and unit_price; reject a blank sku, nonpositive quantity, or negative price; calculate Decimal totals; save accepted lines through an in-memory repository; return the accepted count and total. The public behavior is fixed by the supplied tests. Code changes are approved. Use only the standard library, run the tests, and do not modify inventory or tests.",
     "fixture": "implement-structure",
     "files": {},
     "expected_created": {
