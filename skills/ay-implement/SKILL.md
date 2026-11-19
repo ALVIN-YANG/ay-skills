@@ -23,7 +23,7 @@ Turn approved intent and design into a verified change without reopening settled
 
 ## Establish the implementation contract
 
-Read project instructions, working-tree state, relevant code, tests, history, and existing approved handoffs. Trace the requested behavior from entry point through affected consumers. Preserve stable terms, states, authorization, failure behavior, and data invariants across those handoffs. Separate settled decisions, discoverable facts, and unresolved choices.
+Check project instructions and working-tree state. Start with approved requirements and acceptance criteria. Trace entry points, affected consumers, and tests. Search for existing rules before adding business logic. Read other material only when it can change an implementation decision. Preserve terms, states, authorization, failure behavior, and data invariants.
 
 Act directly when the request or approved artifact fixes the target, observable result, and acceptance boundary. A small explicit change needs no restated plan.
 
