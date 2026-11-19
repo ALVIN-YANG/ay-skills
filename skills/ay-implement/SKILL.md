@@ -5,8 +5,6 @@ description: Implement and verify an approved product or software change inside 
 
 # AY Implement
 
-Turn approved intent and design into a verified change without reopening settled decisions.
-
 ## Approval contract
 
 <!-- ay-contract:start -->
@@ -25,13 +23,15 @@ Turn approved intent and design into a verified change without reopening settled
 
 Check project instructions and working-tree state. Start with approved requirements and acceptance criteria. Trace entry points, affected consumers, and tests. Search for existing rules before adding business logic. Read other material only when it can change an implementation decision. Preserve terms, states, authorization, failure behavior, and data invariants.
 
-Act directly when the request or approved artifact fixes the target, observable result, and acceptance boundary. A small explicit change needs no restated plan.
+A precise change needs no restated plan.
 
-If implementation would require inventing material product behavior, system shape, data contract, dependency, migration, or external action, present one recommended proposal and wait. Do not recreate a full discovery process inside this skill. Ask only about the current decision that cannot be discovered.
+If material behavior, system shape, data contracts, dependencies, migration, or external actions remain undecided, recommend one approach and wait. Ask only about unresolved decisions that affect this change.
 
 ## Implement coherently
 
 Make the smallest complete change within repository conventions. Preserve behavior outside the approved boundary. Keep tests, configuration, generated artifacts, and migrations coherent.
+
+Each new or changed handwritten source file, including tests, must stay at or below 20,000 bytes. Measure existing targets before editing and final files before delivery. Exempt generated files, vendored code, and lockfiles. Split by responsibility. Propose out-of-scope splits and wait for approval.
 
 Organize code around cohesive responsibilities. Keep a function at one abstraction level and a file or package centered on a recognizable domain capability. Split mixed change reasons, lifecycles, dependencies, or side effects; keep code together when separation creates pass-through files or one-use interfaces. Avoid generic `util`, `common`, `helpers`, or `types` dumping grounds. Keep public surfaces small and names consistent with approved domain terms.
 
