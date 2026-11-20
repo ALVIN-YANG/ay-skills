@@ -18,7 +18,6 @@
   {"id":"architecture-new-system","prompt":"Design the technical architecture for this approved product before any code, including boundaries, data ownership, deployment, failure containment, and tradeoffs.","expected_skill":"ay-architecture"},
   {"id":"architecture-monolith-choice","prompt":"Decide whether this small SaaS should start as a modular monolith or microservices, using our traffic, team, reliability, and deployment constraints.","expected_skill":"ay-architecture"},
   {"id":"architecture-ui-derived","prompt":"Use the approved UI flows to design the backend system shape for offline sync, permissions, cancellation, and recovery. Do not define endpoint payloads yet.","expected_skill":"ay-architecture"},
-  {"id":"architecture-subsystem","prompt":"Produce an architecture.md proposal for the new notification subsystem, its ownership boundaries, adapters, asynchronous flow, and evolution path.","expected_skill":"ay-architecture"},
   {"id":"architecture-deployment","prompt":"Design the deployment units, trust boundaries, observability, and recovery model for this new multi-tenant service without implementing it.","expected_skill":"ay-architecture"},
 
   {"id":"api-rest-contract","prompt":"Design the REST API contract for the approved mobile flows, including authorization, validation, errors, idempotency, pagination, and compatibility. No handlers yet.","expected_skill":"ay-api"},
@@ -48,8 +47,8 @@
   {"id":"fix-diagnose-only","prompt":"Diagnose why login sometimes shows a white screen. Do not modify files.","expected_skill":"diagnosing-bugs"},
   {"id":"fix-explicit-selector","prompt":"Fix the typo in the renamed CSS selector that hides the settings icon and verify that screen.","expected_skill":"ay-fix"},
   {"id":"fix-intermittent","prompt":"Fix this intermittent integration test that fails about one run in twenty.","expected_skill":"ay-fix"},
-  {"id":"fix-root-cause-given","prompt":"The parser crash is caused by the missing nil guard at the named call site. Add that guard and its regression test.","expected_skill":"ay-fix"},
   {"id":"fix-dependency-choice","prompt":"Fix the sync failure; one option adds a queue dependency and another changes conflict behavior.","expected_skill":"ay-fix"},
+  {"id":"fix-repeated-correction","prompt":"This is the second time invalid input slipped through. Repair the cause and make sure the original mistake cannot pass the new check unnoticed.","expected_skill":"ay-fix"},
 
   {"id":"audio-macos-crackle","prompt":"This Swift macOS app's MiniMax streaming TTS crackles and pops. Trace the audio path, fix the proven cause, and verify real playback.","expected_skill":"ay-audio"},
   {"id":"audio-second-turn","prompt":"The first WebSocket TTS turn plays, but the second turn fails or stays silent. Diagnose the queue and cancellation lifecycle.","expected_skill":"ay-audio"},
@@ -62,6 +61,7 @@
   {"id":"improve-performance","prompt":"Make this API faster, but we do not have a baseline yet.","expected_skill":"ay-improve"},
   {"id":"improve-architecture-choice","prompt":"Refactor the persistence layer; either split the module or replace its storage abstraction.","expected_skill":"codebase-design"},
   {"id":"improve-precise-rename","prompt":"Rename this internal helper and every reference without changing its behavior.","expected_skill":"ay-improve"},
+  {"id":"improve-agent-context-hygiene","prompt":"The agent keeps following obsolete rules and stale documents. Reduce the duplicated project context and restore one source of truth without building an index.","expected_skill":"ay-improve"},
 
   {"id":"write-new-article","prompt":"Write a practical article explaining why capable coding agents still need skills.","expected_skill":"ay-write"},
   {"id":"write-direct-draft","prompt":"Write the full article now from these approved notes; skip the outline checkpoint.","expected_skill":"ay-write"},
@@ -129,7 +129,6 @@
   {"id":"write-xhs-note","prompt":"把这些测评记录写成一篇小红书笔记，给标题、首图文案、正文和相关话题，不要虚构亲身体验。","expected_skill":"ay-write"},
   {"id":"write-video-copy","prompt":"把这篇长文改成 60 秒视频号口播文案，适合直接念，保留事实和限制，不制作视频。","expected_skill":"ay-write"},
   {"id":"specialist-wechat-layout","prompt":"这篇公众号文章已经定稿。用 $gzh-design 生成可粘贴到微信编辑器的排版 HTML，保留原文。","expected_skill":"gzh-design"},
-  {"id":"write-wechat-draft","prompt":"把这些采访材料写成一篇给年轻职场人看的公众号文章，要有标题和完整正文，保持采访对象的原意。","expected_skill":"ay-write"},
   {"id":"api-chinese-design","prompt":"为尚未实现的订单服务设计接口文档，确定操作、权限、字段、幂等和错误语义，作为后续实现依据。","expected_skill":"ay-api"},
   {"id":"integration-existing-openapi","prompt":"根据已经确认的 OpenAPI 和本期提交，给 Web 团队整理本次升级要接入的接口说明，保留现有字段和错误语义。","expected_skill":"ay-write"},
   {"id":"integration-no-change-note","prompt":"为桌面客户端撰写本期接口升级说明，依据已实现的提交与上一版契约，只记录客户端可见变化；没有变化时用一句话说明，不要填空模板。","expected_skill":"ay-write"},

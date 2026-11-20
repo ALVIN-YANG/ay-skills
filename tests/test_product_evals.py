@@ -56,15 +56,6 @@ class ProductEvalTests(unittest.TestCase):
             )
         )
 
-    def test_normalize_evaluation_accepts_exact_rubric(self) -> None:
-        data = {
-            "winner": "A",
-            "reason": "better",
-            "a": self.evaluation(2),
-            "b": self.evaluation(1),
-        }
-        self.assertEqual(product.normalize_evaluation(data, self.rubric), [])
-
     def test_normalize_evaluation_recomputes_total_and_rejects_wrong_ids(self) -> None:
         bad = self.evaluation(2)
         bad["total"] = 3

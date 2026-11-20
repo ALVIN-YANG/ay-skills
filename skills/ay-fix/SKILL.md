@@ -41,6 +41,10 @@ If the user asked to fix, proceed without another checkpoint only when the root-
 
 Fix the cause at the narrowest responsible boundary, not its downstream symptom. Add a regression check when a stable behavior seam exists; do not invent hollow tests for untestable surfaces.
 
+When the same class of failure recurs after correction, prefer making the mistake structurally impossible, then adding an executable check, then exposing visible evidence. Use documentation only for judgment that cannot be checked; a reminder alone is not recurrence prevention.
+
+Show that a new regression check catches the original defect. When feasible, run it against the pre-fix behavior, observe the expected failure, restore the repair, and observe a pass. If this negative control is not feasible, state the limitation instead of claiming the check is proven.
+
 Re-run the original reproduction, regression check, and relevant neighbors. Separate environment, harness, source, build, package, deployment, and real-runtime evidence. If the cause remains unproven, say so.
 
 Report the cause, discriminating evidence, repair, proof, and remaining uncertainty.

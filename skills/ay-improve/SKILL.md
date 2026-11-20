@@ -23,36 +23,36 @@ Improve a demonstrated constraint, not an imagined future.
 
 ## Find the constraint
 
-Inspect the relevant call paths, tests, history, build or runtime measurements, and change patterns. Name the concrete friction: latency, allocation, duplication, coupling, unclear ownership, difficult testing, slow builds, or repeated change cost.
+Inspect relevant call paths, tests, history, measurements, and change patterns. Name concrete friction: latency, duplication, coupling, unclear ownership, difficult testing, slow builds, repeated change cost, or wasted agent exploration.
 
-Do not treat aesthetics, file size alone, or a new abstraction as evidence. If no material constraint is found, say so and recommend no change.
+Do not treat aesthetics, file size alone, or a new abstraction as evidence. If no material constraint exists, recommend no change.
+
+For agent context hygiene, demonstrate wrong or wasted exploration from current code, instructions, documents, or tools. Prefer deleting stale or duplicate material, restoring one responsible source, and narrowing overlapping tools. Keep only project-specific rules and pointers in instruction files. Do not create indexes, hooks, or mandatory documents; current code, tests, and history remain the facts.
 
 ## Propose the smallest leverage
 
-After understanding the affected flow, compare solutions in this order:
+After understanding the affected flow, choose the first sufficient option:
 
 1. no change or deletion
-2. reuse code or configuration already present
-3. use the language standard library or native platform
+2. reuse existing code or configuration
+3. use the standard library or native platform
 4. use an installed dependency
 5. add the smallest new code or dependency
 
-Stop at the first option that fully satisfies the approved behavior. This guides design; it is not code golf. Do not sacrifice stable module boundaries, readability, trust-boundary validation, data-loss protection, security, accessibility, or explicit requirements.
-
-Trace the chosen files, dependencies, abstractions, and behavior to the demonstrated constraint. Include:
+Do not sacrifice stable boundaries, readability, validation, data protection, security, accessibility, or requirements. Tie the proposal to the demonstrated constraint with:
 
 - baseline and evidence
 - intended improvement and success measure
-- affected boundary and behavior that must stay stable
+- affected boundary and protected behavior
 - scope, risk, and relevant alternative
 - verification method
 
-For a deliberately limited solution, name its capability ceiling and observable upgrade trigger in an existing proposal or handoff. Do not create a comment or artifact only for this record.
+For a deliberately limited solution, name its capability ceiling and observable upgrade trigger in an existing proposal or handoff. Do not create an artifact only for this record.
 
-Wait for approval before restructuring unless the user's instruction already specifies the exact transformation.
+Wait for approval before restructuring unless the user specified the exact transformation.
 
 ## Implement and compare
 
-Preserve behavior unless approved otherwise. Prefer a deep, stable interface over helper layers. Treat size, nesting, parameters, and dependency fan-out as signals, not quotas. Split units mixing unrelated responsibilities or dependencies; merge pass-through files and one-use interfaces. Organize packages by domain capability; avoid generic `util`, `common`, `helpers`, or `types` dumping grounds; keep contract names consistent. Avoid speculative extensibility and unrelated cleanup. Changing the system shape still needs an approved proposal.
+Preserve approved behavior. Prefer a deep, stable interface over helper layers. Treat size, nesting, parameters, and fan-out as signals, not quotas. Split unrelated responsibilities; merge pass-through files and one-use interfaces. Organize packages by domain capability, avoid generic dumping grounds, and keep contract names consistent. Avoid speculative extensibility, unrelated cleanup, or unapproved system-shape changes.
 
-Verify the success measure and neighboring behavior. Less code or fewer dependencies help only when behavior, safeguards, and checks remain intact. Separate measured gains from expectations; do not claim saved lines, cost, or time without a comparable baseline. Review scope traceability, then report before/after evidence and remaining tradeoffs.
+Verify the success measure and neighboring behavior. Fewer lines or dependencies help only when behavior, safeguards, and checks remain intact. Separate measured gains from expectations. Report before/after evidence and remaining tradeoffs.

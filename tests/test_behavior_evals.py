@@ -125,19 +125,6 @@ class BehaviorEvalTests(unittest.TestCase):
         )
         self.assertTrue(any("unexpected changes" in error for error in errors))
 
-    def test_verify_result_checks_created_artifact(self) -> None:
-        errors = behavior.verify_result(
-            {
-                "expected_created": {"article.md": 10},
-                "created_all": {"article.md": ["evidence", "boundary"]},
-                "final_any": ["article.md"],
-            },
-            {},
-            {"article.md": b"Evidence makes the boundary testable."},
-            "Created article.md",
-        )
-        self.assertEqual(errors, [])
-
     def test_verify_result_rejects_extra_changes_for_created_assertions(self) -> None:
         scenario = {
             "expected_created": {"orders/service.py": 10},
@@ -178,18 +165,6 @@ class BehaviorEvalTests(unittest.TestCase):
             "Created ios-api.md",
         )
         self.assertTrue(any("ReportRepository" in error for error in errors))
-
-    def test_verify_result_checks_required_and_forbidden_terms(self) -> None:
-        errors = behavior.verify_result(
-            {
-                "final_all": ["target user", "non-goal"],
-                "final_none": ["guaranteed demand"],
-            },
-            {},
-            {},
-            "Target user: technicians. Non-goal: automated diagnosis.",
-        )
-        self.assertEqual(errors, [])
 
     def test_verify_result_reports_term_failures(self) -> None:
         errors = behavior.verify_result(

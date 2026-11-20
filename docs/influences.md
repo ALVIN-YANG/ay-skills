@@ -76,6 +76,12 @@ Also inspected: MIT-licensed [zdyya/writer-skill](https://github.com/zdyya/write
 
 The admission decision applies Percy Liang and collaborators' [HELM framework](https://arxiv.org/abs/2211.09110): explicit scenario coverage, multiple relevant metrics, standardized comparison and inspectable evidence. HELM evaluates language models; applying those principles to tool state, authorization and bounded repair is AY's adaptation. [Anthropic's agent-evaluation guidance](https://www.anthropic.com/research/demystifying-evals-for-ai-agents) supports outcome checks, calibrated graders and trial accounting. Framework reputation is not evidence that this skill improves a given agent.
 
+## Agent context hygiene and recurrence prevention
+
+The context-hygiene and recurrence-prevention additions were informed by MIT-licensed [Nagi Skills](https://github.com/nagi-studio/skills/tree/b7bb3ee09f502ffd68cee984b8344b2af3b616e6), reviewed on 2026-11-20.
+
+AY adapts two ideas: duplicated or conflicting agent instructions call for deletion and single ownership rather than another memory layer, and repeated failures should be stopped structurally or by executable checks rather than accumulating reminders. AY adds a negative control for new regression checks. It does not adopt upstream Git hooks, mandatory documents, fixed UI rules, or routine browser-test requirements. The instructions and synthetic cases are original; no upstream text or test data was copied.
+
 ## Natural wording
 
 The distinction between countable writing features and context-dependent editing decisions was informed by [lieflat-less-ai-tone](https://github.com/larashero3-dotcom/lieflat-less-ai-tone/tree/53160078a04926d98de57a233549612d1b89bdc9), reviewed on 2026-11-06. Its license file is CC BY-NC 4.0; no upstream skill text, code, examples, data, thresholds, or assets were copied into AY's MIT-licensed distribution.

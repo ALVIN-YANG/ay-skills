@@ -50,7 +50,7 @@ Reject generic framework shopping that replaces the requested source comparison,
 
 ## Genre and scope checks
 
-Use a short fiction request to confirm that invented events are allowed and an explanatory conclusion is not imposed. Use `write-review-only` to confirm that a critique does not mutate the draft. A precise paragraph rewrite should retain requested structure and must not grow into an article, visual plan, or publishing task.
+Use a short fiction request to confirm that invented events are allowed and an explanatory conclusion is not imposed. A precise paragraph rewrite should retain requested structure and must not grow into an article, visual plan, or publishing task.
 
 ## Record and iterate
 

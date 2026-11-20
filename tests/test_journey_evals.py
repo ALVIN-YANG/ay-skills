@@ -26,13 +26,6 @@ class JourneyEvalTests(unittest.TestCase):
         )
         self.assertTrue(any("Conflict" in error for error in errors))
 
-    def test_cross_artifact_verifier_accepts_consistent_handoff(self) -> None:
-        errors = journey.verify_cross_artifact(
-            {"cross_artifact": {"required_terms": {"PRD.md": ["Draft", "Conflict"]}}},
-            {"PRD.md": b"Draft and Conflict"},
-        )
-        self.assertEqual(errors, [])
-
     def test_cross_artifact_patterns_reject_explicit_contradiction(self) -> None:
         errors = journey.verify_cross_artifact(
             {

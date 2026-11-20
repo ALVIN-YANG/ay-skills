@@ -43,38 +43,45 @@ python3 scripts/run_behavior_evals.py --catalog target --ids architecture-approv
 
 Inspect the actual documents and responses: a fresh reader must reconstruct responsibilities, decisions, rationale, assumptions, and unresolved choices without the author's chat. The complete design has no blockers within its stated exercise scope. The incomplete design leaves retry semantics and concurrent closure unresolved; a reviewer must identify those choices rather than invent them. The provider-drift case must expose the false offline-cache assumption without changing files. The precise edit must still finish directly. Readiness is neither human approval nor executed runtime proof; verdict patterns and unchanged-file assertions alone do not prove review quality.
 
+For context-hygiene and recurrence-prevention changes, freeze the cases before editing the skills and inspect actual outputs. The improvement case must identify the conflicting sources and propose one responsible source without an index, hook, or new document. The repair case must show that the regression check fails against the original defect and passes after restoration.
+
+```bash
+python3 scripts/run_behavior_evals.py --catalog target --ids fix-repeated-error-negative-control improve-agent-context-hygiene
+python3 scripts/run_routing_evals.py --host codex --ids fix-repeated-correction improve-agent-context-hygiene
+```
+
 For writing changes, run the focused cases and inspect actual prose using [the writing rubric](tests/writing-rubric.md). File creation, keyword assertions, and a successful AI review do not prove human comprehension. The fixture catalog retains `human-writing` as an explicit-only alternative; the global catalog reflects the user's actual installation.
 
 ```bash
-python3 scripts/run_behavior_evals.py --catalog target --ids write-chinese-clarity write-technical-selection write-source-comparison write-english-holdout write-review-only
+python3 scripts/run_behavior_evals.py --catalog target --ids write-chinese-clarity write-technical-selection write-source-comparison write-english-holdout
 python3 scripts/run_routing_evals.py --host codex --ids write-chinese-explainer write-chinese-rewrite write-line-edit write-fiction specialist-human-writing specialist-clear-rewrite no-skill-short-answer
 ```
 
 For writing-type changes, add the Q&A, different-topic holdout, procedure, and narrative cases to the existing prose checks. Use the same supported model and CLI for paired trials and inspect the outputs against the writing rubric. A provider's rejection of a model is infrastructure failure, not a writing-quality result. Question provenance and technical answer evidence are separate.
 
 ```bash
-python3 scripts/run_behavior_evals.py --catalog target --ids write-interview-qa write-interview-holdout write-procedure-only write-narrative-opening write-reading-density write-source-comparison write-english-holdout write-review-only
+python3 scripts/run_behavior_evals.py --catalog target --ids write-interview-qa write-interview-holdout write-procedure-only write-narrative-opening write-reading-density write-source-comparison write-english-holdout
 python3 scripts/run_routing_evals.py --host codex --ids write-interview-bank write-faq-rewrite no-skill-rag-fact specialist-tech-doc-style specialist-interview-collection write-chinese-explainer write-fiction
 ```
 
 For integration-writing changes, keep the original consumer, release, source, examples and error-handling constraints. Compare the same HTTP, MQTT and no-visible-change cases before and after moving the rules; inspect actual outputs with the writing rubric. Contract design must still select `ay-api`.
 
 ```bash
-python3 scripts/run_behavior_evals.py --catalog target --ids integration-ios-release-handoff integration-device-release-handoff integration-no-visible-change-readonly api-approved-handoff write-interview-holdout write-social-video write-review-only
+python3 scripts/run_behavior_evals.py --catalog target --ids integration-ios-release-handoff integration-device-release-handoff api-approved-handoff write-interview-holdout write-social-video
 python3 scripts/run_routing_evals.py --host codex --ids integration-ios-release integration-android-handoff integration-device-message integration-no-visible-change integration-client-upgrade integration-existing-openapi api-rest-contract api-openapi api-chinese-design specialist-api-reference
 ```
 
-For Chinese social writing, freeze the WeChat, Xiaohongshu, and voiceover cases before editing and compare the same original/revised bundles. Inspect the actual copy, requested length, source fidelity, and spoken timing estimate using the writing rubric. The different-topic storyboard and title-only cases check transfer and narrow scope. Keep HTML formatting and video production separate from prose drafting.
+For Chinese social writing, freeze the WeChat, Xiaohongshu, and voiceover cases before editing and compare the same original/revised bundles. Inspect the actual copy, requested length, source fidelity, and spoken timing estimate using the writing rubric. The different-topic storyboard checks transfer. Keep HTML formatting and video production separate from prose drafting.
 
 ```bash
-python3 scripts/run_behavior_evals.py --catalog target --ids write-social-wechat write-social-xhs write-social-video write-social-video-holdout write-social-title-only write-interview-holdout write-reading-density write-narrative-opening
+python3 scripts/run_behavior_evals.py --catalog target --ids write-social-wechat write-social-xhs write-social-video write-social-video-holdout write-interview-holdout write-reading-density write-narrative-opening
 python3 scripts/run_routing_evals.py --host codex --ids write-wechat-article write-xhs-note write-video-copy specialist-wechat-layout write-interview-bank no-skill-short-answer
 ```
 
 For product website changes, freeze cases before editing the skill and inspect their saved outputs using [the website rubric](tests/website-rubric.md). Review rendered desktop and mobile pages and actual action targets; artifact assertions alone do not prove visual quality.
 
 ```bash
-python3 scripts/run_behavior_evals.py --catalog target --ids website-proposal-only website-approved-static-page website-design-only-handoff website-two-visible-directions
+python3 scripts/run_behavior_evals.py --catalog target --ids website-approved-static-page website-design-only-handoff website-two-visible-directions
 python3 scripts/run_routing_evals.py --host codex --ids website-product-homepage website-approved-build website-design-only website-two-directions specialist-frontend specialist-frontend-workspace specialist-oil-ui ui-style-flow specialist-web-audit
 ```
 
